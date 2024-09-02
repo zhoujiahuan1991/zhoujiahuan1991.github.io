@@ -9,6 +9,72 @@
     <title>首页</title>
     <link rel="stylesheet" href="common/css/bootstrap.min.css">
     <link rel="stylesheet" href="common/css/index.css">
+    <style>
+        /* 论文标签样式 */
+        .tabs {
+            display: flex;
+            cursor: pointer;
+            padding: 10px;
+            background-color: rgb(255, 255, 255);
+            border-radius: 8px;
+        }
+        .tab {
+            margin-right: 10px;
+            padding: 5px 20px;
+            border-radius: 8px;
+            font-size: 14px;
+            background-color: #f0f0f0;
+            color: #333;
+            transition: background-color 0.3s, color 0.3s;
+            font-weight: bold;
+            border: 1px solid #ddd;
+        }
+        .tab.active {
+            background-color: rgb(138, 38, 38);
+            color: white;
+            border: 1px solid rgb(138, 38, 38);
+        }
+        .tab:hover {
+            background-color: #ddd;
+        }
+        .paper-list {
+            display: none;
+            margin-top: 20px;
+        }
+        .paper-list.active {
+            display: block;
+        }
+        /* 新闻标签样式 */
+        .news-item {
+            display: none; /* 默认隐藏所有新闻 */
+        }
+        .show-more {
+            cursor: pointer;
+            color: blue;
+            text-decoration: underline;
+            margin-top: 20px;
+            display: inline-block;
+        }
+        .show-less {
+            cursor: pointer;
+            color: blue;
+            text-decoration: underline;
+            margin-top: 20px;
+            display: inline-block;
+        }
+        /* 提示框样式 */
+        #notification {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px;
+            border-radius: 5px;
+            display: none; /* 默认隐藏 */
+            z-index: 1000;
+        }
+    </style>
 </head>
 
 <body>
@@ -80,61 +146,63 @@ A.info:hover    {color:green;background:transparent;text-decoration:underline}
                     <section style="font-size: 1.8rem;">
                         <h3 >News</h3>
                         <ul>
-                            <li><p style="color:red;">We are always actively recruiting Post-doc Fellows, Ph.D., Master, and Research Interns! Welcome to contact me with your detailed CV! (常年招收博士后、博士、硕士和科研实习生！)</p>
+                            <li class="news-item"><p style="color:red;">We are always actively recruiting Post-doc Fellows, Ph.D., Master, and Research Interns! Welcome to contact me with your detailed CV! (常年招收博士后、博士、硕士和科研实习生！)</p>
                             </li>
-                            <li><p>07.2024, Four papers are accepted by ACM MM'2024.</p>
+                            <li class="news-item"><p>07.2024, Four papers are accepted by ACM MM'2024.</p>
                             </li>
-                            <li><p>05.2024, One paper is accepted by IJCV.</p>
+                            <li class="news-item"><p>05.2024, One paper is accepted by IJCV.</p>
                             </li>
-                            <li><p>05.2024, Invited to serve as the Area Chair of NeurIP'2024.</p>
+                            <li class="news-item"><p>05.2024, Invited to serve as the Area Chair of NeurIP'2024.</p>
                             </li>
-                            <li><p>04.2024, One paper is accepted by IJCV.</p>
+                            <li class="news-item"><p>04.2024, One paper is accepted by IJCV.</p>
                             </li>                     
-                            <li><p>04.2024, One paper is accepted by IJCAI'2024.</p>
+                            <li class="news-item"><p>04.2024, One paper is accepted by IJCAI'2024.</p>
                             </li>
-                            <li><p>03.2024, One paper is accepted by Nature Synthesis.</p>
+                            <li class="news-item"><p>03.2024, One paper is accepted by Nature Synthesis.</p>
                             </li>
-                            <li><p>02.2024, Four papers are accepted by CVPR'2024.</p>
+                            <li class="news-item"><p>02.2024, Four papers are accepted by CVPR'2024.</p>
                             </li>
-                            <li><p>01.2024, One paper is accepted by IEEE T-PAMI.</p>
+                            <li class="news-item"><p>01.2024, One paper is accepted by IEEE T-PAMI.</p>
                             </li>
-                            <li><p>12.2023, One paper is accepted by ACM TOMM.</p>
+                            <li class="news-item"><p>12.2023, One paper is accepted by ACM TOMM.</p>
                             </li>
-                            <li><p>12.2023, Five papers are accepted by AAAI'2024.</p>
+                            <li class="news-item"><p>12.2023, Five papers are accepted by AAAI'2024.</p>
                             </li>
-                            <li><p>12.2023, Invited to serve as the Area Chair of ICPR'2024.</p>
+                            <li class="news-item"><p>12.2023, Invited to serve as the Area Chair of ICPR'2024.</p>
                             </li>
-                            <li><p>11.2023, One paper is accepted by IEEE TIFS.</p>
+                            <li class="news-item"><p>11.2023, One paper is accepted by IEEE TIFS.</p>
                             </li>
-                            <li><p>09.2023, One paper is accepted by ICIG'2023.</p>
+                            <li class="news-item"><p>09.2023, One paper is accepted by ICIG'2023.</p>
                             </li>
-                            <li><p>07.2023, One paper is accepted by ACM MM'2023.</p>
+                            <li class="news-item"><p>07.2023, One paper is accepted by ACM MM'2023.</p>
                             </li>
-                            <li><p>06.2023, Invited to serve as the Area Chair of CVPR'2024.</p>
+                            <li class="news-item"><p>06.2023, Invited to serve as the Area Chair of CVPR'2024.</p>
                             </li>
-                            <li><p>03.2023, One paper is accepted by IEEE TCSVT.</p>
+                            <li class="news-item"><p>03.2023, One paper is accepted by IEEE TCSVT.</p>
                             </li>
-                            <li><p>01.2023, One paper is accepted by IEEE TCSVT.</p>
+                            <li class="news-item"><p>01.2023, One paper is accepted by IEEE TCSVT.</p>
                             </li>
-                            <li><p>12.2022, Invited to serve as the Session Chair of VCIP'2022.</p>
+                            <li class="news-item"><p>12.2022, Invited to serve as the Session Chair of VCIP'2022.</p>
                             </li>
-                            <li><p>12.2022, Invited to serve as the Area Chair of ICME'2023.</p>
+                            <li class="news-item"><p>12.2022, Invited to serve as the Area Chair of ICME'2023.</p>
                             </li>
-                            <li><p>11.2022, One paper is accepted by AAAI'2023.</p>
+                            <li class="news-item"><p>11.2022, One paper is accepted by AAAI'2023.</p>
                             </li>
-                            <li><p>10.2022, Awarded National Young Scientists Funding Program.</p>
+                            <li class="news-item"><p>10.2022, Awarded National Young Scientists Funding Program.</p>
                             </li>
-                            <li><p>09.2022, Invited to serve as the Area Chair of CVPR'2023.</p>
+                            <li class="news-item"><p>09.2022, Invited to serve as the Area Chair of CVPR'2023.</p>
                             </li>
-                            <li><p>08.2022, One paper is accepted by IEEE T-PAMI.</p>
+                            <li class="news-item"><p>08.2022, One paper is accepted by IEEE T-PAMI.</p>
                             </li>
-                            <li><p>07.2022, One paper is accepted by ECCV'2022.</p>
+                            <li class="news-item"><p>07.2022, One paper is accepted by ECCV'2022.</p>
                             </li>
-                            <li><p>04.2022, Invited to serve as the Area Chair of ICPR'2023.</p>
+                            <li class="news-item"><p>04.2022, Invited to serve as the Area Chair of ICPR'2023.</p>
                             </li>
-                            <li><p>03.2022, Joined Peking University.</p>
+                            <li class="news-item"><p>03.2022, Joined Peking University.</p>
                             </li>
-                            </ul>
+                        </ul>
+                        <div id="show-more" class="show-more" onclick="showMoreNews()">Show More</div>
+                        <div id="show-less" class="show-less" onclick="showLessNews()">Show Less</div>
                     </section>
                     <p id="direct" style="height:4rem;margin: 0;">&nbsp;</p>
                     <section style="font-size: 1.8rem;">
@@ -151,122 +219,302 @@ A.info:hover    {color:green;background:transparent;text-decoration:underline}
                     <p id="paper" style="height:4rem;margin: 0;">&nbsp;</p>
                     <section style="font-size: 1.8rem;">
                         <h3>Publications</h3>
-                        <ol> 
-                            <li><p>Qiwei Li, Yuxin Peng, and <b>Jiahuan Zhou*</b>, "Progressive Prototype Evolving for Dual-Forgetting Mitigation in Non-Exemplar Online Continual Learning", in 32nd ACM Multimedia Conference (<strong>ACM MM'24</strong>), Melbourne, Australia, 2024. [<a href="">pdf</a>] [<a href="">code</a>]</p>
-                            </li>
-                            <li><p>Kunlun Xu, Haozhuo Zhang, Yu Li, Yuxin Peng, and <b>Jiahuan Zhou*</b>, "Mitigate Catastrophic Remembering via Continual Knowledge Purification for Noisy Lifelong Person Re-Identification", in 32nd ACM Multimedia Conference (<strong>ACM MM'24</strong>), Melbourne, Australia, 2024. [<a href="">pdf</a>] [<a href="">code</a>]</p>
-                            </li>
-                            <li><p>Zichen Liu, Yuxin Peng, and <b>Jiahuan Zhou*</b>, "InsVP: Efficient Instance Visual Prompting from Image Itself", in 32nd ACM Multimedia Conference (<strong>ACM MM'24</strong>), Melbourne, Australia, 2024. [<a href="">pdf</a>] [<a href="">code</a>]</p>
-                            </li>
-                            <li><p>Qiwen Zhu, Yanjie Wang, Shilv Cai, Liqun Chen, <b>Jiahuan Zhou*</b>, Luxin Yan, Sheng Zhong, and Xu Zou, "Perceptual-Distortion Balanced Image Super-Resolution is a Multi-Objective Optimization Problem", in 32nd ACM Multimedia Conference (<strong>ACM MM'24</strong>), Melbourne, Australia, 2024. [<a href="">pdf</a>] [<a href="">code</a>]</p>
-                            </li>
-                            <li><p>Zichen Liu, Yuxin Peng, and <b>Jiahuan Zhou*</b>, "Compositional Prompting for Anti-Forgetting in Domain Incremental Learning", in International Journal of Computer Vision (<strong>IJCV</strong>), 2024, pp. 1-18, Doi: 10.1007/s11263-024-02134-3. [<a href="https://link.springer.com/article/10.1007/s11263-024-02134-3">pdf</a>] [<a href="https://github.com/zhoujiahuan1991/IJCV2024-C-Prompt">code</a>]</p>
-                            </li>
-                            <li><p>Qiwei Li, Kunlun Xu, Yuxin Peng, and <b>Jiahuan Zhou*</b>, "Exemplar-Free Lifelong Person Re-Identification via Prompt-guided Adaptive Knowledge Consolidation", in International Journal of Computer Vision (<strong>IJCV</strong>), 2024, pp. 1-16, Doi: 10.1007/s11263-024-02110-x. [<a href="https://link.springer.com/article/10.1007/s11263-024-02110-x">pdf</a>] [<a href="https://github.com/zhoujiahuan1991/IJCV2024-PAEMA/">code</a>]</p>
-                            </li>
-                            <li><p>Hongbo Sun, <b>Jiahuan Zhou</b>, Xiangteng He, Jinglin Xu, and Yuxin Peng, "FineFMPL: Fine-grained Feature Mining Prompt Learning for Few-Shot Class Incremental Learning", in 2024 International Joint Conference on Artificial Intelligence (<strong>IJCAI'24</strong>), Jeju, South Korea, 2024. [<a href="xxxx">pdf</a>]</p>
-                            </li>
-                            <li><p>Xiaocang Han, Mengmeng Niu, Yan Luo, Runlai Li, Jiadong Dan, Yanhui Hong, Xu Wu, Alex V. Trukhanov, Wei Ji, Yeliang Wang, <b>Jiahuan Zhou</b>, Jingsi Qiao, Jin Zhang, and Xiaoxu Zhao, "Atomically engineering metal vacancies in monolayer transition metal dichalcogenides" in Nature Synthesis (<strong>Nat. Synth'24</strong>), Doi: 10.1038/s44160-024-00501-z. [<a href="https://www.nature.com/articles/s44160-024-00501-z">pdf</a>]</p>
-                            </li>
-                            <li><p>Kunlun Xu, Xu Zou, Yuxin Peng, and <b>Jiahuan Zhou*</b>, "Distribution-aware Knowledge Prototyping for Non-exemplar Lifelong Person Re-identification", in 2024 IEEE/CVF Conference on Computer Vision and Pattern Recognition (<strong>CVPR'24</strong>), Seattle WA, USA, 2024, pp. 16604-16613. [<a href="pub/CVPR2024_DKP.pdf">pdf</a>] [<a href="https://github.com/zhoujiahuan1991/CVPR2024-DKP">code</a>]</p>
-                            </li>
-                            <li><p>Qiwei Li, Yuxin Peng, and <b>Jiahuan Zhou*</b>, "FCS: Feature Calibration and Separation for Non-Exemplar Class Incremental Learning", in 2024 IEEE/CVF Conference on Computer Vision and Pattern Recognition (<strong>CVPR'24</strong>), Seattle WA, USA, 2024, pp. 28495-28504. [<a href="pub/CVPR2024_FCS.pdf">pdf</a>] [<a href="https://github.com/zhoujiahuan1991/CVPR2024-FCS">code</a>]</p>
-                            </li>
-                            <li><p>Yanjie Wang, Xu Zou, Luxin Yan, Sheng Zhong, and <b>Jiahuan Zhou*</b>, "SNIDA: Unlocking Few-Shot object Detection with Non-linear Semantic Decoupling Augmentation", in 2024 IEEE/CVF Conference on Computer Vision and Pattern Recognition (<strong>CVPR'24</strong>), Seattle WA, USA, 2024, pp. 12544-12553. [<a href="pub/CVPR2024_SNIDA.pdf">pdf</a>]</p>
-                            </li>
-                            <li><p>Zhenyu Cui, <b>Jiahuan Zhou</b>, Xun Wang, Manyu Zhu, and Yuxin Peng, "Learning Continual Compatible Representation for Re-indexing Free Lifelong Person Re-identification", in 2024 IEEE/CVF Conference on Computer Vision and Pattern Recognition (<strong>CVPR'24</strong>), Seattle WA, USA, 2024, pp. 16614-16623. [<a href="pub/CVPR2024_C2R.pdf">pdf</a>] [<a href="https://github.com/PKU-ICST-MIPL/C2R_CVPR2024">code</a>]</p>
-                            </li>
-                            <li><p>Shilv Cai, Liqun Chen, Zhijun Zhang, Xiangyun Zhao, and <b>Jiahuan Zhou</b>, Yuxin Peng, Luxin Yan, Sheng Zhong, and Xu Zou, "I2C: Invertible Continuous Codec for High-Fidelity Variable-Rate Image Compression", in IEEE Transactions on Pattern Analysis & Machine Intelligence (<strong>T-PAMI</strong>), 2024, vol. 46, no. 6, pp. 4262-4279, Doi: 10.1109/TPAMI.2024.3356557. [<a href="pub/TPAMI2024_I2C.pdf">pdf</a>]</p>
-                            </li>
-                            <li><p>Yanzhe Chen, <b>Jiahuan Zhou</b>, and Yuxin Peng, "SPIRIT: Style-guided Patch Interaction for Fashion Image Retrieval with Text Feedback", in ACM Transactions on Multimedia Computing, Communications, and Applications (<strong>TOMM</strong>),  2023, pp. 1-17, Doi: 10.1145/3640345. [<a href="https://dl.acm.org/doi/10.1145/3640345">pdf</a>]</p>
-                            </li>
+                        <div class="tabs">
+                            <div class="tab" onclick="showPapers('0000')">All Papers</div>
+                            <div class="tab" onclick="showPapers('2024')">2024</div>
+                            <div class="tab" onclick="showPapers('2023')">2023</div>
+                            <div class="tab" onclick="showPapers('2022')">2022 and before</div>
+                        </div>
+                        
+                        <div id="notification">The bib of the selected paper has copied!</div>
 
-                            <li><p>Kunlun Xu, Xu Zou, and <b>Jiahuan Zhou*</b>, "LSTKC: Long Short-Term Knowledge Consolidation for Lifelong Person Re-Identification", in Thirty-Eighth AAAI Conference on Artificial Intelligence (<strong>AAAI'24</strong>), Vancouver, Canada, 2024, vol. 38, no. 14, pp. 16202-16210, Doi: 10.1609/aaai.v38i14.29554. [<a href="pub/AAAI2024_LSTK.pdf">pdf</a>] [<a href="https://github.com/zhoujiahuan1991/LSTKC">code</a>]</p>
-                            </li>
+                        <div id="0000" class="paper-list">
+                            <ol> 
+                                <li><p>Qiwei Li, Yuxin Peng, and <b>Jiahuan Zhou*</b>, "Progressive Prototype Evolving for Dual-Forgetting Mitigation in Non-Exemplar Online Continual Learning", in 32nd ACM Multimedia Conference (<strong>ACM MM'24</strong>), Melbourne, Australia, 2024.
+                                    <br>[<a href="">pdf</a>] [<a href="">code</a>] [<a href="#" onclick="copyTextAndNotify(event, 'This bib is currently unavaliable')">bib</a>]</p>
+                                </li>
+                                <li><p>Kunlun Xu, Haozhuo Zhang, Yu Li, Yuxin Peng, and <b>Jiahuan Zhou*</b>, "Mitigate Catastrophic Remembering via Continual Knowledge Purification for Noisy Lifelong Person Re-Identification", in 32nd ACM Multimedia Conference (<strong>ACM MM'24</strong>), Melbourne, Australia, 2024.
+                                    <br>[<a href="">pdf</a>] [<a href="">code</a>] [<a href="#" onclick="copyTextAndNotify(event, 'This bib is currently unavaliable')">bib</a>]</p>
+                                </li>
+                                <li><p>Zichen Liu, Yuxin Peng, and <b>Jiahuan Zhou*</b>, "InsVP: Efficient Instance Visual Prompting from Image Itself", in 32nd ACM Multimedia Conference (<strong>ACM MM'24</strong>), Melbourne, Australia, 2024.
+                                    <br>[<a href="">pdf</a>] [<a href="">code</a>] [<a href="#" onclick="copyTextAndNotify(event, 'This bib is currently unavaliable')">bib</a>]</p>
+                                </li>
+                                <li><p>Qiwen Zhu, Yanjie Wang, Shilv Cai, Liqun Chen, <b>Jiahuan Zhou*</b>, Luxin Yan, Sheng Zhong, and Xu Zou, "Perceptual-Distortion Balanced Image Super-Resolution is a Multi-Objective Optimization Problem", in 32nd ACM Multimedia Conference (<strong>ACM MM'24</strong>), Melbourne, Australia, 2024.
+                                    <br>[<a href="">pdf</a>] [<a href="">code</a>] [<a href="#" onclick="copyTextAndNotify(event, 'This bib is currently unavaliable')">bib</a>]</p>
+                                </li>
 
-                            <li><p>Zichen Liu, Hongbo Sun, Yuxin Peng, and <b>Jiahuan Zhou*</b>, "DART: Dual-Modal Adaptive Online Prompting and Knowledge Retention for Test-Time Adaptation", in Thirty-Eighth AAAI Conference on Artificial Intelligence (<strong>AAAI'24</strong>), Vancouver, Canada, 2024, Vol. 38, No. 14, pp. 16202-16210, Doi: 10.1609/aaai.v38i14.29554. [<a href="pub/AAAI2024_DART.pdf">pdf</a>] [<a href="https://github.com/zhoujiahuan1991/DART">code</a>]</p>
-                            </li>
 
-                            <li><p>Zhenyu Cui, Yuxin Peng, Xun Wang, Manyu Zhu, and <b>Jiahuan Zhou</b>, "Continual Vision-Language Retrieval via Dynamic Knowledge Rectification", in Thirty-Eighth AAAI Conference on Artificial Intelligence (<strong>AAAI'24</strong>), Vancouver, Canada,  2024, Vol. 38, No. 10, pp. 11704-11712, Doi: 10.1609/aaai.v38i10.29054. [<a href="pub/AAAI2024_CVLR.pdf">pdf</a>]</p>
-                            </li>
+                                <li><p>Zichen Liu, Yuxin Peng, and <b>Jiahuan Zhou*</b>, "Compositional Prompting for Anti-Forgetting in Domain Incremental Learning", in International Journal of Computer Vision (<strong>IJCV</strong>), 2024, pp. 1-18, Doi: 10.1007/s11263-024-02134-3
+                                    <br>[<a href="https://link.springer.com/article/10.1007/s11263-024-02134-3">pdf</a>] [<a href="https://github.com/zhoujiahuan1991/IJCV2024-C-Prompt">code</a>] [<a href="#" onclick="copyTextAndNotify(event, '@article{liu2024compositional,\n  title={Compositional Prompting for Anti-Forgetting in Domain Incremental Learning},\n  author={Liu, Zichen and Peng, Yuxin and Zhou, Jiahuan},\n  journal={International Journal of Computer Vision},\n  pages={1--18},\n  year={2024},\n  publisher={Springer}\n}')">bib</a>]</p>
+                                </li>
+                                <li><p>Qiwei Li, Kunlun Xu, Yuxin Peng, and <b>Jiahuan Zhou*</b>, "Exemplar-Free Lifelong Person Re-Identification via Prompt-guided Adaptive Knowledge Consolidation", in International Journal of Computer Vision (<strong>IJCV</strong>), 2024, pp. 1-16, Doi: 10.1007/s11263-024-02110-x
+                                    <br>[<a href="https://link.springer.com/article/10.1007/s11263-024-02110-x">pdf</a>] [<a href="https://github.com/zhoujiahuan1991/IJCV2024-PAEMA/">code</a>] [<a href="#" onclick="copyTextAndNotify(event, '@article{li2024exemplar,\n  title={Exemplar-Free Lifelong Person Re-identification via Prompt-Guided Adaptive Knowledge Consolidation},\n  author={Li, Qiwei and Xu, Kunlun and Peng, Yuxin and Zhou, Jiahuan},\n  journal={International Journal of Computer Vision},\n  pages={1--16},\n  year={2024},\n  publisher={Springer}\n}')">bib</a>]</p>
+                                </li>
+                                <li><p>Hongbo Sun, <b>Jiahuan Zhou</b>, Xiangteng He, Jinglin Xu, and Yuxin Peng, "FineFMPL: Fine-grained Feature Mining Prompt Learning for Few-Shot Class Incremental Learning", in 2024 International Joint Conference on Artificial Intelligence (<strong>IJCAI'24</strong>), Jeju, South Korea, 2024
+                                    <br>[<a href="xxxx">pdf</a>] [<a href="#" onclick="copyTextAndNotify(event, '@article{sunfinefmpl,\n  title={FineFMPL: Fine-grained Feature Mining Prompt Learning for Few-Shot Class Incremental Learning},\n  author={Sun, Hongbo and Zhou, Jiahuan and He, Xiangteng and Xu, Jinglin and Peng, Yuxin}\n}')">bib</a>]</p>
+                                </li>
+                                <li><p>Xiaocang Han, Mengmeng Niu, Yan Luo, Runlai Li, Jiadong Dan, Yanhui Hong, Xu Wu, Alex V. Trukhanov, Wei Ji, Yeliang Wang, <b>Jiahuan Zhou</b>, Jingsi Qiao, Jin Zhang, and Xiaoxu Zhao, "Atomically engineering metal vacancies in monolayer transition metal dichalcogenides" in Nature Synthesis (<strong>Nat. Synth'24</strong>), Doi: 10.1038/s44160-024-00501-z
+                                    <br>[<a href="https://www.nature.com/articles/s44160-024-00501-z">pdf</a>] [<a href="#" onclick="copyTextAndNotify(event, '@article{han2024atomically,\n  title={Atomically engineering metal vacancies in monolayer transition metal dichalcogenides},\n  author={Han, Xiaocang and Niu, Mengmeng and Luo, Yan and Li, Runlai and Dan, Jiadong and Hong, Yanhui and Wu, Xu and Trukhanov, Alex V and Ji, Wei and Wang, Yeliang and others},\n  journal={Nature Synthesis},\n  volume={3},\n  number={5},\n  pages={586--594},\n  year={2024},\n  publisher={Nature Publishing Group UK London}\n}')">bib</a>]</p>
+                                </li>
+                                <li><p>Kunlun Xu, Xu Zou, Yuxin Peng, and <b>Jiahuan Zhou*</b>, "Distribution-aware Knowledge Prototyping for Non-exemplar Lifelong Person Re-identification", in 2024 IEEE/CVF Conference on Computer Vision and Pattern Recognition (<strong>CVPR'24</strong>), Seattle WA, USA, 2024, pp. 16604-16613
+                                    <br>[<a href="pub/CVPR2024_DKP.pdf">pdf</a>] [<a href="https://github.com/zhoujiahuan1991/CVPR2024-DKP">code</a>] [<a href="#" onclick="copyTextAndNotify(event, '@inproceedings{xu2024distribution,\n  title={Distribution-aware Knowledge Prototyping for Non-exemplar Lifelong Person Re-identification},\n  author={Xu, Kunlun and Zou, Xu and Peng, Yuxin and Zhou, Jiahuan},\n  booktitle={Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition},\n  pages={16604--16613},\n  year={2024}\n}')">bib</a>]</p>
+                                </li>
+                                <li><p>Qiwei Li, Yuxin Peng, and <b>Jiahuan Zhou*</b>, "FCS: Feature Calibration and Separation for Non-Exemplar Class Incremental Learning", in 2024 IEEE/CVF Conference on Computer Vision and Pattern Recognition (<strong>CVPR'24</strong>), Seattle WA, USA, 2024, pp. 28495-28504
+                                    <br>[<a href="pub/CVPR2024_FCS.pdf">pdf</a>] [<a href="https://github.com/zhoujiahuan1991/CVPR2024-FCS">code</a>] [<a href="#" onclick="copyTextAndNotify(event, '@inproceedings{li2024fcs,\n  title={FCS: Feature Calibration and Separation for Non-Exemplar Class Incremental Learning},\n  author={Li, Qiwei and Peng, Yuxin and Zhou, Jiahuan},\n  booktitle={Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition},\n  pages={28495--28504},\n  year={2024}\n}')">bib</a>]</p>
+                                </li>
+                                <li><p>Yanjie Wang, Xu Zou, Luxin Yan, Sheng Zhong, and <b>Jiahuan Zhou*</b>, "SNIDA: Unlocking Few-Shot object Detection with Non-linear Semantic Decoupling Augmentation", in 2024 IEEE/CVF Conference on Computer Vision and Pattern Recognition (<strong>CVPR'24</strong>), Seattle WA, USA, 2024, pp. 12544-12553
+                                    <br>[<a href="pub/CVPR2024_SNIDA.pdf">pdf</a>] [<a href="#" onclick="copyTextAndNotify(event, '@inproceedings{wang2024snida,\n  title={SNIDA: Unlocking Few-Shot Object Detection with Non-linear Semantic Decoupling Augmentation},\n  author={Wang, Yanjie and Zou, Xu and Yan, Luxin and Zhong, Sheng and Zhou, Jiahuan},\n  booktitle={Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition},\n  pages={12544--12553},\n  year={2024}\n}')">bib</a>]</p>
+                                </li>
+                                <li><p>Zhenyu Cui, <b>Jiahuan Zhou</b>, Xun Wang, Manyu Zhu, and Yuxin Peng, "Learning Continual Compatible Representation for Re-indexing Free Lifelong Person Re-identification", in 2024 IEEE/CVF Conference on Computer Vision and Pattern Recognition (<strong>CVPR'24</strong>), Seattle WA, USA, 2024, pp. 16614-16623
+                                    <br>[<a href="pub/CVPR2024_C2R.pdf">pdf</a>] [<a href="https://github.com/PKU-ICST-MIPL/C2R_CVPR2024">code</a>] [<a href="#" onclick="copyTextAndNotify(event, '@inproceedings{cui2024learning,\n  title={Learning Continual Compatible Representation for Re-indexing Free Lifelong Person Re-identification},\n  author={Cui, Zhenyu and Zhou, Jiahuan and Wang, Xun and Zhu, Manyu and Peng, Yuxin},\n  booktitle={Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition},\n  pages={16614--16623},\n  year={2024}\n}')">bib</a>]</p>
+                                </li>
+                                <li><p>Shilv Cai, Liqun Chen, Zhijun Zhang, Xiangyun Zhao, and <b>Jiahuan Zhou</b>, Yuxin Peng, Luxin Yan, Sheng Zhong, and Xu Zou, "I2C: Invertible Continuous Codec for High-Fidelity Variable-Rate Image Compression", in IEEE Transactions on Pattern Analysis & Machine Intelligence (<strong>T-PAMI</strong>), 2024, vol. 46, no. 6, pp. 4262-4279, Doi: 10.1109/TPAMI.2024.3356557
+                                    <br>[<a href="pub/TPAMI2024_I2C.pdf">pdf</a>] [<a href="#" onclick="copyTextAndNotify(event, '@article{cai2024i2c,\n  title={I2C: Invertible Continuous Codec for High-Fidelity Variable-Rate Image Compression},\n  author={Cai, Shilv and Chen, Liqun and Zhang, Zhijun and Zhao, Xiangyun and Zhou, Jiahuan and Peng, Yuxin and Yan, Luxin and Zhong, Sheng and Zou, Xu},\n  journal={IEEE Transactions on Pattern Analysis and Machine Intelligence},\n  year={2024},\n  publisher={IEEE}\n}')">bib</a>]</p>
+                                </li>
+                                <li><p>Yanzhe Chen, <b>Jiahuan Zhou</b>, and Yuxin Peng, "SPIRIT: Style-guided Patch Interaction for Fashion Image Retrieval with Text Feedback", in ACM Transactions on Multimedia Computing, Communications, and Applications (<strong>TOMM</strong>),  2023, pp. 1-17, Doi: 10.1145/3640345
+                                    <br>[<a href="https://dl.acm.org/doi/10.1145/3640345">pdf</a>] [<a href="#" onclick="copyTextAndNotify(event, '@article{chen2024spirit,\n  title={SPIRIT: Style-guided Patch Interaction for Fashion Image Retrieval with Text Feedback},\n  author={Chen, Yanzhe and Zhou, Jiahuan and Peng, Yuxin},\n  journal={ACM Transactions on Multimedia Computing, Communications and Applications},\n  volume={20},\n  number={6},\n  pages={1--17},\n  year={2024},\n  publisher={ACM New York, NY}\n}')">bib</a>]</p>
+                                </li>
+                                <li><p>Kunlun Xu, Xu Zou, and <b>Jiahuan Zhou*</b>, "LSTKC: Long Short-Term Knowledge Consolidation for Lifelong Person Re-Identification", in Thirty-Eighth AAAI Conference on Artificial Intelligence (<strong>AAAI'24</strong>), Vancouver, Canada, 2024, vol. 38, no. 14, pp. 16202-16210, Doi: 10.1609/aaai.v38i14.29554
+                                    <br>[<a href="pub/AAAI2024_LSTK.pdf">pdf</a>] [<a href="https://github.com/zhoujiahuan1991/LSTKC">code</a>] [<a href="#" onclick="copyTextAndNotify(event, '@inproceedings{xu2024lstkc,\n  title={LSTKC: Long Short-Term Knowledge Consolidation for Lifelong Person Re-identification},\n  author={Xu, Kunlun and Zou, Xu and Zhou, Jiahuan},\n  booktitle={Proceedings of the AAAI Conference on Artificial Intelligence},\n  volume={38},\n  number={14},\n  pages={16202--16210},\n  year={2024}\n}')">bib</a>]</p>
+                                </li>
+                                <li><p>Zichen Liu, Hongbo Sun, Yuxin Peng, and <b>Jiahuan Zhou*</b>, "DART: Dual-Modal Adaptive Online Prompting and Knowledge Retention for Test-Time Adaptation", in Thirty-Eighth AAAI Conference on Artificial Intelligence (<strong>AAAI'24</strong>), Vancouver, Canada, 2024, Vol. 38, No. 14, pp. 16202-16210, Doi: 10.1609/aaai.v38i14.29554
+                                    <br>[<a href="pub/AAAI2024_DART.pdf">pdf</a>] [<a href="https://github.com/zhoujiahuan1991/DART">code</a>] [<a href="#" onclick="copyTextAndNotify(event, '@inproceedings{liu2024dart,\n  title={DART: Dual-Modal Adaptive Online Prompting and Knowledge Retention for Test-Time Adaptation},\n  author={Liu, Zichen and Sun, Hongbo and Peng, Yuxin and Zhou, Jiahuan},\n  booktitle={Proceedings of the AAAI Conference on Artificial Intelligence},\n  volume={38},\n  number={13},\n  pages={14106--14114},\n  year={2024}\n}')">bib</a>]</p>
+                                </li>
+                                <li><p>Zhenyu Cui, Yuxin Peng, Xun Wang, Manyu Zhu, and <b>Jiahuan Zhou</b>, "Continual Vision-Language Retrieval via Dynamic Knowledge Rectification", in Thirty-Eighth AAAI Conference on Artificial Intelligence (<strong>AAAI'24</strong>), Vancouver, Canada,  2024, Vol. 38, No. 10, pp. 11704-11712, Doi: 10.1609/aaai.v38i10.29054
+                                    <br>[<a href="pub/AAAI2024_CVLR.pdf">pdf</a>] [<a href="#" onclick="copyTextAndNotify(event, '@inproceedings{cui2024continual,\n  title={Continual Vision-Language Retrieval via Dynamic Knowledge Rectification},\n  author={Cui, Zhenyu and Peng, Yuxin and Wang, Xun and Zhu, Manyu and Zhou, Jiahuan},\n  booktitle={Proceedings of the AAAI Conference on Artificial Intelligence},\n  volume={38},\n  number={10},\n  pages={11704--11712},\n  year={2024}\n}')">bib</a>]</p>
+                                </li>
+                                <li><p>Yanzhe Chen, Huasong Zhong, Xiangteng He, Yuxin Peng, <b>Jiahuan Zhou</b>, and Lele Cheng, "FashionERN: Enhance-and-Refine Network for Composed Fashion Image Retrieval", in Thirty-Eighth AAAI Conference on Artificial Intelligence (<strong>AAAI'24</strong>), Vancouver, Canada, 2024, Vol. 38, No. 2, pp. 1228-1236, Doi:10.1609/aaai.v38i2.27885
+                                    <br>[<a href="pub/AAAI2024_FASHIONERN.pdf">pdf</a>] [<a href="#" onclick="copyTextAndNotify(event, '@inproceedings{chen2024fashionern,\n  title={FashionERN: Enhance-and-Refine Network for Composed Fashion Image Retrieval},\n  author={Chen, Yanzhe and Zhong, Huasong and He, Xiangteng and Peng, Yuxin and Zhou, Jiahuan and Cheng, Lele},\n  booktitle={Proceedings of the AAAI Conference on Artificial Intelligence},\n  volume={38},\n  number={2},\n  pages={1228--1236},\n  year={2024}\n}')">bib</a>]</p>
+                                </li>
+                                <li><p>Shilv Cai, Liqun Chen, Sheng Zhong, Luxin Yan, <b>Jiahuan Zhou</b>, and Xu Zou, "Make Lossy Compression Meaningful for Low-light Images", in Thirty-Eighth AAAI Conference on Artificial Intelligence (<strong>AAAI'24</strong>), Vancouver, Canada, 2024, Vol. 38, No. 8, pp. 8236-8245, Doi: 10.1609/aaai.v38i8.28664
+                                    <br>[<a href="pub/AAAI2024_MAKE.pdf">pdf</a>] [<a href="#" onclick="copyTextAndNotify(event, '@inproceedings{cai2024make,\n  title={Make Lossy Compression Meaningful for Low-Light Images},\n  author={Cai, Shilv and Chen, Liqun and Zhong, Sheng and Yan, Luxin and Zhou, Jiahuan and Zou, Xu},\n  booktitle={Proceedings of the AAAI Conference on Artificial Intelligence},\n  volume={38},\n  number={8},\n  pages={8236--8245},\n  year={2024}\n}')">bib</a>]</p>
+                                </li>
+                                <li><p>Zhenyu Cui, <b>Jiahuan Zhou</b>, and Yuxin Peng, "DMA: Dual Modality-Aware Alignment for Visible-Infrared Person Re-Identification", in IEEE Transactions on Information Forensics and Security (<strong>TIFS</strong>), 2024, vol. 19, pp. 2696-2708, doi: 10.1109/TIFS.2024.3352408
+                                    <br>[<a href="pub/TIFS2023_DMA.pdf">pdf</a>] [<a href="https://github.com/PKU-ICST-MIPL/DMA_TIFS2023">code</a>] [<a href="#" onclick="copyTextAndNotify(event, '@article{cui2024dma,\n  title={DMA: Dual Modality-Aware Alignment for Visible-Infrared Person Re-Identification},\n  author={Cui, Zhenyu and Zhou, Jiahuan and Peng, Yuxin},\n  journal={IEEE Transactions on Information Forensics and Security},\n  year={2024},\n  publisher={IEEE}\n}')">bib</a>]</p>
+                                </li>
+                                
 
-                            <li><p>Yanzhe Chen, Huasong Zhong, Xiangteng He, Yuxin Peng, <b>Jiahuan Zhou</b>, and Lele Cheng, "FashionERN: Enhance-and-Refine Network for Composed Fashion Image Retrieval", in Thirty-Eighth AAAI Conference on Artificial Intelligence (<strong>AAAI'24</strong>), Vancouver, Canada, 2024, Vol. 38, No. 2, pp. 1228-1236, Doi:10.1609/aaai.v38i2.27885. [<a href="pub/AAAI2024_FASHIONERN.pdf">pdf</a>]</p>
-                            </li>
 
-                            <li><p>Shilv Cai, Liqun Chen, Sheng Zhong, Luxin Yan, <b>Jiahuan Zhou</b>, and Xu Zou, "Make Lossy Compression Meaningful for Low-light Images", in Thirty-Eighth AAAI Conference on Artificial Intelligence (<strong>AAAI'24</strong>), Vancouver, Canada, 2024, Vol. 38, No. 8, pp. 8236-8245, Doi: 10.1609/aaai.v38i8.28664. [<a href="pub/AAAI2024_MAKE.pdf">pdf</a>]</p>
-                            </li>
-                            
-                            <li><p>Zhenyu Cui, <b>Jiahuan Zhou</b>, and Yuxin Peng, "DMA: Dual Modality-Aware Alignment for Visible-Infrared Person Re-Identification", in IEEE Transactions on Information Forensics and Security (<strong>TIFS</strong>), 2023, vol. 19, pp. 2696-2708, doi: 10.1109/TIFS.2024.3352408. [<a href="pub/TIFS2023_DMA.pdf">pdf</a>] [<a href="https://github.com/PKU-ICST-MIPL/DMA_TIFS2023">code</a>]</p>
-                            </li>
-                            
-                            <li><p>Hongbo Sun, Xiangteng He, <b>Jiahuan Zhou</b>, and Yuxin Peng, "Fine-Grained Visual Prompt Learning of Vision-Language Models for Image Recognition", in 31st ACM Multimedia Conference (<strong>ACM MM'23</strong>), Ottawa, Canada, Oct.29 - Nov.3, 2023, pp. 5828-5836, Doi: 10.1145/3581783.3612403. [<a href="pub/MM2023_Finegrained.pdf">pdf</a>]</p>
-                            </li>
-                            
-                            <li><p>Kunlun Xu, Yuxin Peng, and <b>Jiahuan Zhou*</b>, "Uncover the Body: Occluded Person Re-identification via Masked Image Modeling", in 12rd International Conference on Image and Graphics (<strong>ICIG'23</strong>), Nanjing, China, Sep.22 - 24, 2023, pp. 241-253, Doi: 10.1007/978-3-031-46305-1_20. [<a href="pub/ICIG2023_Uncover.pdf">pdf</a>]</p>
-                            </li>
-                            
-                            <li><p>Zeqi Chen, Zhichao Cui, Chi Zhang, <b>Jiahuan Zhou</b>, and Yuehu Liu, "Dual Clustering Co-teaching with Consistent Sample Mining for Unsupervised Person Re-Identification", in IEEE Transactions on Circuits and Systems for Video Technology (<strong>TCSVT</strong>), 2023, vol. 33, no. 10, pp. 5908-5920, Doi: 10.1109/TCSVT.2023.3261898. [<a href="pub/TCSVT2023_Dual.pdf">pdf</a>]</p>
-                            </li>
-                            
-                            <li><p>Zhenyu Cui, <b>Jiahuan Zhou</b>, Yuxin Peng, Shiliang Zhang, and Yaowei Wang, "DCR-ReID: Deep Component Reconstruction for Cloth-Changing Person Re-Identification", in IEEE Transactions on Circuits and Systems for Video Technology (<strong>TCSVT</strong>), 2023, vol. 33, no. 8, pp. 4415-4428, Doi: 10.1109/TCSVT.2023.3241988. [<a href="pub/TCSVT2023_DCR.pdf">pdf</a>] [<a href="https://github.com/PKU-ICST-MIPL/DCR-ReID_TCSVT2023">code</a>]</p>
-                            </li>
-                            
-                            <li><p>MengShun Hu, Kui Jiang, Zhixiang Nie, <b>Jiahuan Zhou</b>, and Zheng Wang, "Store and Fetch Immediately: Everything Is All You Need for Space-Time Video Super-Resolution", in Thirty-Seventh AAAI Conference on Artificial Intelligence (<strong>AAAI'23</strong>), Washington, DC, USA, Feb. 2023, pp. 863-871, Doi: 10.1609/aaai.v37i1.25165. [<a href="pub/AAAI2023_Store.pdf">pdf</a>]</p>
-                            </li>
-                            
-                            <li><p><b>Jiahuan Zhou</b>, Bing Su, and Ying Wu, "Discriminative Self-Paced Group-Metric Adaptation for Online Visual Identification", in IEEE Transactions on Pattern Analysis & Machine Intelligence (<strong>T-PAMI</strong>), vol. 45, no. 04, pp. 4368-4383, 2023. Doi: 10.1109/TPAMI.2022.3200036. [<a href="pub/TPAMI2023_SPGMA.pdf">pdf</a>]</p>
-                            </li>
-                            
-                            <li><p>Mingfu Liang, <b>Jiahuan Zhou*</b>, Wei Wei, and Ying Wu, "Balancing between Forgetting and Acquisition in Incremental Subpopulation Learning", in Proc. European Conf. on Computer Vision (<strong>ECCV'22</strong>), Tel-Aviv, Israel, Oct. 2022, pp. 364-380. Doi: 10.1007/978-3-031-19809-0_21. [<a href="pub/ECCV2022_ISL.pdf">pdf</a>]</p>
-                            </li>
-                            
-                            <li><p>Bing Su, <strong>Jiahuan Zhou*</strong>, Jirong Wen, and Ying Wu, "Linear and Deep Order-Preserving Wasserstein Discriminant Analysis", in IEEE Transactions on Pattern Analysis & Machine Intelligence (<strong>T-PAMI</strong>), vol. 44, no. 06, pp. 3123-3138, 2022. Doi: 10.1109/TPAMI.2021.3050750. [<a href="pub/TPAMI2022_DeepOWDA.pdf">pdf</a>]</p>
-                            </li>
-                            
-                            <li><p><b>Jiahuan Zhou</b>, Bing Su, and Ying Wu, "Online Joint Multi-Metric Adaptation From Frequent Sharing-Subset Mining for Person Re-Identification," in 2020 IEEE/CVF Conference on Computer Vision and Pattern Recognition (<strong>CVPR’20</strong>), Seattle, WA, USA, 2020, pp. 2906-2915. Doi: 10.1109/CVPR42600.2020.00298. [<a href="pub/CVPR2020_M3.pdf">pdf</a>]</p>
-                            </li>
-                            
-                            <li><p>Yansong Tang#, Zanlin Ni#, <strong>Jiahuan Zhou</strong>, Danyang Zhang, Jiwen Lu, Ying Wu, and Jie Zhou, "Uncertainty-aware Score Distribution Learning for Action Quality Assessment", in 2020 IEEE/CVF Conference on Computer Vision and Pattern Recognition (<strong>CVPR’20</strong>), Seattle, WA, USA, 2020, pp. 9836-9845. Doi: 10.1109/CVPR42600.2020.00986. [<a href="pub/CVPR2020_MUSDL.pdf">pdf</a>]</p>
-                            </li>
-                            
-                            <li><p>Bing Su, <strong>Jiahuan Zhou</strong>, and Ying Wu, "Order-preserving Wasserstein Discriminant Analysis", in 2019 IEEE/CVF International Conference on Computer Vision (<strong>ICCV'19</strong>), Seoul, Korea (South), 2019, pp. 9884-9893. Doi: 10.1109/ICCV.2019.00998. [<a href="pub/ICCV2019_OWDA.pdf">pdf</a>]</p>
-                            </li>
-                            
-                            <li><p>Xu Zou, Sheng Zhong, Luxin Yan, Xiangyun Zhao, <strong>Jiahuan Zhou</strong>*, and Ying Wu, "Learning Robust Facial Landmark Detection via Hierarchical Structured Ensemble", in 2019 IEEE/CVF International Conference on Computer Vision (<strong>ICCV'19</strong>), Seoul, Korea (South), 2019, pp. 141-150. Doi: 10.1109/ICCV.2019.00023. [<a href="pub/ICCV2019_HSLE.pdf">pdf</a>]</p>
-                            </li>
-                            
-                            <li><p><strong>Jiahuan Zhou</strong>, and Ying Wu, "Learning Visual Instance Retrieval from Failure: Efficient Online Local Metric Adaptation from Negative Samples", in IEEE Transactions on Pattern Analysis & Machine Intelligence (<strong>T-PAMI</strong>), vol. 42, no. 11, pp. 2858-2873, 2020. Doi: 10.1109/TPAMI.2019.2918208. [<a href="pub/TPAMI2020_Failure.pdf">pdf</a>]</p>
-                            </li>
-                            
-                            <li><p>Xinzhao Li, Yuehu Liu, Zeqi Chen, <strong>Jiahuan Zhou</strong>, and Ying Wu, "Fused Discriminative Metric Learning for Low Resolution Pedestrian Detection", in Proceedings of IEEE International Conference on Image Processing (<strong>ICIP'18</strong>), Athens, Greece, Oct. 2018.[<a href="pub/ICIP2018_PD.pdf">pdf</a>]</p>
-                            </li>
-                            
-                            <li><p><strong>Jiahuan Zhou</strong>, Bing Su, and Ying Wu, "Easy Identification from Better Constraints: Multi-Shot Person Re-Identification from Reference Constraints", in 2018 IEEE/CVF Conference on Computer Vision and Pattern Recognition (<strong>CVPR'18</strong>), Salt Lake City, UT, USA, 2018, pp. 5373-5381. Doi: 10.1109/CVPR.2018.00563. [<a href="pub/CVPR2018_Reference.pdf">pdf</a>]</p>
-                            </li>
-                            
-                            <li><p><strong>Jiahuan Zhou</strong>, Pei Yu, Tang Wei, and Ying Wu, "Efficient Online Local Metric Adaptation via Negative Samples for Person Re-Identification", in 2017 IEEE International Conference on Computer Vision (<strong>ICCV'17</strong>), Venice, Italy, 2017, pp. 2439-2447. Doi: 10.1109/ICCV.2017.265. [<a href="pub/ICCV2017_OLMANS.pdf">pdf</a>]</p>
-                            </li>
-                            
-                            <li><p>Wei Tang, Pei Yu, <strong>Jiahuan Zhou</strong>, and Ying Wu, "Towards a Unified Compositional Model for Visual Pattern Modeling", in 2017 IEEE International Conference on Computer Vision (<strong>ICCV'17</strong>), Venice, Italy, 2017, pp. 2803-2812. Doi: 10.1109/ICCV.2017.303. [<a href="pub/ICCV2017_Compositional.pdf">pdf</a>]</p>
-                            </li>
-                            
-                            <li><p>Bing Su, <strong>Jiahuan Zhou</strong>, Xiaoqing Ding, and Ying Wu, "Unsupervised Hierarchical Dynamic Parsing and Encoding for Action Recognition", in IEEE Transactions on Image Processing (<strong>TIP'2017</strong>), 26.12: 5784-5799, Doi: 10.1109/TIP.2017.2745212. [<a href="pub/TIP2017_HDPE.pdf">pdf</a>]</p>
-                            </li>
-                            
-                            <li><p>Bing Su, <strong>Jiahuan Zhou</strong>, Xiaoqing Ding, Hao Wang, and Ying Wu, "Hierarchical Dynamic Parsing and Encoding for Action Recognition", in Computer Vision–ECCV 2016: 14th European Conference (<strong>ECCV'16</strong>), Amsterdam, The Netherlands, October 11–14, 2016, Proceedings, Part IV 14, pp. 202-217, Doi: 10.1007/978-3-319-46493-0_13. [<a href="pub/ECCV2016_HDPE.pdf">pdf</a>]</p>
-                            </li>
-                            
-                            <li><p>Pei Yu, <strong>Jiahuan Zhou</strong>, and Ying Wu, "Learning Reconstruction-based Gaze Estimation", in 2016 IEEE Conference on Computer Vision and Pattern Recognition (<strong>CVPR'16</strong>), Las Vegas, NV, USA, 2016, pp. 3447-3455. Doi: 10.1109/CVPR.2016.375. [<a href="pub/CVPR2016_Gaze.pdf">pdf</a>]</p>
-                            </li>
-                            
-                            <li><p><strong>Jiahuan Zhou*</strong>, and Ying Wu, "Finding the Right Exemplars for Reconstructing Single Image Super-Resolution", in 2016 IEEE International Conference on Image Processing (<strong>ICIP'16, Oral</strong>), Phoenix, 2016, pp. 1414-1418. [<a href="pub/ICIP2016_SR.pdf">pdf</a>]</p></p>
-                            </li>
-                            
-                            <li><p>Han Hu, <strong>Jiahuan Zhou</strong>, Jianjiang Feng, and Jie Zhou, "Multi-way constrained spectral clustering by nonnegative restriction," in 2012 21st International Conference on Pattern Recognition (<strong>ICPR'12, Oral</strong>), Tsukuba, 2012, pp. 1550-1553. [<a href="pub/ICPR2012_Clustering.pdf">pdf</a>]</p>
-                            </li>
+
+                                <li><p>Hongbo Sun, Xiangteng He, <b>Jiahuan Zhou</b>, and Yuxin Peng, "Fine-Grained Visual Prompt Learning of Vision-Language Models for Image Recognition", in 31st ACM Multimedia Conference (<strong>ACM MM'23</strong>), Ottawa, Canada, Oct.29 - Nov.3, 2023, pp. 5828-5836, Doi: 10.1145/3581783.3612403
+                                    <br>[<a href="pub/MM2023_Finegrained.pdf">pdf</a>] [<a href="#" onclick="copyTextAndNotify(event, '@inproceedings{sun2023fine,\n  title={Fine-grained visual prompt learning of vision-language models for image recognition},\n  author={Sun, Hongbo and He, Xiangteng and Zhou, Jiahuan and Peng, Yuxin},\n  booktitle={Proceedings of the 31st ACM International Conference on Multimedia},\n  pages={5828--5836},\n  year={2023}\n}')">bib</a>]</p>
+                                </li>
+                                <li><p>Kunlun Xu, Yuxin Peng, and <b>Jiahuan Zhou*</b>, "Uncover the Body: Occluded Person Re-identification via Masked Image Modeling", in 12rd International Conference on Image and Graphics (<strong>ICIG'23</strong>), Nanjing, China, Sep.22 - 24, 2023, pp. 241-253, Doi: 10.1007/978-3-031-46305-1_20
+                                    <br>[<a href="pub/ICIG2023_Uncover.pdf">pdf</a>] [<a href="#" onclick="copyTextAndNotify(event, '@inproceedings{xu2023uncover,\n  title={Uncover the Body: Occluded Person Re-identification via Masked Image Modeling},\n  author={Xu, Kunlun and Peng, Yuxin and Zhou, Jiahuan},\n  booktitle={International Conference on Image and Graphics},\n  pages={241--253},\n  year={2023},\n  organization={Springer}\n}')">bib</a>]</p>
+                                </li>
+                                <li><p>Zeqi Chen, Zhichao Cui, Chi Zhang, <b>Jiahuan Zhou</b>, and Yuehu Liu, "Dual Clustering Co-teaching with Consistent Sample Mining for Unsupervised Person Re-Identification", in IEEE Transactions on Circuits and Systems for Video Technology (<strong>TCSVT</strong>), 2023, vol. 33, no. 10, pp. 5908-5920, Doi: 10.1109/TCSVT.2023.3261898
+                                    <br>[<a href="pub/TCSVT2023_Dual.pdf">pdf</a>] [<a href="#" onclick="copyTextAndNotify(event, '@article{chen2023dual,\n  title={Dual clustering co-teaching with consistent sample mining for unsupervised person re-identification},\n  author={Chen, Zeqi and Cui, Zhichao and Zhang, Chi and Zhou, Jiahuan and Liu, Yuehu},\n  journal={IEEE Transactions on Circuits and Systems for Video Technology},\n  volume={33},\n  number={10},\n  pages={5908--5920},\n  year={2023},\n  publisher={IEEE}\n}')">bib</a>]</p>
+                                </li>
+                                <li><p>Zhenyu Cui, <b>Jiahuan Zhou</b>, Yuxin Peng, Shiliang Zhang, and Yaowei Wang, "DCR-ReID: Deep Component Reconstruction for Cloth-Changing Person Re-Identification", in IEEE Transactions on Circuits and Systems for Video Technology (<strong>TCSVT</strong>), 2023, vol. 33, no. 8, pp. 4415-4428, Doi: 10.1109/TCSVT.2023.3241988
+                                    <br>[<a href="pub/TCSVT2023_DCR.pdf">pdf</a>] [<a href="https://github.com/PKU-ICST-MIPL/DCR-ReID_TCSVT2023">code</a>] [<a href="#" onclick="copyTextAndNotify(event, '@article{cui2023dcr,\n  title={Dcr-reid: Deep component reconstruction for cloth-changing person re-identification},\n  author={Cui, Zhenyu and Zhou, Jiahuan and Peng, Yuxin and Zhang, Shiliang and Wang, Yaowei},\n  journal={IEEE Transactions on Circuits and Systems for Video Technology},\n  volume={33},\n  number={8},\n  pages={4415--4428},\n  year={2023},\n  publisher={IEEE}\n}')">bib</a>]</p>
+                                </li>
+                                <li><p>MengShun Hu, Kui Jiang, Zhixiang Nie, <b>Jiahuan Zhou</b>, and Zheng Wang, "Store and Fetch Immediately: Everything Is All You Need for Space-Time Video Super-Resolution", in Thirty-Seventh AAAI Conference on Artificial Intelligence (<strong>AAAI'23</strong>), Washington, DC, USA, Feb. 2023, pp. 863-871, Doi: 10.1609/aaai.v37i1.25165
+                                    <br>[<a href="pub/AAAI2023_Store.pdf">pdf</a>] [<a href="#" onclick="copyTextAndNotify(event, '@inproceedings{hu2023store,\n  title={Store and fetch immediately: Everything is all you need for space-time video super-resolution},\n  author={Hu, Mengshun and Jiang, Kui and Nie, Zhixiang and Zhou, Jiahuan and Wang, Zheng},\n  booktitle={Proceedings of the AAAI Conference on Artificial Intelligence},\n  volume={37},\n  number={1},\n  pages={863--871},\n  year={2023}\n}')">bib</a>]</p>
+                                </li>
+                                <li><p><b>Jiahuan Zhou</b>, Bing Su, and Ying Wu, "Discriminative Self-Paced Group-Metric Adaptation for Online Visual Identification", in IEEE Transactions on Pattern Analysis & Machine Intelligence (<strong>T-PAMI</strong>), vol. 45, no. 04, pp. 4368-4383, 2023. Doi: 10.1109/TPAMI.2022.3200036
+                                    <br>[<a href="pub/TPAMI2023_SPGMA.pdf">pdf</a>] [<a href="#" onclick="copyTextAndNotify(event, '@article{zhou2022discriminative,\n  title={Discriminative self-paced group-metric adaptation for online visual identification},\n  author={Zhou, Jiahuan and Su, Bing and Wu, Ying},\n  journal={IEEE Transactions on Pattern Analysis and Machine Intelligence},\n  volume={45},\n  number={4},\n  pages={4368--4383},\n  year={2022},\n  publisher={IEEE}\n}')">bib</a>]</p>
+                                </li>
+                                
+
+
+
+
+                                <li><p>Mingfu Liang, <b>Jiahuan Zhou*</b>, Wei Wei, and Ying Wu, "Balancing between Forgetting and Acquisition in Incremental Subpopulation Learning", in Proc. European Conf. on Computer Vision (<strong>ECCV'22</strong>), Tel-Aviv, Israel, Oct. 2022, pp. 364-380. Doi: 10.1007/978-3-031-19809-0_21
+                                    <br>[<a href="pub/ECCV2022_ISL.pdf">pdf</a>] [<a href="#" onclick="copyTextAndNotify(event, '@inproceedings{liang2022balancing,\n  title={Balancing between forgetting and acquisition in incremental subpopulation learning},\n  author={Liang, Mingfu and Zhou, Jiahuan and Wei, Wei and Wu, Ying},\n  booktitle={European Conference on Computer Vision},\n  pages={364--380},\n  year={2022},\n  organization={Springer}\n}')">bib</a>]</p>
+                                </li>
+                                <li><p>Bing Su, <strong>Jiahuan Zhou*</strong>, Jirong Wen, and Ying Wu, "Linear and Deep Order-Preserving Wasserstein Discriminant Analysis", in IEEE Transactions on Pattern Analysis & Machine Intelligence (<strong>T-PAMI</strong>), vol. 44, no. 06, pp. 3123-3138, 2022. Doi: 10.1109/TPAMI.2021.3050750
+                                    <br>[<a href="pub/TPAMI2022_DeepOWDA.pdf">pdf</a>] [<a href="#" onclick="copyTextAndNotify(event, '@article{su2021linear,\n  title={Linear and deep order-preserving wasserstein discriminant analysis},\n  author={Su, Bing and Zhou, Jiahuan and Wen, Ji-Rong and Wu, Ying},\n  journal={IEEE Transactions on Pattern Analysis and Machine Intelligence},\n  volume={44},\n  number={6},\n  pages={3123--3138},\n  year={2021},\n  publisher={IEEE}\n}')">bib</a>]</p>
+                                </li>
+                                <li><p><b>Jiahuan Zhou</b>, Bing Su, and Ying Wu, "Online Joint Multi-Metric Adaptation From Frequent Sharing-Subset Mining for Person Re-Identification", in 2020 IEEE/CVF Conference on Computer Vision and Pattern Recognition (<strong>CVPR’20</strong>), Seattle, WA, USA, 2020, pp. 2906-2915. Doi: 10.1109/CVPR42600.2020.00298
+                                    <br>[<a href="pub/CVPR2020_M3.pdf">pdf</a>] [<a href="#" onclick="copyTextAndNotify(event, '@inproceedings{zhou2020online,\n  title={Online joint multi-metric adaptation from frequent sharing-subset mining for person re-identification},\n  author={Zhou, Jiahuan and Su, Bing and Wu, Ying},\n  booktitle={Proceedings of the IEEE/CVF conference on computer vision and pattern recognition},\n  pages={2909--2918},\n  year={2020}\n}')">bib</a>]</p>
+                                </li>
+                                <li><p>Yansong Tang#, Zanlin Ni#, <strong>Jiahuan Zhou</strong>, Danyang Zhang, Jiwen Lu, Ying Wu, and Jie Zhou, "Uncertainty-aware Score Distribution Learning for Action Quality Assessment", in 2020 IEEE/CVF Conference on Computer Vision and Pattern Recognition (<strong>CVPR’20</strong>), Seattle, WA, USA, 2020, pp. 9836-9845. Doi: 10.1109/CVPR42600.2020.00986
+                                    <br>[<a href="pub/CVPR2020_MUSDL.pdf">pdf</a>] [<a href="#" onclick="copyTextAndNotify(event, '@inproceedings{tang2020uncertainty,\n  title={Uncertainty-aware score distribution learning for action quality assessment},\n  author={Tang, Yansong and Ni, Zanlin and Zhou, Jiahuan and Zhang, Danyang and Lu, Jiwen and Wu, Ying and Zhou, Jie},\n  booktitle={Proceedings of the IEEE/CVF conference on computer vision and pattern recognition},\n  pages={9839--9848},\n  year={2020}\n}')">bib</a>]</p>
+                                </li>
+                                <li><p>Bing Su, <strong>Jiahuan Zhou</strong>, and Ying Wu, "Order-preserving Wasserstein Discriminant Analysis", in 2019 IEEE/CVF International Conference on Computer Vision (<strong>ICCV'19</strong>), Seoul, Korea (South), 2019, pp. 9884-9893. Doi: 10.1109/ICCV.2019.00998
+                                    <br>[<a href="pub/ICCV2019_OWDA.pdf">pdf</a>] [<a href="#" onclick="copyTextAndNotify(event, '@inproceedings{su2019order,\n  title={Order-preserving wasserstein discriminant analysis},\n  author={Su, Bing and Zhou, Jiahuan and Wu, Ying},\n  booktitle={Proceedings of the IEEE/CVF International Conference on Computer Vision},\n  pages={9885--9894},\n  year={2019}\n}')">bib</a>]</p>
+                                </li>
+                                <li><p>Xu Zou, Sheng Zhong, Luxin Yan, Xiangyun Zhao, <strong>Jiahuan Zhou</strong>*, and Ying Wu, "Learning Robust Facial Landmark Detection via Hierarchical Structured Ensemble", in 2019 IEEE/CVF International Conference on Computer Vision (<strong>ICCV'19</strong>), Seoul, Korea (South), 2019, pp. 141-150. Doi: 10.1109/ICCV.2019.00023
+                                    <br>[<a href="pub/ICCV2019_HSLE.pdf">pdf</a>] [<a href="#" onclick="copyTextAndNotify(event, '@inproceedings{zou2019learning,\n  title={Learning robust facial landmark detection via hierarchical structured ensemble},\n  author={Zou, Xu and Zhong, Sheng and Yan, Luxin and Zhao, Xiangyun and Zhou, Jiahuan and Wu, Ying},\n  booktitle={Proceedings of the IEEE/CVF International Conference on Computer Vision},\n  pages={141--150},\n  year={2019}\n}')">bib</a>]</p>
+                                </li>
+                                <li><p><strong>Jiahuan Zhou</strong>, and Ying Wu, "Learning Visual Instance Retrieval from Failure: Efficient Online Local Metric Adaptation from Negative Samples", in IEEE Transactions on Pattern Analysis & Machine Intelligence (<strong>T-PAMI</strong>), vol. 42, no. 11, pp. 2858-2873, 2020. Doi: 10.1109/TPAMI.2019.2918208
+                                    <br>[<a href="pub/TPAMI2020_Failure.pdf">pdf</a>] [<a href="#" onclick="copyTextAndNotify(event, '@article{zhou2019learning,\n  title={Learning visual instance retrieval from failure: Efficient online local metric adaptation from negative samples},\n  author={Zhou, Jiahuan and Wu, Ying},\n  journal={IEEE transactions on pattern analysis and machine intelligence},\n  volume={42},\n  number={11},\n  pages={2858--2873},\n  year={2019},\n  publisher={IEEE}\n}')">bib</a>]</p>
+                                </li>
+                                <li><p>Xinzhao Li, Yuehu Liu, Zeqi Chen, <strong>Jiahuan Zhou</strong>, and Ying Wu, "Fused Discriminative Metric Learning for Low Resolution Pedestrian Detection", in Proceedings of IEEE International Conference on Image Processing (<strong>ICIP'18</strong>), Athens, Greece, Oct. 2018.
+                                    <br>[<a href="pub/ICIP2018_PD.pdf">pdf</a>] [<a href="#" onclick="copyTextAndNotify(event, '@inproceedings{li2018fused,\n  title={Fused discriminative metric learning for low resolution pedestrian detection},\n  author={Li, Xinzhao and Liu, Yuehu and Chen, Zeqi and Zhou, Jiahuan and Wu, Ying},\n  booktitle={2018 25th IEEE International Conference on Image Processing (ICIP)},\n  pages={958--962},\n  year={2018},\n  organization={IEEE}\n}')">bib</a>]</p>
+                                </li>
+                                <li><p><strong>Jiahuan Zhou</strong>, Bing Su, and Ying Wu, "Easy Identification from Better Constraints: Multi-Shot Person Re-Identification from Reference Constraints", in 2018 IEEE/CVF Conference on Computer Vision and Pattern Recognition (<strong>CVPR'18</strong>), Salt Lake City, UT, USA, 2018, pp. 5373-5381. Doi: 10.1109/CVPR.2018.00563
+                                    <br>[<a href="pub/CVPR2018_Reference.pdf">pdf</a>] [<a href="#" onclick="copyTextAndNotify(event, '@inproceedings{zhou2018easy,\n  title={Easy identification from better constraints: Multi-shot person re-identification from reference constraints},\n  author={Zhou, Jiahuan and Su, Bing and Wu, Ying},\n  booktitle={Proceedings of the IEEE conference on computer vision and pattern recognition},\n  pages={5373--5381},\n  year={2018}\n}')">bib</a>]</p>
+                                </li>
+                                <li><p><strong>Jiahuan Zhou</strong>, Pei Yu, Tang Wei, and Ying Wu, "Efficient Online Local Metric Adaptation via Negative Samples for Person Re-Identification", in 2017 IEEE International Conference on Computer Vision (<strong>ICCV'17</strong>), Venice, Italy, 2017, pp. 2439-2447. Doi: 10.1109/ICCV.2017.265
+                                    <br>[<a href="pub/ICCV2017_OLMANS.pdf">pdf</a>] [<a href="#" onclick="copyTextAndNotify(event, '@inproceedings{zhou2017efficient,\n  title={Efficient online local metric adaptation via negative samples for person re-identification},\n  author={Zhou, Jiahuan and Yu, Pei and Tang, Wei and Wu, Ying},\n  booktitle={Proceedings of the IEEE International Conference on Computer Vision},\n  pages={2420--2428},\n  year={2017}\n}')">bib</a>]</p>
+                                </li>
+                                <li><p>Wei Tang, Pei Yu, <strong>Jiahuan Zhou</strong>, and Ying Wu, "Towards a Unified Compositional Model for Visual Pattern Modeling", in 2017 IEEE International Conference on Computer Vision (<strong>ICCV'17</strong>), Venice, Italy, 2017, pp. 2803-2812. Doi: 10.1109/ICCV.2017.303
+                                    <br>[<a href="pub/ICCV2017_Compositional.pdf">pdf</a>] [<a href="#" onclick="copyTextAndNotify(event, '@inproceedings{tang2017towards,\n  title={Towards a unified compositional model for visual pattern modeling},\n  author={Tang, Wei and Yu, Pei and Zhou, Jiahuan and Wu, Ying},\n  booktitle={Proceedings of the IEEE international conference on computer vision},\n  pages={2784--2793},\n  year={2017}\n}')">bib</a>]</p>
+                                </li>
+                                <li><p>Bing Su, <strong>Jiahuan Zhou</strong>, Xiaoqing Ding, and Ying Wu, "Unsupervised Hierarchical Dynamic Parsing and Encoding for Action Recognition", in IEEE Transactions on Image Processing (<strong>TIP'2017</strong>), 26.12: 5784-5799, Doi: 10.1109/TIP.2017.2745212
+                                    <br>[<a href="pub/TIP2017_HDPE.pdf">pdf</a>] [<a href="#" onclick="copyTextAndNotify(event, '@article{su2017unsupervised,\n  title={Unsupervised hierarchical dynamic parsing and encoding for action recognition},\n  author={Su, Bing and Zhou, Jiahuan and Ding, Xiaoqing and Wu, Ying},\n  journal={IEEE Transactions on Image Processing},\n  volume={26},\n  number={12},\n  pages={5784--5799},\n  year={2017},\n  publisher={IEEE}\n}')">bib</a>]</p>
+                                </li>
+                                <li><p>Bing Su, <strong>Jiahuan Zhou</strong>, Xiaoqing Ding, Hao Wang, and Ying Wu, "Hierarchical Dynamic Parsing and Encoding for Action Recognition", in Computer Vision–ECCV 2016: 14th European Conference (<strong>ECCV'16</strong>), Amsterdam, The Netherlands, October 11–14, 2016, Proceedings, Part IV 14, pp. 202-217, Doi: 10.1007/978-3-319-46493-0_13
+                                    <br>[<a href="pub/ECCV2016_HDPE.pdf">pdf</a>] [<a href="#" onclick="copyTextAndNotify(event, '@inproceedings{su2016hierarchical,\n  title={Hierarchical dynamic parsing and encoding for action recognition},\n  author={Su, Bing and Zhou, Jiahuan and Ding, Xiaoqing and Wang, Hao and Wu, Ying},\n  booktitle={Computer Vision--ECCV 2016: 14th European Conference, Amsterdam, The Netherlands, October 11--14, 2016, Proceedings, Part IV 14},\n  pages={202--217},\n  year={2016},\n  organization={Springer}\n}')">bib</a>]</p>
+                                </li>
+                                <li><p>Pei Yu, <strong>Jiahuan Zhou</strong>, and Ying Wu, "Learning Reconstruction-based Remote Gaze Estimation", in 2016 IEEE Conference on Computer Vision and Pattern Recognition (<strong>CVPR'16</strong>), Las Vegas, NV, USA, 2016, pp. 3447-3455. Doi: 10.1109/CVPR.2016.375
+                                    <br>[<a href="pub/CVPR2016_Gaze.pdf">pdf</a>] [<a href="#" onclick="copyTextAndNotify(event, '@inproceedings{yu2016learning,\n  title={Learning reconstruction-based remote gaze estimation},\n  author={Yu, Pei and Zhou, Jiahuan and Wu, Ying},\n  booktitle={Proceedings of the IEEE Conference on Computer Vision and Pattern Recognition},\n  pages={3447--3455},\n  year={2016}\n}')">bib</a>]</p>
+                                </li>
+                                <li><p><strong>Jiahuan Zhou*</strong>, and Ying Wu, "Finding the Right Exemplars for Reconstructing Single Image Super-Resolution", in 2016 IEEE International Conference on Image Processing (<strong>ICIP'16, Oral</strong>), Phoenix, 2016, pp. 1414-1418
+                                    <br>[<a href="pub/ICIP2016_SR.pdf">pdf</a>] [<a href="#" onclick="copyTextAndNotify(event, '@inproceedings{zhou2016finding,\n  title={Finding the right exemplars for reconstructing single image super-resolution},\n  author={Zhou, Jiahuan and Wu, Ying},\n  booktitle={2016 IEEE International Conference on Image Processing (ICIP)},\n  pages={1414--1418},\n  year={2016},\n  organization={IEEE}\n}')">bib</a>]</p>
+                                </li>
+                                <li><p>Han Hu, <strong>Jiahuan Zhou</strong>, Jianjiang Feng, and Jie Zhou, "Multi-way constrained spectral clustering by nonnegative restriction", in 2012 21st International Conference on Pattern Recognition (<strong>ICPR'12, Oral</strong>), Tsukuba, 2012, pp. 1550-1553
+                                    <br>[<a href="pub/ICPR2012_Clustering.pdf">pdf</a>] [<a href="#" onclick="copyTextAndNotify(event, '@inproceedings{hu2012multi,\n  title={Multi-way constrained spectral clustering by nonnegative restriction},\n  author={Hu, Han and Zhou, Jiahuan and Feng, Jianjiang and Zhou, Jie},\n  booktitle={Proceedings of the 21st International Conference on Pattern Recognition (ICPR2012)},\n  pages={1550--1553},\n  year={2012},\n  organization={IEEE}\n}')">bib</a>]</p>
+                                </li>
                             </ol>
-                            <p><b>Note</b>: * indicates the corresponding author; # indicates equal contribution.</p>
-                            <p><a href="https://scholar.google.com/citations?user=ZLZmI8sAAAAJ&hl=en&oi=ao">Full list of publications in Google Scholar.</a></p>
+                        </div>
+
+                        <div id="2024" class="paper-list">
+                            <ol>
+                                <li><p>Qiwei Li, Yuxin Peng, and <b>Jiahuan Zhou*</b>, "Progressive Prototype Evolving for Dual-Forgetting Mitigation in Non-Exemplar Online Continual Learning", in 32nd ACM Multimedia Conference (<strong>ACM MM'24</strong>), Melbourne, Australia, 2024.
+                                    <br>[<a href="">pdf</a>] [<a href="">code</a>] [<a href="#" onclick="copyTextAndNotify(event, 'This bib is currently unavaliable')">bib</a>]</p>
+                                </li>
+                                <li><p>Kunlun Xu, Haozhuo Zhang, Yu Li, Yuxin Peng, and <b>Jiahuan Zhou*</b>, "Mitigate Catastrophic Remembering via Continual Knowledge Purification for Noisy Lifelong Person Re-Identification", in 32nd ACM Multimedia Conference (<strong>ACM MM'24</strong>), Melbourne, Australia, 2024.
+                                    <br>[<a href="">pdf</a>] [<a href="">code</a>] [<a href="#" onclick="copyTextAndNotify(event, 'This bib is currently unavaliable')">bib</a>]</p>
+                                </li>
+                                <li><p>Zichen Liu, Yuxin Peng, and <b>Jiahuan Zhou*</b>, "InsVP: Efficient Instance Visual Prompting from Image Itself", in 32nd ACM Multimedia Conference (<strong>ACM MM'24</strong>), Melbourne, Australia, 2024.
+                                    <br>[<a href="">pdf</a>] [<a href="">code</a>] [<a href="#" onclick="copyTextAndNotify(event, 'This bib is currently unavaliable')">bib</a>]</p>
+                                </li>
+                                <li><p>Qiwen Zhu, Yanjie Wang, Shilv Cai, Liqun Chen, <b>Jiahuan Zhou*</b>, Luxin Yan, Sheng Zhong, and Xu Zou, "Perceptual-Distortion Balanced Image Super-Resolution is a Multi-Objective Optimization Problem", in 32nd ACM Multimedia Conference (<strong>ACM MM'24</strong>), Melbourne, Australia, 2024.
+                                    <br>[<a href="">pdf</a>] [<a href="">code</a>] [<a href="#" onclick="copyTextAndNotify(event, 'This bib is currently unavaliable')">bib</a>]</p>
+                                </li>
+
+
+                                <li><p>Zichen Liu, Yuxin Peng, and <b>Jiahuan Zhou*</b>, "Compositional Prompting for Anti-Forgetting in Domain Incremental Learning", in International Journal of Computer Vision (<strong>IJCV</strong>), 2024, pp. 1-18, Doi: 10.1007/s11263-024-02134-3
+                                    <br>[<a href="https://link.springer.com/article/10.1007/s11263-024-02134-3">pdf</a>] [<a href="https://github.com/zhoujiahuan1991/IJCV2024-C-Prompt">code</a>] [<a href="#" onclick="copyTextAndNotify(event, '@article{liu2024compositional,\n  title={Compositional Prompting for Anti-Forgetting in Domain Incremental Learning},\n  author={Liu, Zichen and Peng, Yuxin and Zhou, Jiahuan},\n  journal={International Journal of Computer Vision},\n  pages={1--18},\n  year={2024},\n  publisher={Springer}\n}')">bib</a>]</p>
+                                </li>
+                                <li><p>Qiwei Li, Kunlun Xu, Yuxin Peng, and <b>Jiahuan Zhou*</b>, "Exemplar-Free Lifelong Person Re-Identification via Prompt-guided Adaptive Knowledge Consolidation", in International Journal of Computer Vision (<strong>IJCV</strong>), 2024, pp. 1-16, Doi: 10.1007/s11263-024-02110-x
+                                    <br>[<a href="https://link.springer.com/article/10.1007/s11263-024-02110-x">pdf</a>] [<a href="https://github.com/zhoujiahuan1991/IJCV2024-PAEMA/">code</a>] [<a href="#" onclick="copyTextAndNotify(event, '@article{li2024exemplar,\n  title={Exemplar-Free Lifelong Person Re-identification via Prompt-Guided Adaptive Knowledge Consolidation},\n  author={Li, Qiwei and Xu, Kunlun and Peng, Yuxin and Zhou, Jiahuan},\n  journal={International Journal of Computer Vision},\n  pages={1--16},\n  year={2024},\n  publisher={Springer}\n}')">bib</a>]</p>
+                                </li>
+                                <li><p>Hongbo Sun, <b>Jiahuan Zhou</b>, Xiangteng He, Jinglin Xu, and Yuxin Peng, "FineFMPL: Fine-grained Feature Mining Prompt Learning for Few-Shot Class Incremental Learning", in 2024 International Joint Conference on Artificial Intelligence (<strong>IJCAI'24</strong>), Jeju, South Korea, 2024
+                                    <br>[<a href="xxxx">pdf</a>] [<a href="#" onclick="copyTextAndNotify(event, '@article{sunfinefmpl,\n  title={FineFMPL: Fine-grained Feature Mining Prompt Learning for Few-Shot Class Incremental Learning},\n  author={Sun, Hongbo and Zhou, Jiahuan and He, Xiangteng and Xu, Jinglin and Peng, Yuxin}\n}')">bib</a>]</p>
+                                </li>
+                                <li><p>Xiaocang Han, Mengmeng Niu, Yan Luo, Runlai Li, Jiadong Dan, Yanhui Hong, Xu Wu, Alex V. Trukhanov, Wei Ji, Yeliang Wang, <b>Jiahuan Zhou</b>, Jingsi Qiao, Jin Zhang, and Xiaoxu Zhao, "Atomically engineering metal vacancies in monolayer transition metal dichalcogenides" in Nature Synthesis (<strong>Nat. Synth'24</strong>), Doi: 10.1038/s44160-024-00501-z
+                                    <br>[<a href="https://www.nature.com/articles/s44160-024-00501-z">pdf</a>] [<a href="#" onclick="copyTextAndNotify(event, '@article{han2024atomically,\n  title={Atomically engineering metal vacancies in monolayer transition metal dichalcogenides},\n  author={Han, Xiaocang and Niu, Mengmeng and Luo, Yan and Li, Runlai and Dan, Jiadong and Hong, Yanhui and Wu, Xu and Trukhanov, Alex V and Ji, Wei and Wang, Yeliang and others},\n  journal={Nature Synthesis},\n  volume={3},\n  number={5},\n  pages={586--594},\n  year={2024},\n  publisher={Nature Publishing Group UK London}\n}')">bib</a>]</p>
+                                </li>
+                                <li><p>Kunlun Xu, Xu Zou, Yuxin Peng, and <b>Jiahuan Zhou*</b>, "Distribution-aware Knowledge Prototyping for Non-exemplar Lifelong Person Re-identification", in 2024 IEEE/CVF Conference on Computer Vision and Pattern Recognition (<strong>CVPR'24</strong>), Seattle WA, USA, 2024, pp. 16604-16613
+                                    <br>[<a href="pub/CVPR2024_DKP.pdf">pdf</a>] [<a href="https://github.com/zhoujiahuan1991/CVPR2024-DKP">code</a>] [<a href="#" onclick="copyTextAndNotify(event, '@inproceedings{xu2024distribution,\n  title={Distribution-aware Knowledge Prototyping for Non-exemplar Lifelong Person Re-identification},\n  author={Xu, Kunlun and Zou, Xu and Peng, Yuxin and Zhou, Jiahuan},\n  booktitle={Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition},\n  pages={16604--16613},\n  year={2024}\n}')">bib</a>]</p>
+                                </li>
+                                <li><p>Qiwei Li, Yuxin Peng, and <b>Jiahuan Zhou*</b>, "FCS: Feature Calibration and Separation for Non-Exemplar Class Incremental Learning", in 2024 IEEE/CVF Conference on Computer Vision and Pattern Recognition (<strong>CVPR'24</strong>), Seattle WA, USA, 2024, pp. 28495-28504
+                                    <br>[<a href="pub/CVPR2024_FCS.pdf">pdf</a>] [<a href="https://github.com/zhoujiahuan1991/CVPR2024-FCS">code</a>] [<a href="#" onclick="copyTextAndNotify(event, '@inproceedings{li2024fcs,\n  title={FCS: Feature Calibration and Separation for Non-Exemplar Class Incremental Learning},\n  author={Li, Qiwei and Peng, Yuxin and Zhou, Jiahuan},\n  booktitle={Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition},\n  pages={28495--28504},\n  year={2024}\n}')">bib</a>]</p>
+                                </li>
+                                <li><p>Yanjie Wang, Xu Zou, Luxin Yan, Sheng Zhong, and <b>Jiahuan Zhou*</b>, "SNIDA: Unlocking Few-Shot object Detection with Non-linear Semantic Decoupling Augmentation", in 2024 IEEE/CVF Conference on Computer Vision and Pattern Recognition (<strong>CVPR'24</strong>), Seattle WA, USA, 2024, pp. 12544-12553
+                                    <br>[<a href="pub/CVPR2024_SNIDA.pdf">pdf</a>] [<a href="#" onclick="copyTextAndNotify(event, '@inproceedings{wang2024snida,\n  title={SNIDA: Unlocking Few-Shot Object Detection with Non-linear Semantic Decoupling Augmentation},\n  author={Wang, Yanjie and Zou, Xu and Yan, Luxin and Zhong, Sheng and Zhou, Jiahuan},\n  booktitle={Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition},\n  pages={12544--12553},\n  year={2024}\n}')">bib</a>]</p>
+                                </li>
+                                <li><p>Zhenyu Cui, <b>Jiahuan Zhou</b>, Xun Wang, Manyu Zhu, and Yuxin Peng, "Learning Continual Compatible Representation for Re-indexing Free Lifelong Person Re-identification", in 2024 IEEE/CVF Conference on Computer Vision and Pattern Recognition (<strong>CVPR'24</strong>), Seattle WA, USA, 2024, pp. 16614-16623
+                                    <br>[<a href="pub/CVPR2024_C2R.pdf">pdf</a>] [<a href="https://github.com/PKU-ICST-MIPL/C2R_CVPR2024">code</a>] [<a href="#" onclick="copyTextAndNotify(event, '@inproceedings{cui2024learning,\n  title={Learning Continual Compatible Representation for Re-indexing Free Lifelong Person Re-identification},\n  author={Cui, Zhenyu and Zhou, Jiahuan and Wang, Xun and Zhu, Manyu and Peng, Yuxin},\n  booktitle={Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition},\n  pages={16614--16623},\n  year={2024}\n}')">bib</a>]</p>
+                                </li>
+                                <li><p>Shilv Cai, Liqun Chen, Zhijun Zhang, Xiangyun Zhao, and <b>Jiahuan Zhou</b>, Yuxin Peng, Luxin Yan, Sheng Zhong, and Xu Zou, "I2C: Invertible Continuous Codec for High-Fidelity Variable-Rate Image Compression", in IEEE Transactions on Pattern Analysis & Machine Intelligence (<strong>T-PAMI</strong>), 2024, vol. 46, no. 6, pp. 4262-4279, Doi: 10.1109/TPAMI.2024.3356557
+                                    <br>[<a href="pub/TPAMI2024_I2C.pdf">pdf</a>] [<a href="#" onclick="copyTextAndNotify(event, '@article{cai2024i2c,\n  title={I2C: Invertible Continuous Codec for High-Fidelity Variable-Rate Image Compression},\n  author={Cai, Shilv and Chen, Liqun and Zhang, Zhijun and Zhao, Xiangyun and Zhou, Jiahuan and Peng, Yuxin and Yan, Luxin and Zhong, Sheng and Zou, Xu},\n  journal={IEEE Transactions on Pattern Analysis and Machine Intelligence},\n  year={2024},\n  publisher={IEEE}\n}')">bib</a>]</p>
+                                </li>
+                                <li><p>Yanzhe Chen, <b>Jiahuan Zhou</b>, and Yuxin Peng, "SPIRIT: Style-guided Patch Interaction for Fashion Image Retrieval with Text Feedback", in ACM Transactions on Multimedia Computing, Communications, and Applications (<strong>TOMM</strong>),  2023, pp. 1-17, Doi: 10.1145/3640345
+                                    <br>[<a href="https://dl.acm.org/doi/10.1145/3640345">pdf</a>] [<a href="#" onclick="copyTextAndNotify(event, '@article{chen2024spirit,\n  title={SPIRIT: Style-guided Patch Interaction for Fashion Image Retrieval with Text Feedback},\n  author={Chen, Yanzhe and Zhou, Jiahuan and Peng, Yuxin},\n  journal={ACM Transactions on Multimedia Computing, Communications and Applications},\n  volume={20},\n  number={6},\n  pages={1--17},\n  year={2024},\n  publisher={ACM New York, NY}\n}')">bib</a>]</p>
+                                </li>
+                                <li><p>Kunlun Xu, Xu Zou, and <b>Jiahuan Zhou*</b>, "LSTKC: Long Short-Term Knowledge Consolidation for Lifelong Person Re-Identification", in Thirty-Eighth AAAI Conference on Artificial Intelligence (<strong>AAAI'24</strong>), Vancouver, Canada, 2024, vol. 38, no. 14, pp. 16202-16210, Doi: 10.1609/aaai.v38i14.29554
+                                    <br>[<a href="pub/AAAI2024_LSTK.pdf">pdf</a>] [<a href="https://github.com/zhoujiahuan1991/LSTKC">code</a>] [<a href="#" onclick="copyTextAndNotify(event, '@inproceedings{xu2024lstkc,\n  title={LSTKC: Long Short-Term Knowledge Consolidation for Lifelong Person Re-identification},\n  author={Xu, Kunlun and Zou, Xu and Zhou, Jiahuan},\n  booktitle={Proceedings of the AAAI Conference on Artificial Intelligence},\n  volume={38},\n  number={14},\n  pages={16202--16210},\n  year={2024}\n}')">bib</a>]</p>
+                                </li>
+                                <li><p>Zichen Liu, Hongbo Sun, Yuxin Peng, and <b>Jiahuan Zhou*</b>, "DART: Dual-Modal Adaptive Online Prompting and Knowledge Retention for Test-Time Adaptation", in Thirty-Eighth AAAI Conference on Artificial Intelligence (<strong>AAAI'24</strong>), Vancouver, Canada, 2024, Vol. 38, No. 14, pp. 16202-16210, Doi: 10.1609/aaai.v38i14.29554
+                                    <br>[<a href="pub/AAAI2024_DART.pdf">pdf</a>] [<a href="https://github.com/zhoujiahuan1991/DART">code</a>] [<a href="#" onclick="copyTextAndNotify(event, '@inproceedings{liu2024dart,\n  title={DART: Dual-Modal Adaptive Online Prompting and Knowledge Retention for Test-Time Adaptation},\n  author={Liu, Zichen and Sun, Hongbo and Peng, Yuxin and Zhou, Jiahuan},\n  booktitle={Proceedings of the AAAI Conference on Artificial Intelligence},\n  volume={38},\n  number={13},\n  pages={14106--14114},\n  year={2024}\n}')">bib</a>]</p>
+                                </li>
+                                <li><p>Zhenyu Cui, Yuxin Peng, Xun Wang, Manyu Zhu, and <b>Jiahuan Zhou</b>, "Continual Vision-Language Retrieval via Dynamic Knowledge Rectification", in Thirty-Eighth AAAI Conference on Artificial Intelligence (<strong>AAAI'24</strong>), Vancouver, Canada,  2024, Vol. 38, No. 10, pp. 11704-11712, Doi: 10.1609/aaai.v38i10.29054
+                                    <br>[<a href="pub/AAAI2024_CVLR.pdf">pdf</a>] [<a href="#" onclick="copyTextAndNotify(event, '@inproceedings{cui2024continual,\n  title={Continual Vision-Language Retrieval via Dynamic Knowledge Rectification},\n  author={Cui, Zhenyu and Peng, Yuxin and Wang, Xun and Zhu, Manyu and Zhou, Jiahuan},\n  booktitle={Proceedings of the AAAI Conference on Artificial Intelligence},\n  volume={38},\n  number={10},\n  pages={11704--11712},\n  year={2024}\n}')">bib</a>]</p>
+                                </li>
+                                <li><p>Yanzhe Chen, Huasong Zhong, Xiangteng He, Yuxin Peng, <b>Jiahuan Zhou</b>, and Lele Cheng, "FashionERN: Enhance-and-Refine Network for Composed Fashion Image Retrieval", in Thirty-Eighth AAAI Conference on Artificial Intelligence (<strong>AAAI'24</strong>), Vancouver, Canada, 2024, Vol. 38, No. 2, pp. 1228-1236, Doi:10.1609/aaai.v38i2.27885
+                                    <br>[<a href="pub/AAAI2024_FASHIONERN.pdf">pdf</a>] [<a href="#" onclick="copyTextAndNotify(event, '@inproceedings{chen2024fashionern,\n  title={FashionERN: Enhance-and-Refine Network for Composed Fashion Image Retrieval},\n  author={Chen, Yanzhe and Zhong, Huasong and He, Xiangteng and Peng, Yuxin and Zhou, Jiahuan and Cheng, Lele},\n  booktitle={Proceedings of the AAAI Conference on Artificial Intelligence},\n  volume={38},\n  number={2},\n  pages={1228--1236},\n  year={2024}\n}')">bib</a>]</p>
+                                </li>
+                                <li><p>Shilv Cai, Liqun Chen, Sheng Zhong, Luxin Yan, <b>Jiahuan Zhou</b>, and Xu Zou, "Make Lossy Compression Meaningful for Low-light Images", in Thirty-Eighth AAAI Conference on Artificial Intelligence (<strong>AAAI'24</strong>), Vancouver, Canada, 2024, Vol. 38, No. 8, pp. 8236-8245, Doi: 10.1609/aaai.v38i8.28664
+                                    <br>[<a href="pub/AAAI2024_MAKE.pdf">pdf</a>] [<a href="#" onclick="copyTextAndNotify(event, '@inproceedings{cai2024make,\n  title={Make Lossy Compression Meaningful for Low-Light Images},\n  author={Cai, Shilv and Chen, Liqun and Zhong, Sheng and Yan, Luxin and Zhou, Jiahuan and Zou, Xu},\n  booktitle={Proceedings of the AAAI Conference on Artificial Intelligence},\n  volume={38},\n  number={8},\n  pages={8236--8245},\n  year={2024}\n}')">bib</a>]</p>
+                                </li>
+                                <li><p>Zhenyu Cui, <b>Jiahuan Zhou</b>, and Yuxin Peng, "DMA: Dual Modality-Aware Alignment for Visible-Infrared Person Re-Identification", in IEEE Transactions on Information Forensics and Security (<strong>TIFS</strong>), 2024, vol. 19, pp. 2696-2708, doi: 10.1109/TIFS.2024.3352408
+                                    <br>[<a href="pub/TIFS2023_DMA.pdf">pdf</a>] [<a href="https://github.com/PKU-ICST-MIPL/DMA_TIFS2023">code</a>] [<a href="#" onclick="copyTextAndNotify(event, '@article{cui2024dma,\n  title={DMA: Dual Modality-Aware Alignment for Visible-Infrared Person Re-Identification},\n  author={Cui, Zhenyu and Zhou, Jiahuan and Peng, Yuxin},\n  journal={IEEE Transactions on Information Forensics and Security},\n  year={2024},\n  publisher={IEEE}\n}')">bib</a>]</p>
+                                </li>
+                            </ol>
+                        </div>
+
+                        <div id="2023" class="paper-list">
+                            <ol>
+                                <li><p>Hongbo Sun, Xiangteng He, <b>Jiahuan Zhou</b>, and Yuxin Peng, "Fine-Grained Visual Prompt Learning of Vision-Language Models for Image Recognition", in 31st ACM Multimedia Conference (<strong>ACM MM'23</strong>), Ottawa, Canada, Oct.29 - Nov.3, 2023, pp. 5828-5836, Doi: 10.1145/3581783.3612403
+                                    <br>[<a href="pub/MM2023_Finegrained.pdf">pdf</a>] [<a href="#" onclick="copyTextAndNotify(event, '@inproceedings{sun2023fine,\n  title={Fine-grained visual prompt learning of vision-language models for image recognition},\n  author={Sun, Hongbo and He, Xiangteng and Zhou, Jiahuan and Peng, Yuxin},\n  booktitle={Proceedings of the 31st ACM International Conference on Multimedia},\n  pages={5828--5836},\n  year={2023}\n}')">bib</a>]</p>
+                                </li>
+                                <li><p>Kunlun Xu, Yuxin Peng, and <b>Jiahuan Zhou*</b>, "Uncover the Body: Occluded Person Re-identification via Masked Image Modeling", in 12rd International Conference on Image and Graphics (<strong>ICIG'23</strong>), Nanjing, China, Sep.22 - 24, 2023, pp. 241-253, Doi: 10.1007/978-3-031-46305-1_20
+                                    <br>[<a href="pub/ICIG2023_Uncover.pdf">pdf</a>] [<a href="#" onclick="copyTextAndNotify(event, '@inproceedings{xu2023uncover,\n  title={Uncover the Body: Occluded Person Re-identification via Masked Image Modeling},\n  author={Xu, Kunlun and Peng, Yuxin and Zhou, Jiahuan},\n  booktitle={International Conference on Image and Graphics},\n  pages={241--253},\n  year={2023},\n  organization={Springer}\n}')">bib</a>]</p>
+                                </li>
+                                <li><p>Zeqi Chen, Zhichao Cui, Chi Zhang, <b>Jiahuan Zhou</b>, and Yuehu Liu, "Dual Clustering Co-teaching with Consistent Sample Mining for Unsupervised Person Re-Identification", in IEEE Transactions on Circuits and Systems for Video Technology (<strong>TCSVT</strong>), 2023, vol. 33, no. 10, pp. 5908-5920, Doi: 10.1109/TCSVT.2023.3261898
+                                    <br>[<a href="pub/TCSVT2023_Dual.pdf">pdf</a>] [<a href="#" onclick="copyTextAndNotify(event, '@article{chen2023dual,\n  title={Dual clustering co-teaching with consistent sample mining for unsupervised person re-identification},\n  author={Chen, Zeqi and Cui, Zhichao and Zhang, Chi and Zhou, Jiahuan and Liu, Yuehu},\n  journal={IEEE Transactions on Circuits and Systems for Video Technology},\n  volume={33},\n  number={10},\n  pages={5908--5920},\n  year={2023},\n  publisher={IEEE}\n}')">bib</a>]</p>
+                                </li>
+                                <li><p>Zhenyu Cui, <b>Jiahuan Zhou</b>, Yuxin Peng, Shiliang Zhang, and Yaowei Wang, "DCR-ReID: Deep Component Reconstruction for Cloth-Changing Person Re-Identification", in IEEE Transactions on Circuits and Systems for Video Technology (<strong>TCSVT</strong>), 2023, vol. 33, no. 8, pp. 4415-4428, Doi: 10.1109/TCSVT.2023.3241988
+                                    <br>[<a href="pub/TCSVT2023_DCR.pdf">pdf</a>] [<a href="https://github.com/PKU-ICST-MIPL/DCR-ReID_TCSVT2023">code</a>] [<a href="#" onclick="copyTextAndNotify(event, '@article{cui2023dcr,\n  title={Dcr-reid: Deep component reconstruction for cloth-changing person re-identification},\n  author={Cui, Zhenyu and Zhou, Jiahuan and Peng, Yuxin and Zhang, Shiliang and Wang, Yaowei},\n  journal={IEEE Transactions on Circuits and Systems for Video Technology},\n  volume={33},\n  number={8},\n  pages={4415--4428},\n  year={2023},\n  publisher={IEEE}\n}')">bib</a>]</p>
+                                </li>
+                                <li><p>MengShun Hu, Kui Jiang, Zhixiang Nie, <b>Jiahuan Zhou</b>, and Zheng Wang, "Store and Fetch Immediately: Everything Is All You Need for Space-Time Video Super-Resolution", in Thirty-Seventh AAAI Conference on Artificial Intelligence (<strong>AAAI'23</strong>), Washington, DC, USA, Feb. 2023, pp. 863-871, Doi: 10.1609/aaai.v37i1.25165
+                                    <br>[<a href="pub/AAAI2023_Store.pdf">pdf</a>] [<a href="#" onclick="copyTextAndNotify(event, '@inproceedings{hu2023store,\n  title={Store and fetch immediately: Everything is all you need for space-time video super-resolution},\n  author={Hu, Mengshun and Jiang, Kui and Nie, Zhixiang and Zhou, Jiahuan and Wang, Zheng},\n  booktitle={Proceedings of the AAAI Conference on Artificial Intelligence},\n  volume={37},\n  number={1},\n  pages={863--871},\n  year={2023}\n}')">bib</a>]</p>
+                                </li>
+                                <li><p><b>Jiahuan Zhou</b>, Bing Su, and Ying Wu, "Discriminative Self-Paced Group-Metric Adaptation for Online Visual Identification", in IEEE Transactions on Pattern Analysis & Machine Intelligence (<strong>T-PAMI</strong>), vol. 45, no. 04, pp. 4368-4383, 2023. Doi: 10.1109/TPAMI.2022.3200036
+                                    <br>[<a href="pub/TPAMI2023_SPGMA.pdf">pdf</a>] [<a href="#" onclick="copyTextAndNotify(event, '@article{zhou2022discriminative,\n  title={Discriminative self-paced group-metric adaptation for online visual identification},\n  author={Zhou, Jiahuan and Su, Bing and Wu, Ying},\n  journal={IEEE Transactions on Pattern Analysis and Machine Intelligence},\n  volume={45},\n  number={4},\n  pages={4368--4383},\n  year={2022},\n  publisher={IEEE}\n}')">bib</a>]</p>
+                                </li>
+                            </ol>
+                        </div>
+                    
+                        <div id="2022" class="paper-list">
+                            <ol>
+                                <li><p>Mingfu Liang, <b>Jiahuan Zhou*</b>, Wei Wei, and Ying Wu, "Balancing between Forgetting and Acquisition in Incremental Subpopulation Learning", in Proc. European Conf. on Computer Vision (<strong>ECCV'22</strong>), Tel-Aviv, Israel, Oct. 2022, pp. 364-380. Doi: 10.1007/978-3-031-19809-0_21
+                                    <br>[<a href="pub/ECCV2022_ISL.pdf">pdf</a>] [<a href="#" onclick="copyTextAndNotify(event, '@inproceedings{liang2022balancing,\n  title={Balancing between forgetting and acquisition in incremental subpopulation learning},\n  author={Liang, Mingfu and Zhou, Jiahuan and Wei, Wei and Wu, Ying},\n  booktitle={European Conference on Computer Vision},\n  pages={364--380},\n  year={2022},\n  organization={Springer}\n}')">bib</a>]</p>
+                                </li>
+                                <li><p>Bing Su, <strong>Jiahuan Zhou*</strong>, Jirong Wen, and Ying Wu, "Linear and Deep Order-Preserving Wasserstein Discriminant Analysis", in IEEE Transactions on Pattern Analysis & Machine Intelligence (<strong>T-PAMI</strong>), vol. 44, no. 06, pp. 3123-3138, 2022. Doi: 10.1109/TPAMI.2021.3050750
+                                    <br>[<a href="pub/TPAMI2022_DeepOWDA.pdf">pdf</a>] [<a href="#" onclick="copyTextAndNotify(event, '@article{su2021linear,\n  title={Linear and deep order-preserving wasserstein discriminant analysis},\n  author={Su, Bing and Zhou, Jiahuan and Wen, Ji-Rong and Wu, Ying},\n  journal={IEEE Transactions on Pattern Analysis and Machine Intelligence},\n  volume={44},\n  number={6},\n  pages={3123--3138},\n  year={2021},\n  publisher={IEEE}\n}')">bib</a>]</p>
+                                </li>
+                                <li><p><b>Jiahuan Zhou</b>, Bing Su, and Ying Wu, "Online Joint Multi-Metric Adaptation From Frequent Sharing-Subset Mining for Person Re-Identification", in 2020 IEEE/CVF Conference on Computer Vision and Pattern Recognition (<strong>CVPR’20</strong>), Seattle, WA, USA, 2020, pp. 2906-2915. Doi: 10.1109/CVPR42600.2020.00298
+                                    <br>[<a href="pub/CVPR2020_M3.pdf">pdf</a>] [<a href="#" onclick="copyTextAndNotify(event, '@inproceedings{zhou2020online,\n  title={Online joint multi-metric adaptation from frequent sharing-subset mining for person re-identification},\n  author={Zhou, Jiahuan and Su, Bing and Wu, Ying},\n  booktitle={Proceedings of the IEEE/CVF conference on computer vision and pattern recognition},\n  pages={2909--2918},\n  year={2020}\n}')">bib</a>]</p>
+                                </li>
+                                <li><p>Yansong Tang#, Zanlin Ni#, <strong>Jiahuan Zhou</strong>, Danyang Zhang, Jiwen Lu, Ying Wu, and Jie Zhou, "Uncertainty-aware Score Distribution Learning for Action Quality Assessment", in 2020 IEEE/CVF Conference on Computer Vision and Pattern Recognition (<strong>CVPR’20</strong>), Seattle, WA, USA, 2020, pp. 9836-9845. Doi: 10.1109/CVPR42600.2020.00986
+                                    <br>[<a href="pub/CVPR2020_MUSDL.pdf">pdf</a>] [<a href="#" onclick="copyTextAndNotify(event, '@inproceedings{tang2020uncertainty,\n  title={Uncertainty-aware score distribution learning for action quality assessment},\n  author={Tang, Yansong and Ni, Zanlin and Zhou, Jiahuan and Zhang, Danyang and Lu, Jiwen and Wu, Ying and Zhou, Jie},\n  booktitle={Proceedings of the IEEE/CVF conference on computer vision and pattern recognition},\n  pages={9839--9848},\n  year={2020}\n}')">bib</a>]</p>
+                                </li>
+                                <li><p>Bing Su, <strong>Jiahuan Zhou</strong>, and Ying Wu, "Order-preserving Wasserstein Discriminant Analysis", in 2019 IEEE/CVF International Conference on Computer Vision (<strong>ICCV'19</strong>), Seoul, Korea (South), 2019, pp. 9884-9893. Doi: 10.1109/ICCV.2019.00998
+                                    <br>[<a href="pub/ICCV2019_OWDA.pdf">pdf</a>] [<a href="#" onclick="copyTextAndNotify(event, '@inproceedings{su2019order,\n  title={Order-preserving wasserstein discriminant analysis},\n  author={Su, Bing and Zhou, Jiahuan and Wu, Ying},\n  booktitle={Proceedings of the IEEE/CVF International Conference on Computer Vision},\n  pages={9885--9894},\n  year={2019}\n}')">bib</a>]</p>
+                                </li>
+                                <li><p>Xu Zou, Sheng Zhong, Luxin Yan, Xiangyun Zhao, <strong>Jiahuan Zhou</strong>*, and Ying Wu, "Learning Robust Facial Landmark Detection via Hierarchical Structured Ensemble", in 2019 IEEE/CVF International Conference on Computer Vision (<strong>ICCV'19</strong>), Seoul, Korea (South), 2019, pp. 141-150. Doi: 10.1109/ICCV.2019.00023
+                                    <br>[<a href="pub/ICCV2019_HSLE.pdf">pdf</a>] [<a href="#" onclick="copyTextAndNotify(event, '@inproceedings{zou2019learning,\n  title={Learning robust facial landmark detection via hierarchical structured ensemble},\n  author={Zou, Xu and Zhong, Sheng and Yan, Luxin and Zhao, Xiangyun and Zhou, Jiahuan and Wu, Ying},\n  booktitle={Proceedings of the IEEE/CVF International Conference on Computer Vision},\n  pages={141--150},\n  year={2019}\n}')">bib</a>]</p>
+                                </li>
+                                <li><p><strong>Jiahuan Zhou</strong>, and Ying Wu, "Learning Visual Instance Retrieval from Failure: Efficient Online Local Metric Adaptation from Negative Samples", in IEEE Transactions on Pattern Analysis & Machine Intelligence (<strong>T-PAMI</strong>), vol. 42, no. 11, pp. 2858-2873, 2020. Doi: 10.1109/TPAMI.2019.2918208
+                                    <br>[<a href="pub/TPAMI2020_Failure.pdf">pdf</a>] [<a href="#" onclick="copyTextAndNotify(event, '@article{zhou2019learning,\n  title={Learning visual instance retrieval from failure: Efficient online local metric adaptation from negative samples},\n  author={Zhou, Jiahuan and Wu, Ying},\n  journal={IEEE transactions on pattern analysis and machine intelligence},\n  volume={42},\n  number={11},\n  pages={2858--2873},\n  year={2019},\n  publisher={IEEE}\n}')">bib</a>]</p>
+                                </li>
+                                <li><p>Xinzhao Li, Yuehu Liu, Zeqi Chen, <strong>Jiahuan Zhou</strong>, and Ying Wu, "Fused Discriminative Metric Learning for Low Resolution Pedestrian Detection", in Proceedings of IEEE International Conference on Image Processing (<strong>ICIP'18</strong>), Athens, Greece, Oct. 2018.
+                                    <br>[<a href="pub/ICIP2018_PD.pdf">pdf</a>] [<a href="#" onclick="copyTextAndNotify(event, '@inproceedings{li2018fused,\n  title={Fused discriminative metric learning for low resolution pedestrian detection},\n  author={Li, Xinzhao and Liu, Yuehu and Chen, Zeqi and Zhou, Jiahuan and Wu, Ying},\n  booktitle={2018 25th IEEE International Conference on Image Processing (ICIP)},\n  pages={958--962},\n  year={2018},\n  organization={IEEE}\n}')">bib</a>]</p>
+                                </li>
+                                <li><p><strong>Jiahuan Zhou</strong>, Bing Su, and Ying Wu, "Easy Identification from Better Constraints: Multi-Shot Person Re-Identification from Reference Constraints", in 2018 IEEE/CVF Conference on Computer Vision and Pattern Recognition (<strong>CVPR'18</strong>), Salt Lake City, UT, USA, 2018, pp. 5373-5381. Doi: 10.1109/CVPR.2018.00563
+                                    <br>[<a href="pub/CVPR2018_Reference.pdf">pdf</a>] [<a href="#" onclick="copyTextAndNotify(event, '@inproceedings{zhou2018easy,\n  title={Easy identification from better constraints: Multi-shot person re-identification from reference constraints},\n  author={Zhou, Jiahuan and Su, Bing and Wu, Ying},\n  booktitle={Proceedings of the IEEE conference on computer vision and pattern recognition},\n  pages={5373--5381},\n  year={2018}\n}')">bib</a>]</p>
+                                </li>
+                                <li><p><strong>Jiahuan Zhou</strong>, Pei Yu, Tang Wei, and Ying Wu, "Efficient Online Local Metric Adaptation via Negative Samples for Person Re-Identification", in 2017 IEEE International Conference on Computer Vision (<strong>ICCV'17</strong>), Venice, Italy, 2017, pp. 2439-2447. Doi: 10.1109/ICCV.2017.265
+                                    <br>[<a href="pub/ICCV2017_OLMANS.pdf">pdf</a>] [<a href="#" onclick="copyTextAndNotify(event, '@inproceedings{zhou2017efficient,\n  title={Efficient online local metric adaptation via negative samples for person re-identification},\n  author={Zhou, Jiahuan and Yu, Pei and Tang, Wei and Wu, Ying},\n  booktitle={Proceedings of the IEEE International Conference on Computer Vision},\n  pages={2420--2428},\n  year={2017}\n}')">bib</a>]</p>
+                                </li>
+                                <li><p>Wei Tang, Pei Yu, <strong>Jiahuan Zhou</strong>, and Ying Wu, "Towards a Unified Compositional Model for Visual Pattern Modeling", in 2017 IEEE International Conference on Computer Vision (<strong>ICCV'17</strong>), Venice, Italy, 2017, pp. 2803-2812. Doi: 10.1109/ICCV.2017.303
+                                    <br>[<a href="pub/ICCV2017_Compositional.pdf">pdf</a>] [<a href="#" onclick="copyTextAndNotify(event, '@inproceedings{tang2017towards,\n  title={Towards a unified compositional model for visual pattern modeling},\n  author={Tang, Wei and Yu, Pei and Zhou, Jiahuan and Wu, Ying},\n  booktitle={Proceedings of the IEEE international conference on computer vision},\n  pages={2784--2793},\n  year={2017}\n}')">bib</a>]</p>
+                                </li>
+                                <li><p>Bing Su, <strong>Jiahuan Zhou</strong>, Xiaoqing Ding, and Ying Wu, "Unsupervised Hierarchical Dynamic Parsing and Encoding for Action Recognition", in IEEE Transactions on Image Processing (<strong>TIP'2017</strong>), 26.12: 5784-5799, Doi: 10.1109/TIP.2017.2745212
+                                    <br>[<a href="pub/TIP2017_HDPE.pdf">pdf</a>] [<a href="#" onclick="copyTextAndNotify(event, '@article{su2017unsupervised,\n  title={Unsupervised hierarchical dynamic parsing and encoding for action recognition},\n  author={Su, Bing and Zhou, Jiahuan and Ding, Xiaoqing and Wu, Ying},\n  journal={IEEE Transactions on Image Processing},\n  volume={26},\n  number={12},\n  pages={5784--5799},\n  year={2017},\n  publisher={IEEE}\n}')">bib</a>]</p>
+                                </li>
+                                <li><p>Bing Su, <strong>Jiahuan Zhou</strong>, Xiaoqing Ding, Hao Wang, and Ying Wu, "Hierarchical Dynamic Parsing and Encoding for Action Recognition", in Computer Vision–ECCV 2016: 14th European Conference (<strong>ECCV'16</strong>), Amsterdam, The Netherlands, October 11–14, 2016, Proceedings, Part IV 14, pp. 202-217, Doi: 10.1007/978-3-319-46493-0_13
+                                    <br>[<a href="pub/ECCV2016_HDPE.pdf">pdf</a>] [<a href="#" onclick="copyTextAndNotify(event, '@inproceedings{su2016hierarchical,\n  title={Hierarchical dynamic parsing and encoding for action recognition},\n  author={Su, Bing and Zhou, Jiahuan and Ding, Xiaoqing and Wang, Hao and Wu, Ying},\n  booktitle={Computer Vision--ECCV 2016: 14th European Conference, Amsterdam, The Netherlands, October 11--14, 2016, Proceedings, Part IV 14},\n  pages={202--217},\n  year={2016},\n  organization={Springer}\n}')">bib</a>]</p>
+                                </li>
+                                <li><p>Pei Yu, <strong>Jiahuan Zhou</strong>, and Ying Wu, "Learning Reconstruction-based Remote Gaze Estimation", in 2016 IEEE Conference on Computer Vision and Pattern Recognition (<strong>CVPR'16</strong>), Las Vegas, NV, USA, 2016, pp. 3447-3455. Doi: 10.1109/CVPR.2016.375
+                                    <br>[<a href="pub/CVPR2016_Gaze.pdf">pdf</a>] [<a href="#" onclick="copyTextAndNotify(event, '@inproceedings{yu2016learning,\n  title={Learning reconstruction-based remote gaze estimation},\n  author={Yu, Pei and Zhou, Jiahuan and Wu, Ying},\n  booktitle={Proceedings of the IEEE Conference on Computer Vision and Pattern Recognition},\n  pages={3447--3455},\n  year={2016}\n}')">bib</a>]</p>
+                                </li>
+                                <li><p><strong>Jiahuan Zhou*</strong>, and Ying Wu, "Finding the Right Exemplars for Reconstructing Single Image Super-Resolution", in 2016 IEEE International Conference on Image Processing (<strong>ICIP'16, Oral</strong>), Phoenix, 2016, pp. 1414-1418
+                                    <br>[<a href="pub/ICIP2016_SR.pdf">pdf</a>] [<a href="#" onclick="copyTextAndNotify(event, '@inproceedings{zhou2016finding,\n  title={Finding the right exemplars for reconstructing single image super-resolution},\n  author={Zhou, Jiahuan and Wu, Ying},\n  booktitle={2016 IEEE International Conference on Image Processing (ICIP)},\n  pages={1414--1418},\n  year={2016},\n  organization={IEEE}\n}')">bib</a>]</p>
+                                </li>
+                                <li><p>Han Hu, <strong>Jiahuan Zhou</strong>, Jianjiang Feng, and Jie Zhou, "Multi-way constrained spectral clustering by nonnegative restriction", in 2012 21st International Conference on Pattern Recognition (<strong>ICPR'12, Oral</strong>), Tsukuba, 2012, pp. 1550-1553
+                                    <br>[<a href="pub/ICPR2012_Clustering.pdf">pdf</a>] [<a href="#" onclick="copyTextAndNotify(event, '@inproceedings{hu2012multi,\n  title={Multi-way constrained spectral clustering by nonnegative restriction},\n  author={Hu, Han and Zhou, Jiahuan and Feng, Jianjiang and Zhou, Jie},\n  booktitle={Proceedings of the 21st International Conference on Pattern Recognition (ICPR2012)},\n  pages={1550--1553},\n  year={2012},\n  organization={IEEE}\n}')">bib</a>]</p>
+                                </li>
+                            </ol>
+                        </div>
+
+                        <p><b>Note</b>: * indicates the corresponding author; # indicates equal contribution.</p>
+                        <p><a href="https://scholar.google.com/citations?user=ZLZmI8sAAAAJ&hl=en&oi=ao">Full list of publications in Google Scholar.</a></p>
 
                     </section>
                     <p id="services" style="height:4rem;margin: 0;">&nbsp;</p>
@@ -367,6 +615,113 @@ A.info:hover    {color:green;background:transparent;text-decoration:underline}
                 $(this).siblings().removeClass('active');
             }
         })
+
+
+
+        function showPapers(year) {
+            // 获取所有论文列表和标签
+            var paperLists = document.querySelectorAll('.paper-list');
+            var tabs = document.querySelectorAll('.tab');
+            
+            // 隐藏所有论文列表
+            paperLists.forEach(function(list) {
+                list.classList.remove('active');
+            });
+
+            // 移除所有标签的激活状态
+            tabs.forEach(function(tab) {
+                tab.classList.remove('active');
+            });
+
+            // 显示选择的年份的论文列表
+            document.getElementById(year).classList.add('active');
+
+            // 设置当前标签为激活状态
+            document.querySelector('.tab[onclick="showPapers(\'' + year + '\')"]').classList.add('active');
+        }
+
+        function showRecentPapers(year) {
+            var currentYear = year;
+            // var lastYear = currentYear - 1;
+            
+            // 显示当前年和去年论文列表
+            document.getElementById(currentYear).classList.add('active');
+            // document.getElementById(lastYear).classList.add('active');
+
+            // 激活当前年和去年的标签
+            document.querySelector('.tab[onclick="showPapers(\'' + currentYear + '\')"]').classList.add('active');
+            // document.querySelector('.tab[onclick="showPapers(\'' + lastYear + '\')"]').classList.add('active');
+        }
+
+        // 默认显示最近两年的论文
+        showRecentPapers(2024);
+
+
+
+
+        // 显示前5条新闻
+        document.addEventListener("DOMContentLoaded", function() {
+            var newsItems = document.querySelectorAll('.news-item');
+            for (var i = 0; i < 6; i++) {
+                if (newsItems[i]) {
+                    newsItems[i].style.display = 'list-item';
+                }
+            }
+        });
+
+
+        document.getElementById('show-less').style.display = 'none'; // 隐藏Show Less按钮
+        // Show More功能
+        function showMoreNews() {
+            var newsItems = document.querySelectorAll('.news-item');
+            newsItems.forEach(function(item) {
+                item.style.display = 'list-item'; // 显示所有新闻
+            });
+            document.getElementById('show-more').style.display = 'none'; // 隐藏Show More按钮
+            document.getElementById('show-less').style.display = 'inline-block'; // 显示Show Less按钮
+        }
+
+        // Show Less功能
+        function showLessNews() {
+            var newsItems = document.querySelectorAll('.news-item');
+            for (var i = 0; i < newsItems.length; i++) {
+                if (i < 6) {
+                    newsItems[i].style.display = 'list-item'; // 显示前5条新闻
+                } else {
+                    newsItems[i].style.display = 'none'; // 隐藏其他新闻
+                }
+            }
+            document.getElementById('show-more').style.display = 'inline-block'; // 显示Show More按钮
+            document.getElementById('show-less').style.display = 'none'; // 隐藏Show Less按钮
+        }
+
+
+
+        function copyTextAndNotify(event, text) {
+            event.preventDefault();
+
+            // 创建一个临时的textarea元素
+            var textarea = document.createElement("textarea");
+            textarea.value = text;
+            document.body.appendChild(textarea);
+            textarea.select();
+            textarea.setSelectionRange(0, 99999); // 对于移动设备
+
+            // 执行复制操作
+            document.execCommand("copy");
+
+            // 移除临时元素
+            document.body.removeChild(textarea);
+
+            // 显示提示信息
+            var notification = document.getElementById("notification");
+            notification.style.display = "block";
+
+            // 3秒后隐藏提示信息
+            setTimeout(function() {
+                notification.style.display = "none";
+            }, 3000);
+        }
     </Script>
 </body>
 </html>

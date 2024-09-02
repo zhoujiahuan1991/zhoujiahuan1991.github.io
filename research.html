@@ -19,6 +19,24 @@ A.applink:hover {border: 2px dotted #DCE6F4;padding:2px;background-color:#ffff00
 A.applink       {border: 2px dotted #DCE6F4;padding:2px;color:#2F5BFF;background:transparent;text-decoration:none}
 A.info          {color:#ba0000;background:transparent;text-decoration:none}
 A.info:hover    {color:green;background:transparent;text-decoration:underline}
+/* 新闻标签样式 */
+.news-item {
+            display: none; /* 默认隐藏所有新闻 */
+        }
+        .show-more {
+            cursor: pointer;
+            color: blue;
+            text-decoration: underline;
+            margin-top: 20px;
+            display: inline-block;
+        }
+        .show-less {
+            cursor: pointer;
+            color: blue;
+            text-decoration: underline;
+            margin-top: 20px;
+            display: inline-block;
+        }
 </style>
 
 <!-- /Copyright � 2008. Spidersoft Ltd -->
@@ -69,43 +87,63 @@ A.info:hover    {color:green;background:transparent;text-decoration:underline}
                     <section style="font-size: 1.8rem;">
                         <h3>Latest News</h3>
                         <ul>
-                            <li><p style="color:red;">We are always actively recruiting Post-doc Fellows, Ph.D., Master, and Research Interns! Welcome to contact me with your detailed CV! (常年招收博士后、博士、硕士和科研实习生！)</p>
+                            <li class="news-item"><p style="color:red;">We are always actively recruiting Post-doc Fellows, Ph.D., Master, and Research Interns! Welcome to contact me with your detailed CV! (常年招收博士后、博士、硕士和科研实习生！)</p>
                             </li>
-                            <li><p>07.2024, Four papers are accepted by ACM MM'2024.</p>
+                            <li class="news-item"><p>07.2024, Four papers are accepted by ACM MM'2024.</p>
                             </li>
-                            <li><p>05.2024, One paper is accepted by IJCV.</p>
+                            <li class="news-item"><p>05.2024, One paper is accepted by IJCV.</p>
                             </li>
-                            <li><p>04.2024, One paper is accepted by IJCV.</p>
+                            <li class="news-item"><p>05.2024, Invited to serve as the Area Chair of NeurIP'2024.</p>
                             </li>
-                            <li><p>04.2024, One paper is accepted by IJCAI'2024.</p>
+                            <li class="news-item"><p>04.2024, One paper is accepted by IJCV.</p>
+                            </li>                     
+                            <li class="news-item"><p>04.2024, One paper is accepted by IJCAI'2024.</p>
                             </li>
-                            <li><p>03.2024, One paper is accepted by Nature Synthesis.</p>
+                            <li class="news-item"><p>03.2024, One paper is accepted by Nature Synthesis.</p>
                             </li>
-                            <li><p>02.2024, Four papers are accepted by CVPR'2024.</p>
+                            <li class="news-item"><p>02.2024, Four papers are accepted by CVPR'2024.</p>
                             </li>
-                            <li><p>01.2024, One paper is accepted by IEEE T-PAMI.</p>
+                            <li class="news-item"><p>01.2024, One paper is accepted by IEEE T-PAMI.</p>
                             </li>
-                            <li><p>12.2023, One paper is accepted by ACM TOMM.</p>
+                            <li class="news-item"><p>12.2023, One paper is accepted by ACM TOMM.</p>
                             </li>
-                            <li><p>12.2023, Five papers are accepted by AAAI'2024.</p>
+                            <li class="news-item"><p>12.2023, Five papers are accepted by AAAI'2024.</p>
                             </li>
-                            <li><p>11.2023, One paper is accepted by IEEE TIFS'2023.</p>
+                            <li class="news-item"><p>12.2023, Invited to serve as the Area Chair of ICPR'2024.</p>
                             </li>
-                            <li><p>09.2023, One paper is accepted by ICIG'2023.</p>
+                            <li class="news-item"><p>11.2023, One paper is accepted by IEEE TIFS.</p>
                             </li>
-                            <li><p>07.2023, One paper is accepted by ACM MM'2023.</p>
+                            <li class="news-item"><p>09.2023, One paper is accepted by ICIG'2023.</p>
                             </li>
-                            <li><p>03.2023, One paper is accepted by IEEE TCSVT'2023.</p>
+                            <li class="news-item"><p>07.2023, One paper is accepted by ACM MM'2023.</p>
                             </li>
-                            <li><p>01.2023, One paper is accepted by IEEE TCSVT'2023.</p>
+                            <li class="news-item"><p>06.2023, Invited to serve as the Area Chair of CVPR'2024.</p>
                             </li>
-                            <li><p>11.2022, One paper is accepted by AAAI'2023.</p>
+                            <li class="news-item"><p>03.2023, One paper is accepted by IEEE TCSVT.</p>
                             </li>
-                            <li><p>08.2022, One paper is accepted by IEEE T-PAMI.</p>
+                            <li class="news-item"><p>01.2023, One paper is accepted by IEEE TCSVT.</p>
                             </li>
-                            <li><p>07.2022, One paper is accepted by ECCV'2022.</p>
+                            <li class="news-item"><p>12.2022, Invited to serve as the Session Chair of VCIP'2022.</p>
                             </li>
-                            </ul>
+                            <li class="news-item"><p>12.2022, Invited to serve as the Area Chair of ICME'2023.</p>
+                            </li>
+                            <li class="news-item"><p>11.2022, One paper is accepted by AAAI'2023.</p>
+                            </li>
+                            <li class="news-item"><p>10.2022, Awarded National Young Scientists Funding Program.</p>
+                            </li>
+                            <li class="news-item"><p>09.2022, Invited to serve as the Area Chair of CVPR'2023.</p>
+                            </li>
+                            <li class="news-item"><p>08.2022, One paper is accepted by IEEE T-PAMI.</p>
+                            </li>
+                            <li class="news-item"><p>07.2022, One paper is accepted by ECCV'2022.</p>
+                            </li>
+                            <li class="news-item"><p>04.2022, Invited to serve as the Area Chair of ICPR'2023.</p>
+                            </li>
+                            <li class="news-item"><p>03.2022, Joined Peking University.</p>
+                            </li>
+                        </ul>
+                        <div id="show-more" class="show-more" onclick="showMoreNews()">Show More</div>
+                        <div id="show-less" class="show-less" onclick="showLessNews()">Show Less</div>
                     </section>
 
 
@@ -469,6 +507,41 @@ A.info:hover    {color:green;background:transparent;text-decoration:underline}
                 $(this).siblings().removeClass('active');
             }
         })
+
+        // 显示前5条新闻
+        document.addEventListener("DOMContentLoaded", function() {
+            var newsItems = document.querySelectorAll('.news-item');
+            for (var i = 0; i < 6; i++) {
+                if (newsItems[i]) {
+                    newsItems[i].style.display = 'list-item';
+                }
+            }
+        });
+        
+        document.getElementById('show-less').style.display = 'none'; // 隐藏Show Less按钮
+        // Show More功能
+        function showMoreNews() {
+            var newsItems = document.querySelectorAll('.news-item');
+            newsItems.forEach(function(item) {
+                item.style.display = 'list-item'; // 显示所有新闻
+            });
+            document.getElementById('show-more').style.display = 'none'; // 隐藏Show More按钮
+            document.getElementById('show-less').style.display = 'inline-block'; // 显示Show Less按钮
+        }
+
+        // Show Less功能
+        function showLessNews() {
+            var newsItems = document.querySelectorAll('.news-item');
+            for (var i = 0; i < newsItems.length; i++) {
+                if (i < 6) {
+                    newsItems[i].style.display = 'list-item'; // 显示前5条新闻
+                } else {
+                    newsItems[i].style.display = 'none'; // 隐藏其他新闻
+                }
+            }
+            document.getElementById('show-more').style.display = 'inline-block'; // 显示Show More按钮
+            document.getElementById('show-less').style.display = 'none'; // 隐藏Show Less按钮
+        }
     </script>
 </body>
 </html>
