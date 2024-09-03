@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -9,6 +9,54 @@
     <title>实验室</title>
     <link rel="stylesheet" href="common/css/bootstrap.min.css">
     <link rel="stylesheet" href="common/css/index.css">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        .slider-container {
+            width: 100%;
+            overflow: hidden;
+            position: relative;
+            background-color: #f0f0f0;
+        }
+
+        .slider {
+            display: flex;
+            gap: 10px; /* 图片之间的间距 */
+            position: relative;
+            animation: scroll 10s linear infinite; /* 调整滚动速度 */
+        }
+
+        .slide {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        .slider img {
+            max-height: 200px;
+            /* width: 300px;
+            height: 200px; */
+            border-radius: 10px; /* 图片的圆角 */
+            flex-shrink: 0;
+        }
+
+        .slide-number {
+            margin-top: 5px;
+            font-size: 16px;
+            color: #333;
+        }
+
+        @keyframes scroll {
+            0% { transform: translateX(0); }
+            50% { transform: translateX(-43%); }
+        }
+
+    </style>
 </head>
 <body >
 
@@ -65,10 +113,10 @@ A.info:hover    {color:green;background:transparent;text-decoration:underline}
                     <div class="container-fluid " style="padding: 0 ;">
                       <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1" >
                         <ul class="nav navbar-nav">
-                          <li class="active"><a href="#introduction">LAB INTRODUCTION</a></li>
-                          <li><a href="#news">LATEST NEWS</a></li>
-                          <li><a href="#member">LAB MEMBERS</a></li>
-                          <li><a href="#Lives">LAB LIVES</a></li>
+                          <li class="active"><a href="#introduction">Lab Introduction</a></li>
+                          <li><a href="#news">Latest News</a></li>
+                          <li><a href="#member">Lab Members</a></li>
+                          <li><a href="#Lives">Lab Lives</a></li>
                         </ul>
                       </div>
                     </div>
@@ -460,7 +508,53 @@ A.info:hover    {color:green;background:transparent;text-decoration:underline}
                     <p id="Lives" style="height:4rem;margin: 0;">&nbsp;</p>
                     <section>
                         <h3 style="margin-top: 20px;">Lab Lives</h3>
-                        <div class="lifestyle">
+                        <div class="slider-container">
+                            <div class="slider">
+                                <div class="slide">
+                                    <img src="common/img/group1.jpg" alt="图片1">
+                                    <div class="slide-number">2024年1月聚餐活动</div>
+                                </div>
+                                <div class="slide">
+                                    <img src="common/img/group2.jpg" alt="图片2">
+                                    <div class="slide-number">2024年2月新年聚餐</div>
+                                </div>
+                                <div class="slide">
+                                    <img src="common/img/group3.jpg" alt="图片3">
+                                    <div class="slide-number">2023年5月香山徒步活动</div>
+                                </div>
+                                <div class="slide">
+                                    <img src="common/img/group4.jpg" alt="图片4">
+                                    <div class="slide-number">2024年4月聚餐活动</div>
+                                </div>
+                                <div class="slide">
+                                    <img src="common/img/group5.jpg" alt="图片5">
+                                    <div class="slide-number">2024年7月迎新聚餐</div>
+                                </div>
+
+
+                                <div class="slide">
+                                    <img src="common/img/group1.jpg" alt="图片1">
+                                    <div class="slide-number">2024年1月聚餐活动</div>
+                                </div>
+                                <div class="slide">
+                                    <img src="common/img/group2.jpg" alt="图片2">
+                                    <div class="slide-number">2024年2月新年聚餐</div>
+                                </div>
+                                <div class="slide">
+                                    <img src="common/img/group3.jpg" alt="图片3">
+                                    <div class="slide-number">2023年5月香山徒步活动</div>
+                                </div>
+                                <div class="slide">
+                                    <img src="common/img/group4.jpg" alt="图片4">
+                                    <div class="slide-number">2024年4月聚餐活动</div>
+                                </div>
+                                <div class="slide">
+                                    <img src="common/img/group5.jpg" alt="图片5">
+                                    <div class="slide-number">2024年7月迎新聚餐</div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- <div class="lifestyle">
                             <div class="li_fx1">
                                 <img src="common/img/group3.jpg" />
                                 <p>At Xiangshan</p>
@@ -487,7 +581,7 @@ A.info:hover    {color:green;background:transparent;text-decoration:underline}
                                 <p>2024.7</p>
                             </div>
 							
-                        </div>
+                        </div> -->
                     </section>
                     
 
@@ -542,6 +636,37 @@ A.info:hover    {color:green;background:transparent;text-decoration:underline}
             document.getElementById('show-more').style.display = 'inline-block'; // 显示Show More按钮
             document.getElementById('show-less').style.display = 'none'; // 隐藏Show Less按钮
         }
+
+        // 滚动
+        const slider = document.getElementById('slider');
+        let sliderWidth = slider.scrollWidth;
+        let containerWidth = document.querySelector('.slider-container').offsetWidth;
+        let currentPosition = 0;
+
+        function startSlider() {
+            currentPosition -= 1; // 控制滚动速度
+
+            if (Math.abs(currentPosition) >= sliderWidth / 2) {
+                currentPosition = 0; // 当滚动到一半时重置
+            }
+
+            slider.style.left = currentPosition + 'px';
+
+            requestAnimationFrame(startSlider);
+        }
+
+        // 复制图片以实现无缝滚动
+        function cloneImages() {
+            let images = slider.querySelectorAll('img');
+            images.forEach(img => {
+                let clone = img.cloneNode(true);
+                slider.appendChild(clone);
+            });
+            sliderWidth = slider.scrollWidth; // 更新slider的宽度
+        }
+
+        cloneImages();
+        startSlider();
     </script>
 </body>
 </html>
