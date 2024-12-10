@@ -1306,17 +1306,17 @@ A.info:hover    {color:green;background:transparent;text-decoration:underline}
             var currentYear = year;
             // var lastYear = currentYear - 1;
             
-            // 显示当前年和去年论文列表
+            // 显示当前年论文列表
             document.getElementById(currentYear).classList.add('active');
             // document.getElementById(lastYear).classList.add('active');
 
-            // 激活当前年和去年的标签
+            // 激活当前年标签
             document.querySelector('.tab[onclick="showPapers(\'' + currentYear + '\')"]').classList.add('active');
             // document.querySelector('.tab[onclick="showPapers(\'' + lastYear + '\')"]').classList.add('active');
         }
 
-        // 默认显示最近两年的论文
-        showRecentPapers(2024);
+        // 默认显示最近一年的论文
+        showRecentPapers(2025);
 
 
 
