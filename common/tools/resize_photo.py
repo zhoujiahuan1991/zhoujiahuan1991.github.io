@@ -18,7 +18,7 @@ def resize_and_crop(image_path, output_path, target_width, target_height):
 
     img_cropped.save(output_path)
 
-image_path = r'common\img\azx.jpg' 
+image_path = 'common/img/hjh.jpg' 
 output_path = image_path.replace('.jpg', '-resized.jpg')
 # output_path = image_path.replace('.png', '-resized.png')
 target_width = 300  
