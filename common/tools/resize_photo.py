@@ -18,7 +18,7 @@ def resize_and_crop(image_path, output_path, target_width, target_height):
 
     img_cropped.save(output_path)
 
-image_path = 'common/img/group7.jpg' 
+image_path = 'common/img/group8.jpg' 
 output_path = image_path.replace('.jpg', '-resized.jpg')
 # output_path = image_path.replace('.png', '-resized.png')
 # pattern for people images
