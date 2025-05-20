@@ -35,14 +35,14 @@ def resize_and_crop(image_path, output_path, target_width, target_height, priori
     img_cropped.save(output_path)
 
 
-image_path = 'common/img/china-3dv-2025.jpg' 
+image_path = 'common/img/lqw.jpg' 
 output_path = image_path.replace('.jpg', '-resized.jpg')
 # output_path = image_path.replace('.png', '-resized.png')
 # pattern for people images
-# target_width = 300  
-# target_height = 400
+target_width = 300  
+target_height = 400
 # patern for group images
-target_width = 400  
-target_height = 300 
+# target_width = 400  
+# target_height = 300 
 
 resize_and_crop(image_path, output_path, target_width, target_height)
