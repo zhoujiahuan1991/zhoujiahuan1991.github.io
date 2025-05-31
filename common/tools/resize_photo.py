@@ -45,4 +45,4 @@ target_height = 400
 # target_width = 400  
 # target_height = 300 
 
-resize_and_crop(image_path, output_path, target_width, target_height)
+resize_and_crop(image_path, output_path, target_width, target_height, priority='width')
