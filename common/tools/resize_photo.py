@@ -21,27 +21,27 @@ def resize_crop_or_pad(image_path,
     else:
         raise ValueError("priority must be either 'height' or 'width'")
 
-    img_resized = img.resize((target_width, target_height), Image.LANCZOS)
-    img_resized.save(output_path)
-    # # ② 背景颜色：左上角像素
-    # bg_color = img_resized.getpixel((0, 0))
+    img_resized = img.resize((new_w, new_h), Image.LANCZOS)
 
-    # # ③ 根据缩放结果裁剪或填充
-    # if new_w >= target_width and new_h >= target_height:
-    #     # ——— 两边都够大：居中裁剪 ———
-    #     left   = (new_w - target_width)  // 2
-    #     top    = (new_h - target_height) // 2
-    #     right  = left + target_width
-    #     bottom = top  + target_height
-    #     img_out = img_resized.crop((left, top, right, bottom))
-    # else:
-    #     # ——— 有一边不足：新建画布 + 居中填充 ———
-    #     img_out = Image.new(img.mode, (target_width, target_height), bg_color)
-    #     offset_x = (target_width  - new_w) // 2
-    #     offset_y = (target_height - new_h) // 2
-    #     img_out.paste(img_resized, (offset_x, offset_y))
+    # ② 背景颜色：左上角像素
+    bg_color = img_resized.getpixel((0, 0))
 
-    # img_out.save(output_path)
+    # ③ 根据缩放结果裁剪或填充
+    if new_w >= target_width and new_h >= target_height:
+        # ——— 两边都够大：居中裁剪 ———
+        left   = (new_w - target_width)  // 2
+        top    = (new_h - target_height) // 2
+        right  = left + target_width
+        bottom = top  + target_height
+        img_out = img_resized.crop((left, top, right, bottom))
+    else:
+        # ——— 有一边不足：新建画布 + 居中填充 ———
+        img_out = Image.new(img.mode, (target_width, target_height), bg_color)
+        offset_x = (target_width  - new_w) // 2
+        offset_y = (target_height - new_h) // 2
+        img_out.paste(img_resized, (offset_x, 2*offset_y))
+
+    img_out.save(output_path)
 
 
 # ========= 使用示例 =========
@@ -51,7 +51,7 @@ resize_crop_or_pad(image_path,
                    output_path,
                    target_width=300,
                    target_height=400,
-                   priority='width')
+                   priority='height')
 
 # resize_crop_or_pad(image_path,
 #                    output_path,
