@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+    <meta name="keywords" content="Open Vision, Open View, Open Venture" />
+    <title>论文介绍</title>
+    <link rel="stylesheet" href="../common/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../common/css/index.css">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        .slider-container {
+            width: 100%;
+            overflow: hidden;
+            position: relative;
+            background-color: #f0f0f0;
+        }
+
+        .slider {
+            display: flex;
+            gap: 10px; /* 图片之间的间距 */
+            position: relative;
+            animation: scroll 30s linear 2s infinite running; /* 调整滚动速度 */
+        }
+
+        .slide {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        .slider img {
+            max-height: 200px;
+            /* width: 300px;
+            height: 200px; */
+            border-radius: 10px; /* 图片的圆角 */
+            flex-shrink: 0;
+        }
+
+        .slide-number {
+            margin-top: 5px;
+            font-size: 16px;
+            color: #333;
+        }
+
+        @keyframes scroll {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-155.5%); }
+        }
+
+    </style>
+</head>
+<body >
+
+
+<!-- Copyright � 2008. Spidersoft Ltd -->
+<style>
+A.applink:hover {border: 2px dotted #DCE6F4;padding:2px;background-color:#ffff00;color:green;text-decoration:none}
+A.applink       {border: 2px dotted #DCE6F4;padding:2px;color:#2F5BFF;background:transparent;text-decoration:none}
+A.info          {color:#ba0000;background:transparent;text-decoration:none}
+A.info:hover    {color:green;background:transparent;text-decoration:underline}
+/* 新闻标签样式 */
+.news-item {
+            display: none; /* 默认隐藏所有新闻 */
+        }
+        .show-more {
+            cursor: pointer;
+            color: blue;
+            text-decoration: underline;
+            margin-top: 20px;
+            display: inline-block;
+        }
+        .show-less {
+            cursor: pointer;
+            color: blue;
+            text-decoration: underline;
+            margin-top: 20px;
+            display: inline-block;
+        }
+</style>
+
+<!-- /Copyright � 2008. Spidersoft Ltd -->
+
+
+<div class="container-fluid" style="padding:0 10%;">
+    <dic class="row">
+        <div class="col-md-2 col-xs-2 col-sm-2 " >
+            <div class="warpper" >
+                <div class="logo" >
+                </div>
+                <ul class="nav nav-pills nav-stacked " >
+                    <li role="presentation" ><a href="index.html">HOMEPAGE</a></li>
+                    <li role="presentation" class="active"><a href="research.html">LAB HOMEPAGE</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="col-md-10 col-xs-10 col-sm-10 mb20">
+            <div>
+                <p id="member" style="height:4rem;margin: 0;">&nbsp;</p>
+                <section>
+                    <h4 style="font-weight:bold;" align="center">长短期知识解耦与巩固驱动的终身行人重识别</h4>
+                    <div style="font-size:medium; margin-top: 20px;">
+                        <p align="center">
+                            <img width=80% src="./TPAMI2025-LSTKC++.png"/>
+                        </p>
+                        <p style="font-weight:bold;">"Long Short-Term Knowledge Decomposition and Consolidation for Lifelong Person Re-Identification", TPAMI 2025</p>
+                        <p><b>作者: </b>徐昆仑(博士生), 刘子宸, 邹旭, 彭宇新, 周嘉欢</p>
+                        <p><b>通讯作者: </b>周嘉欢</p>
+                        <p>终身行人重识别任务要求模型能够持续利用新增域数据进行训练, 在学习新域知识的同时, 维持对旧域数据的识别能力。该任务的核心挑战是灾难性遗忘问题, 即模型在学习新域知识后, 对旧域数据的识别性能发生退化。现有方法主要依赖知识蒸馏策略将旧模型知识迁移至新模型, 然而, 此类方法存在三个严重局限: (1)错误知识积累: 受数据偏差等因素影响, 旧模型中不可避免地包含错误知识。知识蒸馏过程会传递并累积这些错误知识, 进而干扰新知识的学习。(2)正确知识遗忘: 新旧域间的分布差异导致部分旧知识无法被新数据激活, 致使这些知识难以通过知识蒸馏有效迁移至新模型。(3)无法自动权衡学习和遗忘: 知识蒸馏约束缺乏与模型性能的直接关联, 难以实现学习新知识与保留旧知识之间的最优权衡。
+                        </p>
+                        <p>针对上述问题, 提出了一种长短期知识解耦与巩固驱动的终身行人重识别方法。具体贡献如下: (1)知识纠正机制: 在知识蒸馏过程中, 利用新数据的标注信息纠正历史特征中的错误, 从而缓解错误知识积累问题。(2)知识解耦权衡机制: 将包含长期旧知识的单一模型解耦为长期旧模型与短期旧模型。该机制通过与知识纠正机制协同, 不仅能够提取长短期互补特征以指导新知识学习, 更支撑了最优权衡搜索算法的实现。该算法以新数据作为无偏基准, 自动寻优并指导长短期知识迁移的最优权衡。实验结果表明, 本方法在终身行人重识别数据集LReID上取得了性能提升。</p>
+                        <p>该论文的第一作者是北京大学王选计算机研究所2023级博士生徐昆仑, 通讯作者是周嘉欢助理教授, 与彭宇新教授合作完成。</p>
+                    
+                    
+                            
+                            
+                        
+                    
+
+                
+
+                </div>
+            </div>
+    </dic>
+</div>
+
+<script type="text/javascript" src="common/js/jquery.min.js"></script>
+<script type="text/javascript" src="common/js/bootstrap.min.js"></script>
+<script>
+    $('.navbar-nav li').unbind().on('click',function(){
+        if($(this).hasClass("active")){
+            console.log(1)
+        }else{
+            $(this).addClass("active");
+            $(this).siblings().removeClass('active');
+        }
+    })
+
+    // 显示前5条新闻
+    document.addEventListener("DOMContentLoaded", function() {
+        var newsItems = document.querySelectorAll('.news-item');
+        for (var i = 0; i < 6; i++) {
+            if (newsItems[i]) {
+                newsItems[i].style.display = 'list-item';
+            }
+        }
+    });
+    
+    document.getElementById('show-less').style.display = 'none'; // 隐藏Show Less按钮
+    // Show More功能
+    function showMoreNews() {
+        var newsItems = document.querySelectorAll('.news-item');
+        newsItems.forEach(function(item) {
+            item.style.display = 'list-item'; // 显示所有新闻
+        });
+        document.getElementById('show-more').style.display = 'none'; // 隐藏Show More按钮
+        document.getElementById('show-less').style.display = 'inline-block'; // 显示Show Less按钮
+    }
+
+    // Show Less功能
+    function showLessNews() {
+        var newsItems = document.querySelectorAll('.news-item');
+        for (var i = 0; i < newsItems.length; i++) {
+            if (i < 6) {
+                newsItems[i].style.display = 'list-item'; // 显示前5条新闻
+            } else {
+                newsItems[i].style.display = 'none'; // 隐藏其他新闻
+            }
+        }
+        document.getElementById('show-more').style.display = 'inline-block'; // 显示Show More按钮
+        document.getElementById('show-less').style.display = 'none'; // 隐藏Show Less按钮
+    }
+
+    // 滚动
+    const slider = document.getElementById('slider');
+    let sliderWidth = slider.scrollWidth;
+    let containerWidth = document.querySelector('.slider-container').offsetWidth;
+    let currentPosition = 0;
+
+    function startSlider() {
+        currentPosition -= 1; // 控制滚动速度
+
+        if (Math.abs(currentPosition) >= sliderWidth / 2) {
+            currentPosition = 0; // 当滚动到一半时重置
+        }
+
+        slider.style.left = currentPosition + 'px';
+
+        requestAnimationFrame(startSlider);
+    }
+
+    // 复制图片以实现无缝滚动
+    function cloneImages() {
+        let images = slider.querySelectorAll('img');
+        images.forEach(img => {
+            let clone = img.cloneNode(true);
+            slider.appendChild(clone);
+        });
+        sliderWidth = slider.scrollWidth; // 更新slider的宽度
+    }
+
+    cloneImages();
+    startSlider();
+</script>
+</body>
+</html>
