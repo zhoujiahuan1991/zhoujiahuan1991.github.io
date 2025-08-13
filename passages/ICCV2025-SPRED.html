@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+    <meta name="keywords" content="Open Vision, Open View, Open Venture" />
+    <title>论文介绍</title>
+    <link rel="stylesheet" href="../common/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../common/css/index.css">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        .slider-container {
+            width: 100%;
+            overflow: hidden;
+            position: relative;
+            background-color: #f0f0f0;
+        }
+
+        .slider {
+            display: flex;
+            gap: 10px; /* 图片之间的间距 */
+            position: relative;
+            animation: scroll 30s linear 2s infinite running; /* 调整滚动速度 */
+        }
+
+        .slide {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        .slider img {
+            max-height: 200px;
+            /* width: 300px;
+            height: 200px; */
+            border-radius: 10px; /* 图片的圆角 */
+            flex-shrink: 0;
+        }
+
+        .slide-number {
+            margin-top: 5px;
+            font-size: 16px;
+            color: #333;
+        }
+
+        @keyframes scroll {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-155.5%); }
+        }
+
+    </style>
+</head>
+<body >
+
+
+<!-- Copyright � 2008. Spidersoft Ltd -->
+<style>
+A.applink:hover {border: 2px dotted #DCE6F4;padding:2px;background-color:#ffff00;color:green;text-decoration:none}
+A.applink       {border: 2px dotted #DCE6F4;padding:2px;color:#2F5BFF;background:transparent;text-decoration:none}
+A.info          {color:#ba0000;background:transparent;text-decoration:none}
+A.info:hover    {color:green;background:transparent;text-decoration:underline}
+/* 新闻标签样式 */
+.news-item {
+            display: none; /* 默认隐藏所有新闻 */
+        }
+        .show-more {
+            cursor: pointer;
+            color: blue;
+            text-decoration: underline;
+            margin-top: 20px;
+            display: inline-block;
+        }
+        .show-less {
+            cursor: pointer;
+            color: blue;
+            text-decoration: underline;
+            margin-top: 20px;
+            display: inline-block;
+        }
+</style>
+
+<!-- /Copyright � 2008. Spidersoft Ltd -->
+
+
+<div class="container-fluid" style="padding:0 10%;">
+    <dic class="row">
+        <div class="col-md-2 col-xs-2 col-sm-2 " >
+            <div class="warpper" >
+                <div class="logo" >
+                </div>
+                <ul class="nav nav-pills nav-stacked " >
+                    <li role="presentation" ><a href="index.html">HOMEPAGE</a></li>
+                    <li role="presentation" class="active"><a href="research.html">LAB HOMEPAGE</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="col-md-10 col-xs-10 col-sm-10 mb20">
+            <div>
+                <p id="member" style="height:4rem;margin: 0;">&nbsp;</p>
+                <section>
+                    <h4 style="font-weight:bold;" align="center">新旧知识协同引导的原型自强化学习</h4>
+                    <div style="font-size:medium; margin-top: 20px;">
+                        <p align="center">
+                            <img width=80% src="./ICCV2025-SPRED.png"/>
+                        </p>
+                        <p style="font-weight:bold;">"Self-Reinforcing Prototype Evolution with Dual-Knowledge Cooperation for Semi-Supervised Lifelong Person Re-Identification", ICCV 2025</p>
+                        <p><b>作者: </b>徐昆仑(博士生)，卓凡，李江梦，邹旭，周嘉欢</p>
+                        <p><b>通讯作者: </b>周嘉欢</p>
+                        <p>在监控视频流和城市安防系统等应用场景中，数据持续产生并且呈现多样的变化，使得传统重识别（Re-Identification, ReID）方法面临严峻挑战。
+                            由于大量新到达的图像往往难以完全标注，现有方法依赖于全监督学习的方法无法适应这种“多阶段、弱标注”的环境。因此，本文提出一个更具现实意义的新任务——半监督终身行人重识别
+                            （Semi-Supervised Lifelong Person Re-Identification，Semi-LReID）。Semi-LReID的核心难点包含两个方面：（1）标签极度稀缺：若直接依赖标注数据进行训练，模型易过拟合，
+                            难以学习鲁棒的知识，而现有基于伪标签的方法容易引入错误伪标签，造成误导模型学习。（2）灾难性遗忘：模型在适应新数据的过程中不断更新模型参数，在长期学习中易导致模型逐渐忘记之前已学的身份表征。
+                        </p>
+                        <p>为克服上述问题，论文提出了新旧知识协同引导的原型自强化框架。具体贡献如下：（1）自我强化的原型演化机制：通过引入可学习身份原型，动态建模身份分布，引导伪标签生成；
+                            进而利用伪标签学习更新模型和原型；新原型又反过来提升伪标签质量。上述过程形成“原型-标签-训练”三者循环自强化机制。（2）新旧模型双知识协同驱动的伪标签净化机制：
+                            利用当前模型和历史模型分别对未标注数据聚类，并基于跨集合一致性估计进行伪标签净化，实现模型对长期学习过程中所积累知识的有效利用。实验结果表明，本文方法在50%，
+                            20%和10%的标注比例下均取得了领先性能。此外，随着标注比例的降低，本方法相比于现有终身学习和半监督学习方法的优势愈加明显。</p>
+                        <p>该论文的第一作者是北京大学王选计算机研究所2023级博士生徐昆仑, 通讯作者是周嘉欢助理教授。</p>
+                </div>
+            </div>
+    </dic>
+</div>
+
+<script type="text/javascript" src="common/js/jquery.min.js"></script>
+<script type="text/javascript" src="common/js/bootstrap.min.js"></script>
+<script>
+    $('.navbar-nav li').unbind().on('click',function(){
+        if($(this).hasClass("active")){
+            console.log(1)
+        }else{
+            $(this).addClass("active");
+            $(this).siblings().removeClass('active');
+        }
+    })
+
+    // 显示前5条新闻
+    document.addEventListener("DOMContentLoaded", function() {
+        var newsItems = document.querySelectorAll('.news-item');
+        for (var i = 0; i < 6; i++) {
+            if (newsItems[i]) {
+                newsItems[i].style.display = 'list-item';
+            }
+        }
+    });
+    
+    document.getElementById('show-less').style.display = 'none'; // 隐藏Show Less按钮
+    // Show More功能
+    function showMoreNews() {
+        var newsItems = document.querySelectorAll('.news-item');
+        newsItems.forEach(function(item) {
+            item.style.display = 'list-item'; // 显示所有新闻
+        });
+        document.getElementById('show-more').style.display = 'none'; // 隐藏Show More按钮
+        document.getElementById('show-less').style.display = 'inline-block'; // 显示Show Less按钮
+    }
+
+    // Show Less功能
+    function showLessNews() {
+        var newsItems = document.querySelectorAll('.news-item');
+        for (var i = 0; i < newsItems.length; i++) {
+            if (i < 6) {
+                newsItems[i].style.display = 'list-item'; // 显示前5条新闻
+            } else {
+                newsItems[i].style.display = 'none'; // 隐藏其他新闻
+            }
+        }
+        document.getElementById('show-more').style.display = 'inline-block'; // 显示Show More按钮
+        document.getElementById('show-less').style.display = 'none'; // 隐藏Show Less按钮
+    }
+
+    // 滚动
+    const slider = document.getElementById('slider');
+    let sliderWidth = slider.scrollWidth;
+    let containerWidth = document.querySelector('.slider-container').offsetWidth;
+    let currentPosition = 0;
+
+    function startSlider() {
+        currentPosition -= 1; // 控制滚动速度
+
+        if (Math.abs(currentPosition) >= sliderWidth / 2) {
+            currentPosition = 0; // 当滚动到一半时重置
+        }
+
+        slider.style.left = currentPosition + 'px';
+
+        requestAnimationFrame(startSlider);
+    }
+
+    // 复制图片以实现无缝滚动
+    function cloneImages() {
+        let images = slider.querySelectorAll('img');
+        images.forEach(img => {
+            let clone = img.cloneNode(true);
+            slider.appendChild(clone);
+        });
+        sliderWidth = slider.scrollWidth; // 更新slider的宽度
+    }
+
+    cloneImages();
+    startSlider();
+</script>
+</body>
+</html>
