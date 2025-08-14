@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+    <meta name="keywords" content="Open Vision, Open View, Open Venture" />
+    <title>论文介绍</title>
+    <link rel="stylesheet" href="../common/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../common/css/index.css">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        .slider-container {
+            width: 100%;
+            overflow: hidden;
+            position: relative;
+            background-color: #f0f0f0;
+        }
+
+        .slider {
+            display: flex;
+            gap: 10px; /* 图片之间的间距 */
+            position: relative;
+            animation: scroll 30s linear 2s infinite running; /* 调整滚动速度 */
+        }
+
+        .slide {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        .slider img {
+            max-height: 200px;
+            /* width: 300px;
+            height: 200px; */
+            border-radius: 10px; /* 图片的圆角 */
+            flex-shrink: 0;
+        }
+
+        .slide-number {
+            margin-top: 5px;
+            font-size: 16px;
+            color: #333;
+        }
+
+        @keyframes scroll {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-155.5%); }
+        }
+
+    </style>
+</head>
+<body >
+
+
+<!-- Copyright � 2008. Spidersoft Ltd -->
+<style>
+A.applink:hover {border: 2px dotted #DCE6F4;padding:2px;background-color:#ffff00;color:green;text-decoration:none}
+A.applink       {border: 2px dotted #DCE6F4;padding:2px;color:#2F5BFF;background:transparent;text-decoration:none}
+A.info          {color:#ba0000;background:transparent;text-decoration:none}
+A.info:hover    {color:green;background:transparent;text-decoration:underline}
+/* 新闻标签样式 */
+.news-item {
+            display: none; /* 默认隐藏所有新闻 */
+        }
+        .show-more {
+            cursor: pointer;
+            color: blue;
+            text-decoration: underline;
+            margin-top: 20px;
+            display: inline-block;
+        }
+        .show-less {
+            cursor: pointer;
+            color: blue;
+            text-decoration: underline;
+            margin-top: 20px;
+            display: inline-block;
+        }
+</style>
+
+<!-- /Copyright � 2008. Spidersoft Ltd -->
+
+
+<div class="container-fluid" style="padding:0 10%;">
+    <dic class="row">
+        <div class="col-md-2 col-xs-2 col-sm-2 " >
+            <div class="warpper" >
+                <div class="logo" >
+                </div>
+                <ul class="nav nav-pills nav-stacked " >
+                    <li role="presentation" ><a href="index.html">HOMEPAGE</a></li>
+                    <li role="presentation" class="active"><a href="research.html">LAB HOMEPAGE</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="col-md-10 col-xs-10 col-sm-10 mb20">
+            <div>
+                <p id="member" style="height:4rem;margin: 0;">&nbsp;</p>
+                <section>
+                    <h4 style="font-weight:bold;" align="center">基于支撑集合属性提示学习的测试时自适应</h4>
+                    <div style="font-size:medium; margin-top: 20px;">
+                        <p align="center">
+                            <img width=80% src="./CVPR2025-SCAP.png"/>
+                        </p>
+                        <p style="font-weight:bold;">"SCAP: Transductive Test-Time Adaptation via Supportive Clique-based Attribute Prompting", CVPR 2025</p>
+                        <p><b>作者: </b>张宸语(本科生)，徐昆仑(博士生)，刘子宸，彭宇新，周嘉欢</p>
+                        <p><b>通讯作者: </b>周嘉欢</p>
+                        <p>智能算法模型在测试阶段面对未知数据分布时，往往会发生显著的性能退化。针对为克服该问题，测试时适应（Test-Time Adaptation, 简称为TTA）
+                            近年来受到学界关注，其目标为在测试阶段动态调整预训练模型以应对测试数据分布偏移问题。然而，现有TTA方法主要针对单个测试样本进行独立优化，
+                            难以保障所学知识对不同样本的泛化能力，导致更新的模型性能受限。
+                        </p>
+                        <p>针对上述挑战，本文提出了一种基于支撑集合属性提示学习的测试时自适应方法，通过挖掘批次数据中的视觉相似性和语义关联性，促进模型对测试域中目标鉴别性特征的学习。
+                            具体贡献如下：（1）支撑集合挖掘：利用CLIP的视觉编码器提取图像特征，并通过计算跨样本特征相似性矩阵自动构建支撑集合。（2）属性提示学习：为每个支撑集合学习视觉和文本模态的属性提示，
+                            分别用于提取图像和文本模态中的共享特征。（3）属性知识保存：通过构建属性提示池动态存储历史属性提示，为了避免属性提示数量持续膨胀，引入了基于图网络的属性信息交互机制，
+                            通过相似属性信息融合和冗余裁剪，实现利用有限的存储资源进行属性更新和扩展。本文方法在多个基准测试中取得了优于现有方法的性能。
+                        </p>
+                        <p>该论文的共同第一作者是北京大学王选计算机研究所2022级本科生张宸语和2023级博士生徐昆仑，通讯作者是周嘉欢助理教授，与彭宇新教授合作完成。</p>
+                    
+                    
+                            
+                            
+                        
+                    
+
+                
+
+                </div>
+            </div>
+    </dic>
+</div>
+
+<script type="text/javascript" src="common/js/jquery.min.js"></script>
+<script type="text/javascript" src="common/js/bootstrap.min.js"></script>
+<script>
+    $('.navbar-nav li').unbind().on('click',function(){
+        if($(this).hasClass("active")){
+            console.log(1)
+        }else{
+            $(this).addClass("active");
+            $(this).siblings().removeClass('active');
+        }
+    })
+
+    // 显示前5条新闻
+    document.addEventListener("DOMContentLoaded", function() {
+        var newsItems = document.querySelectorAll('.news-item');
+        for (var i = 0; i < 6; i++) {
+            if (newsItems[i]) {
+                newsItems[i].style.display = 'list-item';
+            }
+        }
+    });
+    
+    document.getElementById('show-less').style.display = 'none'; // 隐藏Show Less按钮
+    // Show More功能
+    function showMoreNews() {
+        var newsItems = document.querySelectorAll('.news-item');
+        newsItems.forEach(function(item) {
+            item.style.display = 'list-item'; // 显示所有新闻
+        });
+        document.getElementById('show-more').style.display = 'none'; // 隐藏Show More按钮
+        document.getElementById('show-less').style.display = 'inline-block'; // 显示Show Less按钮
+    }
+
+    // Show Less功能
+    function showLessNews() {
+        var newsItems = document.querySelectorAll('.news-item');
+        for (var i = 0; i < newsItems.length; i++) {
+            if (i < 6) {
+                newsItems[i].style.display = 'list-item'; // 显示前5条新闻
+            } else {
+                newsItems[i].style.display = 'none'; // 隐藏其他新闻
+            }
+        }
+        document.getElementById('show-more').style.display = 'inline-block'; // 显示Show More按钮
+        document.getElementById('show-less').style.display = 'none'; // 隐藏Show Less按钮
+    }
+
+    // 滚动
+    const slider = document.getElementById('slider');
+    let sliderWidth = slider.scrollWidth;
+    let containerWidth = document.querySelector('.slider-container').offsetWidth;
+    let currentPosition = 0;
+
+    function startSlider() {
+        currentPosition -= 1; // 控制滚动速度
+
+        if (Math.abs(currentPosition) >= sliderWidth / 2) {
+            currentPosition = 0; // 当滚动到一半时重置
+        }
+
+        slider.style.left = currentPosition + 'px';
+
+        requestAnimationFrame(startSlider);
+    }
+
+    // 复制图片以实现无缝滚动
+    function cloneImages() {
+        let images = slider.querySelectorAll('img');
+        images.forEach(img => {
+            let clone = img.cloneNode(true);
+            slider.appendChild(clone);
+        });
+        sliderWidth = slider.scrollWidth; // 更新slider的宽度
+    }
+
+    cloneImages();
+    startSlider();
+</script>
+</body>
+</html>

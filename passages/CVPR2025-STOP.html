@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+    <meta name="keywords" content="Open Vision, Open View, Open Venture" />
+    <title>论文介绍</title>
+    <link rel="stylesheet" href="../common/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../common/css/index.css">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        .slider-container {
+            width: 100%;
+            overflow: hidden;
+            position: relative;
+            background-color: #f0f0f0;
+        }
+
+        .slider {
+            display: flex;
+            gap: 10px; /* 图片之间的间距 */
+            position: relative;
+            animation: scroll 30s linear 2s infinite running; /* 调整滚动速度 */
+        }
+
+        .slide {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        .slider img {
+            max-height: 200px;
+            /* width: 300px;
+            height: 200px; */
+            border-radius: 10px; /* 图片的圆角 */
+            flex-shrink: 0;
+        }
+
+        .slide-number {
+            margin-top: 5px;
+            font-size: 16px;
+            color: #333;
+        }
+
+        @keyframes scroll {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-155.5%); }
+        }
+
+    </style>
+</head>
+<body >
+
+
+<!-- Copyright � 2008. Spidersoft Ltd -->
+<style>
+A.applink:hover {border: 2px dotted #DCE6F4;padding:2px;background-color:#ffff00;color:green;text-decoration:none}
+A.applink       {border: 2px dotted #DCE6F4;padding:2px;color:#2F5BFF;background:transparent;text-decoration:none}
+A.info          {color:#ba0000;background:transparent;text-decoration:none}
+A.info:hover    {color:green;background:transparent;text-decoration:underline}
+/* 新闻标签样式 */
+.news-item {
+            display: none; /* 默认隐藏所有新闻 */
+        }
+        .show-more {
+            cursor: pointer;
+            color: blue;
+            text-decoration: underline;
+            margin-top: 20px;
+            display: inline-block;
+        }
+        .show-less {
+            cursor: pointer;
+            color: blue;
+            text-decoration: underline;
+            margin-top: 20px;
+            display: inline-block;
+        }
+</style>
+
+<!-- /Copyright � 2008. Spidersoft Ltd -->
+
+
+<div class="container-fluid" style="padding:0 10%;">
+    <dic class="row">
+        <div class="col-md-2 col-xs-2 col-sm-2 " >
+            <div class="warpper" >
+                <div class="logo" >
+                </div>
+                <ul class="nav nav-pills nav-stacked " >
+                    <li role="presentation" ><a href="index.html">HOMEPAGE</a></li>
+                    <li role="presentation" class="active"><a href="research.html">LAB HOMEPAGE</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="col-md-10 col-xs-10 col-sm-10 mb20">
+            <div>
+                <p id="member" style="height:4rem;margin: 0;">&nbsp;</p>
+                <section>
+                    <h4 style="font-weight:bold;" align="center">面向视频理解的空间-时间动态提示集成</h4>
+                    <div style="font-size:medium; margin-top: 20px;">
+                        <p align="center">
+                            <img width=80% src="./CVPR2025-STOP.png"/>
+                        </p>
+                        <p style="font-weight:bold;">"STOP: Integrated Spatial-Temporal Dynamic Prompting for Video Understanding", CVPR 2025</p>
+                        <p><b>作者: </b>刘子宸（硕士生），徐昆仑，苏冰，邹旭，彭宇新，周嘉欢</p>
+                        <p><b>通讯作者: </b>周嘉欢</p>
+                        <p>通过大规模图像-文本对预训练的CLIP等视觉-语言模型已在众多图像任务中展现出优异的性能。然而，将这些模型扩展到视频任务中仍然面临挑战，主要原因在于标注视频数据的匮乏以及高昂的训练成本。
+                            近期的研究尝试通过引入可学习的提示，将CLIP适应视频任务，但这些方法通常采用单一静态提示来处理所有视频序列，忽视了跨帧的时间动态和空间变化，严重限制了模型对视频理解所需时间信息的提取和利用能力。
+                        </p>
+                        <p>针对上述挑战，本文提出了一种面向视频理解的空间-时间动态提示集成方法STOP，旨在通过多层级提示设计引导CLIP模型关注视频数据中的动态区域以增强其对行为和事件的理解。
+                            具体贡献如下：（1）帧内空间提示生成器：基于3D卷积结构生成针对动态区域的空间提示，指导模型关注具有显著时间变化的区域，从而增强模型对视频数据中细粒度信息的捕捉能力。
+                            （2）帧间时间提示生成器：考虑到视频帧之间的动态变化不同，这会影响帧对视频理解的重要性，本文提出了帧间时间提示，以帮助预训练模型关注关键帧。
+                            （3）帧内帧间协同提示：首先基于帧内空间提示识别出的判别区域，进而计算这些区域在不同帧之间的变化程度，对于具有显著时间动态变化的关键帧，利用轻量级的提示生成器动态生成帧间提示，并将其插入到两帧之间，提供细粒度的时间信息，帮助模型聚焦并理解关键帧。
+                            帧内空间提示和帧间时间提示相互补充，指导模型关注关键的空间和时间位置，从而提升其对视频的准确理解。多个视频基准测试中的大量实验表明，STOP相比于现有方法展现出性能优势。</p>
+                        <p>该论文的第一作者是北京大学王选计算机研究所2022级硕士生刘子宸，通讯作者是周嘉欢助理教授，与彭宇新教授合作完成。</p>
+                    
+                    
+                            
+                            
+                        
+                    
+
+                
+
+                </div>
+            </div>
+    </dic>
+</div>
+
+<script type="text/javascript" src="common/js/jquery.min.js"></script>
+<script type="text/javascript" src="common/js/bootstrap.min.js"></script>
+<script>
+    $('.navbar-nav li').unbind().on('click',function(){
+        if($(this).hasClass("active")){
+            console.log(1)
+        }else{
+            $(this).addClass("active");
+            $(this).siblings().removeClass('active');
+        }
+    })
+
+    // 显示前5条新闻
+    document.addEventListener("DOMContentLoaded", function() {
+        var newsItems = document.querySelectorAll('.news-item');
+        for (var i = 0; i < 6; i++) {
+            if (newsItems[i]) {
+                newsItems[i].style.display = 'list-item';
+            }
+        }
+    });
+    
+    document.getElementById('show-less').style.display = 'none'; // 隐藏Show Less按钮
+    // Show More功能
+    function showMoreNews() {
+        var newsItems = document.querySelectorAll('.news-item');
+        newsItems.forEach(function(item) {
+            item.style.display = 'list-item'; // 显示所有新闻
+        });
+        document.getElementById('show-more').style.display = 'none'; // 隐藏Show More按钮
+        document.getElementById('show-less').style.display = 'inline-block'; // 显示Show Less按钮
+    }
+
+    // Show Less功能
+    function showLessNews() {
+        var newsItems = document.querySelectorAll('.news-item');
+        for (var i = 0; i < newsItems.length; i++) {
+            if (i < 6) {
+                newsItems[i].style.display = 'list-item'; // 显示前5条新闻
+            } else {
+                newsItems[i].style.display = 'none'; // 隐藏其他新闻
+            }
+        }
+        document.getElementById('show-more').style.display = 'inline-block'; // 显示Show More按钮
+        document.getElementById('show-less').style.display = 'none'; // 隐藏Show Less按钮
+    }
+
+    // 滚动
+    const slider = document.getElementById('slider');
+    let sliderWidth = slider.scrollWidth;
+    let containerWidth = document.querySelector('.slider-container').offsetWidth;
+    let currentPosition = 0;
+
+    function startSlider() {
+        currentPosition -= 1; // 控制滚动速度
+
+        if (Math.abs(currentPosition) >= sliderWidth / 2) {
+            currentPosition = 0; // 当滚动到一半时重置
+        }
+
+        slider.style.left = currentPosition + 'px';
+
+        requestAnimationFrame(startSlider);
+    }
+
+    // 复制图片以实现无缝滚动
+    function cloneImages() {
+        let images = slider.querySelectorAll('img');
+        images.forEach(img => {
+            let clone = img.cloneNode(true);
+            slider.appendChild(clone);
+        });
+        sliderWidth = slider.scrollWidth; // 更新slider的宽度
+    }
+
+    cloneImages();
+    startSlider();
+</script>
+</body>
+</html>
