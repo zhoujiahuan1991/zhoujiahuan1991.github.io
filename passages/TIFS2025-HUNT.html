@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+    <meta name="keywords" content="Open Vision, Open View, Open Venture" />
+    <title>论文介绍</title>
+    <link rel="stylesheet" href="../common/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../common/css/index.css">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        .slider-container {
+            width: 100%;
+            overflow: hidden;
+            position: relative;
+            background-color: #f0f0f0;
+        }
+
+        .slider {
+            display: flex;
+            gap: 10px; /* 图片之间的间距 */
+            position: relative;
+            animation: scroll 30s linear 2s infinite running; /* 调整滚动速度 */
+        }
+
+        .slide {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        .slider img {
+            max-height: 200px;
+            /* width: 300px;
+            height: 200px; */
+            border-radius: 10px; /* 图片的圆角 */
+            flex-shrink: 0;
+        }
+
+        .slide-number {
+            margin-top: 5px;
+            font-size: 16px;
+            color: #333;
+        }
+
+        @keyframes scroll {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-155.5%); }
+        }
+
+    </style>
+</head>
+<body >
+
+
+<!-- Copyright � 2008. Spidersoft Ltd -->
+<style>
+A.applink:hover {border: 2px dotted #DCE6F4;padding:2px;background-color:#ffff00;color:green;text-decoration:none}
+A.applink       {border: 2px dotted #DCE6F4;padding:2px;color:#2F5BFF;background:transparent;text-decoration:none}
+A.info          {color:#ba0000;background:transparent;text-decoration:none}
+A.info:hover    {color:green;background:transparent;text-decoration:underline}
+/* 新闻标签样式 */
+.news-item {
+            display: none; /* 默认隐藏所有新闻 */
+        }
+        .show-more {
+            cursor: pointer;
+            color: blue;
+            text-decoration: underline;
+            margin-top: 20px;
+            display: inline-block;
+        }
+        .show-less {
+            cursor: pointer;
+            color: blue;
+            text-decoration: underline;
+            margin-top: 20px;
+            display: inline-block;
+        }
+</style>
+
+<!-- /Copyright � 2008. Spidersoft Ltd -->
+
+
+<div class="container-fluid" style="padding:0 10%;">
+    <dic class="row">
+        <div class="col-md-2 col-xs-2 col-sm-2 " >
+            <div class="warpper" >
+                <div class="logo" >
+                </div>
+                <ul class="nav nav-pills nav-stacked " >
+                    <li role="presentation" ><a href="index.html">HOMEPAGE</a></li>
+                    <li role="presentation" class="active"><a href="research.html">LAB HOMEPAGE</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="col-md-10 col-xs-10 col-sm-10 mb20">
+            <div>
+                <p id="member" style="height:4rem;margin: 0;">&nbsp;</p>
+                <section>
+                    <h4 style="font-weight:bold;" align="center">突变区图驱动的伪装目标探测研究</h4>
+                    <div style="font-size:medium; margin-top: 20px;">
+                        <p align="center">
+                            <img width=80% src="./TIFS2025-HUNT.png"/>
+                        </p>
+                        <p style="font-weight:bold;">"Hunt Camouflaged Objects via Revealing Mutation Regions", TIFS 2025</p>
+                        <p><b>作者: </b>张镡月（博士生），周嘉欢，颜露新，钟胜，邹旭</p>
+                        <p><b>通讯作者: </b>邹旭</p>
+                        <p>由于伪装目标与背景之间存在高度相似性，伪装检测中的目标识别常面临目标获取不完整、边界不精细的问题。辅助信息图能够为网络提供额外指引，但现有方法普遍依赖通过附加网络分支生成该信息图。这类方法在训练初期（模型尚未收敛时）难以提供有效指导，从而导致在初期的学习中因缺乏有效的指引信息而受到背景干扰。因此，如何在无需额外训练的条件下构建高效的辅助信息图，并基于此实现伪装目标的有效搜索，成为本文重点关注的问题。
+                        </p>
+                        <p>针对上述挑战，本文提出一种无需训练、无需额外传感器的辅助信息图构建方法，用于刻画潜在伪装目标区域，从而在模型初始阶段即引导网络对关键区域产生更强关注。具体而言，我们通过放大并差异化像素的数值与空间位置变化来显式捕获细微的潜在伪装区域获取“突变区图”。基于突变区图，我们进一步提出选择性扩展搜索策略，以构建突变区域与全局特征之间的有效映射，显著降低来自非突变区域背景像素的干扰。随后，将所提特征解码，得到更加精确的分割结果。此外，现有测试集大多集中于自然界固有的伪装样本，而在安防与监控场景下更具现实意义的人造伪装研究仍较为不足。为此，本文对人造伪装的数据进行扩充，构建了目前此领域规模最大的测试集，以推动该方向的研究进展。最后，我们在四个公开数据集（CAMO、COD10K、NC4K、CHAMELEON）及所构建的新的伪装数据集上开展了大量实验，验证了所提基于突变区图与选择性扩张搜索策略的伪装检测方法的有效性。
+                        </p>
+                        <p>该论文的第一作者是华中科技大学多谱信息处理技术国家级重点实验室2023级博士生张镡月, 通讯作者是邹旭讲师, 与周嘉欢助理教授合作完成。</p>
+                    
+                    
+                            
+                            
+                        
+                    
+
+                
+
+                </div>
+            </div>
+    </dic>
+</div>
+
+<script type="text/javascript" src="common/js/jquery.min.js"></script>
+<script type="text/javascript" src="common/js/bootstrap.min.js"></script>
+<script>
+    $('.navbar-nav li').unbind().on('click',function(){
+        if($(this).hasClass("active")){
+            console.log(1)
+        }else{
+            $(this).addClass("active");
+            $(this).siblings().removeClass('active');
+        }
+    })
+
+    // 显示前5条新闻
+    document.addEventListener("DOMContentLoaded", function() {
+        var newsItems = document.querySelectorAll('.news-item');
+        for (var i = 0; i < 6; i++) {
+            if (newsItems[i]) {
+                newsItems[i].style.display = 'list-item';
+            }
+        }
+    });
+    
+    document.getElementById('show-less').style.display = 'none'; // 隐藏Show Less按钮
+    // Show More功能
+    function showMoreNews() {
+        var newsItems = document.querySelectorAll('.news-item');
+        newsItems.forEach(function(item) {
+            item.style.display = 'list-item'; // 显示所有新闻
+        });
+        document.getElementById('show-more').style.display = 'none'; // 隐藏Show More按钮
+        document.getElementById('show-less').style.display = 'inline-block'; // 显示Show Less按钮
+    }
+
+    // Show Less功能
+    function showLessNews() {
+        var newsItems = document.querySelectorAll('.news-item');
+        for (var i = 0; i < newsItems.length; i++) {
+            if (i < 6) {
+                newsItems[i].style.display = 'list-item'; // 显示前5条新闻
+            } else {
+                newsItems[i].style.display = 'none'; // 隐藏其他新闻
+            }
+        }
+        document.getElementById('show-more').style.display = 'inline-block'; // 显示Show More按钮
+        document.getElementById('show-less').style.display = 'none'; // 隐藏Show Less按钮
+    }
+
+    // 滚动
+    const slider = document.getElementById('slider');
+    let sliderWidth = slider.scrollWidth;
+    let containerWidth = document.querySelector('.slider-container').offsetWidth;
+    let currentPosition = 0;
+
+    function startSlider() {
+        currentPosition -= 1; // 控制滚动速度
+
+        if (Math.abs(currentPosition) >= sliderWidth / 2) {
+            currentPosition = 0; // 当滚动到一半时重置
+        }
+
+        slider.style.left = currentPosition + 'px';
+
+        requestAnimationFrame(startSlider);
+    }
+
+    // 复制图片以实现无缝滚动
+    function cloneImages() {
+        let images = slider.querySelectorAll('img');
+        images.forEach(img => {
+            let clone = img.cloneNode(true);
+            slider.appendChild(clone);
+        });
+        sliderWidth = slider.scrollWidth; // 更新slider的宽度
+    }
+
+    cloneImages();
+    startSlider();
+</script>
+</body>
+</html>
