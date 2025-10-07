@@ -45,16 +45,16 @@ def resize_crop_or_pad(image_path,
 
 
 # ========= 使用示例 =========
-image_path  = 'common/img/ysj.jpg'
+image_path  = 'common/img/group10.jpg'
 output_path = image_path.replace('.jpg', '-resized.jpg')
-resize_crop_or_pad(image_path,
-                   output_path,
-                   target_width=300,
-                   target_height=400,
-                   priority='height')
-
 # resize_crop_or_pad(image_path,
 #                    output_path,
-#                    target_width=400,
-#                    target_height=300,
-#                    priority='width')
+#                    target_width=300,
+#                    target_height=400,
+#                    priority='height')
+
+resize_crop_or_pad(image_path,
+                   output_path,
+                   target_width=400,
+                   target_height=300,
+                   priority='width')
