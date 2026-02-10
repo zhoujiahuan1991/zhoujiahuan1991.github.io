@@ -51,6 +51,31 @@
             color: #333;
         }
 
+        .layout-container {
+            width: 100%;
+            overflow: hidden;
+            position: relative;
+            background-color: #f0f0f0;
+        }
+
+        .layouter {
+            display: flex;
+            gap: 10px;
+            position: relative;
+        }
+
+        .layout {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        .layout-number {
+            margin-top: 5px;
+            font-size: 16px;
+            color: #333;
+        }
         @keyframes scroll {
             0% { transform: translateX(0); }
             100% { transform: translateX(-155.5%); }
@@ -61,7 +86,7 @@
 <body >
 
 
-<!-- Copyright � 2008. Spidersoft Ltd -->
+
 <style>
 A.applink:hover {border: 2px dotted #DCE6F4;padding:2px;background-color:#ffff00;color:green;text-decoration:none}
 A.applink       {border: 2px dotted #DCE6F4;padding:2px;color:#2F5BFF;background:transparent;text-decoration:none}
@@ -99,7 +124,6 @@ A.info:hover    {color:green;background:transparent;text-decoration:underline}
                     <ul class="nav nav-pills nav-stacked " >
                         <li role="presentation" ><a href="index.html">HOMEPAGE</a></li>
                         <li role="presentation" class="active"><a href="research.html">LAB HOMEPAGE</a></li>
-                        <!--<li role="presentation"><a href="https://qiweili00.github.io/homepage/reaserchCN.html">中文版本</a></li> -->
                     </ul>
                 </div>
             </div>
@@ -250,8 +274,6 @@ A.info:hover    {color:green;background:transparent;text-decoration:underline}
                                     </div>
                                     <p>Jiahuan Zhou</p>
                                 </div>
-                                
-                                
                             </div>
 
                             <p style="font-size:18px;font-weight:600;margin-top: 20px;">PhD: </p>
@@ -275,7 +297,6 @@ A.info:hover    {color:green;background:transparent;text-decoration:underline}
                                         <p>(臧泽华)</p>
                                         <p style="margin-top:8px;margin-bottom: 5px;">PhD</p>
                                         <p>2021 ~ Now</p> 
-                                        <!-- <p><a href="student_pages/zzhEN.html">HOMEPAGE</a></p> -->
                                     </div>
                                     <p>Zehua Zang</p> 
                                 </div>
@@ -317,6 +338,7 @@ A.info:hover    {color:green;background:transparent;text-decoration:underline}
                                 </div>
                                 
                             </div>
+
                             <p style="font-size:18px;font-weight:600;margin-top: 20px;">Master:</p>
                             <div class="part1">
                                 
@@ -378,15 +400,6 @@ A.info:hover    {color:green;background:transparent;text-decoration:underline}
                                     </div>
                                     <p>Haotong Cheng</p>
                                 </div>
-
-                                <!-- <div class="w18">
-                                    <img src="common/img/zty-resized.jpg" />
-                                    <div class="mark">
-                                        <p style="margin-top:8px;margin-bottom: 5px;">Xinyue Zhang</p>
-                                        <p>(张镡月)</p>
-                                    </div>
-                                    <p>Xinyue Zhang</p>
-                                </div> -->
 
                                 <div class="w18">
                                     <img src="common/img/mly-resized.jpg" />
@@ -451,19 +464,11 @@ A.info:hover    {color:green;background:transparent;text-decoration:underline}
                                     <p>Zhengyuan Cai</p>
                                 </div>
                             </div>
-
                             
-                        <!-- </div class="perpic"> -->
                             <p style="font-size:18px;font-weight:600;margin-top: 20px;">Alumni:</p>
                             
                             <table style="width:100%; font-size:15px; border: 0;">
-                                <!-- <tr style="height: 30px;">
-                                    <th>Name</th>
-                                    <th>Status</th>
-                                    <th>University</th>
-                                    <th>Period</th>
-                                </tr> -->
-                                
+
                                 <tr style="height: 30px;">
                                     <td>Yibo Feng</td>
                                     <td>Undergrad Student</td>
@@ -643,6 +648,71 @@ A.info:hover    {color:green;background:transparent;text-decoration:underline}
                     <p id="Lives" style="height:4rem;margin: 0;">&nbsp;</p>
                     <section>
                         <h3 style="margin-top: 20px;">Lab Lives</h3>
+                        <div class="layout-container">
+                            <div class="layouter">
+                                <div class="layout">
+                                    <img src="common/img/group3-resized.jpg" alt="图片3">
+                                    <div class="layout-number">2023年5月香山徒步活动</div>
+                                </div>
+                                <div class="layout">
+                                    <img src="common/img/group1-resized.jpg" alt="图片1">
+                                    <div class="layout-number">2024年1月聚餐活动</div>
+                                </div>
+                                <div class="layout">
+                                    <img src="common/img/group2-resized.jpg" alt="图片2">
+                                    <div class="layout-number">2024年2月新年聚餐</div>
+                                </div>
+                                <div class="layout">
+                                    <img src="common/img/group4-resized.jpg" alt="图片4">
+                                    <div class="layout-number">2024年4月聚餐活动</div>
+                                </div>
+                                <div class="layout">
+                                    <img src="common/img/group5-resized.jpg" alt="图片5">
+                                    <div class="layout-number">2024年6月CVPR24线下参会</div>
+                                </div>
+                                <div class="layout">
+                                    <img src="common/img/group6-resized.jpg" alt="图片6">
+                                    <div class="layout-number">2024年7月迎新聚餐</div>
+                                </div>
+                                <div class="layout">
+                                    <img src="common/img/group7-resized.jpg" alt="图片7">
+                                    <div class="layout-number">2025年1月新年聚餐</div>
+                                </div>
+                                <div class="layout">
+                                    <img src="common/img/group8-resized.jpg" alt="图片7">
+                                    <div class="layout-number">2025年3月共同观影《哪吒2》</div>
+                                </div>
+                                <div class="layout">
+                                    <img src="common/img/china-3dv-2025-resized.jpg" alt="图8">
+                                    <div class="layout-number">2025年4月参加China 3DV会议</div>
+                                </div>
+                                <div class="layout">
+                                    <img src="common/img/group9-resized.jpg" alt="图9">
+                                    <div class="layout-number">2025年5月庆祝子宸通过硕士答辩</div>
+                                </div>
+                                <div class="layout">
+                                    <img src="common/img/Valse-2025-resized.jpg" alt="图10">
+                                    <div class="layout-number">2025年6月参加VALSE研讨会</div>
+                                </div>
+                                <div class="layout">
+                                    <img src="common/img/group10-resized.jpg" alt="图11">
+                                    <div class="layout-number">2025年10月实验室聚餐</div>
+                                </div>
+                                <div class="layout">
+                                    <img src="common/img/attending-ICCV25-resized.jpg" alt="图12">
+                                    <div class="layout-number">2025年10月参加ICCV25会议</div>
+                                </div>
+                                <div class="layout">
+                                    <img src="common/img/2026-02.jpg" alt="图13">
+                                    <div class="layout-number">2026年2月实验室新年聚餐</div>
+                                </div>
+                                
+                            </div>
+                        </div>
+                    </section>
+
+                    <section>
+                        <h3 style="margin-top: 20px;">Lab Lives</h3>
                         <div class="slider-container">
                             <div class="slider">
                                 <div class="slide">
@@ -705,8 +775,6 @@ A.info:hover    {color:green;background:transparent;text-decoration:underline}
                             </div>
                         </div>
                     </section>
-                    
-
                     </div>
                 </div>
         </dic>
