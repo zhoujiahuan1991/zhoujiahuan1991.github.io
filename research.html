@@ -51,17 +51,12 @@
             color: #333;
         }
 
-        .layout-container {
-            width: 100%;
-            overflow: hidden;
-            position: relative;
-            background-color: #f0f0f0;
-        }
-
         .layouter {
             display: flex;
-            gap: 10px;
+            gap: 0.5%;
+            flex-wrap: wrap; /* 确保子元素能换行 */
             position: relative;
+            width: 100%;
         }
 
         .layout {
@@ -69,13 +64,20 @@
             flex-direction: column;
             align-items: center;
             text-align: center;
+            width: 19%; /* 每个布局项占 19% 宽度 */
+            box-sizing: border-box; /* 确保 padding 和 margin 不影响布局 */
+            margin-bottom: 10px; /* 设置底部间距，避免换行时元素贴得太紧 */
         }
 
-        .layout-number {
-            margin-top: 5px;
-            font-size: 16px;
-            color: #333;
+        .layout img {
+            max-height: 160px;
+            /* width: 100%; 确保图片自适应父容器宽度 */
+            height: auto; /* 保持图片比例 */
+            border-radius: 10px; /* 图片的圆角 */
+            flex-shrink: 0;
         }
+
+
         @keyframes scroll {
             0% { transform: translateX(0); }
             100% { transform: translateX(-155.5%); }
@@ -86,7 +88,7 @@
 <body >
 
 
-
+<!-- Copyright � 2008. Spidersoft Ltd -->
 <style>
 A.applink:hover {border: 2px dotted #DCE6F4;padding:2px;background-color:#ffff00;color:green;text-decoration:none}
 A.applink       {border: 2px dotted #DCE6F4;padding:2px;color:#2F5BFF;background:transparent;text-decoration:none}
@@ -124,6 +126,7 @@ A.info:hover    {color:green;background:transparent;text-decoration:underline}
                     <ul class="nav nav-pills nav-stacked " >
                         <li role="presentation" ><a href="index.html">HOMEPAGE</a></li>
                         <li role="presentation" class="active"><a href="research.html">LAB HOMEPAGE</a></li>
+                        <!--<li role="presentation"><a href="https://qiweili00.github.io/homepage/reaserchCN.html">中文版本</a></li> -->
                     </ul>
                 </div>
             </div>
@@ -148,16 +151,14 @@ A.info:hover    {color:green;background:transparent;text-decoration:underline}
                 <div>
                     <p id="introduction" style="height:4rem;margin: 0;">&nbsp;</p>
                     <section style="font-size: 1.8rem;">
-                        <div >
-                            <h3>Lab Introduction</h3>
-                            <p style="font-size:16px;font-weight: 600;margin-top: 40px;text-indent: 3.6rem;"> Open Vision, Open View, Open Venture</p>
-
-                        
+                        <div>
+                            <h3 style="font-weight:bold;">Lab Introduction</h3>
+                            <p style="font-size:16px;font-weight:600;margin-top:20px;text-indent:3.6rem;"> Open Vision, Open View, Open Venture</p>
                         </div>
                     </section>
                     <p id="news" style="height:4rem;margin: 0;">&nbsp;</p>
                     <section style="font-size: 1.8rem;">
-                        <h3>Latest News</h3>
+                        <h3 style="font-weight:bold;">Latest News</h3>
                         <ul>
                             <li class="news-item"><p style="color:rgb(180, 0, 0);">We are always actively recruiting Post-doc Fellows, Ph.D., Master, and Research Interns! Welcome to contact me with your detailed CV! (常年招收博士后、博士、硕士和科研实习生！)</p>
                             </li>
@@ -261,7 +262,7 @@ A.info:hover    {color:green;background:transparent;text-decoration:underline}
 
                     <p id="member" style="height:4rem;margin: 0;">&nbsp;</p>
                     <section>
-                        <h3>Lab Members</h3>
+                        <h3 style="font-weight:bold;">Lab Members</h3>
                         <div class="perpic">
                             <p style="font-size:18px;font-weight:600;margin-top: 20px;">Faculty: </p>
                             <div class="part1">
@@ -274,6 +275,8 @@ A.info:hover    {color:green;background:transparent;text-decoration:underline}
                                     </div>
                                     <p>Jiahuan Zhou</p>
                                 </div>
+                                
+                                
                             </div>
 
                             <p style="font-size:18px;font-weight:600;margin-top: 20px;">PhD: </p>
@@ -297,6 +300,7 @@ A.info:hover    {color:green;background:transparent;text-decoration:underline}
                                         <p>(臧泽华)</p>
                                         <p style="margin-top:8px;margin-bottom: 5px;">PhD</p>
                                         <p>2021 ~ Now</p> 
+                                        <!-- <p><a href="student_pages/zzhEN.html">HOMEPAGE</a></p> -->
                                     </div>
                                     <p>Zehua Zang</p> 
                                 </div>
@@ -338,7 +342,6 @@ A.info:hover    {color:green;background:transparent;text-decoration:underline}
                                 </div>
                                 
                             </div>
-
                             <p style="font-size:18px;font-weight:600;margin-top: 20px;">Master:</p>
                             <div class="part1">
                                 
@@ -464,11 +467,12 @@ A.info:hover    {color:green;background:transparent;text-decoration:underline}
                                     <p>Zhengyuan Cai</p>
                                 </div>
                             </div>
+
                             
                             <p style="font-size:18px;font-weight:600;margin-top: 20px;">Alumni:</p>
                             
                             <table style="width:100%; font-size:15px; border: 0;">
-
+                                
                                 <tr style="height: 30px;">
                                     <td>Yibo Feng</td>
                                     <td>Undergrad Student</td>
@@ -639,139 +643,78 @@ A.info:hover    {color:green;background:transparent;text-decoration:underline}
                                     <td></td>
                                 </tr>
                             </table>
-
-
                         </div class="perpic">
-
                     </section>
                     
                     <p id="Lives" style="height:4rem;margin: 0;">&nbsp;</p>
                     <section>
-                        <h3 style="margin-top: 20px;">Lab Lives</h3>
-                        <div class="layout-container">
-                            <div class="layouter">
-                                <div class="layout">
-                                    <img src="common/img/group3-resized.jpg" alt="图片3">
-                                    <div class="layout-number">2023年5月香山徒步活动</div>
-                                </div>
-                                <div class="layout">
-                                    <img src="common/img/group1-resized.jpg" alt="图片1">
-                                    <div class="layout-number">2024年1月聚餐活动</div>
-                                </div>
-                                <div class="layout">
-                                    <img src="common/img/group2-resized.jpg" alt="图片2">
-                                    <div class="layout-number">2024年2月新年聚餐</div>
-                                </div>
-                                <div class="layout">
-                                    <img src="common/img/group4-resized.jpg" alt="图片4">
-                                    <div class="layout-number">2024年4月聚餐活动</div>
-                                </div>
-                                <div class="layout">
-                                    <img src="common/img/group5-resized.jpg" alt="图片5">
-                                    <div class="layout-number">2024年6月CVPR24线下参会</div>
-                                </div>
-                                <div class="layout">
-                                    <img src="common/img/group6-resized.jpg" alt="图片6">
-                                    <div class="layout-number">2024年7月迎新聚餐</div>
-                                </div>
-                                <div class="layout">
-                                    <img src="common/img/group7-resized.jpg" alt="图片7">
-                                    <div class="layout-number">2025年1月新年聚餐</div>
-                                </div>
-                                <div class="layout">
-                                    <img src="common/img/group8-resized.jpg" alt="图片7">
-                                    <div class="layout-number">2025年3月共同观影《哪吒2》</div>
-                                </div>
-                                <div class="layout">
-                                    <img src="common/img/china-3dv-2025-resized.jpg" alt="图8">
-                                    <div class="layout-number">2025年4月参加China 3DV会议</div>
-                                </div>
-                                <div class="layout">
-                                    <img src="common/img/group9-resized.jpg" alt="图9">
-                                    <div class="layout-number">2025年5月庆祝子宸通过硕士答辩</div>
-                                </div>
-                                <div class="layout">
-                                    <img src="common/img/Valse-2025-resized.jpg" alt="图10">
-                                    <div class="layout-number">2025年6月参加VALSE研讨会</div>
-                                </div>
-                                <div class="layout">
-                                    <img src="common/img/group10-resized.jpg" alt="图11">
-                                    <div class="layout-number">2025年10月实验室聚餐</div>
-                                </div>
-                                <div class="layout">
-                                    <img src="common/img/attending-ICCV25-resized.jpg" alt="图12">
-                                    <div class="layout-number">2025年10月参加ICCV25会议</div>
-                                </div>
-                                <div class="layout">
-                                    <img src="common/img/2026-02.jpg" alt="图13">
-                                    <div class="layout-number">2026年2月实验室新年聚餐</div>
-                                </div>
-                                
+                        <h3 style="font-weight:bold;margin-top:20px;">Lab Lives</h3>
+                        <p style="font-size:18px;font-weight:600;margin-top:10px;">2026:</p>
+                        <div class="layouter">
+                            <div class="layout">
+                                <img src="common/img/2026-02.jpg" alt="图13">
+                                <div class="layout-number">2026年2月实验室新年聚餐</div>
                             </div>
                         </div>
-                    </section>
-
-                    <section>
-                        <h3 style="margin-top: 20px;">Lab Lives</h3>
-                        <div class="slider-container">
-                            <div class="slider">
-                                <div class="slide">
-                                    <img src="common/img/group3-resized.jpg" alt="图片3">
-                                    <div class="slide-number">2023年5月香山徒步活动</div>
-                                </div>
-                                <div class="slide">
-                                    <img src="common/img/group1-resized.jpg" alt="图片1">
-                                    <div class="slide-number">2024年1月聚餐活动</div>
-                                </div>
-                                <div class="slide">
-                                    <img src="common/img/group2-resized.jpg" alt="图片2">
-                                    <div class="slide-number">2024年2月新年聚餐</div>
-                                </div>
-                                <div class="slide">
-                                    <img src="common/img/group4-resized.jpg" alt="图片4">
-                                    <div class="slide-number">2024年4月聚餐活动</div>
-                                </div>
-                                <div class="slide">
-                                    <img src="common/img/group5-resized.jpg" alt="图片5">
-                                    <div class="slide-number">2024年6月CVPR24线下参会</div>
-                                </div>
-                                <div class="slide">
-                                    <img src="common/img/group6-resized.jpg" alt="图片6">
-                                    <div class="slide-number">2024年7月迎新聚餐</div>
-                                </div>
-                                <div class="slide">
-                                    <img src="common/img/group7-resized.jpg" alt="图片7">
-                                    <div class="slide-number">2025年1月新年聚餐</div>
-                                </div>
-                                <div class="slide">
-                                    <img src="common/img/group8-resized.jpg" alt="图片7">
-                                    <div class="slide-number">2025年3月共同观影《哪吒2》</div>
-                                </div>
-                                <div class="slide">
-                                    <img src="common/img/china-3dv-2025-resized.jpg" alt="图8">
-                                    <div class="slide-number">2025年4月参加China 3DV会议</div>
-                                </div>
-                                <div class="slide">
-                                    <img src="common/img/group9-resized.jpg" alt="图9">
-                                    <div class="slide-number">2025年5月庆祝子宸通过硕士答辩</div>
-                                </div>
-                                <div class="slide">
-                                    <img src="common/img/Valse-2025-resized.jpg" alt="图10">
-                                    <div class="slide-number">2025年6月参加VALSE研讨会</div>
-                                </div>
-                                <div class="slide">
-                                    <img src="common/img/group10-resized.jpg" alt="图11">
-                                    <div class="slide-number">2025年10月实验室聚餐</div>
-                                </div>
-                                <div class="slide">
-                                    <img src="common/img/attending-ICCV25-resized.jpg" alt="图12">
-                                    <div class="slide-number">2025年10月参加ICCV25会议</div>
-                                </div>
-                                <div class="slide">
-                                    <img src="common/img/2026-02.jpg" alt="图13">
-                                    <div class="slide-number">2026年2月实验室新年聚餐</div>
-                                </div>
-                                
+                        <p style="font-size:18px;font-weight:600;margin-top:10px;">2025:</p>
+                        <div class="layouter">
+                            <div class="layout">
+                                <img src="common/img/group7-resized.jpg" alt="图片7">
+                                <div class="layout-number">2025年1月新年聚餐</div>
+                            </div>
+                            <div class="layout">
+                                <img src="common/img/group8-resized.jpg" alt="图片7">
+                                <div class="layout-number">2025年3月共同观影《哪吒2》</div>
+                            </div>
+                            <div class="layout">
+                                <img src="common/img/china-3dv-2025-resized.jpg" alt="图8">
+                                <div class="layout-number">2025年4月参加China 3DV会议</div>
+                            </div>
+                            <div class="layout">
+                                <img src="common/img/group9-resized.jpg" alt="图9">
+                                <div class="layout-number">2025年5月庆祝子宸通过硕士答辩</div>
+                            </div>
+                            <div class="layout">
+                                <img src="common/img/Valse-2025-resized.jpg" alt="图10">
+                                <div class="layout-number">2025年6月参加VALSE研讨会</div>
+                            </div>
+                            <div class="layout">
+                                <img src="common/img/group10-resized.jpg" alt="图11">
+                                <div class="layout-number">2025年10月实验室聚餐</div>
+                            </div>
+                            <div class="layout">
+                                <img src="common/img/attending-ICCV25-resized.jpg" alt="图12">
+                                <div class="layout-number">2025年10月参加ICCV25会议</div>
+                            </div>
+                        </div>
+                        <p style="font-size:18px;font-weight:600;margin-top:10px;">2024:</p>
+                        <div class="layouter">
+                            <div class="layout">
+                                <img src="common/img/group1-resized.jpg" alt="图片2">
+                                <div class="layout-number">2024年1月聚餐活动</div>
+                            </div>
+                            <div class="layout">
+                                <img src="common/img/group2-resized.jpg" alt="图片3">
+                                <div class="layout-number">2024年2月新年聚餐</div>
+                            </div>
+                            <div class="layout">
+                                <img src="common/img/group4-resized.jpg" alt="图片4">
+                                <div class="layout-number">2024年4月聚餐活动</div>
+                            </div>
+                            <div class="layout">
+                                <img src="common/img/group5-resized.jpg" alt="图片5">
+                                <div class="layout-number">2024年6月CVPR24线下参会</div>
+                            </div>
+                            <div class="layout">
+                                <img src="common/img/group6-resized.jpg" alt="图片6">
+                                <div class="layout-number">2024年7月迎新聚餐</div>
+                            </div>
+                        </div>
+                        <p style="font-size:18px;font-weight:600;margin-top:10px;">2023:</p>
+                        <div class="layouter">
+                            <div class="layout">
+                                <img src="common/img/group3-resized.jpg" alt="图片1">
+                                <div class="layout-number">2023年5月香山徒步活动</div>
                             </div>
                         </div>
                     </section>
