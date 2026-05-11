@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -25,9 +26,11 @@
 
         .slider {
             display: flex;
-            gap: 10px; /* 图片之间的间距 */
+            gap: 10px;
+            /* 图片之间的间距 */
             position: relative;
-            animation: scroll 40s linear 2s infinite running; /* 调整滚动速度 */
+            animation: scroll 40s linear 2s infinite running;
+            /* 调整滚动速度 */
         }
 
         .slide {
@@ -41,7 +44,8 @@
             max-height: 200px;
             /* width: 300px;
             height: 200px; */
-            border-radius: 10px; /* 图片的圆角 */
+            border-radius: 10px;
+            /* 图片的圆角 */
             flex-shrink: 0;
         }
 
@@ -54,7 +58,8 @@
         .layouter {
             display: flex;
             gap: 0.5%;
-            flex-wrap: wrap; /* 确保子元素能换行 */
+            flex-wrap: wrap;
+            /* 确保子元素能换行 */
             position: relative;
             width: 100%;
         }
@@ -64,40 +69,76 @@
             flex-direction: column;
             align-items: center;
             text-align: center;
-            width: 19%; /* 每个布局项占 19% 宽度 */
-            box-sizing: border-box; /* 确保 padding 和 margin 不影响布局 */
-            margin-bottom: 10px; /* 设置底部间距，避免换行时元素贴得太紧 */
+            width: 19%;
+            /* 每个布局项占 19% 宽度 */
+            box-sizing: border-box;
+            /* 确保 padding 和 margin 不影响布局 */
+            margin-bottom: 10px;
+            /* 设置底部间距，避免换行时元素贴得太紧 */
         }
 
         .layout img {
             max-height: 160px;
             /* width: 100%; 确保图片自适应父容器宽度 */
-            height: auto; /* 保持图片比例 */
-            border-radius: 10px; /* 图片的圆角 */
+            height: auto;
+            /* 保持图片比例 */
+            border-radius: 10px;
+            /* 图片的圆角 */
             flex-shrink: 0;
         }
 
 
         @keyframes scroll {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(-155.5%); }
-        }
+            0% {
+                transform: translateX(0);
+            }
 
+            100% {
+                transform: translateX(-155.5%);
+            }
+        }
     </style>
 </head>
-<body >
+
+<body>
 
 
-<!-- Copyright � 2008. Spidersoft Ltd -->
-<style>
-A.applink:hover {border: 2px dotted #DCE6F4;padding:2px;background-color:#ffff00;color:green;text-decoration:none}
-A.applink       {border: 2px dotted #DCE6F4;padding:2px;color:#2F5BFF;background:transparent;text-decoration:none}
-A.info          {color:#ba0000;background:transparent;text-decoration:none}
-A.info:hover    {color:green;background:transparent;text-decoration:underline}
-/* 新闻标签样式 */
-.news-item {
-            display: none; /* 默认隐藏所有新闻 */
+    <!-- Copyright � 2008. Spidersoft Ltd -->
+    <style>
+        A.applink:hover {
+            border: 2px dotted #DCE6F4;
+            padding: 2px;
+            background-color: #ffff00;
+            color: green;
+            text-decoration: none
         }
+
+        A.applink {
+            border: 2px dotted #DCE6F4;
+            padding: 2px;
+            color: #2F5BFF;
+            background: transparent;
+            text-decoration: none
+        }
+
+        A.info {
+            color: #ba0000;
+            background: transparent;
+            text-decoration: none
+        }
+
+        A.info:hover {
+            color: green;
+            background: transparent;
+            text-decoration: underline
+        }
+
+        /* 新闻标签样式 */
+        .news-item {
+            display: none;
+            /* 默认隐藏所有新闻 */
+        }
+
         .show-more {
             cursor: pointer;
             color: blue;
@@ -105,6 +146,7 @@ A.info:hover    {color:green;background:transparent;text-decoration:underline}
             margin-top: 20px;
             display: inline-block;
         }
+
         .show-less {
             cursor: pointer;
             color: blue;
@@ -112,19 +154,19 @@ A.info:hover    {color:green;background:transparent;text-decoration:underline}
             margin-top: 20px;
             display: inline-block;
         }
-</style>
+    </style>
 
-<!-- /Copyright � 2008. Spidersoft Ltd -->
+    <!-- /Copyright � 2008. Spidersoft Ltd -->
 
 
     <div class="container-fluid" style="padding:0 10%;">
         <dic class="row">
-            <div class="col-md-2 col-xs-2 col-sm-2 " >
-                <div class="warpper" >
-                    <div class="logo" >
+            <div class="col-md-2 col-xs-2 col-sm-2 ">
+                <div class="warpper">
+                    <div class="logo">
                     </div>
-                    <ul class="nav nav-pills nav-stacked " >
-                        <li role="presentation" ><a href="index.html">HOMEPAGE</a></li>
+                    <ul class="nav nav-pills nav-stacked ">
+                        <li role="presentation"><a href="index.html">HOMEPAGE</a></li>
                         <li role="presentation" class="active"><a href="research.html">LAB HOMEPAGE</a></li>
                         <!--<li role="presentation"><a href="https://qiweili00.github.io/homepage/reaserchCN.html">中文版本</a></li> -->
                     </ul>
@@ -133,19 +175,20 @@ A.info:hover    {color:green;background:transparent;text-decoration:underline}
             <div class="col-md-10 col-xs-10 col-sm-10 mb20">
                 <nav class="navbar navbar-default ">
                     <div class="navbar-header">
-                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-                          <span class="sr-only">Toggle navigation</span>
+                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                            data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                            <span class="sr-only">Toggle navigation</span>
                         </button>
-                      </div>
+                    </div>
                     <div class="container-fluid " style="padding: 0 ;">
-                      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1" >
-                        <ul class="nav navbar-nav">
-                          <li class="active"><a href="#introduction">Lab Introduction</a></li>
-                          <li><a href="#news">Latest News</a></li>
-                          <li><a href="#member">Lab Members</a></li>
-                          <li><a href="#Lives">Lab Lives</a></li>
-                        </ul>
-                      </div>
+                        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                            <ul class="nav navbar-nav">
+                                <li class="active"><a href="#introduction">Lab Introduction</a></li>
+                                <li><a href="#news">Latest News</a></li>
+                                <li><a href="#member">Lab Members</a></li>
+                                <li><a href="#Lives">Lab Lives</a></li>
+                            </ul>
+                        </div>
                     </div>
                 </nav>
                 <div>
@@ -153,116 +196,174 @@ A.info:hover    {color:green;background:transparent;text-decoration:underline}
                     <section style="font-size: 1.8rem;">
                         <div>
                             <h3 style="font-weight:bold;">Lab Introduction</h3>
-                            <p style="font-size:16px;font-weight:600;margin-top:20px;text-indent:3.6rem;"> Open Vision, Open View, Open Venture</p>
+                            <p style="font-size:16px;font-weight:600;margin-top:20px;text-indent:3.6rem;"> Open Vision,
+                                Open View, Open Venture</p>
                         </div>
                     </section>
                     <p id="news" style="height:4rem;margin: 0;">&nbsp;</p>
                     <section style="font-size: 1.8rem;">
                         <h3 style="font-weight:bold;">Latest News</h3>
                         <ul>
-                            <li class="news-item"><p style="color:rgb(180, 0, 0);">We are always actively recruiting Post-doc Fellows, Ph.D., Master, and Research Interns! Welcome to contact me with your detailed CV! (常年招收博士后、博士、硕士和科研实习生！)</p>
+                            <li class="news-item">
+                                <p style="color:rgb(180, 0, 0);">We are always actively recruiting Post-doc Fellows,
+                                    Ph.D., Master, and Research Interns! Welcome to contact me with your detailed CV!
+                                    (常年招收博士后、博士、硕士和科研实习生！)</p>
                             </li>
-                            <li class="news-item"><p>05.2026, Four papers are accepted by ICML'2026.</p>
+                            <li class="news-item">
+                                <p>05.2026, One paper is accepted by IEEE TPAMI.</p>
                             </li>
-                            <li class="news-item"><p>04.2026, Invited to serve as the Area Chair of BMVC'2026.</p>
+                            <li class="news-item">
+                                <p>05.2026, Four papers are accepted by ICML'2026.</p>
                             </li>
-                            <li class="news-item"><p>04.2026, Invited to serve as the Meta-Reviewer of PRCV'2026.</p>
+                            <li class="news-item">
+                                <p>04.2026, Invited to serve as the Area Chair of BMVC'2026.</p>
                             </li>
-                            <li class="news-item"><p>03.2026, Invited to serve as the Area Chair of NeurIPS'2026.</p>
+                            <li class="news-item">
+                                <p>04.2026, Invited to serve as the Meta-Reviewer of PRCV'2026.</p>
                             </li>
-                            <li class="news-item"><p>02.2026, Five papers are accepted by CVPR'2026.</p>
+                            <li class="news-item">
+                                <p>03.2026, Invited to serve as the Area Chair of NeurIPS'2026.</p>
                             </li>
-                            <li class="news-item"><p>01.2026, One paper is accepted by ICLR'2026.</p>
+                            <li class="news-item">
+                                <p>02.2026, Five papers are accepted by CVPR'2026.</p>
                             </li>
-                            <li class="news-item"><p>12.2025, Invited to serve as the Area Chair of ECCV'2026.</p>
+                            <li class="news-item">
+                                <p>01.2026, One paper is accepted by ICLR'2026.</p>
                             </li>
-                            <li class="news-item"><p>12.2025, One paper is accepted by IEEE TPAMI.</p>
+                            <li class="news-item">
+                                <p>12.2025, Invited to serve as the Area Chair of ECCV'2026.</p>
                             </li>
-                            <li class="news-item"><p>11.2025, Invited to serve as the Area Chair of ICML'2026.</p>
+                            <li class="news-item">
+                                <p>12.2025, One paper is accepted by IEEE TPAMI.</p>
                             </li>
-                            <li class="news-item"><p>11.2025, Two papers are accepted by AAAI'2026.</p>
+                            <li class="news-item">
+                                <p>11.2025, Invited to serve as the Area Chair of ICML'2026.</p>
                             </li>
-                            <li class="news-item"><p>09.2025, Three papers are accepted by NeurIPS'2025.</p>
+                            <li class="news-item">
+                                <p>11.2025, Two papers are accepted by AAAI'2026.</p>
                             </li>
-                            <li class="news-item"><p>08.2025, Invited to serve as the Area Chair of ICLR'2026.</p>
+                            <li class="news-item">
+                                <p>09.2025, Three papers are accepted by NeurIPS'2025.</p>
                             </li>
-                            <li class="news-item"><p>08.2025, Invited to serve as the Area Chair of CVPR'2026.</p>
+                            <li class="news-item">
+                                <p>08.2025, Invited to serve as the Area Chair of ICLR'2026.</p>
                             </li>
-                            <li class="news-item"><p>07.2025, One paper is accepted by IEEE TPAMI.</p>
+                            <li class="news-item">
+                                <p>08.2025, Invited to serve as the Area Chair of CVPR'2026.</p>
                             </li>
-                            <li class="news-item"><p>06.2025, Two papers are accepted by ICCV'2025.</p>
+                            <li class="news-item">
+                                <p>07.2025, One paper is accepted by IEEE TPAMI.</p>
                             </li>
-                            <li class="news-item"><p>05.2025, One paper is accepted by IEEE TPAMI.</p>
+                            <li class="news-item">
+                                <p>06.2025, Two papers are accepted by ICCV'2025.</p>
                             </li>
-                            <li class="news-item"><p>05.2025, Four papers are accepted by ICML'2025.</p>
+                            <li class="news-item">
+                                <p>05.2025, One paper is accepted by IEEE TPAMI.</p>
                             </li>
-                            <li class="news-item"><p>02.2025, Four papers are accepted by CVPR'2025.</p>
+                            <li class="news-item">
+                                <p>05.2025, Four papers are accepted by ICML'2025.</p>
                             </li>
-                            <li class="news-item"><p>02.2025, Invited to serve as the Area Chair of NeurIPS'2025.</p>
+                            <li class="news-item">
+                                <p>02.2025, Four papers are accepted by CVPR'2025.</p>
                             </li>
-                            <li class="news-item"><p>01.2025, One paper is accepted by ICLR'2025.</p>
+                            <li class="news-item">
+                                <p>02.2025, Invited to serve as the Area Chair of NeurIPS'2025.</p>
                             </li>
-                            <li class="news-item"><p>01.2025, One paper is accepted by IEEE T-IFS.</p>
+                            <li class="news-item">
+                                <p>01.2025, One paper is accepted by ICLR'2025.</p>
                             </li>
-                            <li class="news-item"><p>12.2024, One paper is accepted by Nature Communications</p>
+                            <li class="news-item">
+                                <p>01.2025, One paper is accepted by IEEE T-IFS.</p>
                             </li>
-                            <li class="news-item"><p>12.2024, Invited to serve as the Area Chair of ICML'2025.</p>
+                            <li class="news-item">
+                                <p>12.2024, One paper is accepted by Nature Communications</p>
                             </li>
-                            <li class="news-item"><p>12.2024, Four papers are accepted by AAAI'2025.</p>
+                            <li class="news-item">
+                                <p>12.2024, Invited to serve as the Area Chair of ICML'2025.</p>
                             </li>
-                            <li class="news-item"><p>09.2024, Invited to serve as the Area Chair of CVPR'2025.</p>
+                            <li class="news-item">
+                                <p>12.2024, Four papers are accepted by AAAI'2025.</p>
                             </li>
-                            <li class="news-item"><p>07.2024, Four papers are accepted by ACM MM'2024.</p>
+                            <li class="news-item">
+                                <p>09.2024, Invited to serve as the Area Chair of CVPR'2025.</p>
                             </li>
-                            <li class="news-item"><p>05.2024, One paper is accepted by IJCV.</p>
+                            <li class="news-item">
+                                <p>07.2024, Four papers are accepted by ACM MM'2024.</p>
                             </li>
-                            <li class="news-item"><p>05.2024, Invited to serve as the Area Chair of NeurIP'2024.</p>
+                            <li class="news-item">
+                                <p>05.2024, One paper is accepted by IJCV.</p>
                             </li>
-                            <li class="news-item"><p>04.2024, One paper is accepted by IJCV.</p>
-                            </li>                     
-                            <li class="news-item"><p>04.2024, One paper is accepted by IJCAI'2024.</p>
+                            <li class="news-item">
+                                <p>05.2024, Invited to serve as the Area Chair of NeurIP'2024.</p>
                             </li>
-                            <li class="news-item"><p>03.2024, One paper is accepted by Nature Synthesis.</p>
+                            <li class="news-item">
+                                <p>04.2024, One paper is accepted by IJCV.</p>
                             </li>
-                            <li class="news-item"><p>02.2024, Four papers are accepted by CVPR'2024.</p>
+                            <li class="news-item">
+                                <p>04.2024, One paper is accepted by IJCAI'2024.</p>
                             </li>
-                            <li class="news-item"><p>01.2024, One paper is accepted by IEEE T-PAMI.</p>
+                            <li class="news-item">
+                                <p>03.2024, One paper is accepted by Nature Synthesis.</p>
                             </li>
-                            <li class="news-item"><p>12.2023, One paper is accepted by ACM TOMM.</p>
+                            <li class="news-item">
+                                <p>02.2024, Four papers are accepted by CVPR'2024.</p>
                             </li>
-                            <li class="news-item"><p>12.2023, Five papers are accepted by AAAI'2024.</p>
+                            <li class="news-item">
+                                <p>01.2024, One paper is accepted by IEEE T-PAMI.</p>
                             </li>
-                            <li class="news-item"><p>12.2023, Invited to serve as the Area Chair of ICPR'2024.</p>
+                            <li class="news-item">
+                                <p>12.2023, One paper is accepted by ACM TOMM.</p>
                             </li>
-                            <li class="news-item"><p>11.2023, One paper is accepted by IEEE TIFS.</p>
+                            <li class="news-item">
+                                <p>12.2023, Five papers are accepted by AAAI'2024.</p>
                             </li>
-                            <li class="news-item"><p>09.2023, One paper is accepted by ICIG'2023.</p>
+                            <li class="news-item">
+                                <p>12.2023, Invited to serve as the Area Chair of ICPR'2024.</p>
                             </li>
-                            <li class="news-item"><p>07.2023, One paper is accepted by ACM MM'2023.</p>
+                            <li class="news-item">
+                                <p>11.2023, One paper is accepted by IEEE TIFS.</p>
                             </li>
-                            <li class="news-item"><p>06.2023, Invited to serve as the Area Chair of CVPR'2024.</p>
+                            <li class="news-item">
+                                <p>09.2023, One paper is accepted by ICIG'2023.</p>
                             </li>
-                            <li class="news-item"><p>03.2023, One paper is accepted by IEEE TCSVT.</p>
+                            <li class="news-item">
+                                <p>07.2023, One paper is accepted by ACM MM'2023.</p>
                             </li>
-                            <li class="news-item"><p>01.2023, One paper is accepted by IEEE TCSVT.</p>
+                            <li class="news-item">
+                                <p>06.2023, Invited to serve as the Area Chair of CVPR'2024.</p>
                             </li>
-                            <li class="news-item"><p>12.2022, Invited to serve as the Session Chair of VCIP'2022.</p>
+                            <li class="news-item">
+                                <p>03.2023, One paper is accepted by IEEE TCSVT.</p>
                             </li>
-                            <li class="news-item"><p>12.2022, Invited to serve as the Area Chair of ICME'2023.</p>
+                            <li class="news-item">
+                                <p>01.2023, One paper is accepted by IEEE TCSVT.</p>
                             </li>
-                            <li class="news-item"><p>11.2022, One paper is accepted by AAAI'2023.</p>
+                            <li class="news-item">
+                                <p>12.2022, Invited to serve as the Session Chair of VCIP'2022.</p>
                             </li>
-                            <li class="news-item"><p>10.2022, Awarded National Young Scientists Funding Program.</p>
+                            <li class="news-item">
+                                <p>12.2022, Invited to serve as the Area Chair of ICME'2023.</p>
                             </li>
-                            <li class="news-item"><p>09.2022, Invited to serve as the Area Chair of CVPR'2023.</p>
+                            <li class="news-item">
+                                <p>11.2022, One paper is accepted by AAAI'2023.</p>
                             </li>
-                            <li class="news-item"><p>08.2022, One paper is accepted by IEEE T-PAMI.</p>
+                            <li class="news-item">
+                                <p>10.2022, Awarded National Young Scientists Funding Program.</p>
                             </li>
-                            <li class="news-item"><p>07.2022, One paper is accepted by ECCV'2022.</p>
+                            <li class="news-item">
+                                <p>09.2022, Invited to serve as the Area Chair of CVPR'2023.</p>
                             </li>
-                            <li class="news-item"><p>04.2022, Invited to serve as the Area Chair of ICPR'2023.</p>
+                            <li class="news-item">
+                                <p>08.2022, One paper is accepted by IEEE T-PAMI.</p>
                             </li>
-                            <li class="news-item"><p>03.2022, Joined Peking University.</p>
+                            <li class="news-item">
+                                <p>07.2022, One paper is accepted by ECCV'2022.</p>
+                            </li>
+                            <li class="news-item">
+                                <p>04.2022, Invited to serve as the Area Chair of ICPR'2023.</p>
+                            </li>
+                            <li class="news-item">
+                                <p>03.2022, Joined Peking University.</p>
                             </li>
                         </ul>
                         <div id="show-more" class="show-more" onclick="showMoreNews()">Show More</div>
@@ -285,8 +386,8 @@ A.info:hover    {color:green;background:transparent;text-decoration:underline}
                                     </div>
                                     <p>Jiahuan Zhou</p>
                                 </div>
-                                
-                                
+
+
                             </div>
 
                             <p style="font-size:18px;font-weight:600;margin-top: 20px;">PhD: </p>
@@ -304,41 +405,41 @@ A.info:hover    {color:green;background:transparent;text-decoration:underline}
                                 </div>
 
                                 <div class="w18">
-                                    <img src="common/img/zzh-resized.jpg" > </a>
-                                    <div class="mark"> 
+                                    <img src="common/img/zzh-resized.jpg"> </a>
+                                    <div class="mark">
                                         <p style="margin-top:8px;margin-bottom: 5px;">Zehua Zang</p>
                                         <p>(臧泽华)</p>
                                         <p style="margin-top:8px;margin-bottom: 5px;">PhD</p>
-                                        <p>2021 ~ Now</p> 
+                                        <p>2021 ~ Now</p>
                                         <!-- <p><a href="student_pages/zzhEN.html">HOMEPAGE</a></p> -->
                                     </div>
-                                    <p>Zehua Zang</p> 
+                                    <p>Zehua Zang</p>
                                 </div>
 
                                 <div class="w18">
-                                    <img src="common/img/wjy-resized.jpg" > </a>
-                                    <div class="mark"> 
+                                    <img src="common/img/wjy-resized.jpg"> </a>
+                                    <div class="mark">
                                         <p style="margin-top:8px;margin-bottom: 5px;">Jingyao Wang</p>
                                         <p>(王婧瑶)</p>
                                         <p style="margin-top:8px;margin-bottom: 5px;">PhD</p>
-                                        <p>2022 ~ Now</p> 
+                                        <p>2022 ~ Now</p>
                                         <!-- <p><a href="student_pages/zzhEN.html">HOMEPAGE</a></p> -->
                                     </div>
-                                    <p>Jingyao Wang</p> 
+                                    <p>Jingyao Wang</p>
                                 </div>
 
                                 <div class="w18">
-                                    <img src="common/img/ljj-resized.jpg" > </a>
-                                    <div class="mark"> 
+                                    <img src="common/img/ljj-resized.jpg"> </a>
+                                    <div class="mark">
                                         <p style="margin-top:8px;margin-bottom: 5px;">Junjie Liang</p>
                                         <p>(梁俊杰)</p>
                                         <p style="margin-top:8px;margin-bottom: 5px;">PhD</p>
-                                        <p>2024 ~ Now</p> 
+                                        <p>2024 ~ Now</p>
                                         <p><a href="student_pages/ljjEN.html">HOMEPAGE</a></p>
                                     </div>
-                                    <p>Junjie Liang</p> 
+                                    <p>Junjie Liang</p>
                                 </div>
-                                
+
                                 <div class="w18">
                                     <img src="common/img/azx-resized.jpg" />
                                     <div class="mark">
@@ -362,11 +463,11 @@ A.info:hover    {color:green;background:transparent;text-decoration:underline}
                                     </div>
                                     <p>Yanqin Zhang</p>
                                 </div>
-                                
+
                             </div>
                             <p style="font-size:18px;font-weight:600;margin-top: 20px;">Master:</p>
                             <div class="part1">
-                                
+
                                 <div class="w18">
                                     <img src="common/img/lzc-resized.jpg" />
                                     <div class="mark">
@@ -402,12 +503,12 @@ A.info:hover    {color:green;background:transparent;text-decoration:underline}
                                     </div>
                                     <p>Kai Zhu</p>
                                 </div>
-                                
+
                             </div>
 
                             <p style="font-size:18px;font-weight:600;margin-top: 20px;">Intern:</p>
                             <div class="part1">
-                                
+
                                 <div class="w18">
                                     <img src="common/img/wyj-resized.jpg" />
                                     <div class="mark">
@@ -416,7 +517,7 @@ A.info:hover    {color:green;background:transparent;text-decoration:underline}
                                     </div>
                                     <p>Yanjie Wang</p>
                                 </div>
-                                
+
                                 <div class="w18">
                                     <img src="common/img/cht-resized.jpg" />
                                     <div class="mark">
@@ -499,64 +600,64 @@ A.info:hover    {color:green;background:transparent;text-decoration:underline}
                                 </div>
                             </div>
 
-                            
+
                             <p style="font-size:18px;font-weight:600;margin-top: 20px;">Alumni:</p>
-                            
+
                             <table style="width:100%; font-size:15px; border: 0;">
                                 <tr style="height: 30px;">
                                     <td>Yanhui Zhang</td>
                                     <td>Undergrad Student</td>
                                     <td>University of Chinese Academy of Sciences</td>
                                     <td>2025.09 - 2026.03</td>
-                                </tr> 
+                                </tr>
                                 <tr style="height: 30px;">
                                     <td>Yong Yao</td>
                                     <td>Master</td>
                                     <td>Jilin University</td>
                                     <td>2025.07 - 2026.02</td>
-                                </tr> 
+                                </tr>
                                 <tr style="height: 30px;">
                                     <td>Yibo Feng</td>
                                     <td>Undergrad Student</td>
                                     <td>University of Electronic Science and Technology of China</td>
                                     <td>2025.02 - 2025.10</td>
-                                </tr> 
+                                </tr>
                                 <tr style="height: 30px;">
                                     <td>Chao Zhu</td>
                                     <td>Undergrad Student</td>
                                     <td>Southern University of Science and Technology</td>
                                     <td>2024.12 - 2025.10</td>
-                                </tr> 
+                                </tr>
                                 <tr style="height: 30px;">
                                     <td>Quanyou Lao</td>
                                     <td>Undergrad Student</td>
                                     <td>Beijing University of Posts and Telecommunications</td>
                                     <td>2025.07 - 2025.09</td>
-                                </tr> 
+                                </tr>
                                 <tr style="height: 30px;">
                                     <td>Yanshu Li</td>
                                     <td>Undergrad Student</td>
                                     <td>Brown University</td>
                                     <td>2025.06 - 2025.09</td>
-                                </tr> 
+                                </tr>
                                 <tr style="height: 30px;">
                                     <td>Chen Li</td>
                                     <td>Undergrad Student</td>
                                     <td>Peking University</td>
                                     <td>2025.02 - 2025.08</td>
-                                </tr>  
+                                </tr>
                                 <tr style="height: 30px;">
                                     <td>Jihao Huang</td>
                                     <td>Undergrad Student</td>
                                     <td>Peking University</td>
                                     <td>2025.02 - 2025.05</td>
-                                </tr>  
+                                </tr>
                                 <tr style="height: 30px;">
                                     <td>Qiran Li</td>
                                     <td>Undergrad Student</td>
                                     <td>Peking University</td>
                                     <td>2024.11 - 2025.05</td>
-                                </tr>  
+                                </tr>
                                 <tr style="height: 30px;">
                                     <td>Xiaochen Yang</td>
                                     <td>Undergrad Student</td>
@@ -687,7 +788,7 @@ A.info:hover    {color:green;background:transparent;text-decoration:underline}
                             </table>
                         </div class="perpic">
                     </section>
-                    
+
                     <p id="Lives" style="height:4rem;margin: 0;">&nbsp;</p>
                     <section>
                         <h3 style="font-weight:bold;margin-top:20px;">Lab Lives</h3>
@@ -700,6 +801,14 @@ A.info:hover    {color:green;background:transparent;text-decoration:underline}
                             <div class="layout">
                                 <img src="common/img/china3dv-2026-resized.jpg" alt="图14">
                                 <div class="layout-number">2026年4月参加China 3DV会议</div>
+                            </div>
+                            <div class="layout">
+                                <img src="common/img/valse-2026-resized.jpg" alt="图15">
+                                <div class="layout-number">2026年5月参加VALSE会议</div>
+                            </div>
+                            <div class="layout">
+                                <img src="common/img/wuhan-dinner-2026-resized.jpg" alt="图16">
+                                <div class="layout-number">2026年5月和华中科技大学实验室聚餐</div>
                             </div>
                         </div>
                         <p style="font-size:18px;font-weight:600;margin-top:10px;">2025:</p>
@@ -764,25 +873,25 @@ A.info:hover    {color:green;background:transparent;text-decoration:underline}
                             </div>
                         </div>
                     </section>
-                    </div>
                 </div>
+            </div>
         </dic>
     </div>
 
     <script type="text/javascript" src="common/js/jquery.min.js"></script>
     <script type="text/javascript" src="common/js/bootstrap.min.js"></script>
     <script>
-        $('.navbar-nav li').unbind().on('click',function(){
-            if($(this).hasClass("active")){
+        $('.navbar-nav li').unbind().on('click', function () {
+            if ($(this).hasClass("active")) {
                 console.log(1)
-            }else{
+            } else {
                 $(this).addClass("active");
                 $(this).siblings().removeClass('active');
             }
         })
 
         // 显示前5条新闻
-        document.addEventListener("DOMContentLoaded", function() {
+        document.addEventListener("DOMContentLoaded", function () {
             var newsItems = document.querySelectorAll('.news-item');
             for (var i = 0; i < 6; i++) {
                 if (newsItems[i]) {
@@ -790,12 +899,12 @@ A.info:hover    {color:green;background:transparent;text-decoration:underline}
                 }
             }
         });
-        
+
         document.getElementById('show-less').style.display = 'none'; // 隐藏Show Less按钮
         // Show More功能
         function showMoreNews() {
             var newsItems = document.querySelectorAll('.news-item');
-            newsItems.forEach(function(item) {
+            newsItems.forEach(function (item) {
                 item.style.display = 'list-item'; // 显示所有新闻
             });
             document.getElementById('show-more').style.display = 'none'; // 隐藏Show More按钮
@@ -848,4 +957,5 @@ A.info:hover    {color:green;background:transparent;text-decoration:underline}
         startSlider();
     </script>
 </body>
+
 </html>
