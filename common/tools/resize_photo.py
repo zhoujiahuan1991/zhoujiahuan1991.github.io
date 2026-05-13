@@ -45,16 +45,16 @@ def resize_crop_or_pad(image_path,
 
 
 
-image_path  = 'common/img/valse-2026.jpg'
+image_path  = 'common/img/zzf.jpg'
 output_path = image_path.replace('.jpg', '-resized.jpg').replace('.png', '-resized.png')
-# resize_crop_or_pad(image_path,
-#                    output_path,
-#                    target_width=360,
-#                    target_height=480,
-#                    priority='height')
-
 resize_crop_or_pad(image_path,
                    output_path,
-                   target_width=400,
-                   target_height=300,
-                   priority='width')
+                   target_width=360,
+                   target_height=480,
+                   priority='height')
+
+# resize_crop_or_pad(image_path,
+#                    output_path,
+#                    target_width=400,
+#                    target_height=300,
+#                    priority='width')
