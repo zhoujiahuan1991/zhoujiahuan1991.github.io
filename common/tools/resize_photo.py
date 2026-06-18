@@ -45,7 +45,7 @@ def resize_crop_or_pad(image_path,
 
 
 
-image_path  = 'common/img/zzf.jpg'
+image_path  = 'common/img/hdj.jpg'
 output_path = image_path.replace('.jpg', '-resized.jpg').replace('.png', '-resized.png')
 resize_crop_or_pad(image_path,
                    output_path,
