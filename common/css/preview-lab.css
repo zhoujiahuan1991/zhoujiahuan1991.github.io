@@ -1,0 +1,94 @@
+.lab-page .content { max-width: 1260px; padding: 24px 24px 92px; }
+.lab-page .content > .lab-hero {
+  position: relative;
+  overflow: hidden;
+  min-height: 355px;
+  padding: clamp(36px, 5vw, 70px);
+  color: white;
+  border: 0;
+  background: radial-gradient(circle at 88% 20%, rgba(255,255,255,.14), transparent 25%), linear-gradient(130deg, #5d1128, #93223b 68%, #bd4353);
+  box-shadow: 0 24px 60px rgba(93, 24, 42, .17);
+}
+.lab-hero::after {
+  content: "OV³";
+  position: absolute;
+  right: -25px;
+  top: 12px;
+  color: rgba(255,255,255,.075);
+  font: 700 clamp(180px, 25vw, 360px)/1 Georgia, serif;
+  letter-spacing: -.12em;
+  pointer-events: none;
+}
+.lab-hero-content { position: relative; z-index: 1; max-width: 700px; }
+.lab-hero-kicker { color: #f0cbd0; font-size: 11px; font-weight: 800; letter-spacing: .2em; text-transform: uppercase; }
+.lab-hero h1 { margin: 20px 0 15px; color: white; font: 700 clamp(43px, 5vw, 62px)/1.08 Georgia, serif; letter-spacing: -.05em; }
+.lab-hero-motto { color: #f9e0e2; font: 500 clamp(20px, 2.2vw, 26px)/1.4 Georgia, serif; }
+.lab-hero-description { max-width: 600px; margin: 22px 0 0; color: #f2d8dc; font-size: 16px; }
+.lab-hero-actions { display: flex; flex-wrap: wrap; gap: 11px; margin-top: 28px; }
+.lab-hero-actions a { display: inline-flex; align-items: center; min-height: 42px; padding: 8px 17px; border: 1px solid rgba(255,255,255,.55); border-radius: 8px; color: white; font-size: 14px; font-weight: 750; text-decoration: none !important; }
+.lab-hero-actions a:first-child { color: #541a29; border-color: white; background: white; }
+.lab-hero-actions a:hover { background: rgba(255,255,255,.14); color: white; }
+.lab-hero-actions a:first-child:hover { color: #541a29; background: #f5e9ea; }
+.lab-page .navbar .lab-link { display: inline-flex; }
+.lab-page .perpic > p { margin: 30px 0 15px !important; padding: 7px 0 7px 15px; border-left: 3px solid var(--wine); color: var(--wine-deep); font: 700 22px/1.3 Georgia, "Noto Serif SC", serif !important; letter-spacing: -.02em; }
+.lab-page .part1 { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 17px; align-items: stretch; }
+.lab-page .w18 { width: auto; height: auto; min-height: 0; margin: 0; padding: 10px 10px 16px; overflow: visible; border: 1px solid #e9dfdd; border-radius: 13px; background: #fff; transition: transform .23s ease, box-shadow .23s ease; }
+.lab-page .w18:hover { transform: translateY(-4px); box-shadow: 0 14px 30px rgba(91,35,47,.08); }
+.lab-page .perpic .w18 img { display: block; width: 100%; height: auto; aspect-ratio: 3 / 4; object-fit: cover; object-position: center; border-radius: 8px; cursor: default; transition: none; }
+.lab-page .perpic .w18:hover img { transform: none; }
+.lab-page .w18 > p { margin: 12px 0 3px; color: #3a2c33; font-size: 17px; font-weight: 750; line-height: 1.35; }
+.lab-page .w18 .mark { display: none !important; }
+.lab-page .member-time { display: block; margin-top: 3px; color: #786b71; font-size: 15px; line-height: 1.4; }
+.lab-page .member-link { display: inline-block; margin-top: 6px; color: var(--wine); font-size: 15px; font-weight: 750; text-decoration: none; }
+.lab-page .member-link:hover { text-decoration: underline; }
+.lab-page .layouter { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px; margin: 0 0 16px; }
+.lab-page .layout { width: auto; margin: 0; padding: 9px 9px 12px; border: 1px solid #e9dfdd; border-radius: 13px; background: #fff; text-align: left; transition: transform .23s ease, box-shadow .23s ease; }
+.lab-page .layout:hover { transform: translateY(-4px); box-shadow: 0 14px 30px rgba(91,35,47,.08); }
+.lab-page .layout img { display: block; width: 100%; height: 145px; max-height: none; object-fit: cover; border-radius: 8px; }
+.lab-page .layout-number { margin-top: 9px; color: #5f555b; font-size: 12px; line-height: 1.5; }
+.lab-page .lives-enhanced > p, .lab-page .lives-enhanced > .layouter { display: none !important; }
+.lab-page .lives-rings { display: grid; gap: 24px; }
+.lab-page .lives-ring-heading { margin: 0 0 10px; padding-left: 12px; border-left: 3px solid var(--wine); color: var(--wine-deep); font: 700 22px/1.3 Georgia, "Noto Serif SC", serif; }
+.lab-page .lives-stage { --orbit-radius: clamp(260px, 31vw, 390px); position: relative; height: 325px; overflow: hidden; isolation: isolate; border: 1px solid #e7d4d3; border-radius: 18px; background: radial-gradient(circle at center, rgba(171,54,73,.09), transparent 30%), linear-gradient(115deg, #fff, #f9efee); perspective: 1050px; }
+.lab-page .lives-stage::before { content: ""; position: absolute; left: 50%; top: 50%; width: 620px; height: 620px; border: 1px solid rgba(149,48,65,.17); border-radius: 50%; box-shadow: 0 0 0 35px rgba(149,48,65,.025), 0 0 0 75px rgba(149,48,65,.018); transform: translate(-50%, -50%) rotateX(72deg); pointer-events: none; }
+.lab-page .lives-centre { position: absolute; z-index: 0; top: 50%; left: 50%; width: 260px; color: #ae7f87; font: 700 28px/1.2 Georgia, serif; letter-spacing: -.03em; text-align: center; transform: translate(-50%, -50%); pointer-events: none; opacity: .45; }
+.lab-page .lives-ring { --ring-duration: 92s; --ring-direction: normal; }
+.lab-page .lives-ring:nth-child(2) { --ring-duration: 112s; --ring-direction: reverse; }
+.lab-page .lives-ring:nth-child(3) { --ring-duration: 124s; }
+.lab-page .lives-orbit { position: absolute; inset: 0; z-index: 1; transform-style: preserve-3d; animation: lab-orbit-spin var(--ring-duration) linear infinite var(--ring-direction); }
+.lab-page .lives-orbit-card { position: absolute; top: 50%; left: 50%; width: 154px; min-height: 200px; margin: -100px 0 0 -77px; padding: 7px 7px 10px; overflow: hidden; border: 1px solid #e9d9d7; border-radius: 12px; background: #fff; box-shadow: 0 14px 32px rgba(78, 30, 43, .15); backface-visibility: hidden; animation: lab-face-spin var(--ring-duration) linear infinite var(--ring-direction); }
+.lab-page .lives-orbit-card--duplicate { display: none; }
+.lab-page .lives-orbit-card img { display: block; width: 100%; height: 128px; object-fit: cover; border-radius: 7px; }
+.lab-page .lives-orbit-card p { margin: 8px 2px 0; color: #483b42; font-size: 13px; font-weight: 650; line-height: 1.4; }
+@keyframes lab-orbit-spin { to { transform: rotateY(-360deg); } }
+@keyframes lab-face-spin {
+  from { transform: rotateY(var(--angle)) translateZ(var(--orbit-radius)) rotateY(var(--counter-angle)); }
+  to { transform: rotateY(var(--angle)) translateZ(var(--orbit-radius)) rotateY(calc(var(--counter-angle) + 360deg)); }
+}
+@keyframes lab-album-scroll { to { transform: translateX(-50%); } }
+.lab-page .content a:not(.paper-resource):hover { color: #8d3443; }
+@media (max-width: 950px) {
+  .lab-page .part1 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .lab-page .layouter { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
+@media (max-width: 780px) {
+  .lab-page .navbar .lab-link { display: none; }
+  .lab-page .lives-stage { height: 235px; padding: 16px; perspective: none; }
+  .lab-page .lives-stage::before, .lab-page .lives-centre { display: none; }
+  .lab-page .lives-orbit { position: relative; inset: auto; display: flex; gap: 0; width: max-content; height: auto; transform-style: flat; animation: lab-album-scroll var(--ring-duration) linear infinite; }
+  .lab-page .lives-orbit-card, .lab-page .lives-orbit-card--duplicate { position: relative; top: auto; left: auto; display: block; flex: 0 0 154px; width: 154px; min-height: 200px; margin: 0 13px 0 0; transform: none !important; animation: none; backface-visibility: visible; }
+}
+@media (max-width: 700px) {
+  .lab-page .content { padding: 14px 14px 60px; }
+  .lab-page .content > .lab-hero { padding: 37px 25px; min-height: 0; }
+  .lab-page .part1 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .lab-page .layouter { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 9px; }
+  .lab-page .layout img { height: 115px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .lab-page .lives-stage { height: auto; padding: 20px; overflow: auto; perspective: none; }
+  .lab-page .lives-stage::before, .lab-page .lives-centre { display: none; }
+  .lab-page .lives-orbit { position: relative; inset: auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 14px; width: 100%; height: auto; animation: none; transform: none; }
+  .lab-page .lives-orbit-card { position: relative; top: auto; left: auto; width: 100%; min-height: 0; margin: 0; animation: none; transform: none !important; backface-visibility: visible; }
+  .lab-page .lives-orbit-card--duplicate { display: none; }
+}
