@@ -73,10 +73,14 @@
 }
 @media (max-width: 780px) {
   .lab-page .navbar .lab-link { display: none; }
-  .lab-page .lives-stage { height: 235px; padding: 16px; perspective: none; }
-  .lab-page .lives-stage::before, .lab-page .lives-centre { display: none; }
-  .lab-page .lives-orbit { position: relative; inset: auto; display: flex; gap: 0; width: max-content; height: auto; transform-style: flat; animation: lab-album-scroll var(--ring-duration) linear infinite; }
-  .lab-page .lives-orbit-card, .lab-page .lives-orbit-card--duplicate { position: relative; top: auto; left: auto; display: block; flex: 0 0 154px; width: 154px; min-height: 200px; margin: 0 13px 0 0; transform: none !important; animation: none; backface-visibility: visible; }
+  .lab-page .lives-stage { --orbit-radius: clamp(82px, 25vw, 150px); height: clamp(225px, 53vw, 300px); padding: 0; perspective: 700px; }
+  .lab-page .lives-stage::before { width: min(78%, 420px); height: auto; aspect-ratio: 1; }
+  .lab-page .lives-centre { display: none; }
+  .lab-page .lives-orbit { position: absolute; inset: 0; display: block; width: auto; height: auto; transform-style: preserve-3d; animation: lab-orbit-spin var(--ring-duration) linear infinite var(--ring-direction); }
+  .lab-page .lives-orbit-card { position: absolute; top: 50%; left: 50%; display: block; width: clamp(76px, 20vw, 110px); min-height: 0; margin: 0; padding: 5px; translate: -50% -50%; animation: lab-face-spin var(--ring-duration) linear infinite var(--ring-direction); backface-visibility: hidden; }
+  .lab-page .lives-orbit-card--duplicate { display: none; }
+  .lab-page .lives-orbit-card img { height: clamp(66px, 17vw, 98px); }
+  .lab-page .lives-orbit-card p { margin: 5px 1px 0; font-size: 10px; line-height: 1.25; }
 }
 @media (max-width: 700px) {
   .lab-page .content { padding: 14px 14px 60px; }
@@ -102,6 +106,30 @@
 .lab-page .perpic > p { font-size: 22px !important; }
 @media (max-width: 1100px) { .lab-page .part1 { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
 @media (max-width: 700px) { .lab-page .part1 { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+
+/* The People page can grow with desktop monitors without breaking small screens. */
+.lab-page .content { width: 100%; max-width: 1680px; padding-left: clamp(14px, 3vw, 52px); padding-right: clamp(14px, 3vw, 52px); }
+.lab-page #news, .lab-page #news + section { display: none !important; }
+.lab-page .lives-stage { --orbit-radius: clamp(200px, 27vw, 500px); width: 100%; }
+.lab-page .lives-stage::before { width: min(75%, 930px); height: auto; aspect-ratio: 1; }
+.lab-page .alumni-table-wrap { width: 100%; overflow-x: auto; border: 1px solid #ebdcda; border-radius: 13px; }
+.lab-page .alumni-table { width: 100%; min-width: 650px; border-collapse: collapse; font-size: 15px; }
+.lab-page .alumni-table th { padding: 14px 17px; background: #8f1932; color: #fff; font-weight: 800; text-align: left; }
+.lab-page .alumni-table td { padding: 12px 17px; border-bottom: 1px solid #f2e7e5; color: #4d4448; line-height: 1.4; }
+.lab-page .alumni-table tr:nth-child(even) td { background: #fbf2f1; }
+.lab-page .alumni-table tr:hover td { background: #f7e6e4; }
+.lab-page .alumni-table tr:last-child td { border-bottom: 0; }
+.lab-page #honors + section > h3 { text-align: center; }
+.lab-page #honors + section > h3::after { margin-left: auto; margin-right: auto; }
+@media (max-width: 780px) {
+  .lab-page .lives-stage { --orbit-radius: clamp(82px, 25vw, 150px); }
+  .lab-page .lives-stage::before { width: min(78%, 420px); }
+}
+@media (prefers-reduced-motion: reduce) and (max-width: 780px) {
+  .lab-page .lives-stage { height: auto; min-height: 0; padding: 18px; }
+  .lab-page .lives-orbit { position: relative; display: grid; grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); gap: 10px; animation: none; }
+  .lab-page .lives-orbit-card { position: relative; top: auto; left: auto; width: 100%; translate: none; animation: none; }
+}
 
 /* Keep all People section headings consistent with the centered homepage headings. */
 .lab-page #member + section > h3 { text-align: center; }

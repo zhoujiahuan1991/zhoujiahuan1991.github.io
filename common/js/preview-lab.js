@@ -8,9 +8,9 @@
   const list = nav.querySelector('.navbar-nav');
   const links = [
     ['Home', 'index.html#top'], ['About', 'index.html#about'], ['News', 'index.html#news'],
-    ['Research', 'index.html#direct'], ['Publications', 'index.html#paper'],
-    ['People', '#member'], ['Honors', 'honors.html'], ['Patents', 'patents.html'],
-    ['Events', 'events.html'], ['Contact', 'contact.html']
+    ['Research', 'index.html#direct'], ['Publications', 'publications.html'],
+    ['People', '#member'], ['Patents', 'patents.html'],
+    ['Events', 'events.html'], ['Demos', 'demos.html'], ['Contact', 'contact.html']
   ];
   if (list) {
     list.replaceChildren(...links.map(([label, href], index) => {
@@ -53,7 +53,79 @@
   const intro = document.querySelector('#introduction + section');
   if (intro) {
     intro.classList.add('lab-hero');
-    intro.innerHTML = '<div class="lab-hero-content"><p class="lab-hero-kicker">WANGXUAN INSTITUTE · PEKING UNIVERSITY</p><h1>OV³ Lab</h1><p class="lab-hero-motto">See Beyond. Think Across. Discover What\'s Next.</p><p class="lab-hero-description">We explore computer vision, multi-modal learning and AI4Science, with an interest in intelligence that can learn and adapt in open environments.</p><div class="lab-hero-actions"><a href="#member">Meet our people ↗</a><a href="index.html#paper">Explore publications</a><a href="contact.html">Join the lab</a></div></div>';
+    intro.innerHTML = '<div class="lab-hero-content"><p class="lab-hero-kicker">WANGXUAN INSTITUTE · PEKING UNIVERSITY</p><h1>OV³ Lab</h1><p class="lab-hero-motto">See Beyond. Think Across. Discover What\'s Next.</p><p class="lab-hero-description">We explore computer vision, multi-modal learning and AI4Science, with an interest in intelligence that can learn and adapt in open environments.</p><div class="lab-hero-actions"><a href="#member">Meet our people ↗</a><a href="publications.html">Explore publications</a><a href="contact.html">Join the lab</a></div></div>';
+  }
+
+  const newsAnchor = document.getElementById('news');
+  if (newsAnchor) {
+    newsAnchor.nextElementSibling?.remove();
+    newsAnchor.remove();
+  }
+
+  const memberSection = document.querySelector('#member + section');
+  const memberGroups = memberSection && [...memberSection.querySelectorAll('.perpic > p')];
+  const phdHeading = memberGroups?.find(item => /^PhD:/i.test(item.textContent.trim()));
+  const phdGrid = phdHeading?.nextElementSibling;
+  const hanCard = [...(memberSection?.querySelectorAll('.perpic .w18') || [])]
+    .find(card => card.querySelector(':scope > p')?.textContent.trim() === 'Han Yang');
+  if (hanCard && phdGrid?.classList.contains('part1')) {
+    const mark = hanCard.querySelector('.mark');
+    if (mark) {
+      const role = document.createElement('p');
+      role.textContent = 'PhD';
+      const period = document.createElement('p');
+      period.textContent = '2027(Future)';
+      mark.append(role, period);
+    }
+    phdGrid.append(hanCard);
+  }
+
+  const alumniOriginal = memberSection?.querySelector('.perpic > table');
+  if (alumniOriginal) {
+    const table = document.createElement('table');
+    table.className = 'alumni-table';
+    const head = document.createElement('thead');
+    const header = document.createElement('tr');
+    ['Name', 'Type', 'Institution', 'Period'].forEach(label => {
+      const th = document.createElement('th');
+      th.scope = 'col';
+      th.textContent = label;
+      header.append(th);
+    });
+    head.append(header);
+    const body = document.createElement('tbody');
+    [...alumniOriginal.querySelectorAll('tr')].forEach(originalRow => {
+      let values = [...originalRow.querySelectorAll('td')].map(cell => cell.textContent.trim());
+      if (values.length === 5 && values[0] === values[1]) values = [values[0], values[2], values[3], values[4]];
+      else if (values.length > 4) values = values.slice(0, 4);
+      if (values.length !== 4 || !values[0]) return;
+      const row = document.createElement('tr');
+      values.forEach(value => {
+        const cell = document.createElement('td');
+        cell.textContent = value;
+        row.append(cell);
+      });
+      body.append(row);
+    });
+    table.append(head, body);
+    const wrap = document.createElement('div');
+    wrap.className = 'alumni-table-wrap';
+    wrap.append(table);
+    alumniOriginal.replaceWith(wrap);
+  }
+
+  const livesAnchor = document.getElementById('Lives');
+  if (livesAnchor) {
+    const honorsAnchor = document.createElement('p');
+    honorsAnchor.id = 'honors';
+    const honors = document.createElement('section');
+    honors.className = 'honors-panel';
+    const heading = document.createElement('h3');
+    heading.textContent = 'Honors';
+    const record = document.createElement('div');
+    record.id = 'honors-record';
+    honors.append(heading, record);
+    livesAnchor.before(honorsAnchor, honors);
   }
 
   const newsHighlight = /National Young Scientists Funding Program|Joined Peking University|(?:IEEE\s+)?(?:TPAMI|T-?IFS|TCSVT|TIP|IJCV)|ACM\s+(?:TOMM|MM)(?:[’']?\d{2,4})?|Nature\s+(?:Communications|Synthesis)|(?:NeurIPS|NeurIP|ICCV|CVPR|ECCV|ICLR|ICML|AAAI|IJCAI|BMVC|ICME|ICPR|PRCV|ICIG|VCIP|China3DV)[’']?\d{2,4}/gi;

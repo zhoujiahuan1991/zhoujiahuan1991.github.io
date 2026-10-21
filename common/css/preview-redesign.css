@@ -639,3 +639,49 @@ body:not(.lab-page):not(.preview-placeholder-page) .content { padding-top: 0; }
 .application-preview pre { overflow-wrap: anywhere; white-space: pre-wrap; padding: 16px; border: 1px solid #efe1db; background: #fff; color: #43383c; font: 14px/1.65 ui-monospace,SFMono-Regular,Consolas,monospace; }
 #copy-status { margin-left: 11px; color: #82636b; font-size: 13px; }
 @media (max-width: 650px) { .apply-fields { grid-template-columns: 1fr; } .example-card { padding: 20px; } }
+
+/* Single-column project and patent records; compact paired motion previews. */
+.record-card { width: 100%; }
+.record-card .record-organization { margin-bottom: 7px !important; color: #43363b !important; font-size: 17px !important; font-weight: 650; }
+.record-card .record-details { margin-bottom: 12px !important; }
+.record-card .record-period { color: #9d1230; font-size: 15px; font-weight: 800; }
+.patent-facts { display: grid; grid-template-columns: max-content 1fr; gap: 7px 18px; margin: 15px 0 0; font-size: 15px; }
+.patent-facts dt { color: #861b31; font-weight: 750; }
+.patent-facts dd { margin: 0; color: #43383d; overflow-wrap: anywhere; }
+.demos-panel .example-disclaimer a { color: #9d1230; font-weight: 700; }
+.demo-card .demo-venue { color: #9d1230 !important; font-size: 15px !important; font-weight: 800; font-style: italic; }
+.demo-media { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; margin: 20px 0; }
+.demo-media figure { margin: 0; overflow: hidden; border: 1px solid #eadbd9; border-radius: 12px; background: #fbf7f6; }
+.demo-media video { display: block; width: 100%; aspect-ratio: 16 / 9; object-fit: contain; background: #f7f3f2; }
+.demo-media figcaption { padding: 9px 12px; color: #5d4d52; font-size: 13px; }
+.demo-link { display: inline-flex; align-items: center; min-height: 42px; padding: 8px 16px; border: 1px solid #ba5363; border-radius: 8px; color: #9d1230; font-size: 14px; font-weight: 750; text-decoration: none; }
+.demo-link:hover { background: #faebec; color: #7d1028; text-decoration: none; }
+@media (max-width: 700px) { .demo-media { grid-template-columns: 1fr; } }
+
+/* Wider, fluid layouts and the quieter solid PKU-crimson home hero. */
+.content, .lab-page .content { width: 100%; max-width: 1680px; padding-left: clamp(14px, 3vw, 52px); padding-right: clamp(14px, 3vw, 52px); }
+.content > section { width: 100%; max-width: none; }
+.contact-panel, .example-panel, .honors-panel { max-width: 1500px !important; }
+.content > .hero { background: #981a35 !important; background-image: none !important; animation: none !important; }
+.content > .hero::before, .content > .hero::after, .hero-grid::before { display: none !important; }
+.about-section .bio-details .biography-language[hidden] { display: none !important; }
+.biography-switch { margin: 9px 0 0; padding: 9px 15px; border: 1px solid #dcb7bd; border-radius: 8px; background: #fff9f7; color: #951a33; font-size: 14px; font-weight: 800; cursor: pointer; }
+.biography-switch:hover { background: #f6e8e8; }
+#news + section > .recruit-banner { max-width: 100%; margin: 0 auto 28px; border: 1px solid #ead1d2; border-radius: 11px; background: #fdf4f3; }
+#direct + section .box-container .number-box { display: none !important; }
+.paper-all-link { width: fit-content; min-width: 176px; text-align: center; text-decoration: none !important; }
+.publications-page .content { padding-top: 28px !important; }
+.publications-page #paper + section > h3 { text-align: center; }
+.publications-page #paper + section > h3::after { margin-left: auto; margin-right: auto; }
+.service-entry { grid-template-columns: 112px minmax(0, 1fr) auto; gap: 20px; align-items: center; min-height: 104px; padding: 14px 18px; }
+.service-description li { padding-left: 0; }
+.service-description li::before { display: none; }
+.service-mark { display: flex; align-items: center; justify-content: center; width: 112px; height: 88px; padding: 7px; border: 1px solid #eddfdd; border-radius: 10px; background: #fff; }
+.service-logo { display: block; width: 100%; height: 100%; object-fit: contain; }
+.service-cover { display: block; width: auto; max-width: 100%; height: 100%; object-fit: contain; }
+.service-wordmark { color: #a21a34; font: italic 800 18px/1.2 Georgia,serif; text-align: center; }
+@media (max-width: 700px) {
+  .service-entry { grid-template-columns: 76px minmax(0,1fr); gap: 8px 12px; min-height: 86px; padding: 11px; }
+  .service-mark { grid-row: span 2; width: 76px; height: 67px; }
+  .service-year { grid-column: 2; text-align: left; }
+}

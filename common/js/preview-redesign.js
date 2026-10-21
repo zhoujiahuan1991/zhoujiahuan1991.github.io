@@ -39,6 +39,7 @@
   function enhanceNavigation() {
     const nav = $('.navbar.navbar-default');
     if (!nav) return;
+    if (!document.body.classList.contains('publications-page')) nav.id = 'top';
     const labBrand = make('a', 'lab-brand');
     labBrand.href = 'research.html#member';
     labBrand.setAttribute('aria-label', 'OV³ Lab · Lab members');
@@ -51,14 +52,14 @@
     nav.prepend(labBrand);
     const list = $('.navbar-nav', nav);
     const links = [
-      ['Home', '#top'], ['About', '#about'], ['News', '#news'],
-      ['Research', '#direct'], ['Publications', '#paper'],
-      ['People', 'research.html#member'], ['Honors', 'honors.html'],
-      ['Patents', 'patents.html'], ['Events', 'events.html'], ['Contact', 'contact.html']
+      ['Home', 'index.html#top'], ['About', 'index.html#about'], ['News', 'index.html#news'],
+      ['Research', 'index.html#direct'], ['Publications', 'publications.html'],
+      ['People', 'research.html#member'],
+      ['Patents', 'patents.html'], ['Events', 'events.html'], ['Demos', 'demos.html'], ['Contact', 'contact.html']
     ];
     if (list) {
       list.replaceChildren(...links.map(([label, href], index) => {
-        const item = make('li', index === 0 ? 'active' : '');
+        const item = make('li', (document.body.classList.contains('publications-page') ? label === 'Publications' : index === 0) ? 'active' : '');
         const link = make('a', '', label);
         link.href = href;
         item.append(link);
@@ -67,7 +68,7 @@
     }
 
     const brand = make('a', 'site-brand');
-    brand.href = '#top';
+    brand.href = document.body.classList.contains('publications-page') ? 'index.html#top' : '#top';
     brand.setAttribute('aria-label', 'Peking University · Back to top');
     const logo = make('img', 'site-brand-logo');
     logo.src = 'common/img/pku-logo.png';
@@ -77,15 +78,6 @@
     brand.append(logo);
     nav.append(brand);
 
-    const banner = make('div', 'recruit-banner-wrap');
-    banner.id = 'top';
-    const link = make('a', 'recruit-banner');
-    link.href = 'contact.html';
-    [['recruit-status', 'Now Recruiting'], ['recruit-role', 'Postdoc'],
-      ['recruit-role', 'PhD'], ['recruit-role', 'RA'],
-      ['recruit-contact', 'Contact us ↗']].forEach(([className, label]) => link.append(make('span', className, label)));
-    banner.append(link);
-    nav.after(banner);
   }
 
   function enhanceHero() {
@@ -124,7 +116,7 @@
     const research = make('a', '', 'View Research ↗');
     research.href = '#direct';
     const publications = make('a', '', 'View Publications ↗');
-    publications.href = '#paper';
+    publications.href = 'publications.html';
     const contact = make('a', '', 'Join Our Team ↗');
     contact.href = 'contact.html';
     actions.append(research, publications, contact);
@@ -144,14 +136,33 @@
     about.append(make('h3', '', 'About Me'));
     const aboutGrid = make('div', 'about-grid');
     const details = make('div', 'bio-details');
-    biographies.forEach(paragraph => details.append(paragraph));
+    biographies.forEach((paragraph, index) => {
+      paragraph.classList.add('biography-language');
+      paragraph.lang = index === 0 ? 'en' : 'zh-CN';
+      paragraph.hidden = index !== 0;
+      details.append(paragraph);
+    });
+    if (biographies.length > 1) {
+      const switcher = make('button', 'biography-switch', '查看中文简介 ↗');
+      switcher.type = 'button';
+      switcher.setAttribute('aria-pressed', 'false');
+      switcher.addEventListener('click', () => {
+        const showChinese = switcher.getAttribute('aria-pressed') !== 'true';
+        biographies.forEach((paragraph, index) => { paragraph.hidden = showChinese ? index === 0 : index !== 0; });
+        switcher.textContent = showChinese ? 'Read English biography ↗' : '查看中文简介 ↗';
+        switcher.setAttribute('aria-pressed', String(showChinese));
+      });
+      details.append(switcher);
+    }
     const experience = make('aside', 'experience-card');
     experience.setAttribute('aria-label', 'Education and experience');
     experience.append(make('h4', '', 'Education & Experience'));
     [
       ['Assistant Professor', 'Peking University', 'Wangxuan Institute of Computer Technology', '2022–Present', 'pku-seal.svg'],
-      ['Ph.D.', 'Northwestern University', 'Electrical Engineering & Computer Science', '2013–2018', 'northwestern-seal.svg'],
-      ['B.E.', 'Tsinghua University', 'Department of Automation', '2009–2013', 'tsinghua-seal.svg']
+      ['Research Assistant Professor', 'Northwestern University', 'Department of Electrical and Computer Engineering', '2020–2022', 'northwestern-seal.svg'],
+      ['Postdoctoral Fellow', 'Northwestern University', 'Department of Electrical and Computer Engineering', '2019–2020', 'northwestern-seal.svg'],
+      ['Ph.D.', 'Northwestern University', 'Computer Science', '2013–2018', 'northwestern-seal.svg'],
+      ['B.E.', 'Tsinghua University', 'Automation', '2009–2013', 'tsinghua-seal.svg']
     ].forEach(([role, institution, field, period, seal]) => {
       const entry = make('div', 'experience-entry');
       const crest = make('img', 'experience-seal');
@@ -183,6 +194,12 @@
     const items = $$('.news-item', originalList);
     const timeline = make('div', 'news-timeline');
     timeline.setAttribute('aria-label', 'Latest news timeline');
+    const recruiting = make('a', 'recruit-banner');
+    recruiting.href = 'contact.html';
+    [['recruit-status', 'Now Recruiting'], ['recruit-role', 'Postdoc'], ['recruit-role', 'PhD'],
+      ['recruit-role', 'RA'], ['recruit-contact', 'Contact us ↗']]
+      .forEach(([className, label]) => recruiting.append(make('span', className, label)));
+    section.querySelector('h3')?.after(recruiting);
 
     const dated = items.map((item, index) => {
       const paragraph = $('p', item);
@@ -211,6 +228,7 @@
       const entries = make('div', 'news-year-entries');
       yearMap.get(year).forEach(entry => {
         const row = make('article', 'news-timeline-entry');
+        row.dataset.year = year;
         const stamp = make('time', 'news-stamp');
         stamp.dateTime = `${entry.year}-${entry.month}${entry.day ? `-${entry.day}` : ''}`;
         stamp.append(make('span', 'news-stamp-year', entry.year), make('span', 'news-stamp-month', entry.day ? `${entry.month}.${entry.day}` : entry.month));
@@ -225,19 +243,18 @@
       timeline.append(group);
     });
 
-    const initialCount = 24;
     const toggle = make('button', 'news-more', 'View all news ↓');
     toggle.type = 'button';
     toggle.setAttribute('aria-expanded', 'false');
     const update = expanded => {
-      rows.forEach((row, index) => { row.hidden = !expanded && index >= initialCount; });
+      rows.forEach(row => { row.hidden = !expanded && row.dataset.year !== '2026'; });
       groups.forEach(group => { group.hidden = !$('.news-timeline-entry:not([hidden])', group); });
-      toggle.textContent = expanded ? 'Show recent news ↑' : 'View all news ↓';
+      toggle.textContent = expanded ? 'Show 2026 news ↑' : 'View all news ↓';
       toggle.setAttribute('aria-expanded', String(expanded));
     };
     toggle.addEventListener('click', () => update(toggle.getAttribute('aria-expanded') !== 'true'));
     update(false);
-    if (rows.length > initialCount) timeline.append(toggle);
+    if (rows.some(row => row.dataset.year !== '2026')) timeline.append(toggle);
     originalList.after(timeline);
     section.classList.add('news-enhanced');
   }
@@ -271,7 +288,7 @@
     const journal = journalMatch && journalFactors[journalMatch[1]];
     if (journal) {
       const impact = journal.values[paper.year];
-      const badge = make('a', `paper-jif${impact ? '' : ' paper-jif--unverified'}`, impact ? `${impact[0]} IF ${impact[1]}` : 'IF 未核实');
+      const badge = make('a', `paper-jif${impact ? '' : ' paper-jif--unverified'}`, impact ? `IF ${impact[1]}` : 'IF 未核实');
       badge.href = journal.source;
       badge.target = '_blank';
       badge.rel = 'noopener noreferrer';
@@ -331,6 +348,17 @@
 
     const papers = $$('[id="0000"] ol > li', section).map(readPaper);
     if (!papers.length) return;
+    if (!document.body.classList.contains('publications-page')) {
+      const widget = make('div', 'publication-widget home-publications');
+      const cards = make('div', 'paper-cards');
+      papers.filter(paper => paper.year === '2026').forEach(paper => cards.append(paperCard(paper)));
+      const allLink = make('a', 'paper-more paper-all-link', 'View all papers ↗');
+      allLink.href = 'publications.html';
+      widget.append(cards, allLink);
+      section.insertBefore(widget, $('.tabs', section));
+      document.documentElement.classList.add('preview-enhanced');
+      return;
+    }
 
     const intro = make('p', 'paper-intro', 'Browse the full publication record. Search by paper, author or venue, and filter by year and research topic. Journal badges show the IF for the paper’s listed year; 2026 papers show the latest released 2025 IF.');
     const tools = make('div', 'paper-tools');
@@ -367,7 +395,6 @@
           other.classList.toggle('active', active);
           other.setAttribute('aria-pressed', String(active));
         });
-        visibleLimit = 12;
         render();
       });
       years.append(button);
@@ -376,13 +403,8 @@
     const count = make('p', 'paper-count');
     count.setAttribute('aria-live', 'polite');
     const cards = make('div', 'paper-cards');
-    const more = make('button', 'paper-more', 'Load more papers ↓');
-    more.type = 'button';
-    let visibleLimit = 12;
-    more.addEventListener('click', () => { visibleLimit += 12; render(); });
-
     const widget = make('div', 'publication-widget');
-    widget.append(intro, tools, years, count, cards, more);
+    widget.append(intro, tools, years, count, cards);
     section.insertBefore(widget, $('.tabs', section));
 
     function render() {
@@ -394,17 +416,15 @@
         const haystack = `${paper.raw} ${paper.topics.join(' ')}`.toLocaleLowerCase();
         return byYear && byTopic && (!query || haystack.includes(query));
       });
-      const shown = matches.slice(0, visibleLimit);
       const fragment = document.createDocumentFragment();
-      shown.forEach(paper => fragment.append(paperCard(paper)));
+      matches.forEach(paper => fragment.append(paperCard(paper)));
       if (!matches.length) fragment.append(make('div', 'paper-empty', 'No papers match these filters. Try another keyword or year.'));
       cards.replaceChildren(fragment);
-      count.textContent = `${shown.length} of ${matches.length} papers shown · ${papers.length} total`;
-      more.hidden = shown.length >= matches.length;
+      count.textContent = `${matches.length} papers shown · ${papers.length} total`;
     }
 
-    search.addEventListener('input', () => { visibleLimit = 12; render(); });
-    topic.addEventListener('change', () => { visibleLimit = 12; render(); });
+    search.addEventListener('input', render);
+    topic.addEventListener('change', render);
     render();
     document.documentElement.classList.add('preview-enhanced');
   }
@@ -415,11 +435,17 @@
     if (!section || !table) return;
     const groups = make('div', 'service-groups');
     let entries = null;
+    const artwork = {
+      MVA: 'mva.jpg', ICCV: 'iccv.svg', ICLR: 'iclr.svg', ICML: 'icml.svg',
+      CVPR: 'cvpr.svg', ECCV: 'eccv.svg', ICPR: 'icpr.svg', ICME: 'icme.png', BMVC: 'bmvc.png'
+    };
     $$('tr', table).forEach(row => {
       const heading = $('th', row);
       if (heading) {
+        const title = normalize(heading.textContent).replace(/:$/, '');
+        if (/Conference Reviewer|Journal Reviewer/i.test(title)) { entries = null; return; }
         const group = make('section', 'service-group');
-        group.append(make('h4', '', normalize(heading.textContent)));
+        group.append(make('h4', '', title));
         entries = make('div', 'service-entries');
         group.append(entries);
         groups.append(group);
@@ -431,6 +457,18 @@
       const entry = make('div', 'service-entry');
       const description = make('div', 'service-description');
       [...cells[0].childNodes].forEach(node => description.append(node.cloneNode(true)));
+      const acronym = normalize(description.textContent).match(/\((MVA|ICCV|AAAI|ICLR|ICML|NeurIPS|CVPR|ECCV|ICPR|ICME|PRCV|BMVC|BMCV)\)/i)?.[1] || '';
+      const mark = make('div', 'service-mark');
+      const art = artwork[acronym.toUpperCase() === 'BMCV' ? 'BMVC' : acronym];
+      if (art) {
+        const image = make('img', art === 'mva.jpg' ? 'service-cover' : 'service-logo');
+        image.src = `common/img/service-logos/${art}`;
+        image.alt = `${acronym} ${art === 'mva.jpg' ? 'journal cover' : 'conference logo'}`;
+        image.loading = 'lazy';
+        mark.append(image);
+      } else {
+        mark.append(make('span', 'service-wordmark', acronym || 'Service'));
+      }
       const walker = document.createTreeWalker(description, NodeFilter.SHOW_TEXT);
       const acronymPattern = /\((?:IEEE\s+)?(?:[A-Z][A-Z0-9-]{1,12}|NeurIPS|China3DV)\)/g;
       const textNodes = [];
@@ -449,7 +487,7 @@
         fragment.append(document.createTextNode(text.slice(last)));
         node.replaceWith(fragment);
       });
-      entry.append(description);
+      entry.append(mark, description);
       if (cells[1] && normalize(cells[1].textContent)) {
         const year = make('div', 'service-year');
         [...cells[1].childNodes].forEach(node => year.append(node.cloneNode(true)));

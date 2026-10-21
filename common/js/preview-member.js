@@ -6,9 +6,9 @@
   content.classList.add('content');
   const links = [
     ['Home', '../index.html#top'], ['About', '../index.html#about'], ['News', '../index.html#news'],
-    ['Research', '../index.html#direct'], ['Publications', '../index.html#paper'],
-    ['People', '../research.html#member'], ['Honors', '../honors.html'],
-    ['Patents', '../patents.html'], ['Events', '../events.html'], ['Contact', '../contact.html']
+    ['Research', '../index.html#direct'], ['Publications', '../publications.html'],
+    ['People', '../research.html#member'],
+    ['Patents', '../patents.html'], ['Events', '../events.html'], ['Demos', '../demos.html'], ['Contact', '../contact.html']
   ];
   const list = nav.querySelector('.navbar-nav');
   list.replaceChildren(...links.map(([label, href]) => {
