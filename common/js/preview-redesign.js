@@ -8,10 +8,47 @@
     return element;
   };
   const normalize = value => (value || '').replace(/\s+/g, ' ').trim();
+  // JIF is a journal-level metric for the named year, not a paper-level score.
+  // For papers dated 2026, the latest released year is 2025 (2026 JCR).
+  // Each source page contains the year-by-year figure used below.
+  const journalFactors = {
+    TPAMI: { source: 'https://www.bioxbio.com/journal/IEEE-T-PATTERN-ANAL', values: { 2026: ['2025', '20.4'], 2025: ['2025', '20.4'], 2024: ['2024', '18.6'], 2023: ['2023', '20.8'], 2022: ['2022', '23.6'], 2020: ['2020', '16.389'] } },
+    'Pattern Recognition': { source: 'https://www.bioxbio.com/journal/PATTERN-RECOGN', values: { 2026: ['2025', '9.1'] } },
+    TIFS: { source: 'https://www.bioxbio.com/journal/IEEE-T-INF-FOREN-SEC', values: { 2025: ['2025', '8.7'], 2024: ['2024', '8.0'] } },
+    IJCV: { source: 'https://www.bioxbio.com/journal/INT-J-COMPUT-VISION', values: { 2024: ['2024', '9.3'] } },
+    'Nat. Commun': { source: 'https://www.bioxbio.com/journal/NAT-COMMUN', values: { 2024: ['2024', '15.7'] } },
+    'Nat. Synth': { source: 'https://journalsimpactfactors.com/journal.php?id=164', values: { 2024: ['2024', '20.0'] } },
+    TOMM: { source: 'https://www.bioxbio.com/journal/ACM-T-MULTIM-COMPUT', values: { 2024: ['2024', '6.0'] } },
+    TCSVT: { source: 'https://www.bioxbio.com/journal/IEEE-T-CIRC-SYST-VID', values: { 2023: ['2023', '8.3'] } },
+    TIP: { source: 'https://www.bioxbio.com/journal/IEEE-T-IMAGE-PROCESS', values: { 2017: ['2017', '5.071'] } },
+    '计算机科学': { source: 'https://www.jsjkx.com/CN/news/news110.shtml', values: {} }
+  };
+  const newsHighlight = /(?:IEEE\s+)?(?:TPAMI|TIFS|TIP|TCSVT|IJCV)|Nature(?:\s+Communications|\s+Synthesis)?|(?:NeurIPS|ICCV|CVPR|ECCV|ICLR|ICML|AAAI|IJCAI|BMVC|ICME|ICPR|ACM\s+MM|China3DV)[’']?\d{2,4}/gi;
+  function highlightNews(text) {
+    const fragment = document.createDocumentFragment();
+    let last = 0;
+    for (const match of text.matchAll(newsHighlight)) {
+      fragment.append(document.createTextNode(text.slice(last, match.index)));
+      fragment.append(make('strong', 'news-highlight', match[0]));
+      last = match.index + match[0].length;
+    }
+    fragment.append(document.createTextNode(text.slice(last)));
+    return fragment;
+  }
 
   function enhanceNavigation() {
     const nav = $('.navbar.navbar-default');
     if (!nav) return;
+    const labBrand = make('a', 'lab-brand');
+    labBrand.href = 'research.html#member';
+    labBrand.setAttribute('aria-label', 'OV³ Lab · Lab members');
+    const labLogo = make('img', 'lab-brand-logo');
+    labLogo.src = 'common/img/ov3-lab-logo.png';
+    labLogo.alt = 'OV³ Lab · 开放视界实验室';
+    labLogo.width = 2000;
+    labLogo.height = 640;
+    labBrand.append(labLogo);
+    nav.prepend(labBrand);
     const list = $('.navbar-nav', nav);
     const links = [
       ['Home', '#top'], ['About', '#about'], ['News', '#news'],
@@ -111,13 +148,21 @@
     experience.setAttribute('aria-label', 'Education and experience');
     experience.append(make('h4', '', 'Education & Experience'));
     [
-      ['Assistant Professor', 'Peking University', 'Wangxuan Institute of Computer Technology', '2022–Present'],
-      ['Ph.D.', 'Northwestern University', 'Electrical Engineering & Computer Science', '2018'],
-      ['B.E.', 'Tsinghua University', 'Department of Automation', '2013']
-    ].forEach(([role, institution, field, period]) => {
+      ['Assistant Professor', 'Peking University', 'Wangxuan Institute of Computer Technology', '2022–Present', 'pku-seal.svg'],
+      ['Ph.D.', 'Northwestern University', 'Electrical Engineering & Computer Science', '2018', 'northwestern-seal.svg'],
+      ['B.E.', 'Tsinghua University', 'Department of Automation', '2013', 'tsinghua-seal.svg']
+    ].forEach(([role, institution, field, period, seal]) => {
       const entry = make('div', 'experience-entry');
-      entry.append(make('span', 'experience-role', role), make('span', 'experience-period', period),
+      const crest = make('img', 'experience-seal');
+      crest.src = `common/img/${seal}`;
+      crest.alt = `${institution} seal`;
+      crest.width = 64;
+      crest.height = 64;
+      crest.loading = 'lazy';
+      const copy = make('div', 'experience-copy');
+      copy.append(make('span', 'experience-role', role), make('span', 'experience-period', period),
         make('strong', 'experience-institution', institution), make('span', 'experience-field', field));
+      entry.append(crest, copy);
       experience.append(entry);
     });
     aboutGrid.append(details, experience);
@@ -138,19 +183,18 @@
     const timeline = make('div', 'news-timeline');
     timeline.setAttribute('aria-label', 'Latest news timeline');
 
-    const recruitment = $('p', items[0]);
-    if (recruitment) {
-      const notice = make('div', 'news-recruitment');
-      notice.append(make('span', 'news-recruitment-label', 'RECRUITING'));
-      notice.append(recruitment.cloneNode(true));
-      timeline.append(notice);
-    }
-
-    const dated = items.slice(1).map((item, index) => {
+    const dated = items.map((item, index) => {
       const paragraph = $('p', item);
       const original = normalize(paragraph?.textContent);
-      const match = original.match(/^(\d{2})\.(\d{4}),?\s*/);
-      return match ? { month: match[1], year: match[2], text: original.slice(match[0].length), index } : null;
+      const fullDate = original.match(/^(\d{2})\.(\d{2})\.(\d{4}),?\s*/);
+      const monthDate = original.match(/^(\d{2})\.(\d{4}),?\s*/);
+      const match = fullDate || monthDate;
+      return match ? {
+        day: fullDate ? fullDate[1] : '',
+        month: fullDate ? fullDate[2] : monthDate[1],
+        year: fullDate ? fullDate[3] : monthDate[2],
+        text: original.slice(match[0].length), index
+      } : null;
     }).filter(Boolean);
     const yearMap = new Map();
     dated.forEach(entry => {
@@ -167,9 +211,11 @@
       yearMap.get(year).forEach(entry => {
         const row = make('article', 'news-timeline-entry');
         const stamp = make('time', 'news-stamp');
-        stamp.dateTime = `${entry.year}-${entry.month}`;
-        stamp.append(make('span', 'news-stamp-year', entry.year), make('span', 'news-stamp-month', entry.month));
-        row.append(stamp, make('span', 'news-timeline-dot'), make('p', 'news-timeline-text', entry.text));
+        stamp.dateTime = `${entry.year}-${entry.month}${entry.day ? `-${entry.day}` : ''}`;
+        stamp.append(make('span', 'news-stamp-year', entry.year), make('span', 'news-stamp-month', entry.day ? `${entry.month}.${entry.day}` : entry.month));
+        const message = make('p', 'news-timeline-text');
+        message.append(highlightNews(entry.text));
+        row.append(stamp, make('span', 'news-timeline-dot'), message);
         entries.append(row);
         rows.push(row);
       });
@@ -205,29 +251,73 @@
     const fullYear = raw.match(/\b20\d{2}\b/);
     const year = shortYear ? String(2000 + Number(shortYear[1])) : (fullYear ? fullYear[0] : 'Earlier');
     const topics = [...new Set($$('.tag', paragraph).map(tag => normalize(tag.textContent)).filter(Boolean))];
-    return { title, venue, year, topics, raw, original: paragraph.cloneNode(true), index };
+    const sourceHtml = paragraph.innerHTML;
+    const authorMatch = sourceHtml.match(/<\/i>\s*\)\s*-\s*([\s\S]*?)["“]/i);
+    const authorsHtml = authorMatch ? authorMatch[1].trim().replace(/,\s*$/, '') : '';
+    const details = titleMatch ? normalize(raw.slice(titleMatch.index + titleMatch[0].length).split(/\s*\[/)[0]).replace(/^,\s*/, '') : '';
+    const pdf = $$('a', paragraph).find(link => normalize(link.textContent).toLowerCase() === 'pdf' && link.getAttribute('href'));
+    const pdfHref = pdf?.getAttribute('href') || '';
+    const previewName = pdfHref.startsWith('pub/') ? pdfHref.split('/').pop().replace(/\.pdf$/i, '.webp') : `external-${index}.webp`;
+    return { title, venue, year, topics, raw, details, authorsHtml, pdfHref, previewName, original: paragraph.cloneNode(true), index };
   }
 
   function paperCard(paper) {
     const card = make('article', 'paper-card');
-    const year = make('div', 'paper-side-year', paper.year);
     const body = make('div', 'paper-body');
-    if (paper.title !== `Publication ${paper.index + 1}`) body.append(make('h4', 'paper-display-title', paper.title));
-    const source = paper.original.cloneNode(true);
-    source.classList.add('paper-source');
-    $$('a', source).forEach(link => {
-      const before = link.previousSibling;
-      const after = link.nextSibling;
-      if (before?.nodeType === 3) before.textContent = before.textContent.replace(/\[\s*$/, '');
-      if (after?.nodeType === 3) after.textContent = after.textContent.replace(/^\s*\]/, '');
-      if (normalize(link.textContent).toLowerCase() === 'bib') {
-        link.remove();
+    const venueRow = make('div', 'paper-meta');
+    venueRow.append(make('span', 'paper-venue', paper.venue));
+    const journalMatch = paper.venue.match(/^(.*?)[’'](\d{2})(?:,.*)?$/);
+    const journal = journalMatch && journalFactors[journalMatch[1]];
+    if (journal) {
+      const impact = journal.values[paper.year];
+      const badge = make('a', `paper-jif${impact ? '' : ' paper-jif--unverified'}`, impact ? `${impact[0]} JIF ${impact[1]}` : 'JIF 未核实');
+      badge.href = journal.source;
+      badge.target = '_blank';
+      badge.rel = 'noopener noreferrer';
+      badge.title = impact ? `${journalMatch[1]} · ${impact[0]} Journal Impact Factor · View source` : 'No verified JCR Journal Impact Factor; click to view the journal source';
+      venueRow.append(badge);
+    }
+    body.append(venueRow);
+    if (paper.title !== `Publication ${paper.index + 1}`) {
+      body.append(make('h4', 'paper-display-title', paper.title));
+    }
+    if (paper.authorsHtml) {
+      const authors = make('p', 'paper-authors');
+      authors.innerHTML = paper.authorsHtml;
+      body.append(authors);
+    } else {
+      const fallback = paper.original.cloneNode(true);
+      fallback.classList.add('paper-source');
+      body.append(fallback);
+    }
+    if (paper.details) body.append(make('p', 'paper-citation', paper.details));
+
+    if (paper.pdfHref) {
+      const figure = make('figure', 'paper-figure');
+      const image = make('img', 'paper-figure-image');
+      image.src = encodeURI(`common/img/paper-previews/${paper.previewName}`);
+      image.alt = `Figure preview from ${paper.title}`;
+      image.loading = 'lazy';
+      image.addEventListener('error', () => figure.remove());
+      figure.append(image);
+      body.append(figure);
+    }
+
+    const footer = make('div', 'paper-footer');
+    const resources = make('div', 'paper-resources');
+    $$('a', paper.original).forEach(originalLink => {
+      const link = originalLink.cloneNode(true);
+      const label = normalize(link.textContent);
+      if (label.toLowerCase() === 'pdf' && !link.getAttribute('href')) {
+        resources.append(make('span', 'paper-resource paper-resource--disabled', 'PDF'));
       } else {
-        link.classList.add('paper-resource');
+        link.className = 'paper-resource';
+        resources.append(link);
       }
     });
-    body.append(source);
-    card.append(year, body);
+    footer.append(resources);
+    body.append(footer);
+    card.append(body);
     return card;
   }
 
@@ -239,7 +329,7 @@
     const papers = $$('[id="0000"] ol > li', section).map(readPaper);
     if (!papers.length) return;
 
-    const intro = make('p', 'paper-intro', 'Browse the full publication record. Search by paper, author or venue, and filter by year and research topic. Every card shows its full original entry.');
+    const intro = make('p', 'paper-intro', 'Browse the full publication record. Search by paper, author or venue, and filter by year and research topic. Journal badges show the JIF for the paper’s listed year; 2026 papers show the latest released 2025 JIF.');
     const tools = make('div', 'paper-tools');
     const search = make('input', 'paper-search');
     search.type = 'search';

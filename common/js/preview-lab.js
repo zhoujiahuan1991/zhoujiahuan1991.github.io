@@ -24,6 +24,19 @@
     }));
   }
 
+  const labBrand = document.createElement('a');
+  labBrand.className = 'lab-brand';
+  labBrand.href = '#member';
+  labBrand.setAttribute('aria-label', 'OV³ Lab · Lab members');
+  const labLogo = document.createElement('img');
+  labLogo.className = 'lab-brand-logo';
+  labLogo.src = 'common/img/ov3-lab-logo.png';
+  labLogo.alt = 'OV³ Lab · 开放视界实验室';
+  labLogo.width = 2000;
+  labLogo.height = 640;
+  labBrand.append(labLogo);
+  nav.prepend(labBrand);
+
   const brand = document.createElement('a');
   brand.className = 'site-brand';
   brand.href = 'index.html#top';
@@ -40,17 +53,28 @@
   const intro = document.querySelector('#introduction + section');
   if (intro) {
     intro.classList.add('lab-hero');
-    intro.innerHTML = '<div class="lab-hero-content"><p class="lab-hero-kicker">WANGXUAN INSTITUTE · PEKING UNIVERSITY</p><h1>OV³ Lab</h1><p class="lab-hero-motto">Open Vision. Open View. Open Venture.</p><p class="lab-hero-description">We explore computer vision, multi-modal learning and AI4Science, with an interest in intelligence that can learn and adapt in open environments.</p><div class="lab-hero-actions"><a href="#member">Meet our people ↗</a><a href="index.html#paper">Explore publications</a><a href="mailto:jiahuanzhou@pku.edu.cn">Join the lab</a></div></div>';
+    intro.innerHTML = '<div class="lab-hero-content"><p class="lab-hero-kicker">WANGXUAN INSTITUTE · PEKING UNIVERSITY</p><h1>OV³ Lab</h1><p class="lab-hero-motto">Open Vision. Open View. Open Venture.</p><p class="lab-hero-description">We explore computer vision, multi-modal learning and AI4Science, with an interest in intelligence that can learn and adapt in open environments.</p><div class="lab-hero-actions"><a href="#member">Meet our people ↗</a><a href="index.html#paper">Explore publications</a><a href="contact.html">Join the lab</a></div></div>';
   }
 
-  document.querySelectorAll('#news + section .news-item').forEach((item, index) => {
-    if (index === 0) { item.classList.add('recruitment'); return; }
+  const newsHighlight = /(?:IEEE\s+)?(?:TPAMI|TIFS|TIP|TCSVT|IJCV)|Nature(?:\s+Communications|\s+Synthesis)?|(?:NeurIPS|ICCV|CVPR|ECCV|ICLR|ICML|AAAI|IJCAI|BMVC|ICME|ICPR|ACM\s+MM|China3DV)[’']?\d{2,4}/gi;
+  document.querySelectorAll('#news + section .news-item').forEach(item => {
     const paragraph = item.querySelector('p');
     if (!paragraph) return;
     const text = paragraph.textContent.replace(/\s+/g, ' ').trim();
-    const match = text.match(/^(\d{2}\.\d{4}),?\s*/);
+    const match = text.match(/^(\d{2}\.\d{2}\.\d{4}|\d{2}\.\d{4}),?\s*/);
     if (!match) return;
-    paragraph.textContent = text.slice(match[0].length);
+    const message = text.slice(match[0].length);
+    paragraph.replaceChildren();
+    let last = 0;
+    for (const important of message.matchAll(newsHighlight)) {
+      paragraph.append(document.createTextNode(message.slice(last, important.index)));
+      const strong = document.createElement('strong');
+      strong.className = 'news-highlight';
+      strong.textContent = important[0];
+      paragraph.append(strong);
+      last = important.index + important[0].length;
+    }
+    paragraph.append(document.createTextNode(message.slice(last)));
     const date = document.createElement('span');
     date.className = 'news-date';
     date.textContent = match[1];

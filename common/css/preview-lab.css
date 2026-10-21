@@ -92,3 +92,32 @@
   .lab-page .lives-orbit-card { position: relative; top: auto; left: auto; width: 100%; min-height: 0; margin: 0; animation: none; transform: none !important; backface-visibility: visible; }
   .lab-page .lives-orbit-card--duplicate { display: none; }
 }
+
+/* Six member portraits per desktop row, without shrinking the accompanying text. */
+.lab-page .part1 { grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 13px; }
+.lab-page .w18 { padding: 8px 8px 13px; }
+.lab-page .perpic .w18 img { aspect-ratio: 3 / 4; }
+.lab-page .w18 > p { font-size: 16px; }
+.lab-page .member-time, .lab-page .member-link { font-size: 14px; }
+.lab-page .perpic > p { font-size: 22px !important; }
+@media (max-width: 1100px) { .lab-page .part1 { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
+@media (max-width: 700px) { .lab-page .part1 { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+
+/* Keep all People section headings consistent with the centered homepage headings. */
+.lab-page #member + section > h3 { text-align: center; }
+.lab-page #member + section > h3::after { margin-left: auto; margin-right: auto; }
+.lab-page .perpic > p {
+  margin: 34px 0 18px !important;
+  padding: 0;
+  border-left: 0;
+  text-align: center;
+}
+.lab-page .perpic > p::after {
+  content: "";
+  display: block;
+  width: 38px;
+  height: 3px;
+  margin: 11px auto 0;
+  border-radius: 2px;
+  background: var(--wine);
+}
