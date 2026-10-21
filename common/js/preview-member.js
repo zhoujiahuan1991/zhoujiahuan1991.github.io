@@ -1,0 +1,208 @@
+(() => {
+  document.body.classList.add('member-page');
+  const nav = document.querySelector('.navbar.navbar-default');
+  const content = nav?.nextElementSibling;
+  if (!nav || !content) return;
+  content.classList.add('content');
+  const links = [
+    ['Home', '../index.html#top'], ['About', '../index.html#about'], ['News', '../index.html#news'],
+    ['Research', '../index.html#direct'], ['Publications', '../index.html#paper'],
+    ['People', '../research.html#member'], ['Honors', '../honors.html'],
+    ['Patents', '../patents.html'], ['Events', '../events.html'], ['Contact', '../contact.html']
+  ];
+  const list = nav.querySelector('.navbar-nav');
+  list.replaceChildren(...links.map(([label, href]) => {
+    const item = document.createElement('li');
+    if (label === 'People') item.className = 'active';
+    const anchor = document.createElement('a');
+    anchor.href = href;
+    anchor.textContent = label;
+    item.append(anchor);
+    return item;
+  }));
+  const brand = (className, href, source, alt) => {
+    const anchor = document.createElement('a');
+    anchor.className = className;
+    anchor.href = href;
+    anchor.setAttribute('aria-label', alt);
+    const image = document.createElement('img');
+    image.className = `${className}-logo`;
+    image.src = source;
+    image.alt = alt;
+    anchor.append(image);
+    return anchor;
+  };
+  nav.prepend(brand('lab-brand', '../research.html#member', '../common/img/ov3-lab-logo.png', 'OV³ Lab · 开放视界实验室'));
+  nav.append(brand('site-brand', '../index.html#top', '../common/img/pku-logo.png', '北京大学 · Peking University'));
+
+  const categories = [
+    [/^Education$/i, 'member-education', 'Education'],
+    [/^Awards and Honors$/i, 'member-honors', 'Honors'],
+    [/^Research Interests$/i, 'member-research', 'Research'],
+    [/^Publications$/i, 'member-publications', 'Publications'],
+    [/^Academic Service$/i, 'member-service', 'Service']
+  ];
+  const sections = [...content.querySelectorAll(':scope > section')];
+  const hero = sections[0];
+  hero.classList.add('member-hero');
+  hero.id = 'member-about';
+  sections.slice(1).forEach(section => {
+    const heading = section.querySelector('h3');
+    const match = categories.find(([pattern]) => pattern.test(heading?.textContent.trim() || ''));
+    if (match) section.id = match[1];
+  });
+
+  const awardSection = document.getElementById('member-honors');
+  const awardList = awardSection?.querySelector('ul');
+  if (awardList) {
+    const awards = document.createElement('div');
+    awards.className = 'member-award-list';
+    [...awardList.querySelectorAll('li')].forEach(item => {
+      const raw = (item.querySelector(':scope > p')?.textContent || item.firstChild?.textContent || '')
+        .replace(/\s+/g, ' ').trim();
+      if (!raw) return;
+      const date = raw.match(/(?:,\s*|\s+)(20\d{2}(?:\s*[~–-]\s*20\d{2})?)$/);
+      const row = document.createElement('div');
+      row.className = 'member-award-row';
+      const title = document.createElement('strong');
+      title.textContent = date ? raw.slice(0, date.index).trim() : raw;
+      const year = document.createElement('span');
+      year.textContent = date?.[1] || '—';
+      row.append(title, year);
+      awards.append(row);
+    });
+    if (awards.children.length) {
+      awardList.before(awards);
+      awardList.classList.add('member-awards-original');
+    }
+  }
+
+  const paperSection = document.getElementById('member-publications');
+  const paperList = paperSection?.querySelector('ol, ul');
+  if (paperList) {
+    const journalFactors = {
+      TPAMI: { source: 'https://www.bioxbio.com/journal/IEEE-T-PATTERN-ANAL', values: { 2026: ['2025', '20.4'], 2025: ['2025', '20.4'], 2024: ['2024', '18.6'], 2023: ['2023', '20.8'], 2022: ['2022', '23.6'], 2020: ['2020', '16.389'] } },
+      TIFS: { source: 'https://www.bioxbio.com/journal/IEEE-T-INF-FOREN-SEC', values: { 2025: ['2025', '8.7'], 2024: ['2024', '8.0'] } },
+      IJCV: { source: 'https://www.bioxbio.com/journal/INT-J-COMPUT-VISION', values: { 2024: ['2024', '9.3'] } },
+      TIP: { source: 'https://www.bioxbio.com/journal/IEEE-T-IMAGE-PROCESS', values: { 2017: ['2017', '5.071'] } },
+      TCSVT: { source: 'https://www.bioxbio.com/journal/IEEE-T-CIRC-SYST-VID', values: { 2023: ['2023', '8.3'] } },
+      TOMM: { source: 'https://www.bioxbio.com/journal/ACM-T-MULTIM-COMPUT', values: { 2024: ['2024', '6.0'] } },
+      'Nat. Commun': { source: 'https://www.bioxbio.com/journal/NAT-COMMUN', values: { 2024: ['2024', '15.7'] } },
+      'Nat. Synth': { source: 'https://journalsimpactfactors.com/journal.php?id=164', values: { 2024: ['2024', '20.0'] } }
+    };
+    const venuePattern = /(?:ACM\s+MM|NeurIPS|ICML|ICLR|CVPR|ICCV|ECCV|AAAI|AAMAS|IJCAI|ICPR|PRCV|ICIG|ICIC|VCIP|BMVC|ICME|TPAMI|TIFS|TCSVT|TOMM|IJCV|TIP|TMC|ESWA|CN|IVC|KBS|NN|Nat\. Commun|Nat\. Synth)(?:[’']?\d{2,4})?(?:,?\s*(?:Spotlight|Oral|Poster))?/i;
+    const otherJournals = /^(?:TMC|ESWA|CN|IVC|KBS|NN)(?:[’']|$)/i;
+    const grid = document.createElement('div');
+    grid.className = 'member-paper-grid';
+    [...paperList.querySelectorAll('li')].forEach(item => {
+      const raw = item.textContent.replace(/\s+/g, ' ').trim();
+      if (!raw) return;
+      const titleMatch = raw.match(/[“"]([^”"]+)[”"]/);
+      const venueText = [...item.querySelectorAll('strong')].map(node => node.textContent.trim())
+        .find(text => venuePattern.test(text)) || raw.match(venuePattern)?.[0] || 'Publication';
+      const venue = venueText.replace(/[()]/g, '').trim();
+      const year = venue.match(/[’'](\d{2,4})/)?.[1];
+      const fullYear = year ? (year.length === 2 ? String(2000 + Number(year)) : year) : raw.match(/\b20\d{2}\b/)?.[0];
+      const authors = titleMatch ? raw.slice(0, titleMatch.index).replace(/^\s*\([^)]*\)\s*[-–]?\s*/, '').trim().replace(/[,\s]+$/, '') : '';
+      const details = titleMatch ? raw.slice(titleMatch.index + titleMatch[0].length).replace(/^\s*,\s*/, '').replace(/\s*\[(?:pdf|bib|doi|code)[^\]]*\]/gi, '').trim() : raw;
+      const card = document.createElement('article');
+      card.className = 'member-paper-card';
+      const meta = document.createElement('div');
+      meta.className = 'paper-meta';
+      const label = document.createElement('span');
+      label.className = 'paper-venue';
+      label.textContent = venue;
+      meta.append(label);
+      const journalKey = Object.keys(journalFactors).find(key => venue.startsWith(key));
+      if (journalKey) {
+        const journal = journalFactors[journalKey];
+        const impact = journal.values[fullYear];
+        const badge = document.createElement('a');
+        badge.className = `paper-jif${impact ? '' : ' paper-jif--unverified'}`;
+        badge.href = journal.source;
+        badge.target = '_blank';
+        badge.rel = 'noopener noreferrer';
+        badge.textContent = impact ? `${impact[0]} IF ${impact[1]}` : 'IF 未核实';
+        meta.append(badge);
+      } else if (otherJournals.test(venue)) {
+        const badge = document.createElement('span');
+        badge.className = 'paper-jif paper-jif--unverified';
+        badge.textContent = 'IF 待核实';
+        meta.append(badge);
+      }
+      card.append(meta);
+      if (titleMatch) {
+        const title = document.createElement('h4');
+        title.className = 'paper-display-title';
+        title.textContent = titleMatch[1];
+        card.append(title);
+      }
+      if (authors) {
+        const byline = document.createElement('p');
+        byline.className = 'paper-authors';
+        byline.textContent = authors;
+        card.append(byline);
+      }
+      if (details) {
+        const citation = document.createElement('p');
+        citation.className = 'paper-citation';
+        citation.textContent = details;
+        card.append(citation);
+      }
+      grid.append(card);
+    });
+    if (grid.children.length) {
+      paperList.before(grid);
+      paperList.classList.add('member-papers-original');
+    }
+  }
+
+  const original = hero.querySelector('.my-auto');
+  const portrait = original?.querySelector('img');
+  if (original && portrait) {
+    const portraitParagraph = portrait.closest('p');
+    const frame = document.createElement('div');
+    frame.className = 'member-portrait-frame';
+    portrait.removeAttribute('align');
+    portrait.removeAttribute('hspace');
+    portrait.removeAttribute('border');
+    portrait.removeAttribute('width');
+    portrait.removeAttribute('height');
+    frame.append(portrait);
+    portraitParagraph?.remove();
+    original.querySelectorAll('br').forEach(item => item.remove());
+    const biography = [...original.querySelectorAll(':scope > p')].filter(item => item.textContent.trim().length > 110);
+    const grid = document.createElement('div');
+    grid.className = 'member-hero-grid';
+    const copy = document.createElement('div');
+    copy.className = 'member-profile-copy';
+    while (original.firstChild) copy.append(original.firstChild);
+    biography.forEach(item => item.remove());
+    const back = document.createElement('a');
+    back.className = 'member-back';
+    back.href = '../research.html#member';
+    back.textContent = '← Back to Lab Members';
+    copy.prepend(back);
+    grid.append(copy, frame);
+    original.append(grid);
+    if (biography.length) {
+      const bio = document.createElement('div');
+      bio.className = 'member-bio';
+      biography.forEach(item => bio.append(item));
+      original.append(bio);
+    }
+    const name = original.querySelector('h3')?.textContent.trim();
+    if (name) document.title = `${name} · OV³ Lab`;
+  }
+
+  const subnav = document.createElement('nav');
+  subnav.className = 'member-subnav';
+  subnav.setAttribute('aria-label', 'Member sections');
+  [['About', 'member-about'], ...categories.filter(([, id]) => document.getElementById(id)).map(([, id, label]) => [label, id])].forEach(([label, id]) => {
+    const anchor = document.createElement('a');
+    anchor.href = `#${id}`;
+    anchor.textContent = label;
+    subnav.append(anchor);
+  });
+  nav.after(subnav);
+})();

@@ -21,8 +21,8 @@
     ['Home', 'index.html#top'], ['About', 'index.html#about'],
     ['News', 'index.html#news'], ['Research', 'index.html#direct'],
     ['Publications', 'index.html#paper'], ['People', 'research.html#member'],
-    ['Teaching', 'teaching.html'], ['Patents', 'patents.html'],
-    ['Demos', 'demos.html'], ['Contact', 'contact.html']
+    ['Honors', 'honors.html'], ['Patents', 'patents.html'],
+    ['Events', 'events.html'], ['Contact', 'contact.html']
   ];
   links.forEach(([label, href]) => {
     const item = document.createElement('li');

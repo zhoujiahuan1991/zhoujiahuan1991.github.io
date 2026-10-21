@@ -9,8 +9,8 @@
   const links = [
     ['Home', 'index.html#top'], ['About', 'index.html#about'], ['News', 'index.html#news'],
     ['Research', 'index.html#direct'], ['Publications', 'index.html#paper'],
-    ['People', '#member'], ['Teaching', 'teaching.html'], ['Patents', 'patents.html'],
-    ['Demos', 'demos.html'], ['Contact', 'contact.html']
+    ['People', '#member'], ['Honors', 'honors.html'], ['Patents', 'patents.html'],
+    ['Events', 'events.html'], ['Contact', 'contact.html']
   ];
   if (list) {
     list.replaceChildren(...links.map(([label, href], index) => {
@@ -53,10 +53,10 @@
   const intro = document.querySelector('#introduction + section');
   if (intro) {
     intro.classList.add('lab-hero');
-    intro.innerHTML = '<div class="lab-hero-content"><p class="lab-hero-kicker">WANGXUAN INSTITUTE · PEKING UNIVERSITY</p><h1>OV³ Lab</h1><p class="lab-hero-motto">Open Vision. Open View. Open Venture.</p><p class="lab-hero-description">We explore computer vision, multi-modal learning and AI4Science, with an interest in intelligence that can learn and adapt in open environments.</p><div class="lab-hero-actions"><a href="#member">Meet our people ↗</a><a href="index.html#paper">Explore publications</a><a href="contact.html">Join the lab</a></div></div>';
+    intro.innerHTML = '<div class="lab-hero-content"><p class="lab-hero-kicker">WANGXUAN INSTITUTE · PEKING UNIVERSITY</p><h1>OV³ Lab</h1><p class="lab-hero-motto">See Beyond. Think Across. Discover What\'s Next.</p><p class="lab-hero-description">We explore computer vision, multi-modal learning and AI4Science, with an interest in intelligence that can learn and adapt in open environments.</p><div class="lab-hero-actions"><a href="#member">Meet our people ↗</a><a href="index.html#paper">Explore publications</a><a href="contact.html">Join the lab</a></div></div>';
   }
 
-  const newsHighlight = /(?:IEEE\s+)?(?:TPAMI|TIFS|TIP|TCSVT|IJCV)|Nature(?:\s+Communications|\s+Synthesis)?|(?:NeurIPS|ICCV|CVPR|ECCV|ICLR|ICML|AAAI|IJCAI|BMVC|ICME|ICPR|ACM\s+MM|China3DV)[’']?\d{2,4}/gi;
+  const newsHighlight = /National Young Scientists Funding Program|Joined Peking University|(?:IEEE\s+)?(?:TPAMI|T-?IFS|TCSVT|TIP|IJCV)|ACM\s+(?:TOMM|MM)(?:[’']?\d{2,4})?|Nature\s+(?:Communications|Synthesis)|(?:NeurIPS|NeurIP|ICCV|CVPR|ECCV|ICLR|ICML|AAAI|IJCAI|BMVC|ICME|ICPR|PRCV|ICIG|VCIP|China3DV)[’']?\d{2,4}/gi;
   document.querySelectorAll('#news + section .news-item').forEach(item => {
     const paragraph = item.querySelector('p');
     if (!paragraph) return;

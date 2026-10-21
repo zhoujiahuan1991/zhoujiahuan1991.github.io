@@ -20,7 +20,7 @@
   pointer-events: none;
 }
 .lab-hero-content { position: relative; z-index: 1; max-width: 700px; }
-.lab-hero-kicker { color: #f0cbd0; font-size: 11px; font-weight: 800; letter-spacing: .2em; text-transform: uppercase; }
+.lab-hero-kicker { color: #f0cbd0; font-size: clamp(14px, 1.3vw, 17px); font-weight: 800; letter-spacing: .15em; text-transform: uppercase; }
 .lab-hero h1 { margin: 20px 0 15px; color: white; font: 700 clamp(43px, 5vw, 62px)/1.08 Georgia, serif; letter-spacing: -.05em; }
 .lab-hero-motto { color: #f9e0e2; font: 500 clamp(20px, 2.2vw, 26px)/1.4 Georgia, serif; }
 .lab-hero-description { max-width: 600px; margin: 22px 0 0; color: #f2d8dc; font-size: 16px; }

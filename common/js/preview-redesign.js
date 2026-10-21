@@ -23,7 +23,7 @@
     TIP: { source: 'https://www.bioxbio.com/journal/IEEE-T-IMAGE-PROCESS', values: { 2017: ['2017', '5.071'] } },
     '计算机科学': { source: 'https://www.jsjkx.com/CN/news/news110.shtml', values: {} }
   };
-  const newsHighlight = /(?:IEEE\s+)?(?:TPAMI|TIFS|TIP|TCSVT|IJCV)|Nature(?:\s+Communications|\s+Synthesis)?|(?:NeurIPS|ICCV|CVPR|ECCV|ICLR|ICML|AAAI|IJCAI|BMVC|ICME|ICPR|ACM\s+MM|China3DV)[’']?\d{2,4}/gi;
+  const newsHighlight = /National Young Scientists Funding Program|Joined Peking University|(?:IEEE\s+)?(?:TPAMI|T-?IFS|TCSVT|TIP|IJCV)|ACM\s+(?:TOMM|MM)(?:[’']?\d{2,4})?|Nature\s+(?:Communications|Synthesis)|(?:NeurIPS|NeurIP|ICCV|CVPR|ECCV|ICLR|ICML|AAAI|IJCAI|BMVC|ICME|ICPR|PRCV|ICIG|VCIP|China3DV)[’']?\d{2,4}/gi;
   function highlightNews(text) {
     const fragment = document.createDocumentFragment();
     let last = 0;
@@ -53,8 +53,8 @@
     const links = [
       ['Home', '#top'], ['About', '#about'], ['News', '#news'],
       ['Research', '#direct'], ['Publications', '#paper'],
-      ['People', 'research.html#member'], ['Teaching', 'teaching.html'],
-      ['Patents', 'patents.html'], ['Demos', 'demos.html'], ['Contact', 'contact.html']
+      ['People', 'research.html#member'], ['Honors', 'honors.html'],
+      ['Patents', 'patents.html'], ['Events', 'events.html'], ['Contact', 'contact.html']
     ];
     if (list) {
       list.replaceChildren(...links.map(([label, href], index) => {
@@ -102,6 +102,7 @@
     copy.append(make('h1', '', name));
     const credentials = make('div', 'hero-credentials');
     credentials.append(make('p', 'hero-credential hero-award', 'NSFC Excellent Young Scientists Fund Program (Overseas) · 国家自然科学基金优秀青年科学基金项目（海外）'));
+    credentials.append(make('p', 'hero-credential', 'Excellent Young Scientists Fund Program (Overseas) 国家级人才计划青年项目（海外）入选者'));
     credentials.append(make('p', 'hero-credential', 'Peking University Boya Young Fellow 北京大学博雅青年学者,'));
     credentials.append(make('p', 'hero-credential', 'Wangxuan Institute of Computer Technology, Peking University.'));
     credentials.append(make('p', 'hero-location', 'Beijing, China'));
@@ -149,8 +150,8 @@
     experience.append(make('h4', '', 'Education & Experience'));
     [
       ['Assistant Professor', 'Peking University', 'Wangxuan Institute of Computer Technology', '2022–Present', 'pku-seal.svg'],
-      ['Ph.D.', 'Northwestern University', 'Electrical Engineering & Computer Science', '2018', 'northwestern-seal.svg'],
-      ['B.E.', 'Tsinghua University', 'Department of Automation', '2013', 'tsinghua-seal.svg']
+      ['Ph.D.', 'Northwestern University', 'Electrical Engineering & Computer Science', '2013–2018', 'northwestern-seal.svg'],
+      ['B.E.', 'Tsinghua University', 'Department of Automation', '2009–2013', 'tsinghua-seal.svg']
     ].forEach(([role, institution, field, period, seal]) => {
       const entry = make('div', 'experience-entry');
       const crest = make('img', 'experience-seal');
@@ -270,11 +271,11 @@
     const journal = journalMatch && journalFactors[journalMatch[1]];
     if (journal) {
       const impact = journal.values[paper.year];
-      const badge = make('a', `paper-jif${impact ? '' : ' paper-jif--unverified'}`, impact ? `${impact[0]} JIF ${impact[1]}` : 'JIF 未核实');
+      const badge = make('a', `paper-jif${impact ? '' : ' paper-jif--unverified'}`, impact ? `${impact[0]} IF ${impact[1]}` : 'IF 未核实');
       badge.href = journal.source;
       badge.target = '_blank';
       badge.rel = 'noopener noreferrer';
-      badge.title = impact ? `${journalMatch[1]} · ${impact[0]} Journal Impact Factor · View source` : 'No verified JCR Journal Impact Factor; click to view the journal source';
+      badge.title = impact ? `${journalMatch[1]} · ${impact[0]} Impact Factor · View source` : 'No verified Impact Factor; click to view the journal source';
       venueRow.append(badge);
     }
     body.append(venueRow);
@@ -312,6 +313,8 @@
         resources.append(make('span', 'paper-resource paper-resource--disabled', 'PDF'));
       } else {
         link.className = 'paper-resource';
+        if (label.toLowerCase() === 'pdf') link.textContent = 'PDF';
+        if (label.toLowerCase() === 'bib') link.textContent = 'Bib';
         resources.append(link);
       }
     });
@@ -329,7 +332,7 @@
     const papers = $$('[id="0000"] ol > li', section).map(readPaper);
     if (!papers.length) return;
 
-    const intro = make('p', 'paper-intro', 'Browse the full publication record. Search by paper, author or venue, and filter by year and research topic. Journal badges show the JIF for the paper’s listed year; 2026 papers show the latest released 2025 JIF.');
+    const intro = make('p', 'paper-intro', 'Browse the full publication record. Search by paper, author or venue, and filter by year and research topic. Journal badges show the IF for the paper’s listed year; 2026 papers show the latest released 2025 IF.');
     const tools = make('div', 'paper-tools');
     const search = make('input', 'paper-search');
     search.type = 'search';
@@ -428,6 +431,24 @@
       const entry = make('div', 'service-entry');
       const description = make('div', 'service-description');
       [...cells[0].childNodes].forEach(node => description.append(node.cloneNode(true)));
+      const walker = document.createTreeWalker(description, NodeFilter.SHOW_TEXT);
+      const acronymPattern = /\((?:IEEE\s+)?(?:[A-Z][A-Z0-9-]{1,12}|NeurIPS|China3DV)\)/g;
+      const textNodes = [];
+      while (walker.nextNode()) textNodes.push(walker.currentNode);
+      textNodes.forEach(node => {
+        const text = node.textContent;
+        if (!acronymPattern.test(text)) return;
+        acronymPattern.lastIndex = 0;
+        const fragment = document.createDocumentFragment();
+        let last = 0;
+        for (const match of text.matchAll(acronymPattern)) {
+          fragment.append(document.createTextNode(text.slice(last, match.index)));
+          fragment.append(make('strong', 'service-acronym', match[0]));
+          last = match.index + match[0].length;
+        }
+        fragment.append(document.createTextNode(text.slice(last)));
+        node.replaceWith(fragment);
+      });
       entry.append(description);
       if (cells[1] && normalize(cells[1].textContent)) {
         const year = make('div', 'service-year');

@@ -262,6 +262,7 @@ html.preview-enhanced #paper + section > .paper-list { display: none !important;
 .service-description ul { margin: 0; padding: 0; list-style: none; }
 .service-description li { position: relative; padding-left: 15px; }
 .service-description li::before { content: ""; position: absolute; left: 0; top: .6em; width: 5px; height: 5px; border-radius: 50%; background: #bb6b75; }
+.service-acronym { color: var(--wine); font-weight: 850; }
 .service-year { color: #915b65; font-size: 14px; font-weight: 750; text-align: right; white-space: nowrap; }
 
 @keyframes card-in { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
@@ -512,7 +513,7 @@ body:not(.lab-page):not(.preview-placeholder-page) .content { padding-top: 0; }
 .paper-card { display: flex; flex-direction: column; min-width: 0; border: 1px solid #e7d8d6; border-radius: 19px; box-shadow: 0 8px 25px rgba(72,30,37,.05); }
 .paper-body { display: flex; flex: 1; flex-direction: column; min-width: 0; padding: 23px 23px 20px; }
 .paper-meta { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin: 0 0 12px; }
-.paper-venue { display: inline-flex; align-items: center; padding: 5px 10px; border: 1px solid #efd6d3; border-radius: 6px; background: #fff5f2; color: #ac1730; font-size: 13px; font-weight: 800; line-height: 1.35; }
+.paper-venue { display: inline; padding: 0; border: 0; background: transparent; color: #a31428; font-size: 16px; font-style: italic; font-weight: 800; line-height: 1.35; }
 .paper-jif { display: inline-flex; align-items: center; padding: 5px 9px; border: 1px solid #ecdfcc; border-radius: 6px; background: #faf3e6; color: #765839; font-size: 12px; font-weight: 750; line-height: 1.35; text-decoration: none !important; }
 .paper-jif:hover { border-color: #d9b98d; background: #fff2d9; color: #5d3d1d; }
 .paper-jif--unverified { border-color: #e6e1df; background: #f7f5f4; color: #756e6d; }
@@ -524,8 +525,8 @@ body:not(.lab-page):not(.preview-placeholder-page) .content { padding-top: 0; }
 .paper-figure-image { display: block; width: 100%; height: 100%; object-fit: contain; }
 .paper-footer { margin-top: auto; }
 .paper-resources { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; }
-.paper-resource { display: inline-flex; align-items: center; min-height: 32px; max-width: 100%; padding: 5px 10px; border: 1px solid #e4c9cc; border-radius: 7px; background: #fff8f7; color: #9c1730; font-size: 12px; font-weight: 750; line-height: 1.25; overflow-wrap: anywhere; text-decoration: none !important; }
-.paper-resource:hover { background: #f8e9e8; color: #751125; }
+.paper-resource { display: inline-flex; align-items: center; justify-content: center; min-width: 68px; min-height: 36px; max-width: 100%; padding: 7px 15px; border: 1px solid #d7a5ad; border-radius: 8px; background: linear-gradient(180deg,#fffdfc,#fcefee); box-shadow: 0 2px 5px rgba(91,32,43,.09); color: #9c1730; font-size: 13px; font-weight: 800; line-height: 1.25; overflow-wrap: anywhere; text-decoration: none !important; cursor: pointer; transition: transform .2s ease, box-shadow .2s ease, background .2s ease; }
+.paper-resource:hover, .paper-resource:focus-visible { transform: translateY(-2px); box-shadow: 0 6px 12px rgba(91,32,43,.14); background: #f8e9e8; color: #751125; }
 .paper-resource--disabled { opacity: .55; cursor: not-allowed; }
 .paper-tags { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 10px; }
 .paper-tags .tag-container { display: inline-flex; align-items: center; margin: 0; padding: 4px 8px; border: 1px solid #e6dad8; border-radius: 7px; background: #f9f6f5; }
@@ -584,3 +585,57 @@ body:not(.lab-page):not(.preview-placeholder-page) .content { padding-top: 0; }
   .navbar .navbar-nav > .active > a,
   .navbar .navbar-nav > li > a:hover { padding: 8px 10px; }
 }
+
+.honors-page .content { padding-top: 32px; }
+.honors-panel { max-width: 1120px !important; margin: 0 auto !important; }
+.honors-panel > h1 { margin: 0 0 13px; color: var(--ink); font: 700 clamp(31px,3.5vw,43px)/1.2 Georgia,"Noto Serif SC",serif; text-align: center; }
+.honors-panel > h1::after { content: ""; display: block; width: 58px; height: 3px; margin: 15px auto 0; border-radius: 3px; background: var(--wine); }
+.honors-panel .placeholder-kicker, .honors-intro { text-align: center; }
+.honors-intro { max-width: 760px; margin: 0 auto 28px; color: var(--muted); font-size: 15px; }
+.honors-list { display: grid; gap: 3px; }
+.honor-row { display: grid; grid-template-columns: minmax(0,1fr) minmax(260px,.78fr); gap: 20px; padding: 13px 15px; border-radius: 9px; }
+.honor-row:nth-child(even) { background: #fdf6f5; }
+.honor-row h2 { margin: 0; color: #4e454a; font: 650 16px/1.55 Inter,-apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans SC",sans-serif; }
+.honor-recipients { display: grid; gap: 4px; }
+.honor-recipient { display: flex; justify-content: space-between; gap: 14px; font-size: 14px; }
+.honor-recipient a { font-weight: 750; }
+.honor-recipient span { color: #915b65; font-weight: 700; text-align: right; }
+@media (max-width: 760px) { .honor-row { grid-template-columns: 1fr; gap: 5px; } }
+
+/* Single-column example records: deliberately separate from OV³ Lab achievements. */
+.example-panel { max-width: 1100px !important; }
+.example-panel > h1 { text-align: center; }
+.example-panel > h1::after { content: ""; display: block; width: 58px; height: 3px; margin: 15px auto 0; border-radius: 3px; background: var(--wine); }
+.example-disclaimer { max-width: 790px; margin: 0 auto 27px !important; color: #705c62 !important; font-size: 14px !important; line-height: 1.7; text-align: center; }
+.example-list { display: grid; gap: 16px; }
+.example-card { padding: 25px 28px; border: 1px solid #ebdcda; border-radius: 17px; background: linear-gradient(145deg,#fff,#fffaf8); box-shadow: 0 6px 20px rgba(75,31,39,.045); }
+.example-card h2 { margin: 0 0 10px; color: #30262a; font: 700 21px/1.45 Georgia,"Noto Serif SC",serif; }
+.example-card p { margin: 0 0 11px !important; color: #54484d !important; font-size: 15px !important; }
+.example-card span { color: #a20b27; font-size: 14px; font-weight: 700; }
+
+/* Local-only recruitment form; no network submission or browser storage. */
+.contact-lead { max-width: 850px; }
+.contact-identity { margin-top: 18px; padding-top: 17px; border-top: 1px solid #ecd9d5; }
+.contact-identity p { margin-bottom: 3px; }
+.apply-toggle { gap: 9px; margin-top: 20px; font-size: 15px; min-width: 104px; }
+.apply-panel { margin-top: 18px; padding: clamp(20px,4vw,34px); border: 1px solid #eadbd7; border-radius: 16px; background: #fffdfb; }
+.apply-panel[hidden], .apply-advanced[hidden], .apply-ra[hidden], .application-preview[hidden] { display: none !important; }
+.apply-panel h2 { margin: 0 0 9px; color: #3c2630; font: 700 25px/1.3 Georgia,"Noto Serif SC",serif; }
+.apply-panel h2 small { margin-left: 7px; color: #9d7b81; font: 700 12px/1.5 sans-serif; vertical-align: middle; text-transform: uppercase; letter-spacing: .06em; }
+.apply-note { color: #75676c; font-size: 13px; line-height: 1.6; }
+.apply-roles { display: flex; flex-wrap: wrap; gap: 10px 22px; margin: 20px 0; padding: 17px; border: 1px solid #e8d8d5; border-radius: 10px; }
+.apply-roles legend { width: auto; margin: 0 0 5px; padding: 0 5px; border: 0; color: #4c3d42; font-size: 15px; font-weight: 750; }
+.apply-roles label { display: inline-flex; gap: 7px; align-items: center; margin: 0; color: #463d41; font-weight: 600; }
+.apply-roles input { accent-color: #a20b27; }
+.apply-panel form > label, .apply-fields > label, .apply-advanced > label, .apply-ra > label { display: grid; gap: 6px; margin-bottom: 17px; color: #4c3d42; font-size: 14px; font-weight: 700; }
+.apply-panel label span, .apply-roles legend span { color: #a20b27; }
+.apply-panel input:not([type=radio]), .apply-panel textarea { width: 100%; padding: 11px 12px; border: 1px solid #dbc9c8; border-radius: 8px; background: #fff; color: #30262a; font-size: 15px; font-weight: 400; line-height: 1.4; }
+.apply-panel input:focus, .apply-panel textarea:focus { outline: 2px solid #ba6572; outline-offset: 1px; }
+.apply-fields { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 0 17px; }
+.apply-fields label:last-child { grid-column: 1 / -1; }
+.apply-submit { min-width: 160px; font-size: 14px; }
+.application-preview { margin-top: 24px; padding: 20px; border: 1px solid #dfc5bd; border-radius: 11px; background: #fff8f4; }
+.application-preview h3 { margin: 0 0 8px; color: #8d1429; font-size: 20px; }
+.application-preview pre { overflow-wrap: anywhere; white-space: pre-wrap; padding: 16px; border: 1px solid #efe1db; background: #fff; color: #43383c; font: 14px/1.65 ui-monospace,SFMono-Regular,Consolas,monospace; }
+#copy-status { margin-left: 11px; color: #82636b; font-size: 13px; }
+@media (max-width: 650px) { .apply-fields { grid-template-columns: 1fr; } .example-card { padding: 20px; } }
