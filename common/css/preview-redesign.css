@@ -974,3 +974,20 @@ body :is(h1,h2,h3,h4,h5,h6,p,span,strong,b,a,li,td,th,label,output,figcaption) {
 /* Consistent minimum row rhythm, without clipping long patent or project titles. */
 .records-table tr { height: 62px; }
 .records-table th, .records-table td { padding: 12px 15px; vertical-align: middle; line-height: 1.45; }
+
+/* Keep each academic-service role as a centered second-level heading above its cards. */
+.service-groups { display: block; }
+.service-group { display: block; margin: 0 0 34px; padding: 0; border: 0; background: transparent; box-shadow: none; }
+.service-group h4 {
+  display: block;
+  margin: 0 0 20px;
+  color: var(--ink);
+  font: 700 clamp(19px, 1.7vw, 23px)/1.3 Georgia, "Noto Serif SC", serif;
+  text-align: center;
+}
+.service-group h4::after { content: ""; display: block; width: 42px; height: 3px; margin: 10px auto 0; border-radius: 2px; background: var(--wine); }
+.service-entries { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 14px; }
+.service-group--single .service-entries { grid-template-columns: minmax(0, min(310px, 100%)); justify-content: center; }
+@media (max-width: 1250px) { .service-entries { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+@media (max-width: 850px) { .service-entries { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 520px) { .service-entries { grid-template-columns: 1fr; } }

@@ -566,6 +566,9 @@
       entries.append(entry);
     });
     if (groups.children.length) {
+      $$('.service-group', groups).forEach(group => {
+        if ($$('.service-entry', group).length === 1) group.classList.add('service-group--single');
+      });
       table.classList.add('service-original');
       table.before(groups);
     }
