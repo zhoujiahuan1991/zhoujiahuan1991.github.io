@@ -41,7 +41,7 @@
   const table = make('table', 'alumni-table records-table', '');
   const head = make('thead', '', '');
   const header = make('tr', '', '');
-  (projectsPage ? ['项目名称', '合作单位 / 项目类别', '职责'] : ['序号', '案件名称', '案件编号', '申请号', '申请日']).forEach(label => {
+  (projectsPage ? ['类型', '单位', '名称', '职责'] : ['序号', '案件名称', '案件编号', '申请号', '申请日']).forEach(label => {
     const th = make('th', '', label);
     th.scope = 'col';
     header.append(th);
@@ -49,9 +49,11 @@
   head.append(header);
   const body = make('tbody', '', '');
   if (projectsPage) {
-    events.forEach(([title, organization, , role]) => {
+    events.forEach(([title, organization, number, role]) => {
       const row = make('tr', '', '');
-      [title, organization, role].forEach(value => row.append(make('td', '', value)));
+      const type = /有限公司/.test(organization) ? '校企合同' : '—';
+      const name = number ? `${title}（编号：${number}）` : title;
+      [type, organization, name, role].forEach(value => row.append(make('td', '', value)));
       body.append(row);
     });
   } else {
