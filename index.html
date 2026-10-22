@@ -11,7 +11,7 @@
     <link rel="icon" type="image/png" href="common/img/ov3-favicon.png?v=20261022">
     <link rel="stylesheet" href="common/css/bootstrap.min.css">
     <link rel="stylesheet" href="common/css/index.css">
-    <link rel="stylesheet" href="common/css/preview-home.css?v=20261022">
+    <link rel="stylesheet" href="common/css/preview-home.css?v=20261022-complete-2">
     <style>
         /* 论文标签样式 */
         .tabs {
@@ -154,6 +154,7 @@
             border-radius: 5px;
         }
     </style>
+    <link rel="stylesheet" href="common/css/preview-publication-view.css?v=20261022-home-toggle">
 </head>
 
 <body>
@@ -4167,28 +4168,20 @@
             // 移除临时元素
             document.body.removeChild(textarea);
 
-            // 显示提示信息
-            var notification = document.getElementById("notification");
-            notification.style.display = "block";
-
-            // 3秒后隐藏提示信息
-            setTimeout(function () {
-                notification.style.display = "none";
-            }, 3000);
         }
     </Script>
-    <footer class="institute-footer" aria-label="Institution and contact information">
+    <footer class="institute-footer" aria-label="Institution and contact information / 机构与联系信息">
         <a class="institute-footer-name" href="https://www.wict.pku.edu.cn/" target="_blank"
-            rel="noopener noreferrer">Wangxuan Institute of Computer Technology</a>
-        <p class="institute-footer-english">Peking University</p>
+            rel="noopener noreferrer"><span lang="zh-CN">王选计算机研究所</span><br><span lang="en">Wangxuan Institute of Computer Technology</span></a>
+        <p class="institute-footer-english"><span lang="zh-CN">北京大学</span> · <span lang="en">Peking University</span></p>
         <address class="institute-footer-contact">
-            <a href="mailto:jiahuanzhouATpku.edu.cn"><span aria-hidden="true">✉</span> jiahuanzhouATpku.edu.cn</a>
-            <span><span class="institute-footer-pin" aria-hidden="true">⌖</span> 128 Zhongguancun North Street, Haidian
-                District, Beijing 100080, China</span>
+            <a href="mailto:jiahuanzhouATpku.edu.cn"><span aria-hidden="true">✉</span> <span lang="zh-CN">邮箱</span> / Email: jiahuanzhouATpku.edu.cn</a>
+            <span><span class="institute-footer-pin" aria-hidden="true">⌖</span> <span lang="zh-CN">中国北京市海淀区中关村北大街128号，邮编100080</span><br><span lang="en">128 Zhongguancun North Street, Haidian District, Beijing 100080, China</span></span>
         </address>
-        <p class="institute-footer-copyright">© 2026 Jiahuan Zhou · OV³ Lab. All rights reserved.</p>
+        <p class="institute-footer-copyright">© 2026 <span lang="zh-CN">周嘉欢 · OV³ 实验室。保留所有权利。</span><br><span lang="en">Jiahuan Zhou · OV³ Lab. All rights reserved.</span></p>
     </footer>
-    <script src="common/js/preview-home.js?v=20261022"></script>
+    <script src="common/js/preview-home.js?v=20261022-complete-2"></script>
+    <script src="common/js/preview-publication-view.js?v=20261022-home-toggle"></script>
 </body>
 
 </html>

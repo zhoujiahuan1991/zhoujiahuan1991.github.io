@@ -7,13 +7,13 @@
   const links = [
     ['Home', '../index.html#top'], ['News', '../index.html#news'],
     ['Research', '../index.html#direct'], ['Publications', '../publications.html'],
-    ['People', '../research.html#member'],
-    ['Patents', '../patents.html'], ['Projects', '../events.html'], ['Demos', '../demos.html'], ['Contact', '../contact.html']
+    ['Members', '../research.html#member'],
+    ['Patents', '../patents.html'], ['Fundings', '../events.html'], ['Demos', '../demos.html'], ['Contact', '../contact.html']
   ];
   const list = nav.querySelector('.navbar-nav');
   list.replaceChildren(...links.map(([label, href]) => {
     const item = document.createElement('li');
-    if (label === 'People') item.className = 'active';
+    if (label === 'Members') item.className = 'active';
     const anchor = document.createElement('a');
     anchor.href = href;
     anchor.textContent = label;
@@ -54,6 +54,72 @@
     const match = categories.find(([pattern]) => pattern.test(heading?.textContent.trim() || ''));
     if (match) section.id = match[1];
   });
+
+  // Keep the members' original schools and dates, but display them in the
+  // same seal / degree / period hierarchy as the principal investigator.
+  const memberId = location.pathname.split('/').pop().replace(/EN\.html$/i, '');
+  const education = {
+    azx: [
+      ['Ph.D. candidate', 'Peking University', 'Intelligent Science and Technology · School of Intelligence', '2025–2030 (expected)', 'pku-seal.svg'],
+      ['B.Eng.', 'Zhejiang University', 'Software Engineering · College of Computer Science and Technology', '2021–2025', 'education-logos/zhejiang.svg']
+    ],
+    hyc: [
+      ['Undergraduate studies', 'Peking University', 'Data Science · College of Mathematics', '2025–Present', 'pku-seal.svg'],
+      ['Bachelor’s degree', 'Jilin University', 'Information and Computing Science · College of Mathematics', '2020–2024', 'education-logos/jilin.png']
+    ],
+    ljj: [
+      ['Ph.D. candidate', 'Peking University', 'Intelligence Science and Technology', '2024–Present', 'pku-seal.svg'],
+      ['Master’s studies', 'Nanjing Normal University', 'Electrical and Automation Engineering', '2021–2024', 'education-logos/nanjing-normal.png'],
+      ['Bachelor’s studies', 'Tianjin University of Technology', 'Electrical and Electronic Engineering', '2017–2021', 'education-logos/tianjin-technology.png']
+    ],
+    lzc: [
+      ['Master’s candidate', 'Peking University', 'Computer Application Technology · Wangxuan Institute', '2022–Present', 'pku-seal.svg'],
+      ['B.Eng.', 'Xi’an Jiaotong University', 'Computer Science and Technology', '2018–2022', 'education-logos/xian-jiaotong.png']
+    ],
+    xkl: [
+      ['Ph.D. candidate', 'Peking University', 'Computer Science and Engineering · Wangxuan Institute', '2023–Present', 'pku-seal.svg'],
+      ['Master’s studies', 'Huazhong University of Science and Technology', 'Control Science and Engineering', '2020–2023', 'partners/hust.png'],
+      ['Bachelor’s studies', 'Huazhong University of Science and Technology', 'Automation', '2016–2020', 'partners/hust.png']
+    ],
+    zk: [
+      ['Undergraduate studies', 'Renmin University of China', 'Turing Class · School of Information', '2022–Present', 'education-logos/renmin.svg']
+    ],
+    zyq: [
+      ['Ph.D. candidate', 'Peking University', 'Computer Science and Technology · Wangxuan Institute', '2026–Present', 'pku-seal.svg'],
+      ['Bachelor’s studies', 'Peking University', 'Data Science and Big Data Technology · Yuanpei College', '2022–2026', 'pku-seal.svg'],
+      ['Dual-degree studies', 'Peking University', 'Economics · National School of Development', '2023–2026', 'pku-seal.svg']
+    ],
+    zzh: [
+      ['Ph.D.', 'University of Chinese Academy of Sciences', 'Institute of Software · Space Integrated Information Systems', 'Sep. 2020–Jun. 2026', 'education-logos/ucas.png'],
+      ['B.Eng.', 'Beijing Jiaotong University', 'Computer Science and Technology', 'Sep. 2015–Jun. 2019', 'education-logos/beijing-jiaotong.png']
+    ]
+  };
+  const educationSection = document.getElementById('member-education');
+  if (educationSection && education[memberId]) {
+    const list = document.createElement('div');
+    list.className = 'member-education-list';
+    education[memberId].forEach(([degree, school, field, period, seal]) => {
+      const row = document.createElement('div');
+      row.className = 'experience-entry';
+      const image = document.createElement('img');
+      image.className = 'experience-seal';
+      image.src = `../common/img/${seal}`;
+      image.alt = `${school} logo`;
+      image.loading = 'lazy';
+      const copy = document.createElement('div');
+      copy.className = 'experience-copy';
+      [['span', 'experience-role', degree], ['span', 'experience-period', period],
+        ['strong', 'experience-institution', school], ['span', 'experience-field', field]].forEach(([tag, className, value]) => {
+        const node = document.createElement(tag);
+        node.className = className;
+        node.textContent = value;
+        copy.append(node);
+      });
+      row.append(image, copy);
+      list.append(row);
+    });
+    educationSection.querySelector('ul')?.replaceWith(list);
+  }
 
   const awardSection = document.getElementById('member-honors');
   const awardList = awardSection?.querySelector('ul');
@@ -99,7 +165,6 @@
     const otherJournals = /^(?:TMC|ESWA|CN|IVC|KBS|NN)(?:[’']|$)/i;
     const grid = document.createElement('div');
     grid.className = 'member-paper-grid';
-    const paperCountsByYear = new Map();
     [...paperList.querySelectorAll('li')].forEach(item => {
       const raw = item.textContent.replace(/\s+/g, ' ').trim();
       if (!raw) return;
@@ -109,17 +174,15 @@
       const venue = venueText.replace(/[()]/g, '').trim();
       const year = venue.match(/[’'](\d{2,4})/)?.[1];
       const fullYear = year ? (year.length === 2 ? String(2000 + Number(year)) : year) : raw.match(/\b20\d{2}\b/)?.[0];
-      const paperYear = fullYear || 'Earlier';
-      const yearNumber = (paperCountsByYear.get(paperYear) || 0) + 1;
-      paperCountsByYear.set(paperYear, yearNumber);
+      const paperNumber = grid.childElementCount + 1;
       const authors = titleMatch ? raw.slice(0, titleMatch.index).replace(/^\s*\([^)]*\)\s*[-–]?\s*/, '').trim().replace(/[,\s]+$/, '') : '';
       const details = titleMatch ? raw.slice(titleMatch.index + titleMatch[0].length).replace(/^\s*,\s*/, '').replace(/\s*\[(?:pdf|bib|doi|code)[^\]]*\]/gi, '').trim() : raw;
       const card = document.createElement('article');
       card.className = 'paper-card member-paper-card';
       const number = document.createElement('span');
       number.className = 'paper-year-number';
-      number.textContent = String(yearNumber);
-      number.setAttribute('aria-label', `${paperYear} publication number ${yearNumber}`);
+      number.textContent = String(paperNumber);
+      number.setAttribute('aria-label', `Member publication number ${paperNumber}`);
       card.append(number);
       const body = document.createElement('div');
       body.className = 'paper-body';
@@ -185,7 +248,6 @@
       paperList.before(grid);
       paperList.classList.add('member-papers-original');
     }
-    let noticeTimer;
     window.copyTextAndNotify = async (event, value) => {
       event.preventDefault();
       const unavailable = /unavaliable|unavailable/i.test(value);
@@ -200,18 +262,6 @@
           field.remove();
         }
       }
-      let notice = document.getElementById('notification');
-      if (!notice) {
-        notice = document.createElement('div');
-        notice.id = 'notification';
-        document.body.append(notice);
-      }
-      notice.setAttribute('role', 'status');
-      notice.setAttribute('aria-live', 'polite');
-      notice.textContent = unavailable ? '此论文 Bib 暂不可用' : 'Bib 已复制到剪贴板';
-      notice.style.display = 'block';
-      clearTimeout(noticeTimer);
-      noticeTimer = setTimeout(() => { notice.style.display = 'none'; }, 2800);
     };
     fetch('../index.html').then(response => response.text()).then(html => {
       const source = new DOMParser().parseFromString(html, 'text/html');
@@ -261,28 +311,102 @@
     }).catch(error => console.error('Member paper links could not be mapped:', error));
   }
 
-  document.querySelectorAll('#member-service li').forEach(item => {
-    const walker = document.createTreeWalker(item, NodeFilter.SHOW_TEXT);
-    const nodes = [];
-    while (walker.nextNode()) nodes.push(walker.currentNode);
-    nodes.forEach(node => {
-      const content = node.textContent;
-      const matches = [...content.matchAll(/\b(?:Knowledge-Based Systems|ACM MM|NeurIPS|ICML|ICLR|CVPR|ICCV|ECCV|AAAI|IJCAI|ICPR|ICME|PRCV|BMVC|TPAMI|IJCV|TIFS|TCSVT|TOMM|TMM|TIP|PRL|KBS)\b/g)];
-      if (!matches.length) return;
-      const fragment = document.createDocumentFragment();
-      let last = 0;
-      matches.forEach(match => {
-        fragment.append(document.createTextNode(content.slice(last, match.index)));
-        const strong = document.createElement('strong');
-        strong.className = 'member-service-acronym';
-        strong.textContent = match[0];
-        fragment.append(strong);
-        last = match.index + match[0].length;
+  const serviceSection = document.getElementById('member-service');
+  if (serviceSection) {
+    const logos = {
+      ICML: 'icml.svg', NeurIPS: 'neurips-provided.png', CVPR: 'cvpr.svg',
+      ECCV: 'eccv.svg', ICLR: 'iclr.svg', AAAI: 'aaai-provided.png',
+      ICCV: 'iccv.svg', 'ACM MM': 'acm-mm.svg', ICME: 'icme.png',
+      TPAMI: 'tpami.png', TIP: 'tip-cover.jpg', TMM: 'tmm.png',
+      PRL: 'prl.jpg', KBS: 'kbs.jpg'
+    };
+    const fullNames = {
+      ICML: 'International Conference on Machine Learning',
+      CVPR: 'IEEE Conference on Computer Vision and Pattern Recognition',
+      NeurIPS: 'Conference on Neural Information Processing Systems',
+      ICME: 'IEEE International Conference on Multimedia & Expo',
+      AAAI: 'AAAI Conference on Artificial Intelligence',
+      KBS: 'Knowledge-Based Systems'
+    };
+    const groups = document.createElement('div');
+    groups.className = 'member-service-groups';
+    const addGroup = (role, records) => {
+      if (!records.length) return;
+      const group = document.createElement('section');
+      group.className = 'member-service-group';
+      const title = document.createElement('h4');
+      title.textContent = role;
+      const cards = document.createElement('div');
+      cards.className = 'member-service-cards';
+      records.forEach(({ name, acronym, year = '' }) => {
+        const card = document.createElement('article');
+        const journal = ['TPAMI', 'TIP', 'TMM', 'PRL', 'KBS'].includes(acronym);
+        card.className = `service-entry member-service-card${journal ? ' member-service-card--journal' : ''}`;
+        const art = document.createElement('div');
+        art.className = 'service-mark';
+        if (logos[acronym]) {
+          const image = document.createElement('img');
+          image.className = journal ? 'service-cover' : 'service-logo';
+          image.src = `../common/img/${journal ? 'journal-covers' : 'service-logos'}/${logos[acronym]}`;
+          image.alt = journal ? `${acronym} ${['TPAMI', 'TMM'].includes(acronym) ? 'journal artwork' : 'journal cover'}` : acronym === 'ACM MM' ? 'ACM publisher logo' : `${acronym} conference logo`;
+          image.loading = journal ? 'eager' : 'lazy';
+          art.append(image);
+        } else {
+          const fallback = document.createElement('span');
+          fallback.className = 'service-wordmark';
+          fallback.textContent = acronym;
+          art.append(fallback);
+        }
+        const description = document.createElement('div');
+        description.className = 'service-description';
+        const match = name.match(/\((?:IEEE\s+)?(?:ACM MM|NeurIPS|[A-Z][A-Z0-9-]{1,12})\)/i);
+        if (match) {
+          description.append(document.createTextNode(name.slice(0, match.index + 1)));
+          const red = document.createElement('strong');
+          red.className = 'member-service-acronym';
+          red.textContent = `${match[0].slice(1, -1)}${year ? ` ${year}` : ''}`;
+          description.append(red, document.createTextNode(`)${name.slice(match.index + match[0].length)}`));
+        } else {
+          description.append(document.createTextNode(`${name} (`));
+          const red = document.createElement('strong');
+          red.className = 'member-service-acronym';
+          red.textContent = `${acronym}${year ? ` ${year}` : ''}`;
+          description.append(red, document.createTextNode(')'));
+        }
+        card.append(art, description);
+        cards.append(card);
       });
-      fragment.append(document.createTextNode(content.slice(last)));
-      node.replaceWith(fragment);
-    });
-  });
+      group.append(title, cards);
+      groups.append(group);
+    };
+    if (memberId === 'zzh') {
+      addGroup('Conference Reviewer', [
+        { name: fullNames.ICML, acronym: 'ICML', year: '2026' },
+        { name: fullNames.CVPR, acronym: 'CVPR', year: '2026' },
+        { name: fullNames['NeurIPS'], acronym: 'NeurIPS', year: '2026' },
+        { name: fullNames.ICME, acronym: 'ICME', year: '2025–2026' }
+      ]);
+      addGroup('Journal Reviewer', [{ name: fullNames.KBS, acronym: 'KBS' }]);
+      addGroup('Program Committee Member', [{ name: fullNames.AAAI, acronym: 'AAAI', year: '2026' }]);
+    } else {
+      let role = '';
+      [...serviceSection.children].forEach(node => {
+        if (node.tagName === 'B') role = node.textContent.trim().replace(/:$/, '');
+        if (node.tagName !== 'UL') return;
+        const records = [...node.querySelectorAll('li')].map(item => {
+          const name = item.textContent.replace(/\s+/g, ' ').trim();
+          const acronym = name.match(/\((?:IEEE\s+)?(ACM MM|NeurIPS|[A-Z][A-Z0-9-]{1,12})\)/i)?.[1];
+          return acronym ? { name, acronym } : null;
+        }).filter(Boolean);
+        addGroup(role || 'Conference Reviewer', records);
+      });
+    }
+    if (groups.children.length) {
+      serviceSection.replaceChildren(serviceSection.querySelector('h3'), groups);
+    } else {
+      serviceSection.hidden = true;
+    }
+  }
 
   const original = hero.querySelector('.my-auto');
   const portrait = original?.querySelector('img');
@@ -316,6 +440,8 @@
     interestCard.className = 'member-interests-card';
     interestCard.setAttribute('aria-label', 'Research Interests');
     interestList.className = 'member-interest-list';
+    interestList.tabIndex = 0;
+    interestList.setAttribute('aria-label', 'Scroll through research interests');
     const interests = researchSection ? [...researchSection.querySelectorAll('li')]
       .flatMap(item => item.textContent.split(',').map(value => value.trim()).filter(Boolean)) : [];
     if (interests.length) {
@@ -348,14 +474,4 @@
     if (name) document.title = `${name} · OV³ Lab`;
   }
 
-  const subnav = document.createElement('nav');
-  subnav.className = 'member-subnav';
-  subnav.setAttribute('aria-label', 'Member sections');
-  [['About', 'member-about'], ...categories.filter(([, id]) => document.getElementById(id)).map(([, id, label]) => [label, id])].forEach(([label, id]) => {
-    const anchor = document.createElement('a');
-    anchor.href = `#${id}`;
-    anchor.textContent = label;
-    subnav.append(anchor);
-  });
-  nav.after(subnav);
 })();

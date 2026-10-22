@@ -10,9 +10,9 @@
   const normalize = value => (value || '').replace(/\s+/g, ' ').trim();
   const researchDirections = [
     ['Multi-Modal AI', [
-      ['Three-Dimensional Understanding & Reconstruction', /\b3d\b|three-dimensional|point.cloud|reconstruction|multi-view stereo|gaussian splatting/i],
+      ['3D Understanding', /\b3d\b|three-dimensional|point.cloud|reconstruction|multi-view stereo|gaussian splatting/i],
+      ['Vision-Language Understanding', /vision-language(?!-action)|visual.language|multimodal|multi-modal|image.text|text.image|\bmllms?\b|llava|cross.modal/i],
       ['Vision-Language-Action Models', /vision-language-action|\bvla\b|rotvla/i],
-      ['Vision-Language Learning', /vision-language(?!-action)|visual.language|multimodal|multi-modal|image.text|text.image|\bmllms?\b|llava|cross.modal/i],
       ['Artificial Intelligence for Science', /crystal|material|synthesis|molecular|molecule|scientific|atomically/i]
     ]],
     ['Lifelong AI', [
@@ -22,9 +22,9 @@
       ['Test-Time Adaptation', /test.time|test.time.*tun/i]
     ]],
     ['Agentic AI', [
-      ['Vision-Language-Action Agents', /vision-language-action|\bvla\b|rotvla/i],
+      ['Embodied Agents', /vision-language-action|\bvla\b|rotvla/i],
       ['Instruction Tuning', /instruction|post.training/i],
-      ['Token Pruning', /token[\s-]*(?:prun|reduc|compress|merg)|(?:prun|reduc|compress|merg)[\s\S]*token/i],
+      ['Efficient Inference', /token[\s-]*(?:prun|reduc|compress|merg)|(?:prun|reduc|compress|merg)[\s\S]*token/i],
       ['Recursive Self-Improvement', /recursive self.improv|self.improv|\brsi\b/i]
     ]]
   ];
@@ -76,7 +76,6 @@
       (!groupSelect.value || paper.researchTopics.has(groupSelect.value)) &&
       (!topicSelect.value || paper.researchTopics.has(topicSelect.value)) };
   }
-  let noticeTimer;
   function installCopyNotice() {
     window.copyTextAndNotify = async (event, value) => {
       event.preventDefault();
@@ -92,18 +91,6 @@
           field.remove();
         }
       }
-      let notice = $('#notification');
-      if (!notice) {
-        notice = make('div', '', '');
-        notice.id = 'notification';
-        document.body.append(notice);
-      }
-      notice.setAttribute('role', 'status');
-      notice.setAttribute('aria-live', 'polite');
-      notice.textContent = unavailable ? '此论文 Bib 暂不可用' : 'Bib 已复制到剪贴板';
-      notice.style.display = 'block';
-      clearTimeout(noticeTimer);
-      noticeTimer = setTimeout(() => { notice.style.display = 'none'; }, 2800);
     };
   }
   // JIF is a journal-level metric for the named year, not a paper-level score.
@@ -152,8 +139,8 @@
     const links = [
       ['Home', 'index.html#top'], ['News', 'index.html#news'],
       ['Research', 'index.html#direct'], ['Publications', 'publications.html'],
-      ['People', 'research.html#member'],
-      ['Patents', 'patents.html'], ['Projects', 'events.html'], ['Demos', 'demos.html'], ['Contact', 'contact.html']
+      ['Members', 'research.html#member'],
+      ['Patents', 'patents.html'], ['Fundings', 'events.html'], ['Demos', 'demos.html'], ['Contact', 'contact.html']
     ];
     if (list) {
       list.replaceChildren(...links.map(([label, href], index) => {
@@ -391,8 +378,8 @@
 
   function paperCard(paper) {
     const card = make('article', 'paper-card');
-    const number = make('span', 'paper-year-number', String(paper.yearNumber));
-    number.setAttribute('aria-label', `${paper.year} publication number ${paper.yearNumber}`);
+    const number = make('span', 'paper-year-number', String(paper.publicationNumber));
+    number.setAttribute('aria-label', `Publication number ${paper.publicationNumber}`);
     card.append(number);
     const body = make('div', 'paper-body');
     const venueRow = make('div', 'paper-meta');
@@ -457,12 +444,9 @@
 
     const papers = $$('[id="0000"] ol > li', section).map(readPaper);
     if (!papers.length) return;
-    const paperCountsByYear = new Map();
-    papers.forEach(paper => {
+    papers.forEach((paper, index) => {
       paper.researchTopics = publicationTopics(paper);
-      const next = (paperCountsByYear.get(paper.year) || 0) + 1;
-      paperCountsByYear.set(paper.year, next);
-      paper.yearNumber = next;
+      paper.publicationNumber = index + 1;
     });
     if (!document.body.classList.contains('publications-page')) {
       const widget = make('div', 'publication-widget home-publications');
@@ -497,7 +481,9 @@
       renderHome();
       const allLink = make('a', 'paper-more paper-all-link', 'View all papers ↗');
       allLink.href = 'publications.html';
-      widget.append(intro, tools, topics.element, years, count, cards, allLink);
+      const controls = make('div', 'publication-controls');
+      controls.append(tools, topics.element);
+      widget.append(intro, controls, years, count, cards, allLink);
       section.insertBefore(widget, $('.tabs', section));
       document.documentElement.classList.add('preview-enhanced');
       return;
@@ -548,7 +534,9 @@
     const cards = make('div', 'paper-cards');
     const widget = make('div', 'publication-widget');
     const topics = topicFilters(() => render());
-    widget.append(intro, tools, topics.element, years, count, cards);
+    const controls = make('div', 'publication-controls');
+    controls.append(tools, topics.element);
+    widget.append(intro, controls, years, count, cards);
     section.insertBefore(widget, $('.tabs', section));
 
     function render() {
@@ -579,7 +567,7 @@
     const artwork = {
       MVA: 'mva.jpg', ICCV: 'iccv.svg', ICLR: 'iclr-provided.png', ICML: 'icml.svg',
       AAAI: 'aaai-provided.png', NeurIPS: 'neurips-provided.png', PRCV: 'prcv-provided.png',
-      CVPR: 'cvpr.svg', ECCV: 'eccv.svg', ICPR: 'icpr.svg', ICME: 'icme.png', BMVC: 'bmvc.png'
+      CVPR: 'cvpr.svg', ECCV: 'eccv.svg', ICPR: 'icpr-2024.png', ICME: 'icme-2023.png', BMVC: 'bmvc.png'
     };
     $$('tr', table).forEach(row => {
       const heading = $('th', row);

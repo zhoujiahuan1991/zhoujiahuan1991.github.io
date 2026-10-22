@@ -1,0 +1,93 @@
+[
+  {
+    "name": "National Natural Science Foundation of China",
+    "chinese": "国家自然科学基金委员会",
+    "file": "nsfc.png",
+    "website": "https://www.nsfc.gov.cn/",
+    "source": "https://www.nsfc.gov.cn/p1/3791/tbym.html",
+    "projectIndices": [
+      6,
+      9
+    ]
+  },
+  {
+    "name": "Beijing Municipal Public Security Bureau",
+    "chinese": "北京市公安局",
+    "file": "beijing-police-banner.png",
+    "website": "https://gaj.beijing.gov.cn/",
+    "source": "https://gaj.beijing.gov.cn/",
+    "projectIndices": [
+      3
+    ]
+  },
+  {
+    "name": "China Academy of Railway Sciences",
+    "chinese": "中国铁道科学研究院集团有限公司",
+    "file": "rails.png",
+    "website": "https://www.rails.cn/",
+    "source": "https://www.rails.cn/",
+    "projectIndices": [
+      1
+    ]
+  },
+  {
+    "name": "CASIC · Institute of Intelligent Science and Technology",
+    "chinese": "航天科工集团智能科技研究院有限公司",
+    "file": "casic.png",
+    "website": "http://www.casic.cn/",
+    "source": "http://www.casic.cn/template/31876651/31876702.png",
+    "projectIndices": [
+      2
+    ]
+  },
+  {
+    "name": "Huazhong University of Science and Technology",
+    "chinese": "华中科技大学",
+    "file": "hust.png",
+    "website": "https://www.hust.edu.cn/",
+    "source": "https://www.hust.edu.cn/",
+    "projectIndices": [
+      10
+    ]
+  },
+  {
+    "name": "Tencent",
+    "chinese": "腾讯科技（深圳）有限公司",
+    "file": "tencent.png",
+    "website": "https://www.tencent.com/",
+    "source": "https://www.tencent.com/newsroom/media-resources/",
+    "projectIndices": [
+      0
+    ]
+  },
+  {
+    "name": "ByteDance",
+    "chinese": "北京字跳网络技术有限公司",
+    "file": "bytedance.png",
+    "website": "https://www.bytedance.com/",
+    "source": "https://www.bytedance.com/zh/",
+    "projectIndices": [
+      11
+    ]
+  },
+  {
+    "name": "WL Times",
+    "chinese": "北京蔚领时代科技有限公司",
+    "file": "welink.svg",
+    "website": "https://www.wl-times.com/",
+    "source": "https://www.wl-times.com/index.html",
+    "projectIndices": [
+      8
+    ]
+  },
+  {
+    "name": "Sichuan Changhong Electronic Holding Group Co., Ltd.",
+    "chinese": "四川长虹电子控股集团有限公司",
+    "file": "changhong.png",
+    "website": "https://group.changhong.com/",
+    "source": "https://group.changhong.com/shouye/images/P020160914515957887299.png",
+    "projectIndices": [
+      7
+    ]
+  }
+]

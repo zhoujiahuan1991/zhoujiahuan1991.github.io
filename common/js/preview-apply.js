@@ -8,6 +8,19 @@
     toggle.setAttribute('aria-expanded', String(!panel.hidden));
     if (!panel.hidden) panel.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
   });
+  const cvFile = form.elements.cvFile;
+  const cvStatus = document.getElementById('cv-file-status');
+  cvFile.addEventListener('change', () => {
+    const file = cvFile.files[0];
+    cvFile.setCustomValidity('');
+    if (file && !/\.(pdf|doc|docx)$/i.test(file.name)) {
+      cvFile.setCustomValidity('Please select a PDF or Word document.');
+      cvStatus.textContent = 'Unsupported file type. Please select a PDF or Word document.';
+    } else {
+      cvStatus.textContent = file ? `Selected: ${file.name} · Remember to attach this file to your email.` : '';
+    }
+    document.getElementById('application-preview').hidden = true;
+  });
   const advanced = document.getElementById('apply-advanced');
   const ra = document.getElementById('apply-ra');
   const education = form.elements.education;
@@ -40,7 +53,7 @@
       'My background and interests are as follows:',
       detail('Research interests', field(data, 'interests')),
       detail('Expected start date', field(data, 'startDate')),
-      detail('CV link', field(data, 'cvLink'))
+      detail('CV file (to be attached separately)', cvFile.files[0]?.name || '')
     ];
     if (role === 'RA (Undergraduate)') lines.push(
       detail('Undergraduate university', field(data, 'undergradUniversity')),

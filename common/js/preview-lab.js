@@ -9,13 +9,13 @@
   const links = [
     ['Home', 'index.html#top'], ['News', 'index.html#news'],
     ['Research', 'index.html#direct'], ['Publications', 'publications.html'],
-    ['People', '#member'], ['Patents', 'patents.html'],
-    ['Projects', 'events.html'], ['Demos', 'demos.html'], ['Contact', 'contact.html']
+    ['Members', '#member'], ['Patents', 'patents.html'],
+    ['Fundings', 'events.html'], ['Demos', 'demos.html'], ['Contact', 'contact.html']
   ];
   if (list) {
     list.replaceChildren(...links.map(([label, href], index) => {
       const item = document.createElement('li');
-      if (label === 'People') item.className = 'active';
+      if (label === 'Members') item.className = 'active';
       const link = document.createElement('a');
       link.href = href;
       link.textContent = label;
@@ -54,10 +54,8 @@
   updateCompactNav();
 
   const intro = document.querySelector('#introduction + section');
-  if (intro) {
-    intro.classList.add('lab-hero');
-    intro.innerHTML = '<div class="lab-hero-content"><p class="lab-hero-kicker">WANGXUAN INSTITUTE · PEKING UNIVERSITY</p><h1>OV³ Lab</h1><p class="lab-hero-motto">See Beyond. Think Across. Discover What\'s Next.</p><p class="lab-hero-description">We explore computer vision, multi-modal learning and AI4Science, with an interest in intelligence that can learn and adapt in open environments.</p><div class="lab-hero-actions"><a href="#member">Meet our people ↗</a><a href="publications.html">Explore publications</a><a href="contact.html">Join the lab</a></div></div>';
-  }
+  intro?.remove();
+  document.getElementById('introduction')?.remove();
 
   const newsAnchor = document.getElementById('news');
   if (newsAnchor) {

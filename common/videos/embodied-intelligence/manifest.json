@@ -1,0 +1,74 @@
+[
+  {
+    "id": 1,
+    "sourceFilename": "媒体1.mp4",
+    "title": "Tabletop Manipulation",
+    "featured": true
+  },
+  {
+    "id": 2,
+    "sourceFilename": "媒体2.mp4",
+    "title": "Object Interaction",
+    "featured": true
+  },
+  {
+    "id": 3,
+    "sourceFilename": "媒体3.mp4",
+    "title": "Tabletop Manipulation · Short Sequence",
+    "featured": false
+  },
+  {
+    "id": 4,
+    "sourceFilename": "媒体4.mp4",
+    "title": "Object Interaction · Short Sequence",
+    "featured": false
+  },
+  {
+    "id": 5,
+    "sourceFilename": "媒体5.mp4",
+    "title": "Expanded Object Set",
+    "featured": false
+  },
+  {
+    "id": 6,
+    "sourceFilename": "媒体6.mp4",
+    "title": "Cluttered Scene",
+    "featured": true
+  },
+  {
+    "id": 7,
+    "sourceFilename": "媒体7.mp4",
+    "title": "Expanded Object Set · Short Sequence",
+    "featured": false
+  },
+  {
+    "id": 8,
+    "sourceFilename": "媒体8.mp4",
+    "title": "Demonstration 08",
+    "featured": false
+  },
+  {
+    "id": 9,
+    "sourceFilename": "媒体9.mp4",
+    "title": "Tabletop Texture Variation",
+    "featured": true
+  },
+  {
+    "id": 10,
+    "sourceFilename": "媒体10.mp4",
+    "title": "Object Scene Texture Variation",
+    "featured": false
+  },
+  {
+    "id": 11,
+    "sourceFilename": "媒体11.mp4",
+    "title": "Tabletop Texture Variation · Short Sequence",
+    "featured": false
+  },
+  {
+    "id": 12,
+    "sourceFilename": "媒体12.mp4",
+    "title": "Object Scene Texture Variation · Short Sequence",
+    "featured": false
+  }
+]

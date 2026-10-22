@@ -20,9 +20,9 @@
   const links = [
     ['Home', 'index.html#top'],
     ['News', 'index.html#news'], ['Research', 'index.html#direct'],
-    ['Publications', 'publications.html'], ['People', 'research.html#member'],
+    ['Publications', 'publications.html'], ['Members', 'research.html#member'],
     ['Patents', 'patents.html'],
-    ['Projects', 'events.html'], ['Demos', 'demos.html'], ['Contact', 'contact.html']
+    ['Fundings', 'events.html'], ['Demos', 'demos.html'], ['Contact', 'contact.html']
   ];
   links.forEach(([label, href]) => {
     const item = document.createElement('li');
