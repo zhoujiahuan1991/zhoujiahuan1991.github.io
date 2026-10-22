@@ -120,7 +120,10 @@
     publications.href = 'publications.html';
     const members = make('a', '', 'Lab Members ↗');
     members.href = 'research.html#member';
-    actions.append(research, publications, members);
+    const recruit = make('a', 'hero-recruit', 'Join Our Team ↗');
+    recruit.href = 'contact.html';
+    recruit.setAttribute('aria-label', 'Join Our Team · Now Recruiting Postdoc, PhD and RA');
+    actions.append(research, publications, members, recruit);
 
     const photoFrame = make('div', 'hero-photo-wrap');
     const photo = make('img', 'hero-photo');
@@ -131,10 +134,7 @@
     photoFrame.append(photo);
     grid.append(copy, photoFrame);
     const lower = make('div', 'hero-lower');
-    const recruit = make('a', 'hero-recruit');
-    recruit.href = 'contact.html';
-    recruit.append(make('strong', '', 'Join Our Team ↗'), make('span', '', 'Now Recruiting · Postdoc · PhD · RA'), make('span', '', 'Contact us ↗'));
-    lower.append(actions, recruit);
+    lower.append(actions);
 
     const about = make('section', 'about-section');
     about.id = 'about';
@@ -280,6 +280,9 @@
 
   function paperCard(paper) {
     const card = make('article', 'paper-card');
+    const number = make('span', 'paper-year-number', String(paper.yearNumber));
+    number.setAttribute('aria-label', `${paper.year} publication number ${paper.yearNumber}`);
+    card.append(number);
     const body = make('div', 'paper-body');
     const venueRow = make('div', 'paper-meta');
     venueRow.append(make('span', 'paper-venue', paper.venue));
@@ -343,6 +346,12 @@
 
     const papers = $$('[id="0000"] ol > li', section).map(readPaper);
     if (!papers.length) return;
+    const paperCountsByYear = new Map();
+    papers.forEach(paper => {
+      const next = (paperCountsByYear.get(paper.year) || 0) + 1;
+      paperCountsByYear.set(paper.year, next);
+      paper.yearNumber = next;
+    });
     if (!document.body.classList.contains('publications-page')) {
       const widget = make('div', 'publication-widget home-publications');
       const intro = make('p', 'paper-intro', 'Browse the full publication record. Search by paper, author or venue, and filter by year and research topic. Journal badges show the IF for the paper’s listed year; 2026 papers show the latest released 2025 IF.');

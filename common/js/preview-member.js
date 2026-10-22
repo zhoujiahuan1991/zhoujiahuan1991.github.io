@@ -99,6 +99,7 @@
     const otherJournals = /^(?:TMC|ESWA|CN|IVC|KBS|NN)(?:[’']|$)/i;
     const grid = document.createElement('div');
     grid.className = 'member-paper-grid';
+    const paperCountsByYear = new Map();
     [...paperList.querySelectorAll('li')].forEach(item => {
       const raw = item.textContent.replace(/\s+/g, ' ').trim();
       if (!raw) return;
@@ -108,10 +109,18 @@
       const venue = venueText.replace(/[()]/g, '').trim();
       const year = venue.match(/[’'](\d{2,4})/)?.[1];
       const fullYear = year ? (year.length === 2 ? String(2000 + Number(year)) : year) : raw.match(/\b20\d{2}\b/)?.[0];
+      const paperYear = fullYear || 'Earlier';
+      const yearNumber = (paperCountsByYear.get(paperYear) || 0) + 1;
+      paperCountsByYear.set(paperYear, yearNumber);
       const authors = titleMatch ? raw.slice(0, titleMatch.index).replace(/^\s*\([^)]*\)\s*[-–]?\s*/, '').trim().replace(/[,\s]+$/, '') : '';
       const details = titleMatch ? raw.slice(titleMatch.index + titleMatch[0].length).replace(/^\s*,\s*/, '').replace(/\s*\[(?:pdf|bib|doi|code)[^\]]*\]/gi, '').trim() : raw;
       const card = document.createElement('article');
       card.className = 'paper-card member-paper-card';
+      const number = document.createElement('span');
+      number.className = 'paper-year-number';
+      number.textContent = String(yearNumber);
+      number.setAttribute('aria-label', `${paperYear} publication number ${yearNumber}`);
+      card.append(number);
       const body = document.createElement('div');
       body.className = 'paper-body';
       const meta = document.createElement('div');
@@ -245,7 +254,33 @@
     back.href = '../research.html#member';
     back.textContent = '← Back to Lab Members';
     copy.prepend(back);
-    grid.append(copy, frame);
+    const researchSection = document.getElementById('member-research');
+    const interestCard = document.createElement('aside');
+    const interestList = document.createElement('div');
+    interestCard.className = 'member-interests-card';
+    interestCard.setAttribute('aria-label', 'Research Interests');
+    interestList.className = 'member-interest-list';
+    const interests = researchSection ? [...researchSection.querySelectorAll('li')]
+      .flatMap(item => item.textContent.split(',').map(value => value.trim()).filter(Boolean)) : [];
+    if (interests.length) {
+      grid.classList.add('member-hero-grid--interests');
+      const heading = document.createElement('h4');
+      heading.textContent = 'Research Interests';
+      interestCard.append(heading);
+      interests.forEach(value => {
+        const chip = document.createElement('span');
+        chip.className = 'member-interest-chip';
+        chip.textContent = value;
+        interestList.append(chip);
+      });
+      interestCard.append(interestList);
+      document.getElementById('direct')?.remove();
+      interestCard.id = 'direct';
+      researchSection.remove();
+      grid.append(copy, interestCard, frame);
+    } else {
+      grid.append(copy, frame);
+    }
     original.append(grid);
     if (biography.length) {
       const bio = document.createElement('div');

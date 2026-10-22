@@ -799,11 +799,10 @@ body :is(h1,h2,h3,h4,h5,h6,p,span,strong,b,a,li,td,th,label,output,figcaption) {
 .hero-credentials { max-width: none; gap: 9px; margin-top: 21px; }
 .hero-credential { font-size: clamp(16px, 1.3vw, 19px); line-height: 1.48; font-weight: 650; }
 .hero-photo-wrap { max-width: 320px; margin-top: -26px; }
-.hero-lower { grid-template-columns: minmax(0, 1fr) 235px; align-items: start; margin-top: 18px; }
-.hero-actions { align-self: start; align-content: start; margin-top: 0; }
-.hero-recruit { width: 235px; min-height: 132px; justify-self: end; align-content: start; gap: 7px; padding: 16px 17px; }
-.hero-recruit strong { font-size: 17px; }
-.hero-recruit span { font-size: 13px; line-height: 1.45; }
+.hero-lower { display: block; margin-top: 18px; }
+.hero-actions { display: flex; align-items: center; align-content: start; margin-top: 0; }
+.hero-actions a { min-height: 43px; white-space: nowrap; }
+.hero-actions .hero-recruit { display: inline-flex; align-items: center; justify-content: center; width: auto; min-height: 43px; gap: 0; padding: 9px 19px; border-radius: 9px; font-size: 13px; font-weight: 750; }
 @media (max-width: 800px) {
   .hero-grid { grid-template-columns: minmax(0, 1fr) 230px; }
   .hero-photo-wrap { max-width: 230px; }
@@ -813,6 +812,17 @@ body :is(h1,h2,h3,h4,h5,h6,p,span,strong,b,a,li,td,th,label,output,figcaption) {
   .hero-grid { grid-template-columns: 1fr; gap: 20px; }
   .hero-photo-wrap { grid-row: 1; justify-self: center; width: 190px; max-width: 190px; margin: 0; }
   .hero-copy { grid-row: 2; }
-  .hero-lower { grid-template-columns: 1fr; }
-  .hero-recruit { width: 100%; justify-self: stretch; min-height: 110px; }
+  .hero-lower { display: block; }
+  .hero-actions .hero-recruit { width: auto; min-height: 43px; }
 }
+
+/* Number papers within their publication year, independent of active filters. */
+.paper-card { position: relative; }
+.paper-year-number { position: absolute; top: 14px; right: 15px; display: inline-flex; align-items: center; justify-content: center; min-width: 27px; height: 27px; padding: 0 5px; border: 1px solid #e6d5d5; border-radius: 7px; background: #fbf4f3; color: #8f1932; font-size: 12px; font-weight: 800; line-height: 1; font-variant-numeric: tabular-nums; }
+.paper-card .paper-meta { padding-right: 36px; }
+
+/* A dedicated number column precedes the project and patent titles. */
+.records-table { min-width: 880px; }
+.records-table thead th, .lab-page .alumni-table thead th { text-align: center !important; vertical-align: middle; }
+.records-table th:first-child, .records-table td:first-child { width: 62px; text-align: center; font-variant-numeric: tabular-nums; }
+.records-table td:first-child { color: #8f1932; font-weight: 800; }

@@ -41,7 +41,7 @@
   const table = make('table', 'alumni-table records-table', '');
   const head = make('thead', '', '');
   const header = make('tr', '', '');
-  (projectsPage ? ['项目名称', '合作单位 / 项目类别', '编号', '职责', '开始时间', '结束时间'] : ['案件名称', '案件编号', '申请号', '申请日']).forEach(label => {
+  (projectsPage ? ['序号', '项目名称', '合作单位 / 项目类别', '编号', '职责', '开始时间', '结束时间'] : ['序号', '案件名称', '案件编号', '申请号', '申请日']).forEach(label => {
     const th = make('th', '', label);
     th.scope = 'col';
     header.append(th);
@@ -49,16 +49,16 @@
   head.append(header);
   const body = make('tbody', '', '');
   if (projectsPage) {
-    events.forEach(([title, organization, number, role, period]) => {
+    events.forEach(([title, organization, number, role, period], index) => {
       const dates = period.split('–');
       const row = make('tr', '', '');
-      [title, organization, number || '—', role, dates[0] || '—', dates[1] || '—'].forEach(value => row.append(make('td', '', value)));
+      [index + 1, title, organization, number || '—', role, dates[0] || '—', dates[1] || '—'].forEach(value => row.append(make('td', '', value)));
       body.append(row);
     });
   } else {
-    patents.forEach(([title, _status, caseNumber, applicationNumber, date]) => {
+    patents.forEach(([title, _status, caseNumber, applicationNumber, date], index) => {
       const row = make('tr', '', '');
-      [title, caseNumber, applicationNumber, date].forEach(value => row.append(make('td', '', value)));
+      [index + 1, title, caseNumber, applicationNumber, date].forEach(value => row.append(make('td', '', value)));
       body.append(row);
     });
   }
