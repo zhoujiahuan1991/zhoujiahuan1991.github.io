@@ -5,7 +5,7 @@
     ['视觉提示驱动的XXX敏捷增量学习技术研究', '航天科工集团智能科技研究院有限公司', '', '负责人', '2025.12–2026.05'],
     ['AIGC多粒度持续鉴伪', '北京市公安局人工智能安全研究中心', '', '负责人', '2025.01–2025.12'],
     ['基于高通量电子显微技术的自插层低维铁基材料微结构研究', '国家重点研发计划青年科学家项目', '2024YFA1410000', '课题负责人', '2024.12–2029.11'],
-    ['XXX持续识别与自适应分析技术', '基础国防基础加强计划技术', '', '负责人', '2024.10–2026.04'],
+    ['XXX持续识别与自适应分析技术', '基础国防基础加强计划技术领域基金', '', '负责人', '2024.10–2026.04'],
     ['面向城市动态场景的自适应增量分析与可持续感知', '国家自然科学基金面上项目', '62376011', '负责人', '2024.01–2027.12'],
     ['家庭机器人视觉定位模块研发', '四川启睿克科技有限公司', '', '负责人', '2023.11–2024.11'],
     ['端侧超分辨率模型研发项目', '北京商领时代科技有限公司', '', '负责人', '2023.07–2024.01'],
@@ -17,11 +17,11 @@
   ];
   const patents = [
     ['一种原型自强化引导的半监督终身目标重识别方法及系统', '实审', 'ZL2025001259', '202610556947.3', '2026-04-24'],
-    ['一种免训练的图像伪造定位方法和系统', '办登', 'ZL2025001922', '202611055089.0', '2026-07-16'],
+    ['一种免训练的图像伪造定位方法和系统', '实审', 'ZL2025001922', '202611055089.0', '2026-07-16'],
     ['基于视觉文本属性解耦强化的终身行人重识别方法及系统', '实审', 'ZL2025001897', '202610902462.5', '2026-06-23'],
-    ['基于语义互补的多模态大语言模型视觉令牌裁剪方法', '办登', 'ZL2025001888', '202611055966.4', '2026-07-16'],
+    ['一种基于语义互补的视觉令牌裁剪方法和多模态大语言模型', '授权', 'ZL2025001888', '202611055966.4', '2026-07-16'],
     ['一种基于提示对齐的域增量学习方法及系统', '实审', 'ZL2025000825', '202510843552.7', '2025-06-23'],
-    ['一种细节精炼的状态空间模型视频语义分割方法', '实审', 'ZL2025001894', '202611055090.3', '2026-07-16'],
+    ['一种基于细节精炼的状态空间模型视频语义分割方法', '实审', 'ZL2025001894', '202611055090.3', '2026-07-16'],
     ['基于子分布协同强化的换装终身行人重识别方法及系统', '实审', 'ZL2025001895', '202610556945.4', '2026-04-24'],
     ['一种基于取证线索解耦与自适应聚合的图像篡改定位方法及装置', '初审合格', 'ZL2025001921', '202610879964.0', '2026-06-17'],
     ['一种基于选择性提示的视觉Mamba模型微调的方法', '授权', 'ZL2024001243', '202411591530.8', '2024-11-08'],
@@ -39,9 +39,10 @@
   };
   const projectsPage = document.body.dataset.page === 'Projects';
   const table = make('table', 'alumni-table records-table', '');
+  if (!projectsPage) table.classList.add('patents-table');
   const head = make('thead', '', '');
   const header = make('tr', '', '');
-  (projectsPage ? ['序号', '单位/类型', '名称', '职责', '开始时间', '结束时间'] : ['序号', '案件名称', '案件编号', '申请号', '申请日']).forEach(label => {
+  (projectsPage ? ['序号', '项目名称', '合作单位 / 项目类别', '编号', '职责', '开始时间', '结束时间'] : ['序号', '案件名称', '证书编号', '申请号', '申请日', '专利状态']).forEach(label => {
     const th = make('th', '', label);
     th.scope = 'col';
     header.append(th);
@@ -50,17 +51,16 @@
   const body = make('tbody', '', '');
   if (projectsPage) {
     events.forEach(([title, organization, number, role, period], index) => {
+      const dates = period.split('–');
       const row = make('tr', '', '');
-      const unit = /有限公司/.test(organization) ? `校企合作-${organization}` : organization;
-      const name = number ? `${title}（编号：${number}）` : title;
-      const [startTime, endTime] = period.split('–');
-      [index + 1, unit, name, role, startTime, endTime].forEach(value => row.append(make('td', '', value)));
+      [index + 1, title, organization, number || '—', role, dates[0] || '—', dates[1] || '—'].forEach(value => row.append(make('td', '', value)));
       body.append(row);
     });
   } else {
-    patents.forEach(([title, _status, caseNumber, applicationNumber, date], index) => {
+    [...patents].sort((a, b) => b[4].localeCompare(a[4])).forEach(([title, status, caseNumber, applicationNumber, date], index) => {
       const row = make('tr', '', '');
-      [index + 1, title, caseNumber, applicationNumber, date].forEach(value => row.append(make('td', '', value)));
+      const caseStatus = status === '授权' || String(status) === '9' ? '已授权' : '审查中';
+      [index + 1, title, caseNumber, applicationNumber, date, caseStatus].forEach(value => row.append(make('td', '', value)));
       body.append(row);
     });
   }
