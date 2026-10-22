@@ -894,3 +894,83 @@ body :is(h1,h2,h3,h4,h5,h6,p,span,strong,b,a,li,td,th,label,output,figcaption) {
 .service-logo { width: 100%; height: 100%; object-fit: contain; }
 .service-cover { width: auto; max-width: 100%; height: 100%; object-fit: contain; }
 .service-role { color: var(--wine); font-size: 15px; font-weight: 850; line-height: 1.35; }
+
+/* Denser publication controls and a full-width row for a lone press link. */
+.paper-tools { display: block; }
+.paper-search { width: 100%; }
+.paper-resources { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 5px; }
+.paper-resource { min-width: 0; min-height: 32px; padding: 6px 4px; font-size: 12px; }
+.paper-resource--extra { grid-column: span 2; }
+.paper-resource--extra:nth-child(5):last-child { grid-column: 1 / -1; }
+
+/* The three research directions are now headline cards. */
+#direct + section .research-summary-card {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 155px;
+  text-align: center;
+}
+#direct + section .research-summary-card b { margin: 0; font-size: 19px; line-height: 1.4; }
+
+.ov-principle-heading { display: flex; flex-wrap: wrap; align-items: baseline; gap: 5px 11px; }
+.ov-principle-heading h2 { margin: 0; font-size: 19px; }
+.ov-principle-heading strong { font-size: 13px; font-weight: 750; }
+.ov-principle-heading + p { margin-top: 9px; }
+.content > .hero .hero-actions .hero-recruit {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: flex-start;
+  min-width: min(380px, 100%);
+  min-height: 56px;
+  gap: 3px;
+  padding: 8px 16px;
+  white-space: normal;
+  text-align: left;
+}
+.content > .hero .hero-recruit strong { font-size: 14px; line-height: 1.2; }
+.content > .hero .hero-recruit span { font-size: 12px; line-height: 1.3; white-space: nowrap; }
+@media (max-width: 480px) { .content > .hero .hero-recruit span { white-space: normal; } }
+
+/* Quiet navigation with an animated underline instead of a filled hover box. */
+.navbar .navbar-nav { gap: clamp(7px, 1vw, 18px); }
+.navbar .navbar-nav > li > a { position: relative; background: transparent !important; border-radius: 0; }
+.navbar .navbar-nav > li > a::after {
+  content: "";
+  position: absolute;
+  left: 9px;
+  right: 9px;
+  bottom: 3px;
+  height: 3px;
+  border-radius: 3px;
+  background: var(--wine);
+  transform: scaleX(0);
+  transform-origin: center;
+  transition: transform .22s ease;
+}
+.navbar .navbar-nav > li > a:hover,
+.navbar .navbar-nav > .active > a,
+.navbar .navbar-nav > li > a:focus-visible { background: transparent !important; color: var(--wine) !important; }
+.navbar .navbar-nav > li > a:hover::after,
+.navbar .navbar-nav > .active > a::after,
+.navbar .navbar-nav > li > a:focus-visible::after { transform: scaleX(1); }
+@media (max-width: 1100px) { .navbar .navbar-nav { gap: 3px; } }
+
+#notification {
+  position: fixed !important;
+  top: 22px !important;
+  right: 22px !important;
+  z-index: 9999 !important;
+  max-width: min(360px, calc(100vw - 32px));
+  padding: 12px 18px !important;
+  border: 1px solid #8d4657;
+  background: #671b2b !important;
+  color: #fff !important;
+  font-size: 14px;
+  font-weight: 750;
+  box-shadow: 0 12px 30px rgba(56, 13, 29, .2);
+}
+
+/* Consistent minimum row rhythm, without clipping long patent or project titles. */
+.records-table tr { height: 62px; }
+.records-table th, .records-table td { padding: 12px 15px; vertical-align: middle; line-height: 1.45; }

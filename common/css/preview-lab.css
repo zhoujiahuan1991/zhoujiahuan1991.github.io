@@ -160,6 +160,9 @@
 .lab-page .alumni-table td { font-size: 14px; }
 .lab-page .honors-table td:first-child { color: var(--wine); font-weight: 750; }
 .lab-page .honors-table td:nth-child(3) { white-space: nowrap; }
+.lab-page .member-note { display: block; margin-top: 4px; color: #6e5b63; font-size: 13px; line-height: 1.4; }
+.lab-page .alumni-table tr { height: 62px; }
+.lab-page .alumni-table th, .lab-page .alumni-table td { padding: 12px 15px; vertical-align: middle; line-height: 1.45; }
 .lab-page #Lives + section > h3 { text-align: center; }
 .lab-page #Lives + section > h3::after { margin-left: auto; margin-right: auto; }
 .lab-page .lives-timeline { display: grid; gap: 13px; width: min(100%, 780px); margin: 0 auto 25px; text-align: center; }

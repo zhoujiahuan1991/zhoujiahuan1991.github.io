@@ -185,10 +185,33 @@
       paperList.before(grid);
       paperList.classList.add('member-papers-original');
     }
+    let noticeTimer;
     window.copyTextAndNotify = async (event, value) => {
       event.preventDefault();
-      try { await navigator.clipboard.writeText(value); }
-      catch { const field = document.createElement('textarea'); field.value = value; document.body.append(field); field.select(); document.execCommand('copy'); field.remove(); }
+      const unavailable = /unavaliable|unavailable/i.test(value);
+      if (!unavailable) {
+        try { await navigator.clipboard.writeText(value); }
+        catch {
+          const field = document.createElement('textarea');
+          field.value = value;
+          document.body.append(field);
+          field.select();
+          document.execCommand('copy');
+          field.remove();
+        }
+      }
+      let notice = document.getElementById('notification');
+      if (!notice) {
+        notice = document.createElement('div');
+        notice.id = 'notification';
+        document.body.append(notice);
+      }
+      notice.setAttribute('role', 'status');
+      notice.setAttribute('aria-live', 'polite');
+      notice.textContent = unavailable ? '此论文 Bib 暂不可用' : 'Bib 已复制到剪贴板';
+      notice.style.display = 'block';
+      clearTimeout(noticeTimer);
+      noticeTimer = setTimeout(() => { notice.style.display = 'none'; }, 2800);
     };
     fetch('../index.html').then(response => response.text()).then(html => {
       const source = new DOMParser().parseFromString(html, 'text/html');
@@ -224,9 +247,42 @@
             }
           }
         });
+        anchors.filter(anchor => {
+          const label = anchor.textContent.trim();
+          const href = anchor.getAttribute('href');
+          return href && href !== '#' && !/^(?:pdf|bib|code|doi(?:\b|:))/i.test(label);
+        }).forEach(anchor => {
+          const extra = anchor.cloneNode(true);
+          extra.className = 'paper-resource paper-resource--extra';
+          extra.href = new URL(anchor.getAttribute('href'), base).href;
+          resources.append(extra);
+        });
       });
     }).catch(error => console.error('Member paper links could not be mapped:', error));
   }
+
+  document.querySelectorAll('#member-service li').forEach(item => {
+    const walker = document.createTreeWalker(item, NodeFilter.SHOW_TEXT);
+    const nodes = [];
+    while (walker.nextNode()) nodes.push(walker.currentNode);
+    nodes.forEach(node => {
+      const content = node.textContent;
+      const matches = [...content.matchAll(/\b(?:Knowledge-Based Systems|ACM MM|NeurIPS|ICML|ICLR|CVPR|ICCV|ECCV|AAAI|IJCAI|ICPR|ICME|PRCV|BMVC|TPAMI|IJCV|TIFS|TCSVT|TOMM|TMM|TIP|PRL|KBS)\b/g)];
+      if (!matches.length) return;
+      const fragment = document.createDocumentFragment();
+      let last = 0;
+      matches.forEach(match => {
+        fragment.append(document.createTextNode(content.slice(last, match.index)));
+        const strong = document.createElement('strong');
+        strong.className = 'member-service-acronym';
+        strong.textContent = match[0];
+        fragment.append(strong);
+        last = match.index + match[0].length;
+      });
+      fragment.append(document.createTextNode(content.slice(last)));
+      node.replaceWith(fragment);
+    });
+  });
 
   const original = hero.querySelector('.my-auto');
   const portrait = original?.querySelector('img');

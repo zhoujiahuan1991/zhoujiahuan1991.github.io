@@ -8,6 +8,36 @@
     return element;
   };
   const normalize = value => (value || '').replace(/\s+/g, ' ').trim();
+  let noticeTimer;
+  function installCopyNotice() {
+    window.copyTextAndNotify = async (event, value) => {
+      event.preventDefault();
+      const unavailable = /unavaliable|unavailable/i.test(value);
+      if (!unavailable) {
+        try { await navigator.clipboard.writeText(value); }
+        catch {
+          const field = document.createElement('textarea');
+          field.value = value;
+          document.body.append(field);
+          field.select();
+          document.execCommand('copy');
+          field.remove();
+        }
+      }
+      let notice = $('#notification');
+      if (!notice) {
+        notice = make('div', '', '');
+        notice.id = 'notification';
+        document.body.append(notice);
+      }
+      notice.setAttribute('role', 'status');
+      notice.setAttribute('aria-live', 'polite');
+      notice.textContent = unavailable ? '此论文 Bib 暂不可用' : 'Bib 已复制到剪贴板';
+      notice.style.display = 'block';
+      clearTimeout(noticeTimer);
+      noticeTimer = setTimeout(() => { notice.style.display = 'none'; }, 2800);
+    };
+  }
   // JIF is a journal-level metric for the named year, not a paper-level score.
   // For papers dated 2026, the latest released year is 2025 (2026 JCR).
   // Each source page contains the year-by-year figure used below.
@@ -109,8 +139,9 @@
       ['Open Venture', '开放探索 · 发现更多', '让智能走出已有知识的边界，在未知环境和新科学问题中持续学习与探索。']
     ].forEach(([title, subtitle, description]) => {
       const card = make('div', 'ov-principle');
-      card.append(make('h2', '', title),
-        make('strong', '', subtitle), make('p', '', description));
+      const heading = make('div', 'ov-principle-heading');
+      heading.append(make('h2', '', title), make('strong', '', subtitle));
+      card.append(heading, make('p', '', description));
       principles.append(card);
     });
     const actions = make('div', 'hero-actions');
@@ -120,9 +151,9 @@
     publications.href = 'publications.html';
     const members = make('a', '', 'Lab Members ↗');
     members.href = 'research.html#member';
-    const recruit = make('a', 'hero-recruit', 'Join Our Team ↗');
+    const recruit = make('a', 'hero-recruit');
     recruit.href = 'contact.html';
-    recruit.setAttribute('aria-label', 'Join Our Team · Now Recruiting Postdoc, PhD and RA');
+    recruit.append(make('strong', '', 'Join Our Team ↗'), make('span', '', 'Recruiting Post-doc / PhD / RA'));
     actions.append(research, publications, members, recruit);
 
     const photoFrame = make('div', 'hero-photo-wrap');
@@ -189,6 +220,16 @@
     section.classList.add('hero');
     section.id = 'home';
     section.after(about);
+  }
+
+  function simplifyResearch() {
+    $$('#direct + section .box-container .box').forEach(card => {
+      const heading = $('b', card);
+      if (heading) {
+        card.replaceChildren(heading);
+        card.classList.add('research-summary-card');
+      }
+    });
   }
 
   function enhanceNews() {
@@ -354,21 +395,13 @@
     });
     if (!document.body.classList.contains('publications-page')) {
       const widget = make('div', 'publication-widget home-publications');
-      const intro = make('p', 'paper-intro', 'Browse the full publication record. Search by paper, author or venue, and filter by year and research topic. Journal badges show the IF for the paper’s listed year; 2026 papers show the latest released 2025 IF.');
+      const intro = make('p', 'paper-intro', 'Browse the full publication record. Search by paper, author or venue, and filter by year. Journal badges show the IF for the paper’s listed year; 2026 papers show the latest released 2025 IF.');
       const tools = make('div', 'paper-tools');
       const search = make('input', 'paper-search');
       search.type = 'search';
       search.placeholder = 'Search title, author, venue…';
       search.setAttribute('aria-label', 'Search 2026 publications');
-      const topic = make('select', 'paper-topic');
-      topic.setAttribute('aria-label', 'Filter 2026 publications by topic');
-      topic.append(make('option', '', 'All research topics'));
-      [...new Set(papers.filter(paper => paper.year === '2026').flatMap(paper => paper.topics))].sort().forEach(value => {
-        const option = make('option', '', value);
-        option.value = value;
-        topic.append(option);
-      });
-      tools.append(search, topic);
+      tools.append(search);
       const years = make('div', 'year-filters');
       const allPapers = make('a', 'year-filter', 'All papers');
       allPapers.href = 'publications.html';
@@ -383,12 +416,11 @@
       const homePapers = papers.filter(paper => paper.year === '2026');
       const renderHome = () => {
         const query = normalize(search.value).toLocaleLowerCase();
-        const shown = homePapers.filter(paper => (topic.value === 'All research topics' || paper.topics.includes(topic.value)) && (!query || paper.raw.toLocaleLowerCase().includes(query)));
+        const shown = homePapers.filter(paper => !query || paper.raw.toLocaleLowerCase().includes(query));
         cards.replaceChildren(...shown.map(paperCard));
         count.textContent = `${shown.length} papers shown · 2026`;
       };
       search.addEventListener('input', renderHome);
-      topic.addEventListener('change', renderHome);
       renderHome();
       const allLink = make('a', 'paper-more paper-all-link', 'View all papers ↗');
       allLink.href = 'publications.html';
@@ -398,23 +430,13 @@
       return;
     }
 
-    const intro = make('p', 'paper-intro', 'Browse the full publication record. Search by paper, author or venue, and filter by year and research topic. Journal badges show the IF for the paper’s listed year; 2026 papers show the latest released 2025 IF.');
+    const intro = make('p', 'paper-intro', 'Browse the full publication record. Search by paper, author or venue, and filter by year. Journal badges show the IF for the paper’s listed year; 2026 papers show the latest released 2025 IF.');
     const tools = make('div', 'paper-tools');
     const search = make('input', 'paper-search');
     search.type = 'search';
     search.placeholder = 'Search title, author, venue…';
     search.setAttribute('aria-label', 'Search publications');
-    const topic = make('select', 'paper-topic');
-    topic.setAttribute('aria-label', 'Filter publications by topic');
-    const allTopic = make('option', '', 'All research topics');
-    allTopic.value = 'all';
-    topic.append(allTopic);
-    [...new Set(papers.flatMap(paper => paper.topics))].sort().forEach(value => {
-      const option = make('option', '', value);
-      option.value = value;
-      topic.append(option);
-    });
-    tools.append(search, topic);
+    tools.append(search);
 
     const years = make('div', 'year-filters');
     years.setAttribute('role', 'group');
@@ -457,12 +479,9 @@
 
     function render() {
       const query = normalize(search.value).toLocaleLowerCase();
-      const selectedTopic = topic.value;
       const matches = papers.filter(paper => {
         const byYear = activeYear === 'all' || (activeYear === 'earlier' ? Number(paper.year) <= 2022 || paper.year === 'Earlier' : paper.year === activeYear);
-        const byTopic = selectedTopic === 'all' || paper.topics.includes(selectedTopic);
-        const haystack = `${paper.raw} ${paper.topics.join(' ')}`.toLocaleLowerCase();
-        return byYear && byTopic && (!query || haystack.includes(query));
+        return byYear && (!query || paper.raw.toLocaleLowerCase().includes(query));
       });
       const fragment = document.createDocumentFragment();
       matches.forEach(paper => fragment.append(paperCard(paper)));
@@ -472,7 +491,6 @@
     }
 
     search.addEventListener('input', render);
-    topic.addEventListener('change', render);
     render();
     document.documentElement.classList.add('preview-enhanced');
   }
@@ -554,7 +572,9 @@
   }
 
   enhanceNavigation();
+  installCopyNotice();
   enhanceHero();
+  simplifyResearch();
   enhanceNews();
   enhancePublications();
   enhanceServices();

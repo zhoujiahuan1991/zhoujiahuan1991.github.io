@@ -26,7 +26,7 @@
     if (!source) throw new Error('Publication source was not found.');
     placeholder.replaceWith(document.importNode(source, true));
     const script = document.createElement('script');
-    script.src = 'common/js/preview-redesign.js?v=20261022c';
+    script.src = 'common/js/preview-redesign.js?v=20261022f';
     document.body.append(script);
   }).catch(error => {
     placeholder.querySelector('p').textContent = 'The publications could not load. Please refresh the page.';
