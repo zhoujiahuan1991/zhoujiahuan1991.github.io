@@ -1,21 +1,31 @@
 (() => {
   const placeholder = document.getElementById('paper-loading');
+  let noticeTimer;
   window.copyTextAndNotify = async (event, value) => {
     event.preventDefault();
-    try {
-      await navigator.clipboard.writeText(value);
-    } catch {
-      const field = document.createElement('textarea');
-      field.value = value;
-      document.body.append(field);
-      field.select();
-      document.execCommand('copy');
-      field.remove();
+    const unavailable = /unavaliable|unavailable/i.test(value);
+    if (!unavailable) {
+      try {
+        await navigator.clipboard.writeText(value);
+      } catch {
+        const field = document.createElement('textarea');
+        field.value = value;
+        document.body.append(field);
+        field.select();
+        document.execCommand('copy');
+        field.remove();
+      }
     }
     const notice = document.getElementById('notification');
     if (notice) {
+      notice.setAttribute('role', 'status');
+      notice.setAttribute('aria-live', 'polite');
+      notice.textContent = unavailable
+        ? 'The bib of the selected paper is unavailable.'
+        : 'The bib of the selected paper has copied!';
       notice.style.display = 'block';
-      setTimeout(() => { notice.style.display = 'none'; }, 3000);
+      clearTimeout(noticeTimer);
+      noticeTimer = setTimeout(() => { notice.style.display = 'none'; }, 5000);
     }
   };
   fetch('index.html').then(response => {
@@ -26,7 +36,7 @@
     if (!source) throw new Error('Publication source was not found.');
     placeholder.replaceWith(document.importNode(source, true));
     const script = document.createElement('script');
-    script.src = 'common/js/preview-redesign.js?v=20261022f';
+    script.src = 'common/js/preview-redesign.js?v=20261022j';
     document.body.append(script);
   }).catch(error => {
     placeholder.querySelector('p').textContent = 'The publications could not load. Please refresh the page.';

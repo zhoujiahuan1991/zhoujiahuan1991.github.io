@@ -32,10 +32,13 @@
       }
       notice.setAttribute('role', 'status');
       notice.setAttribute('aria-live', 'polite');
-      notice.textContent = unavailable ? '此论文 Bib 暂不可用' : 'Bib 已复制到剪贴板';
+      const publicationsPage = document.body.classList.contains('publications-page');
+      notice.textContent = unavailable
+        ? (publicationsPage ? 'The bib of the selected paper is unavailable.' : '此论文 Bib 暂不可用')
+        : (publicationsPage ? 'The bib of the selected paper has copied!' : 'Bib 已复制到剪贴板');
       notice.style.display = 'block';
       clearTimeout(noticeTimer);
-      noticeTimer = setTimeout(() => { notice.style.display = 'none'; }, 2800);
+      noticeTimer = setTimeout(() => { notice.style.display = 'none'; }, publicationsPage ? 5000 : 2800);
     };
   }
   // JIF is a journal-level metric for the named year, not a paper-level score.
@@ -500,7 +503,6 @@
     if (!section || !table) return;
     const groups = make('div', 'service-groups');
     let entries = null;
-    let currentRole = '';
     const artwork = {
       MVA: 'mva.jpg', ICCV: 'iccv.svg', ICLR: 'iclr-provided.png', ICML: 'icml.svg',
       AAAI: 'aaai-provided.png', NeurIPS: 'neurips-provided.png', PRCV: 'prcv-provided.png',
@@ -511,7 +513,6 @@
       if (heading) {
         const title = normalize(heading.textContent).replace(/:$/, '');
         if (/Conference Reviewer|Journal Reviewer/i.test(title)) { entries = null; return; }
-        currentRole = title;
         const group = make('section', 'service-group');
         group.append(make('h4', '', title));
         entries = make('div', 'service-entries');
@@ -524,7 +525,6 @@
       if (!cells.length) return;
       const entry = make('div', 'service-entry');
       const description = make('div', 'service-description');
-      description.append(make('strong', 'service-role', currentRole));
       [...cells[0].childNodes].forEach(node => description.append(node.cloneNode(true)));
       const acronym = normalize(description.textContent).match(/\((MVA|ICCV|AAAI|ICLR|ICML|NeurIPS|CVPR|ECCV|ICPR|ICME|PRCV|BMVC|BMCV)\)/i)?.[1] || '';
       const mark = make('div', 'service-mark');
