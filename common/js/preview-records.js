@@ -41,7 +41,7 @@
   const table = make('table', 'alumni-table records-table', '');
   const head = make('thead', '', '');
   const header = make('tr', '', '');
-  (projectsPage ? ['类型', '单位', '名称', '职责'] : ['序号', '案件名称', '案件编号', '申请号', '申请日']).forEach(label => {
+  (projectsPage ? ['序号', '单位/类型', '名称', '职责', '开始时间', '结束时间'] : ['序号', '案件名称', '案件编号', '申请号', '申请日']).forEach(label => {
     const th = make('th', '', label);
     th.scope = 'col';
     header.append(th);
@@ -49,11 +49,12 @@
   head.append(header);
   const body = make('tbody', '', '');
   if (projectsPage) {
-    events.forEach(([title, organization, number, role]) => {
+    events.forEach(([title, organization, number, role, period], index) => {
       const row = make('tr', '', '');
-      const type = /有限公司/.test(organization) ? '校企合同' : '—';
+      const unit = /有限公司/.test(organization) ? `校企合作-${organization}` : organization;
       const name = number ? `${title}（编号：${number}）` : title;
-      [type, organization, name, role].forEach(value => row.append(make('td', '', value)));
+      const [startTime, endTime] = period.split('–');
+      [index + 1, unit, name, role, startTime, endTime].forEach(value => row.append(make('td', '', value)));
       body.append(row);
     });
   } else {
