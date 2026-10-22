@@ -1037,3 +1037,20 @@ body :is(h1,h2,h3,h4,h5,h6,p,span,strong,b,a,li,td,th,label,output,figcaption) {
   .content > .hero .hero-actions > .hero-recruit { min-width: 0; white-space: normal; }
   .about-section .bio-details p { font-size: 17px; }
 }
+
+/* Keep the recruitment action at the right edge with the same red ink as its peers. */
+.content > .hero .hero-actions > .hero-recruit {
+  margin-left: auto;
+  color: #9c1730 !important;
+}
+
+/* Projects start with their title; the generic first-column numbering style is not applicable. */
+body[data-page="Projects"] .records-table { min-width: 640px; }
+body[data-page="Projects"] .records-table th:first-child { width: auto; text-align: center; }
+body[data-page="Projects"] .records-table td:first-child {
+  width: auto;
+  color: #4d4448;
+  font-weight: 650;
+  text-align: left;
+  font-variant-numeric: normal;
+}

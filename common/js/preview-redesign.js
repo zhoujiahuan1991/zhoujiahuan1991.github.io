@@ -151,7 +151,7 @@
     publications.href = 'publications.html';
     const members = make('a', '', 'Lab Members ↗');
     members.href = 'research.html#member';
-    const recruit = make('a', 'hero-recruit', 'Join our team (Recruiting Post-doc/PhD/RA!)');
+    const recruit = make('a', 'hero-recruit', 'Join our team (Recruiting Post-doc/PhD/RA !) ↗');
     recruit.href = 'contact.html';
     actions.append(research, publications, members, recruit);
 
