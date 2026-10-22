@@ -151,9 +151,8 @@
     publications.href = 'publications.html';
     const members = make('a', '', 'Lab Members ↗');
     members.href = 'research.html#member';
-    const recruit = make('a', 'hero-recruit');
+    const recruit = make('a', 'hero-recruit', 'Join our team (Recruiting Post-doc/PhD/RA!)');
     recruit.href = 'contact.html';
-    recruit.append(make('strong', '', 'Join Our Team ↗'), make('span', '', 'Recruiting Post-doc / PhD / RA'));
     actions.append(research, publications, members, recruit);
 
     const photoFrame = make('div', 'hero-photo-wrap');

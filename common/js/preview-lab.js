@@ -84,10 +84,6 @@
       mark.append(role, period);
     }
     phdGrid.append(hanCard);
-    const coSupervision = document.createElement('span');
-    coSupervision.className = 'member-note';
-    coSupervision.textContent = 'Jointly supervised with Prof. Ruqiang Zou';
-    hanCard.append(coSupervision);
   }
 
   const alumniOriginal = memberSection?.querySelector('.perpic > table');
@@ -187,6 +183,12 @@
       timeLabel.className = 'member-time';
       timeLabel.textContent = time;
       card.append(timeLabel);
+    }
+    if (visibleName === 'Han Yang') {
+      const coSupervision = document.createElement('span');
+      coSupervision.className = 'member-note';
+      coSupervision.textContent = 'Jointly supervised with Prof. Ruqiang Zou';
+      card.append(coSupervision);
     }
     const originalLink = mark?.querySelector('a[href]');
     if (originalLink) {

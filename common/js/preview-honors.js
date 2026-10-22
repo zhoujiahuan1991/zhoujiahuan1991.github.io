@@ -41,7 +41,7 @@
   table.className = 'alumni-table honors-table';
   const head = document.createElement('thead');
   const header = document.createElement('tr');
-  ['Award · 奖项', 'Student · 获奖学生', 'Year · 年份'].forEach(label => {
+  ['Award', 'Student', 'Year'].forEach(label => {
     const cell = document.createElement('th');
     cell.scope = 'col';
     cell.textContent = label;
