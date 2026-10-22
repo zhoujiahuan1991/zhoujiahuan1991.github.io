@@ -5,10 +5,10 @@
   if (!nav || !content) return;
   content.classList.add('content');
   const links = [
-    ['Home', '../index.html#top'], ['About', '../index.html#about'], ['News', '../index.html#news'],
+    ['Home', '../index.html#top'], ['News', '../index.html#news'],
     ['Research', '../index.html#direct'], ['Publications', '../publications.html'],
     ['People', '../research.html#member'],
-    ['Patents', '../patents.html'], ['Events', '../events.html'], ['Demos', '../demos.html'], ['Contact', '../contact.html']
+    ['Patents', '../patents.html'], ['Projects', '../events.html'], ['Demos', '../demos.html'], ['Contact', '../contact.html']
   ];
   const list = nav.querySelector('.navbar-nav');
   list.replaceChildren(...links.map(([label, href]) => {
@@ -34,6 +34,9 @@
   };
   nav.prepend(brand('lab-brand', '../research.html#member', '../common/img/ov3-lab-logo.png', 'OV³ Lab · 开放视界实验室'));
   nav.append(brand('site-brand', '../index.html#top', '../common/img/pku-logo.png', '北京大学 · Peking University'));
+  const updateCompactNav = () => document.body.classList.toggle('nav-scrolled', window.scrollY > 80);
+  window.addEventListener('scroll', updateCompactNav, { passive: true });
+  updateCompactNav();
 
   const categories = [
     [/^Education$/i, 'member-education', 'Education'],
@@ -80,6 +83,8 @@
   const paperSection = document.getElementById('member-publications');
   const paperList = paperSection?.querySelector('ol, ul');
   if (paperList) {
+    const paperCardsByTitle = new Map();
+    const paperKey = title => title.toLocaleLowerCase().replace(/[^\p{L}\p{N}]+/gu, '');
     const journalFactors = {
       TPAMI: { source: 'https://www.bioxbio.com/journal/IEEE-T-PATTERN-ANAL', values: { 2026: ['2025', '20.4'], 2025: ['2025', '20.4'], 2024: ['2024', '18.6'], 2023: ['2023', '20.8'], 2022: ['2022', '23.6'], 2020: ['2020', '16.389'] } },
       TIFS: { source: 'https://www.bioxbio.com/journal/IEEE-T-INF-FOREN-SEC', values: { 2025: ['2025', '8.7'], 2024: ['2024', '8.0'] } },
@@ -106,7 +111,9 @@
       const authors = titleMatch ? raw.slice(0, titleMatch.index).replace(/^\s*\([^)]*\)\s*[-–]?\s*/, '').trim().replace(/[,\s]+$/, '') : '';
       const details = titleMatch ? raw.slice(titleMatch.index + titleMatch[0].length).replace(/^\s*,\s*/, '').replace(/\s*\[(?:pdf|bib|doi|code)[^\]]*\]/gi, '').trim() : raw;
       const card = document.createElement('article');
-      card.className = 'member-paper-card';
+      card.className = 'paper-card member-paper-card';
+      const body = document.createElement('div');
+      body.className = 'paper-body';
       const meta = document.createElement('div');
       meta.className = 'paper-meta';
       const label = document.createElement('span');
@@ -122,7 +129,7 @@
         badge.href = journal.source;
         badge.target = '_blank';
         badge.rel = 'noopener noreferrer';
-        badge.textContent = impact ? `${impact[0]} IF ${impact[1]}` : 'IF 未核实';
+        badge.textContent = impact ? `IF ${impact[1]}` : 'IF 未核实';
         meta.append(badge);
       } else if (otherJournals.test(venue)) {
         const badge = document.createElement('span');
@@ -130,31 +137,86 @@
         badge.textContent = 'IF 待核实';
         meta.append(badge);
       }
-      card.append(meta);
+      body.append(meta);
       if (titleMatch) {
         const title = document.createElement('h4');
         title.className = 'paper-display-title';
         title.textContent = titleMatch[1];
-        card.append(title);
+        body.append(title);
       }
       if (authors) {
         const byline = document.createElement('p');
         byline.className = 'paper-authors';
-        byline.textContent = authors;
-        card.append(byline);
+        byline.innerHTML = (item.querySelector('p')?.innerHTML || '').split(/[“"]/, 1)[0].replace(/[,\s]+$/, '');
+        body.append(byline);
       }
       if (details) {
         const citation = document.createElement('p');
         citation.className = 'paper-citation';
         citation.textContent = details;
-        card.append(citation);
+        body.append(citation);
       }
+      const footer = document.createElement('div');
+      footer.className = 'paper-footer';
+      const resources = document.createElement('div');
+      resources.className = 'paper-resources';
+      [['PDF', /^pdf$/i], ['Bib', /^bib$/i], ['Code', /^code$/i], ['DOI', /^doi(?:\b|:)/i]].forEach(([label]) => {
+        const button = document.createElement('span');
+        button.className = 'paper-resource paper-resource--disabled';
+        button.textContent = label;
+        resources.append(button);
+      });
+      footer.append(resources);
+      body.append(footer);
+      card.append(body);
+      if (titleMatch) paperCardsByTitle.set(paperKey(titleMatch[1]), { resources, source: item });
       grid.append(card);
     });
     if (grid.children.length) {
       paperList.before(grid);
       paperList.classList.add('member-papers-original');
     }
+    window.copyTextAndNotify = async (event, value) => {
+      event.preventDefault();
+      try { await navigator.clipboard.writeText(value); }
+      catch { const field = document.createElement('textarea'); field.value = value; document.body.append(field); field.select(); document.execCommand('copy'); field.remove(); }
+    };
+    fetch('../index.html').then(response => response.text()).then(html => {
+      const source = new DOMParser().parseFromString(html, 'text/html');
+      const mainPapers = new Map();
+      source.querySelectorAll('#paper + section [id="0000"] ol > li').forEach(item => {
+        const title = item.textContent.match(/[“"]([^”"]+)[”"]/ )?.[1];
+        if (title) mainPapers.set(paperKey(title), item);
+      });
+      paperCardsByTitle.forEach(({ resources, source: memberItem }, title) => {
+        const original = mainPapers.get(title) || memberItem;
+        const anchors = [...original.querySelectorAll('a')];
+        const base = mainPapers.has(title) ? new URL('../index.html', location.href) : location.href;
+        [...resources.children].forEach(button => {
+          const label = button.textContent;
+          const pattern = label === 'DOI' ? /^doi(?:\b|:)/i : new RegExp(`^${label}$`, 'i');
+          const found = anchors.find(anchor => pattern.test(anchor.textContent.trim()) && (anchor.getAttribute('href') || anchor.getAttribute('onclick')));
+          if (found) {
+            const link = found.cloneNode(true);
+            link.className = 'paper-resource';
+            link.textContent = label;
+            if (link.getAttribute('href') && link.getAttribute('href') !== '#') link.href = new URL(link.getAttribute('href'), base).href;
+            button.replaceWith(link);
+          } else if (label === 'DOI') {
+            const doi = memberItem.textContent.match(/\b10\.\d{4,9}\/[^\s,;]+/i)?.[0]?.replace(/[.)]+$/, '');
+            if (doi) {
+              const link = document.createElement('a');
+              link.className = 'paper-resource';
+              link.href = `https://doi.org/${doi}`;
+              link.target = '_blank';
+              link.rel = 'noopener noreferrer';
+              link.textContent = 'DOI';
+              button.replaceWith(link);
+            }
+          }
+        });
+      });
+    }).catch(error => console.error('Member paper links could not be mapped:', error));
   }
 
   const original = hero.querySelector('.my-auto');

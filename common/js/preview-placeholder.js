@@ -18,11 +18,11 @@
     nav.prepend(labBrand);
   }
   const links = [
-    ['Home', 'index.html#top'], ['About', 'index.html#about'],
+    ['Home', 'index.html#top'],
     ['News', 'index.html#news'], ['Research', 'index.html#direct'],
     ['Publications', 'publications.html'], ['People', 'research.html#member'],
     ['Patents', 'patents.html'],
-    ['Events', 'events.html'], ['Demos', 'demos.html'], ['Contact', 'contact.html']
+    ['Projects', 'events.html'], ['Demos', 'demos.html'], ['Contact', 'contact.html']
   ];
   links.forEach(([label, href]) => {
     const item = document.createElement('li');
@@ -34,4 +34,7 @@
     item.append(link);
     list.append(item);
   });
+  const updateCompactNav = () => document.body.classList.toggle('nav-scrolled', window.scrollY > 80);
+  window.addEventListener('scroll', updateCompactNav, { passive: true });
+  updateCompactNav();
 })();

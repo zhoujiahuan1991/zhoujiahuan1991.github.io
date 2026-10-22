@@ -21,39 +21,48 @@
     document.getElementById('application-preview').hidden = true;
   };
   form.querySelectorAll('input[name="role"]').forEach(input => input.addEventListener('change', updateRole));
-  const field = (data, name) => String(data.get(name) || '').trim() || 'Not provided';
+  const field = (data, name) => String(data.get(name) || '').trim();
+  const detail = (label, value) => value ? `${label}: ${value}` : null;
   form.addEventListener('submit', event => {
     event.preventDefault();
     if (!form.reportValidity()) return;
     const data = new FormData(form);
     const role = field(data, 'role');
+    const name = field(data, 'fullName');
     const lines = [
-      'Subject: Application Notice — OV³ Lab',
+      'To: jiahuanzhouATpku.edu.cn (replace AT with @ before sending)',
+      `Subject: Application for ${role} — ${name} | OV³ Lab`,
       '',
-      `An applicant completed a local preview of the ${role} application form on the OV³ Lab website.`,
-      'This is a preview only; no email has been sent.',
+      'Dear Professor Zhou,',
       '',
-      `Position: ${role}`,
-      `Name: ${field(data, 'fullName')}`,
-      `Email: ${field(data, 'email')}`,
-      `Current institution: ${field(data, 'institution')}`,
-      `Expected start date: ${field(data, 'startDate')}`,
-      `CV link: ${field(data, 'cvLink')}`,
-      `Research interests: ${field(data, 'interests')}`
+      `My name is ${name}, and I am writing to apply for the ${role} position at OV³ Lab. I am currently at ${field(data, 'institution')}.`,
+      '',
+      'My background and interests are as follows:',
+      detail('Research interests', field(data, 'interests')),
+      detail('Expected start date', field(data, 'startDate')),
+      detail('CV link', field(data, 'cvLink'))
     ];
     if (role === 'RA (Undergraduate)') lines.push(
-      `Undergraduate university: ${field(data, 'undergradUniversity')}`,
-      `Major and year: ${field(data, 'majorYear')}`,
-      `Relevant skills or projects: ${field(data, 'raProjects')}`
+      detail('Undergraduate university', field(data, 'undergradUniversity')),
+      detail('Major and year', field(data, 'majorYear')),
+      detail('Relevant skills or projects', field(data, 'raProjects'))
     );
     else lines.push(
-      `Education: ${field(data, 'education')}`,
-      `Publications (title, venue, level, full authors): ${field(data, 'publications')}`,
-      `Honors: ${field(data, 'honors')}`,
-      `Research experience: ${field(data, 'researchExperience')}`
+      detail('Education', field(data, 'education')),
+      detail('Publications (title, venue, level, full author list)', field(data, 'publications')),
+      detail('Honors', field(data, 'honors')),
+      detail('Research experience', field(data, 'researchExperience'))
     );
-    lines.push(`Why OV³ Lab?: ${field(data, 'motivation')}`);
-    document.getElementById('application-summary').textContent = lines.join('\n');
+    lines.push(
+      detail('Why I would like to join OV³ Lab', field(data, 'motivation')),
+      '',
+      'Thank you for considering my application. I would be grateful for the opportunity to discuss it further.',
+      '',
+      'Best regards,',
+      name,
+      field(data, 'email')
+    );
+    document.getElementById('application-summary').textContent = lines.filter(line => line !== null).join('\n');
     const preview = document.getElementById('application-preview');
     preview.hidden = false;
     preview.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
@@ -62,7 +71,7 @@
     const status = document.getElementById('copy-status');
     try {
       await navigator.clipboard.writeText(document.getElementById('application-summary').textContent);
-      status.textContent = 'Copied. No email was sent.';
+      status.textContent = 'Email draft copied. Please paste it into your email app and send it yourself.';
     } catch {
       status.textContent = 'Copy unavailable in this browser. Please select the preview text manually.';
     }

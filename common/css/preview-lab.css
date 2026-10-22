@@ -149,3 +149,53 @@
   border-radius: 2px;
   background: var(--wine);
 }
+
+/* Member groups, honours, alumni, and the non-animated Lab Lives timeline. */
+.lab-page .lab-hero-kicker { font-size: clamp(15px, 1.45vw, 19px); }
+.lab-page .part1 { justify-items: center; }
+.lab-page .w18 { width: 100%; max-width: 245px; text-align: center; }
+.lab-page .perpic .w18 img { object-position: center top; }
+.lab-page .alumni-table { min-width: 760px; }
+.lab-page .alumni-table th { text-align: center; white-space: nowrap; }
+.lab-page .alumni-table td { font-size: 14px; }
+.lab-page .honors-table td:first-child { color: var(--wine); font-weight: 750; }
+.lab-page .honors-table td:nth-child(3) { white-space: nowrap; }
+.lab-page #Lives + section > h3 { text-align: center; }
+.lab-page #Lives + section > h3::after { margin-left: auto; margin-right: auto; }
+.lab-page .lives-timeline { display: grid; gap: 13px; width: min(100%, 780px); margin: 0 auto 25px; text-align: center; }
+.lab-page .lives-timeline output { color: var(--wine); font-size: 16px; font-weight: 800; }
+.lab-page .lives-timeline input[type=range] { display: block; width: 100%; margin: 0; accent-color: var(--wine); cursor: pointer; }
+.lab-page .lives-timeline-labels { display: flex; justify-content: space-between; gap: 6px; }
+.lab-page .lives-timeline-labels button { min-width: 40px; padding: 5px 8px; border: 1px solid #e8d4d5; border-radius: 7px; background: #fff; color: #806e74; font-size: 13px; font-weight: 700; }
+.lab-page .lives-timeline-labels button.active { background: var(--wine); border-color: var(--wine); color: #fff; }
+.lab-page .lives-gallery { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 15px; width: 100%; }
+.lab-page .lives-photo { min-width: 0; margin: 0; padding: 8px; border: 1px solid #e8dada; border-radius: 12px; background: #fff; box-shadow: 0 4px 16px rgba(72,30,37,.045); }
+.lab-page .lives-photo[hidden] { display: none !important; }
+.lab-page .lives-photo img { display: block; width: 100%; height: clamp(135px, 16vw, 225px); object-fit: cover; border-radius: 7px; }
+.lab-page .lives-photo figcaption { margin-top: 7px; color: #64595e; font-size: 13px; line-height: 1.45; }
+@media (max-width: 1050px) { .lab-page .lives-gallery { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+@media (max-width: 700px) { .lab-page .lives-gallery { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 9px; } .lab-page .lives-photo img { height: clamp(110px, 30vw, 180px); } }
+@media (max-width: 420px) { .lab-page .lives-gallery { grid-template-columns: 1fr; } .lab-page .lives-timeline-labels button { min-width: 0; font-size: 11px; padding: 4px; } }
+
+/* Center each complete member group, including groups with only one portrait. */
+.lab-page .perpic > .part1 {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: stretch;
+  gap: 13px;
+  width: 100%;
+}
+.lab-page .perpic > .part1 > .w18 {
+  flex: 0 1 calc((100% - 65px) / 6);
+  width: calc((100% - 65px) / 6);
+  max-width: 245px;
+  min-width: 0;
+  margin: 0;
+}
+@media (max-width: 1100px) {
+  .lab-page .perpic > .part1 > .w18 { flex-basis: calc((100% - 39px) / 4); width: calc((100% - 39px) / 4); }
+}
+@media (max-width: 700px) {
+  .lab-page .perpic > .part1 > .w18 { flex-basis: calc((100% - 13px) / 2); width: calc((100% - 13px) / 2); }
+}

@@ -37,24 +37,31 @@
     node.textContent = text;
     return node;
   };
-  if (document.body.dataset.page === 'Events') {
+  const projectsPage = document.body.dataset.page === 'Projects';
+  const table = make('table', 'alumni-table records-table', '');
+  const head = make('thead', '', '');
+  const header = make('tr', '', '');
+  (projectsPage ? ['项目名称', '合作单位 / 项目类别', '编号', '职责', '开始时间', '结束时间'] : ['案件名称', '案件编号', '申请号', '申请日']).forEach(label => {
+    const th = make('th', '', label);
+    th.scope = 'col';
+    header.append(th);
+  });
+  head.append(header);
+  const body = make('tbody', '', '');
+  if (projectsPage) {
     events.forEach(([title, organization, number, role, period]) => {
-      const card = make('article', 'example-card record-card', '');
-      card.append(make('h2', '', title), make('p', 'record-organization', organization));
-      const details = make('p', 'record-details', role);
-      if (number) details.append(document.createTextNode(` · 项目编号 ${number}`));
-      card.append(details, make('time', 'record-period', period));
-      list.append(card);
+      const dates = period.split('–');
+      const row = make('tr', '', '');
+      [title, organization, number || '—', role, dates[0] || '—', dates[1] || '—'].forEach(value => row.append(make('td', '', value)));
+      body.append(row);
     });
   } else {
-    patents.forEach(([title, status, caseNumber, applicationNumber, date]) => {
-      const card = make('article', 'example-card record-card', '');
-      const details = make('dl', 'patent-facts', '');
-      [['案件状态', status], ['案件编号', caseNumber], ['申请号', applicationNumber], ['申请日', date]].forEach(([label, value]) => {
-        details.append(make('dt', '', label), make('dd', '', value));
-      });
-      card.append(make('h2', '', title), details);
-      list.append(card);
+    patents.forEach(([title, _status, caseNumber, applicationNumber, date]) => {
+      const row = make('tr', '', '');
+      [title, caseNumber, applicationNumber, date].forEach(value => row.append(make('td', '', value)));
+      body.append(row);
     });
   }
+  table.append(head, body);
+  list.append(table);
 })();

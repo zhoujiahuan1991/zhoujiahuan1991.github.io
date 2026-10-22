@@ -50,3 +50,17 @@
   .member-award-row { grid-template-columns: 1fr; gap: 1px; }
   .member-award-row span { text-align: left; }
 }
+
+/* Student publication cards use the exact same density and resource layout as
+   the central Publications page. */
+.member-page .member-paper-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 13px; }
+.member-page .member-paper-card { display: flex; flex-direction: column; min-width: 0; padding: 0; border-radius: 13px; }
+.member-page .member-paper-card .paper-body { display: flex; flex-direction: column; flex: 1; padding: 16px 15px 15px; }
+.member-page .member-paper-card .paper-display-title { font-size: 15px; }
+.member-page .member-paper-card .paper-authors { font-size: 13px; }
+.member-page .member-paper-card .paper-citation { font-size: 12px; }
+.member-page .member-paper-card .paper-footer { margin-top: auto; }
+.member-page .member-paper-card .paper-resources { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 6px; }
+@media (max-width: 1250px) { .member-page .member-paper-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+@media (max-width: 900px) { .member-page .member-paper-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 540px) { .member-page .member-paper-grid { grid-template-columns: 1fr; } }

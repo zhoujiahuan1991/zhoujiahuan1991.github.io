@@ -20,7 +20,12 @@
     if (/Hongcai Scholarship of Peking University/i.test(text)) return 'Hongcai Scholarship of Peking University · 北京大学闳材奖学金';
     if (/Excellent Student of Wangxuan Institute/i.test(text)) return 'Excellent Student of Wangxuan Institute of Computer Technology · 王选计算机研究所优秀学生';
     if (/Academic Star Nomination Award/i.test(text)) return 'Academic Star Nomination Award · 北京大学智能学院学术智星提名奖';
-    return text;
+    if (/General Intelligence Star of Peking University/i.test(text)) return 'General Intelligence Star of Peking University · 北京大学通智之星';
+    if (/Gold Reviewer Award for ICML/i.test(text)) return 'ICML Gold Reviewer Award · ICML 金牌审稿人';
+    if (/Jinde Scholarship of Peking University/i.test(text)) return 'Jinde Scholarship of Peking University · 北京大学金德奖学金';
+    if (/Peking University Freshman Scholarship/i.test(text)) return 'Peking University Freshman Scholarship · 北京大学新生奖学金';
+    if (/Xiaomi First Prize Scholarship of Peking University/i.test(text)) return 'Xiaomi First Prize Scholarship of Peking University · 北京大学小米一等奖学金';
+    return text.replace(/\s*\(([^)]+[\u4e00-\u9fff][^)]*)\)/, ' · $1');
   };
   const groups = new Map();
   function add(award, name, year, href) {
@@ -30,7 +35,32 @@
     if (!people.has(name)) people.set(name, { years: new Set(), href });
     people.get(name).years.add(year || 'Year not specified');
   }
-  target.textContent = 'Collecting awards from member homepages…';
+  const wrap = document.createElement('div');
+  wrap.className = 'alumni-table-wrap honors-table-wrap';
+  const table = document.createElement('table');
+  table.className = 'alumni-table honors-table';
+  const head = document.createElement('thead');
+  const header = document.createElement('tr');
+  ['Award · 奖项', 'Student · 获奖学生', 'Year · 年份'].forEach(label => {
+    const cell = document.createElement('th');
+    cell.scope = 'col';
+    cell.textContent = label;
+    header.append(cell);
+  });
+  head.append(header);
+  const body = document.createElement('tbody');
+  table.append(head, body);
+  wrap.append(table);
+  target.replaceChildren(wrap);
+  const messageRow = message => {
+    const row = document.createElement('tr');
+    const cell = document.createElement('td');
+    cell.colSpan = 3;
+    cell.textContent = message;
+    row.append(cell);
+    body.replaceChildren(row);
+  };
+  messageRow('Collecting awards from member homepages…');
   Promise.all(members.map(async ([name, file]) => {
     const response = await fetch(`student_pages/${file}`);
     if (!response.ok) throw new Error(`${file}: HTTP ${response.status}`);
@@ -50,33 +80,25 @@
       if (b.startsWith('China National Scholarship')) return 1;
       return peopleB.size - peopleA.size || a.localeCompare(b);
     });
-    target.replaceChildren();
-    const list = document.createElement('div');
-    list.className = 'honors-list';
+    body.replaceChildren();
     ordered.forEach(([award, people]) => {
-      const row = document.createElement('article');
-      row.className = 'honor-row';
-      const title = document.createElement('h2');
-      title.textContent = award;
-      const recipients = document.createElement('div');
-      recipients.className = 'honor-recipients';
       [...people.entries()].forEach(([name, record]) => {
-        const item = document.createElement('div');
-        item.className = 'honor-recipient';
+        const row = document.createElement('tr');
+        const title = document.createElement('td');
+        title.textContent = award;
+        const student = document.createElement('td');
         const link = document.createElement('a');
         link.href = record.href;
         link.textContent = name;
-        const years = document.createElement('span');
+        student.append(link);
+        const years = document.createElement('td');
         years.textContent = [...record.years].join(', ');
-        item.append(link, years);
-        recipients.append(item);
+        row.append(title, student, years);
+        body.append(row);
       });
-      row.append(title, recipients);
-      list.append(row);
     });
-    target.append(list);
   }).catch(error => {
-    target.textContent = 'The awards list could not load. Please refresh the page.';
+    messageRow('The awards list could not load. Please refresh the page.');
     console.error('Honors source loading failed:', error);
   });
 })();

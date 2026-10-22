@@ -52,10 +52,10 @@
     nav.prepend(labBrand);
     const list = $('.navbar-nav', nav);
     const links = [
-      ['Home', 'index.html#top'], ['About', 'index.html#about'], ['News', 'index.html#news'],
+      ['Home', 'index.html#top'], ['News', 'index.html#news'],
       ['Research', 'index.html#direct'], ['Publications', 'publications.html'],
       ['People', 'research.html#member'],
-      ['Patents', 'patents.html'], ['Events', 'events.html'], ['Demos', 'demos.html'], ['Contact', 'contact.html']
+      ['Patents', 'patents.html'], ['Projects', 'events.html'], ['Demos', 'demos.html'], ['Contact', 'contact.html']
     ];
     if (list) {
       list.replaceChildren(...links.map(([label, href], index) => {
@@ -78,6 +78,10 @@
     brand.append(logo);
     nav.append(brand);
 
+    const updateCompactNav = () => document.body.classList.toggle('nav-scrolled', window.scrollY > 80);
+    window.addEventListener('scroll', updateCompactNav, { passive: true });
+    updateCompactNav();
+
   }
 
   function enhanceHero() {
@@ -85,7 +89,7 @@
     const old = section && $('.my-auto', section);
     if (!old) return;
 
-    const name = normalize($('h3', old)?.textContent) || 'Jiahuan Zhou';
+    const name = (normalize($('h3', old)?.textContent) || 'Jiahuan Zhou').replace(/Zhou,\s*Jiahuan/i, 'Zhou Jiahuan');
     const portraitSource = $('img', old)?.getAttribute('src') || 'common/img/zjh.png';
     const biographies = $$('p[align="justify"]', old).map(paragraph => paragraph.cloneNode(true));
 
@@ -93,11 +97,10 @@
     const copy = make('div', 'hero-copy');
     copy.append(make('h1', '', name));
     const credentials = make('div', 'hero-credentials');
-    credentials.append(make('p', 'hero-credential hero-award', 'NSFC Excellent Young Scientists Fund Program (Overseas) · 国家自然科学基金优秀青年科学基金项目（海外）'));
     credentials.append(make('p', 'hero-credential', 'Excellent Young Scientists Fund Program (Overseas) 国家级人才计划青年项目（海外）入选者'));
-    credentials.append(make('p', 'hero-credential', 'Peking University Boya Young Fellow 北京大学博雅青年学者,'));
-    credentials.append(make('p', 'hero-credential', 'Wangxuan Institute of Computer Technology, Peking University.'));
-    credentials.append(make('p', 'hero-location', 'Beijing, China'));
+    credentials.append(make('p', 'hero-credential', 'Peking University Boya Young Fellow 北京大学博雅青年学者'));
+    credentials.append(make('p', 'hero-credential', 'Wangxuan Institute of Computer Technology, Peking University'));
+    credentials.append(make('p', 'hero-credential', 'Beijing, China'));
     copy.append(credentials);
     const principles = make('div', 'ov-principles');
     [
@@ -110,17 +113,14 @@
         make('strong', '', subtitle), make('p', '', description));
       principles.append(card);
     });
-    copy.append(principles);
-
     const actions = make('div', 'hero-actions');
     const research = make('a', '', 'View Research ↗');
     research.href = '#direct';
     const publications = make('a', '', 'View Publications ↗');
     publications.href = 'publications.html';
-    const contact = make('a', '', 'Join Our Team ↗');
-    contact.href = 'contact.html';
-    actions.append(research, publications, contact);
-    copy.append(actions);
+    const members = make('a', '', 'Lab Members ↗');
+    members.href = 'research.html#member';
+    actions.append(research, publications, members);
 
     const photoFrame = make('div', 'hero-photo-wrap');
     const photo = make('img', 'hero-photo');
@@ -130,37 +130,42 @@
     photo.height = 350;
     photoFrame.append(photo);
     grid.append(copy, photoFrame);
+    const lower = make('div', 'hero-lower');
+    const recruit = make('a', 'hero-recruit');
+    recruit.href = 'contact.html';
+    recruit.append(make('strong', '', 'Join Our Team ↗'), make('span', '', 'Now Recruiting · Postdoc · PhD · RA'), make('span', '', 'Contact us ↗'));
+    lower.append(actions, recruit);
 
     const about = make('section', 'about-section');
     about.id = 'about';
     about.append(make('h3', '', 'About Me'));
+    const switcher = make('button', 'biography-switch', 'Read English biography ↗');
+    switcher.type = 'button';
+    switcher.setAttribute('aria-pressed', 'false');
+    about.append(switcher);
     const aboutGrid = make('div', 'about-grid');
     const details = make('div', 'bio-details');
     biographies.forEach((paragraph, index) => {
       paragraph.classList.add('biography-language');
       paragraph.lang = index === 0 ? 'en' : 'zh-CN';
-      paragraph.hidden = index !== 0;
+      paragraph.hidden = index === 0;
       details.append(paragraph);
     });
     if (biographies.length > 1) {
-      const switcher = make('button', 'biography-switch', '查看中文简介 ↗');
-      switcher.type = 'button';
-      switcher.setAttribute('aria-pressed', 'false');
       switcher.addEventListener('click', () => {
-        const showChinese = switcher.getAttribute('aria-pressed') !== 'true';
-        biographies.forEach((paragraph, index) => { paragraph.hidden = showChinese ? index === 0 : index !== 0; });
-        switcher.textContent = showChinese ? 'Read English biography ↗' : '查看中文简介 ↗';
-        switcher.setAttribute('aria-pressed', String(showChinese));
+        const showEnglish = switcher.getAttribute('aria-pressed') !== 'true';
+        biographies.forEach((paragraph, index) => { paragraph.hidden = showEnglish ? index !== 0 : index === 0; });
+        switcher.textContent = showEnglish ? '查看中文简介 ↗' : 'Read English biography ↗';
+        switcher.setAttribute('aria-pressed', String(showEnglish));
       });
-      details.append(switcher);
+    } else {
+      switcher.hidden = true;
     }
     const experience = make('aside', 'experience-card');
     experience.setAttribute('aria-label', 'Education and experience');
     experience.append(make('h4', '', 'Education & Experience'));
     [
       ['Assistant Professor', 'Peking University', 'Wangxuan Institute of Computer Technology', '2022–Present', 'pku-seal.svg'],
-      ['Research Assistant Professor', 'Northwestern University', 'Department of Electrical and Computer Engineering', '2020–2022', 'northwestern-seal.svg'],
-      ['Postdoctoral Fellow', 'Northwestern University', 'Department of Electrical and Computer Engineering', '2019–2020', 'northwestern-seal.svg'],
       ['Ph.D.', 'Northwestern University', 'Computer Science', '2013–2018', 'northwestern-seal.svg'],
       ['B.E.', 'Tsinghua University', 'Automation', '2009–2013', 'tsinghua-seal.svg']
     ].forEach(([role, institution, field, period, seal]) => {
@@ -180,7 +185,7 @@
     aboutGrid.append(details, experience);
     about.append(aboutGrid);
 
-    old.replaceChildren(grid);
+    old.replaceChildren(grid, principles, lower);
     section.classList.add('hero');
     section.id = 'home';
     section.after(about);
@@ -194,12 +199,6 @@
     const items = $$('.news-item', originalList);
     const timeline = make('div', 'news-timeline');
     timeline.setAttribute('aria-label', 'Latest news timeline');
-    const recruiting = make('a', 'recruit-banner');
-    recruiting.href = 'contact.html';
-    [['recruit-status', 'Now Recruiting'], ['recruit-role', 'Postdoc'], ['recruit-role', 'PhD'],
-      ['recruit-role', 'RA'], ['recruit-contact', 'Contact us ↗']]
-      .forEach(([className, label]) => recruiting.append(make('span', className, label)));
-    section.querySelector('h3')?.after(recruiting);
 
     const dated = items.map((item, index) => {
       const paragraph = $('p', item);
@@ -310,30 +309,26 @@
     }
     if (paper.details) body.append(make('p', 'paper-citation', paper.details));
 
-    if (paper.pdfHref) {
-      const figure = make('figure', 'paper-figure');
-      const image = make('img', 'paper-figure-image');
-      image.src = encodeURI(`common/img/paper-previews/${paper.previewName}`);
-      image.alt = `Figure preview from ${paper.title}`;
-      image.loading = 'lazy';
-      image.addEventListener('error', () => figure.remove());
-      figure.append(image);
-      body.append(figure);
-    }
-
     const footer = make('div', 'paper-footer');
     const resources = make('div', 'paper-resources');
-    $$('a', paper.original).forEach(originalLink => {
-      const link = originalLink.cloneNode(true);
-      const label = normalize(link.textContent);
-      if (label.toLowerCase() === 'pdf' && !link.getAttribute('href')) {
-        resources.append(make('span', 'paper-resource paper-resource--disabled', 'PDF'));
-      } else {
+    const links = $$('a', paper.original);
+    const used = new Set();
+    [['PDF', /^pdf$/i], ['Bib', /^bib$/i], ['Code', /^code$/i], ['DOI', /^doi(?:\b|:)/i]].forEach(([label, pattern]) => {
+      const match = links.find(link => pattern.test(normalize(link.textContent)));
+      if (match?.getAttribute('href') || match?.getAttribute('onclick')) {
+        const link = match.cloneNode(true);
         link.className = 'paper-resource';
-        if (label.toLowerCase() === 'pdf') link.textContent = 'PDF';
-        if (label.toLowerCase() === 'bib') link.textContent = 'Bib';
+        link.textContent = label;
         resources.append(link);
+        used.add(match);
+      } else {
+        resources.append(make('span', 'paper-resource paper-resource--disabled', label));
       }
+    });
+    links.filter(link => !used.has(link) && link.getAttribute('href') && !/^(pdf|bib|code|doi(?:\b|:))/i.test(normalize(link.textContent))).forEach(link => {
+      const extra = link.cloneNode(true);
+      extra.className = 'paper-resource paper-resource--extra';
+      resources.append(extra);
     });
     footer.append(resources);
     body.append(footer);
@@ -350,11 +345,45 @@
     if (!papers.length) return;
     if (!document.body.classList.contains('publications-page')) {
       const widget = make('div', 'publication-widget home-publications');
+      const intro = make('p', 'paper-intro', 'Browse the full publication record. Search by paper, author or venue, and filter by year and research topic. Journal badges show the IF for the paper’s listed year; 2026 papers show the latest released 2025 IF.');
+      const tools = make('div', 'paper-tools');
+      const search = make('input', 'paper-search');
+      search.type = 'search';
+      search.placeholder = 'Search title, author, venue…';
+      search.setAttribute('aria-label', 'Search 2026 publications');
+      const topic = make('select', 'paper-topic');
+      topic.setAttribute('aria-label', 'Filter 2026 publications by topic');
+      topic.append(make('option', '', 'All research topics'));
+      [...new Set(papers.filter(paper => paper.year === '2026').flatMap(paper => paper.topics))].sort().forEach(value => {
+        const option = make('option', '', value);
+        option.value = value;
+        topic.append(option);
+      });
+      tools.append(search, topic);
+      const years = make('div', 'year-filters');
+      const allPapers = make('a', 'year-filter', 'All papers');
+      allPapers.href = 'publications.html';
+      years.append(allPapers);
+      [['2026', '2026'], ['2025', '2025'], ['2024', '2024'], ['2023', '2023'], ['earlier', '≤ 2022']].forEach(([value, label]) => {
+        const link = make('a', `year-filter${value === '2026' ? ' active' : ''}`, label);
+        link.href = `publications.html?year=${encodeURIComponent(value)}`;
+        years.append(link);
+      });
+      const count = make('p', 'paper-count');
       const cards = make('div', 'paper-cards');
-      papers.filter(paper => paper.year === '2026').forEach(paper => cards.append(paperCard(paper)));
+      const homePapers = papers.filter(paper => paper.year === '2026');
+      const renderHome = () => {
+        const query = normalize(search.value).toLocaleLowerCase();
+        const shown = homePapers.filter(paper => (topic.value === 'All research topics' || paper.topics.includes(topic.value)) && (!query || paper.raw.toLocaleLowerCase().includes(query)));
+        cards.replaceChildren(...shown.map(paperCard));
+        count.textContent = `${shown.length} papers shown · 2026`;
+      };
+      search.addEventListener('input', renderHome);
+      topic.addEventListener('change', renderHome);
+      renderHome();
       const allLink = make('a', 'paper-more paper-all-link', 'View all papers ↗');
       allLink.href = 'publications.html';
-      widget.append(cards, allLink);
+      widget.append(intro, tools, years, count, cards, allLink);
       section.insertBefore(widget, $('.tabs', section));
       document.documentElement.classList.add('preview-enhanced');
       return;
@@ -399,6 +428,16 @@
       });
       years.append(button);
     });
+    const requestedYear = new URLSearchParams(location.search).get('year');
+    const selectedYear = labels.find(([value]) => value === requestedYear)?.[0];
+    if (selectedYear && selectedYear !== 'all') {
+      activeYear = selectedYear;
+      $$('.year-filter', years).forEach(button => {
+        const selected = button.dataset.year === activeYear;
+        button.classList.toggle('active', selected);
+        button.setAttribute('aria-pressed', String(selected));
+      });
+    }
 
     const count = make('p', 'paper-count');
     count.setAttribute('aria-live', 'polite');
@@ -435,6 +474,7 @@
     if (!section || !table) return;
     const groups = make('div', 'service-groups');
     let entries = null;
+    let currentRole = '';
     const artwork = {
       MVA: 'mva.jpg', ICCV: 'iccv.svg', ICLR: 'iclr.svg', ICML: 'icml.svg',
       CVPR: 'cvpr.svg', ECCV: 'eccv.svg', ICPR: 'icpr.svg', ICME: 'icme.png', BMVC: 'bmvc.png'
@@ -444,6 +484,7 @@
       if (heading) {
         const title = normalize(heading.textContent).replace(/:$/, '');
         if (/Conference Reviewer|Journal Reviewer/i.test(title)) { entries = null; return; }
+        currentRole = title;
         const group = make('section', 'service-group');
         group.append(make('h4', '', title));
         entries = make('div', 'service-entries');
@@ -456,6 +497,7 @@
       if (!cells.length) return;
       const entry = make('div', 'service-entry');
       const description = make('div', 'service-description');
+      description.append(make('strong', 'service-role', currentRole));
       [...cells[0].childNodes].forEach(node => description.append(node.cloneNode(true)));
       const acronym = normalize(description.textContent).match(/\((MVA|ICCV|AAAI|ICLR|ICML|NeurIPS|CVPR|ECCV|ICPR|ICME|PRCV|BMVC|BMCV)\)/i)?.[1] || '';
       const mark = make('div', 'service-mark');

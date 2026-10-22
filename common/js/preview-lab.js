@@ -7,15 +7,15 @@
 
   const list = nav.querySelector('.navbar-nav');
   const links = [
-    ['Home', 'index.html#top'], ['About', 'index.html#about'], ['News', 'index.html#news'],
+    ['Home', 'index.html#top'], ['News', 'index.html#news'],
     ['Research', 'index.html#direct'], ['Publications', 'publications.html'],
     ['People', '#member'], ['Patents', 'patents.html'],
-    ['Events', 'events.html'], ['Demos', 'demos.html'], ['Contact', 'contact.html']
+    ['Projects', 'events.html'], ['Demos', 'demos.html'], ['Contact', 'contact.html']
   ];
   if (list) {
     list.replaceChildren(...links.map(([label, href], index) => {
       const item = document.createElement('li');
-      if (index === 5) item.className = 'active';
+      if (label === 'People') item.className = 'active';
       const link = document.createElement('a');
       link.href = href;
       link.textContent = label;
@@ -49,6 +49,9 @@
   logo.height = 240;
   brand.append(logo);
   nav.append(brand);
+  const updateCompactNav = () => document.body.classList.toggle('nav-scrolled', window.scrollY > 80);
+  window.addEventListener('scroll', updateCompactNav, { passive: true });
+  updateCompactNav();
 
   const intro = document.querySelector('#introduction + section');
   if (intro) {
@@ -63,8 +66,11 @@
   }
 
   const memberSection = document.querySelector('#member + section');
+  memberSection?.querySelectorAll('.perpic > p').forEach(heading => {
+    heading.textContent = heading.textContent.trim().replace(/:\s*$/, '');
+  });
   const memberGroups = memberSection && [...memberSection.querySelectorAll('.perpic > p')];
-  const phdHeading = memberGroups?.find(item => /^PhD:/i.test(item.textContent.trim()));
+  const phdHeading = memberGroups?.find(item => /^PhD$/i.test(item.textContent.trim()));
   const phdGrid = phdHeading?.nextElementSibling;
   const hanCard = [...(memberSection?.querySelectorAll('.perpic .w18') || [])]
     .find(card => card.querySelector(':scope > p')?.textContent.trim() === 'Han Yang');
@@ -86,7 +92,7 @@
     table.className = 'alumni-table';
     const head = document.createElement('thead');
     const header = document.createElement('tr');
-    ['Name', 'Type', 'Institution', 'Period'].forEach(label => {
+    ['Name', 'Degree', 'Institution', 'Start time', 'End time'].forEach(label => {
       const th = document.createElement('th');
       th.scope = 'col';
       th.textContent = label;
@@ -99,6 +105,8 @@
       if (values.length === 5 && values[0] === values[1]) values = [values[0], values[2], values[3], values[4]];
       else if (values.length > 4) values = values.slice(0, 4);
       if (values.length !== 4 || !values[0]) return;
+      const times = values[3].split(/\s+[-–~]\s+/);
+      values = [values[0], values[1], values[2], times[0] || '—', times[1] || '—'];
       const row = document.createElement('tr');
       values.forEach(value => {
         const cell = document.createElement('td');
@@ -194,56 +202,50 @@
       return image && caption ? { image, caption, year: caption.match(/20\d{2}/)?.[0] || '' } : null;
     }).filter(Boolean);
     if (photos.length) {
-      const rings = document.createElement('div');
-      rings.className = 'lives-rings';
-      const groups = [
-        { label: '2026', photos: photos.filter(photo => photo.year === '2026') },
-        { label: '2025', photos: photos.filter(photo => photo.year === '2025') },
-        { label: '2024 & Earlier', photos: photos.filter(photo => Number(photo.year) <= 2024) }
-      ];
-      groups.forEach((group, groupIndex) => {
-        if (!group.photos.length) return;
-        const ring = document.createElement('section');
-        ring.className = 'lives-ring';
-        const heading = document.createElement('h4');
-        heading.className = 'lives-ring-heading';
-        heading.textContent = group.label;
-        const stage = document.createElement('div');
-        stage.className = 'lives-stage';
-        stage.setAttribute('role', 'region');
-        stage.setAttribute('aria-label', `${group.label} lab photos, slowly rotating`);
-        stage.style.setProperty('--ring-index', groupIndex);
-        const centre = document.createElement('div');
-        centre.className = 'lives-centre';
-        centre.setAttribute('aria-hidden', 'true');
-        centre.textContent = group.label;
-        const orbit = document.createElement('div');
-        orbit.className = 'lives-orbit';
-        group.photos.forEach((photo, index) => {
-          const card = document.createElement('article');
-          card.className = 'lives-orbit-card';
-          const angle = index * 360 / group.photos.length;
-          card.style.setProperty('--angle', `${angle}deg`);
-          card.style.setProperty('--counter-angle', `${-angle}deg`);
-          const image = photo.image.cloneNode(true);
-          image.alt = photo.caption;
-          const caption = document.createElement('p');
-          caption.textContent = photo.caption;
-          card.append(image, caption);
-          orbit.append(card);
-        });
-        [...orbit.children].forEach(card => {
-          const repeat = card.cloneNode(true);
-          repeat.classList.add('lives-orbit-card--duplicate');
-          repeat.setAttribute('aria-hidden', 'true');
-          repeat.querySelector('img')?.setAttribute('alt', '');
-          orbit.append(repeat);
-        });
-        stage.append(centre, orbit);
-        ring.append(heading, stage);
-        rings.append(ring);
+      const years = ['All', ...new Set(photos.map(photo => photo.year).filter(Boolean))].sort((a, b) => a === 'All' ? -1 : b === 'All' ? 1 : Number(b) - Number(a));
+      const controls = document.createElement('div');
+      controls.className = 'lives-timeline';
+      const selected = document.createElement('output');
+      selected.textContent = 'All years';
+      const range = document.createElement('input');
+      range.type = 'range';
+      range.min = '0';
+      range.max = String(years.length - 1);
+      range.step = '1';
+      range.value = '0';
+      range.setAttribute('aria-label', 'Filter lab photos by year');
+      const labels = document.createElement('div');
+      labels.className = 'lives-timeline-labels';
+      years.forEach((year, index) => {
+        const label = document.createElement('button');
+        label.type = 'button';
+        label.textContent = year;
+        label.addEventListener('click', () => { range.value = String(index); range.dispatchEvent(new Event('input')); });
+        labels.append(label);
       });
-      lives.querySelector('h3')?.after(rings);
+      controls.append(selected, range, labels);
+      const gallery = document.createElement('div');
+      gallery.className = 'lives-gallery';
+      photos.forEach(photo => {
+        const card = document.createElement('figure');
+        card.className = 'lives-photo';
+        card.dataset.year = photo.year;
+        const image = photo.image.cloneNode(true);
+        image.alt = photo.caption;
+        image.loading = 'lazy';
+        const caption = document.createElement('figcaption');
+        caption.textContent = photo.caption;
+        card.append(image, caption);
+        gallery.append(card);
+      });
+      range.addEventListener('input', () => {
+        const year = years[Number(range.value)];
+        selected.textContent = year === 'All' ? 'All years' : year;
+        [...gallery.children].forEach(card => { card.hidden = year !== 'All' && card.dataset.year !== year; });
+        [...labels.children].forEach((button, index) => { button.classList.toggle('active', index === Number(range.value)); });
+      });
+      range.dispatchEvent(new Event('input'));
+      lives.querySelector('h3')?.after(controls, gallery);
       lives.classList.add('lives-enhanced');
     }
   }
