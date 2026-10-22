@@ -22,9 +22,13 @@
   }).then(html => {
     const source = new DOMParser().parseFromString(html, 'text/html').querySelector('#paper + section');
     if (!source) throw new Error('Publication source was not found.');
+    const kicker = document.createElement('p');
+    kicker.className = 'placeholder-kicker';
+    kicker.textContent = 'OV³ LAB · PEKING UNIVERSITY';
+    source.prepend(kicker);
     placeholder.replaceWith(document.importNode(source, true));
     const script = document.createElement('script');
-    script.src = 'common/js/preview-redesign.js?v=20261022-complete-2';
+    script.src = 'common/js/preview-redesign.js?v=20261022-new-lab-logo';
     document.body.append(script);
   }).catch(error => {
     placeholder.querySelector('p').textContent = 'The publications could not load. Please refresh the page.';

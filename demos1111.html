@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Demos · OV³ Lab</title>
+  <link rel="stylesheet" href="common/css/bootstrap.min.css">
+  <link rel="stylesheet" href="common/css/preview-redesign.css?v=20261022-complete-2">
+  <style>
+    .contact-page .contact-lead { width: 100%; max-width: none; }
+    .contact-page .contact-lead > p { text-align: justify; text-justify: inter-word; }
+    .contact-page .apply-panel label > .apply-field-caption { display: block; color: #4c3d42; }
+    .contact-page .cv-file-help, .contact-page #cv-file-status { color: #806b74; font-size: 12px; font-weight: 400; line-height: 1.5; }
+    .contact-page input[type="file"] { height: auto; min-height: 44px; padding: 10px; }
+    .contact-page input[type="file"]::file-selector-button { padding: 6px 12px; margin-right: 12px; border: 1px solid #dcc4ca; border-radius: 6px; background: #fff4f6; color: #8b0012; cursor: pointer; }
+    .contact-page .apply-field-caption > span { display: inline; margin-left: 3px; color: #a20b27; }
+    .contact-page .contact-lead .contact-email { margin-top: 16px; color: #4c3d42; }
+    .contact-page .contact-lead .contact-email strong { color: #8b0012; }
+      /* Match the Demos page title typography, alignment and accent. */
+    .contact-page .contact-panel > h1 {
+      margin: 0 0 16px;
+      color: var(--wine-deep);
+      font: 700 clamp(39px, 5vw, 58px)/1.12 Georgia, serif;
+      text-align: center;
+    }
+    .contact-page .contact-panel > h1::after {
+      content: "";
+      display: block;
+      width: 58px;
+      height: 3px;
+      margin: 15px auto 0;
+      border-radius: 3px;
+      background: var(--wine);
+    }
+  </style>
+  <link rel="stylesheet" href="common/css/preview-demos.css?v=20261022-contact-rebuild">
+  <link rel="stylesheet" href="common/css/preview-consistency.css?v=20261022-kicker-stable">
+  <style>
+    /* Keep this preview's cards in step with the home and publication cards. */
+    body.demos-page .demo-category-grid { gap: 20px; }
+    body.demos-page .demo-category-grid > .demo-category {
+      padding: clamp(22px, 2.4vw, 34px);
+      border: 1px solid #e7d8d6;
+      border-radius: 19px;
+      background: linear-gradient(145deg, rgba(255, 255, 255, .96), rgba(250, 245, 244, .84));
+      box-shadow: 0 8px 25px rgba(72, 30, 37, .05);
+      transition: border-color .2s ease, box-shadow .2s ease, transform .2s ease;
+    }
+    body.demos-page .demo-category-grid > .demo-category:hover {
+      border-color: #d6b9bc;
+      box-shadow: 0 14px 29px rgba(62, 42, 46, .1);
+      transform: translateY(-2px);
+    }
+    body.demos-page .demo-kicker {
+      margin-bottom: 10px;
+      color: #9c1730;
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: .09em;
+    }
+    body.demos-page .demo-category-grid .demo-category h2 {
+      font-size: clamp(21px, 1.55vw, 24px);
+      font-weight: 800;
+      line-height: 1.35;
+    }
+    body.demos-page .demo-category h2 a { color: #252024 !important; }
+    body.demos-page .demo-category h2 a:hover { color: #9c1730 !important; }
+    body.demos-page .demo-total {
+      border-color: #e4d0d2;
+      background: #fffaf9;
+      color: #9c1730;
+      font-size: 12px;
+      font-weight: 800;
+    }
+    body.demos-page .demo-category-grid .demo-description {
+      color: #4e4549;
+      font-size: clamp(14px, 1.05vw, 16px);
+      line-height: 1.6;
+    }
+    body.demos-page .demo-category-grid .demo-video-card {
+      border-color: #e7d8d6;
+      border-radius: 13px;
+      box-shadow: 0 8px 25px rgba(72, 30, 37, .05);
+    }
+    body.demos-page .demo-category-grid .demo-video-card figcaption {
+      min-height: 68px;
+      padding: 13px 15px;
+      gap: 10px;
+      color: #352e32;
+      font-size: 14px;
+      font-weight: 700;
+      line-height: 1.45;
+    }
+    body.demos-page .demo-index {
+      flex: none;
+      color: #9c1730;
+      font-size: 13px;
+      font-weight: 800;
+    }
+    body.demos-page .demo-category-grid .demo-view-all {
+      min-height: 48px;
+      padding: 10px 18px;
+      border: 1px solid #d7a5ad;
+      border-radius: 9px;
+      background: linear-gradient(180deg, #fffdfc, #fcefee);
+      box-shadow: 0 2px 5px rgba(91, 32, 43, .09);
+      color: #9c1730 !important;
+      font-size: 15px;
+      font-weight: 800;
+      transition: transform .2s ease, box-shadow .2s ease, background .2s ease;
+    }
+    body.demos-page .demo-category-grid .demo-view-all:hover,
+    body.demos-page .demo-category-grid .demo-view-all:focus-visible {
+      transform: translateY(-2px);
+      background: #f8e9e8;
+      box-shadow: 0 6px 12px rgba(91, 32, 43, .14);
+      color: #751125 !important;
+    }
+    @media (max-width: 520px) {
+      body.demos-page .demo-category-grid > .demo-category { padding: 20px; }
+      body.demos-page .demo-category-grid .demo-category-header { flex-wrap: wrap; }
+    }
+  </style>
+  <link rel="icon" type="image/svg+xml" href="common/img/ov3-favicon-proportional.svg?v=20261022-fit">
+</head>
+
+<body class="contact-page demos-page" data-page="Demos">
+  <nav class="navbar navbar-default" aria-label="Main navigation">
+    <div class="container-fluid">
+      <div class="navbar-collapse">
+        <ul class="nav navbar-nav"></ul>
+      </div>
+    </div>
+    <a class="site-brand" href="index.html#top" aria-label="Peking University · Home"><img class="site-brand-logo"
+        src="common/img/pku-logo.png" alt="Peking University"></a>
+  </nav>
+  <main class="content">
+    <section class="contact-panel demos-panel">
+      <p class="placeholder-kicker">OV³ Lab · Peking University</p>
+      <h1>Demos</h1>
+      <div class="demo-category-grid"><article class="demo-category"><div class="demo-category-header"><div><p class="demo-kicker">Robotics &amp; Interaction</p><h2><a href="embodied-intelligence.html">Embodied Intelligence</a></h2></div><span class="demo-total">12 videos</span></div><p class="demo-description">Robotic manipulation across varied objects and visual environments.</p><div class="demo-video-grid"><figure class="demo-video-card"><video controls playsinline preload="none" poster="common/videos/embodied-intelligence/demo-1.jpg" aria-label="Tabletop Manipulation"><source src="common/videos/embodied-intelligence/demo-1.mp4" type="video/mp4">Your browser does not support video playback. <a href="common/videos/embodied-intelligence/demo-1.mp4">Download video</a>.</video><figcaption><span class="demo-index">01</span><span>Tabletop Manipulation</span></figcaption></figure><figure class="demo-video-card"><video controls playsinline preload="none" poster="common/videos/embodied-intelligence/demo-2.jpg" aria-label="Object Interaction"><source src="common/videos/embodied-intelligence/demo-2.mp4" type="video/mp4">Your browser does not support video playback. <a href="common/videos/embodied-intelligence/demo-2.mp4">Download video</a>.</video><figcaption><span class="demo-index">02</span><span>Object Interaction</span></figcaption></figure></div><div class="demo-category-footer"><a class="demo-view-all" href="embodied-intelligence.html">View all demos <span aria-hidden="true">↗</span></a></div></article><article class="demo-category"><div class="demo-category-header"><div><p class="demo-kicker">Geometry &amp; Scene Understanding</p><h2><a href="3d-reconstruction.html">3D Reconstruction</a></h2></div><span class="demo-total">1 video</span></div><p class="demo-description">3R-Adapter: Retrieval, Rewiring, and Refinement for Efficient Adaptation of 3D Reconstruction Model.</p><div class="demo-reconstruction-preview"><figure class="demo-video-card demo-video-wide"><video controls playsinline preload="none" poster="common/videos/3d-reconstruction/reconstruction-1.jpg" aria-label="3R-Adapter research presentation"><source src="common/videos/3d-reconstruction/reconstruction-1.mp4" type="video/mp4">Your browser does not support video playback. <a href="common/videos/3d-reconstruction/reconstruction-1.mp4">Download video</a>.</video><figcaption><span class="demo-index">01</span><span>3R-Adapter · Efficient Adaptation of 3D Reconstruction Models</span></figcaption></figure></div><div class="demo-category-footer"><a class="demo-view-all" href="3d-reconstruction.html">View all demos <span aria-hidden="true">↗</span></a></div></article></div>
+    </section>
+  </main>
+  <script src="common/js/preview-placeholder.js?v=20261022-new-lab-logo"></script>
+</body>
+
+</html>

@@ -5,19 +5,37 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Contact · OV³ Lab</title>
+  <link rel="icon" type="image/svg+xml" href="common/img/ov3-favicon-proportional.svg?v=20261022-fit">
   <link rel="stylesheet" href="common/css/bootstrap.min.css">
   <link rel="stylesheet" href="common/css/preview-redesign.css?v=20261022-complete-2">
   <style>
     .contact-page .contact-lead { width: 100%; max-width: none; }
     .contact-page .contact-lead > p { text-align: justify; text-justify: inter-word; }
     .contact-page .apply-panel label > .apply-field-caption { display: block; color: #4c3d42; }
-    .contact-page .cv-file-help, .contact-page #cv-file-status { color: #806b74; font-size: 12px; font-weight: 400; line-height: 1.5; }
-    .contact-page input[type="file"] { height: auto; min-height: 44px; padding: 10px; }
-    .contact-page input[type="file"]::file-selector-button { padding: 6px 12px; margin-right: 12px; border: 1px solid #dcc4ca; border-radius: 6px; background: #fff4f6; color: #8b0012; cursor: pointer; }
     .contact-page .apply-field-caption > span { display: inline; margin-left: 3px; color: #a20b27; }
     .contact-page .contact-lead .contact-email { margin-top: 16px; color: #4c3d42; }
     .contact-page .contact-lead .contact-email strong { color: #8b0012; }
+      /* Match the Demos page title typography, alignment and accent. */
+    .contact-page .contact-panel > h1 {
+      margin: 0 0 16px;
+      color: var(--wine-deep);
+      font: 700 clamp(39px, 5vw, 58px)/1.12 Georgia, serif;
+      text-align: center;
+    }
+    .contact-page .contact-panel > h1::after {
+      content: "";
+      display: block;
+      width: 58px;
+      height: 3px;
+      margin: 15px auto 0;
+      border-radius: 3px;
+      background: var(--wine);
+    }
+      .contact-page .contact-divider { margin: 24px 0 20px; border: 0; border-top: 1px solid #dcc4ca; }
+    .contact-page .contact-email p { margin: 0 0 10px; line-height: 1.8; }
+    .contact-page .contact-email-note { color: #806b74; font-size: 13px; }
   </style>
+  <link rel="stylesheet" href="common/css/preview-consistency.css?v=20261022-kicker-stable">
 </head>
 
 <body class="contact-page" data-page="Contact">
@@ -33,7 +51,7 @@
   <main class="content">
     <section class="contact-panel">
       <p class="placeholder-kicker">OV³ Lab · Peking University</p>
-      <h1>Contact &amp; Opportunities</h1>
+      <h1>Contact</h1>
       <div class="contact-block contact-lead">
         <h2>Join Our Team</h2>
         <p>OV³ Lab at the Wangxuan Institute of Computer Technology, Peking University, welcomes applications from
@@ -44,7 +62,12 @@
           experience, and anticipated start date.</p>
         <p lang="zh-CN">北京大学王选计算机研究所 OV³ Lab 欢迎有意从事博士后研究、攻读博士或硕士学位以及参与科研实习的申请者加入。实验室主要研究方向包括多模态、终身学习与大模型智能体。</p>
         <p lang="zh-CN">诚邀对上述领域具有浓厚研究兴趣和积极科研热情的申请者联系周嘉欢老师。来信请附详细个人简历，并简要说明研究兴趣、相关经历及预计入组时间。</p>
-        <p class="contact-email">Professor Jiahuan Zhou · 周嘉欢老师：<strong>jiahuanzhouATpku.edu.cn</strong></p>
+        <hr class="contact-divider">
+        <div class="contact-email" lang="zh-CN">
+          <p><strong>联系方式</strong></p>
+          <p>如有意申请，欢迎将个人简历及研究兴趣、相关经历和预计入组时间等信息发送至<strong>周嘉欢老师：jiahuanzhouATpku.edu.cn</strong>，并抄送<strong>臧泽华老师：zangzehuaATpku.edu.cn</strong>。期待与您交流！</p>
+          <p class="contact-email-note">发送邮件时，请将邮箱地址中的 AT 替换为 @。</p>
+        </div>
       </div>
       <button type="button" class="paper-resource apply-toggle" id="apply-toggle" aria-expanded="true"
         aria-controls="apply-panel">Apply <span aria-hidden="true">↗</span></button>
@@ -63,7 +86,7 @@
                 autocomplete="name"></label><label><span class="apply-field-caption">Email <span>*</span></span><input type="email" name="email" required
                 autocomplete="email"></label><label><span class="apply-field-caption">Current institution <span>*</span></span><input name="institution"
                 required></label><label><span class="apply-field-caption">Expected start date</span><input name="startDate"
-                placeholder="e.g. September 2027"></label><label><span class="apply-field-caption">Upload CV</span><input name="cvFile" id="cv-file" type="file" accept=".pdf,.doc,.docx"><small class="cv-file-help">Select a PDF or Word document. When sending your application email, attach this file manually; it is not uploaded by this form.</small><small id="cv-file-status" role="status"></small></label><label><span class="apply-field-caption">Research interests <span>*</span></span><textarea
+                placeholder="e.g. September 2027"></label><label><span class="apply-field-caption">Research interests <span>*</span></span><textarea
                 name="interests" required rows="3"
                 placeholder="Please briefly describe your interests and relevant experience."></textarea></label></div>
           <div class="apply-advanced" id="apply-advanced" hidden><label><span class="apply-field-caption">Education <span>*</span></span><textarea
@@ -86,7 +109,7 @@
         </form>
         <section id="application-preview" class="application-preview" hidden aria-live="polite">
           <h3>Your application email</h3>
-          <p>Copy the draft below, attach your selected CV, and send it to <strong>jiahuanzhouATpku.edu.cn</strong> (replace AT with @).
+          <p>Copy the draft below, attach your CV, and send it to <strong>jiahuanzhouATpku.edu.cn</strong> (replace AT with @).
             <strong>This form does not send email.</strong></p>
           <pre id="application-summary"></pre><button type="button" class="paper-resource" id="copy-application">Copy
             email draft</button><span id="copy-status" role="status"></span>
@@ -94,8 +117,8 @@
       </div>
     </section>
   </main>
-  <script src="common/js/preview-placeholder.js?v=20261022-complete-2"></script>
-  <script src="common/js/preview-apply.js?v=20261022-cv-file"></script>
+  <script src="common/js/preview-placeholder.js?v=20261022-new-lab-logo"></script>
+  <script src="common/js/preview-apply.js?v=20261022-no-cv-upload"></script>
 </body>
 
 </html>

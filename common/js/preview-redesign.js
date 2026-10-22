@@ -129,7 +129,7 @@
     labBrand.href = 'research.html#member';
     labBrand.setAttribute('aria-label', 'OV³ Lab · Lab members');
     const labLogo = make('img', 'lab-brand-logo');
-    labLogo.src = 'common/img/ov3-lab-logo.png';
+    labLogo.src = 'common/img/ov3-lab-logo-new.png?v=20261022';
     labLogo.alt = 'OV³ Lab · 开放视界实验室';
     labLogo.width = 2000;
     labLogo.height = 640;

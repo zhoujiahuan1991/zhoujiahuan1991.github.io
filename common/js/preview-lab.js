@@ -30,7 +30,7 @@
   labBrand.setAttribute('aria-label', 'OV³ Lab · Lab members');
   const labLogo = document.createElement('img');
   labLogo.className = 'lab-brand-logo';
-  labLogo.src = 'common/img/ov3-lab-logo.png';
+  labLogo.src = 'common/img/ov3-lab-logo-new.png?v=20261022';
   labLogo.alt = 'OV³ Lab · 开放视界实验室';
   labLogo.width = 2000;
   labLogo.height = 640;
@@ -113,6 +113,21 @@
       });
       body.append(row);
     });
+    // Center each column's text block while retaining a shared left edge.
+    const measure = document.createElement('canvas').getContext('2d');
+    measure.font = '15px Arial';
+    const rows = [...body.rows];
+    for (let column = 0; column < 5; column++) {
+      const widest = Math.ceil(Math.max(0, ...rows.map(row => measure.measureText(row.cells[column].textContent).width))) + 2;
+      table.style.setProperty(`--alumni-text-${column + 1}`, `${widest}px`);
+      rows.forEach(row => {
+        const cell = row.cells[column];
+        const text = document.createElement('span');
+        text.className = 'alumni-cell-text';
+        text.textContent = cell.textContent;
+        cell.replaceChildren(text);
+      });
+    }
     table.append(head, body);
     const wrap = document.createElement('div');
     wrap.className = 'alumni-table-wrap';

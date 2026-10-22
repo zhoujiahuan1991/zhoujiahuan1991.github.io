@@ -27,6 +27,40 @@
       toggle.innerHTML = single ? listIcon : gridIcon;
     });
     years.append(toggle);
+    const controls = widget.querySelector('.publication-controls');
+    if (controls) controls.append(years);
+    const search = controls?.querySelector('.paper-search');
+    if (search && !search.closest('label')) {
+      const label = document.createElement('label');
+      label.className = 'publication-filter-label publication-search-label';
+      label.textContent = 'Search';
+      search.replaceWith(label);
+      label.append(search);
+    }
+    {
+      const options = [...years.querySelectorAll('.year-filter')];
+      const label = document.createElement('label');
+      label.className = 'publication-filter-label publication-year-label';
+      label.append(document.createTextNode('Year'));
+      const select = document.createElement('select');
+      select.className = 'paper-topic publication-year-select';
+      select.setAttribute('aria-label', 'Publication year');
+      options.forEach(button => {
+        const option = document.createElement('option');
+        option.value = button.dataset.year || button.getAttribute('href');
+        option.textContent = button.textContent;
+        option.selected = button.classList.contains('active');
+        select.append(option);
+        button.hidden = true;
+        button.style.display = 'none';
+      });
+      select.addEventListener('change', () => {
+        options.find(button => (button.dataset.year || button.getAttribute('href')) === select.value)?.click();
+      });
+      label.append(select);
+      years.insertBefore(label, toggle);
+    }
+
 
     function decorateCards() {
       cards.querySelectorAll('.paper-card').forEach(card => {

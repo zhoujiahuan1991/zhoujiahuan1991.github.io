@@ -4,9 +4,24 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Patents · OV³ Lab</title>
-  <link rel="icon" type="image/png" href="common/img/ov3-favicon.png?v=20261022">
+  <link rel="icon" type="image/svg+xml" href="common/img/ov3-favicon-proportional.svg?v=20261022-fit">
   <link rel="stylesheet" href="common/css/bootstrap.min.css">
   <link rel="stylesheet" href="common/css/preview-redesign.css?v=20261022-patents-en">
+  <link rel="stylesheet" href="common/css/preview-consistency.css?v=20261022-kicker-stable">
+  <style>
+    body[data-page="Patents"] .patents-table {
+      width: 100%;
+      min-width: 1100px;
+      table-layout: fixed;
+    }
+    body[data-page="Patents"] .patents-table th { text-align: center; vertical-align: middle; }
+    body[data-page="Patents"] .patents-table :is(th, td):nth-child(1) { width: 5%; }
+    body[data-page="Patents"] .patents-table :is(th, td):nth-child(2) { width: 35%; }
+    body[data-page="Patents"] .patents-table :is(th, td):nth-child(3) { width: 13%; }
+    body[data-page="Patents"] .patents-table :is(th, td):nth-child(4) { width: 15%; }
+    body[data-page="Patents"] .patents-table :is(th, td):nth-child(5) { width: 21%; white-space: normal; overflow-wrap: anywhere; }
+    body[data-page="Patents"] .patents-table :is(th, td):nth-child(6) { width: 11%; }
+  </style>
 </head>
 <body class="preview-placeholder-page" data-page="Patents">
   <nav class="navbar navbar-default" aria-label="Main navigation">
@@ -14,7 +29,7 @@
     <a class="site-brand" href="index.html#top" aria-label="Peking University · Home"><img class="site-brand-logo" src="common/img/pku-logo.png" alt="北京大学 · Peking University"></a>
   </nav>
   <main class="content"><section class="placeholder-panel example-panel"><p class="placeholder-kicker">OV³ Lab · Peking University</p><h1>Patents</h1><div class="records-table-wrap" id="records-list"></div></section></main>
-  <script src="common/js/preview-placeholder.js?v=20261022-complete-2"></script>
-  <script src="common/js/preview-records.js?v=20261022-deduplicate"></script>
+  <script src="common/js/preview-placeholder.js?v=20261022-new-lab-logo"></script>
+  <script src="common/js/preview-records.js?v=20261022-inventor-complete"></script>
 </body>
 </html>

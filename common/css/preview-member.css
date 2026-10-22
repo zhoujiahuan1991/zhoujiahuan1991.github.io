@@ -15,7 +15,7 @@
 .member-subnav a:hover { background: #f1dbdc; color: #65172a; }
 .member-page .member-hero { padding: clamp(30px,4vw,50px); border: 1px solid #e6c9c7; background: radial-gradient(circle at 84% 5%,rgba(255,230,209,.85),transparent 42%),linear-gradient(125deg,#fffaf8,#f7e6e3); }
 .member-hero-grid { display: grid; grid-template-columns: minmax(0,1fr) 210px; gap: 32px; align-items: center; }
-.member-profile-copy h3 { margin: 12px 0 19px; color: #54192b; font: 700 clamp(30px,3.4vw,44px)/1.15 Georgia,"Noto Serif SC",serif; }
+.member-profile-copy h3 { margin: 12px 0 19px; color: rgb(139, 0, 18); font: 700 clamp(30px,3.4vw,44px)/1.15 Georgia,"Noto Serif SC",serif; }
 .member-profile-copy p { margin: 0 0 8px; color: #4f4247; }
 .member-profile-copy p:first-of-type { color: var(--wine); font-weight: 800; }
 .member-back { display: inline-flex; margin-bottom: 12px; font-size: 13px; font-weight: 800; text-decoration: none; }

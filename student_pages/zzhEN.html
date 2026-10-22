@@ -7,14 +7,48 @@
     <meta http-equiv="Cache-Control" content="no-siteapp" />
     <meta name="keywords" content="Zang, Zehua (臧泽华), Embodied Intelligence, Reinforcement Learning, Continual Learning" />
     <title>Zehua Zang</title>
-    <link rel="icon" type="image/png" href="../common/img/ov3-favicon.png?v=20261022">
+    <link rel="icon" type="image/svg+xml" href="../common/img/ov3-favicon-proportional.svg?v=20261022-fit">
     <link rel="stylesheet" href="../common/css/bootstrap.min.css">
     <link rel="stylesheet" href="../common/css/index.css">
     <link rel="stylesheet" href="../common/css/preview-redesign.css?v=20261022-complete-2">
-    <link rel="stylesheet" href="../common/css/preview-member.css?v=20261022f">
+    <link rel="stylesheet" href="../common/css/preview-member.css?v=20261022-pku-red-names">
+  <link rel="stylesheet" href="../common/css/preview-consistency.css?v=20261022-kicker-left">
+    <style>
+      .member-page.zehua-page #member-education .member-education-list {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        max-width: none;
+        gap: 28px;
+        padding: 24px 28px;
+      }
+      .member-page.zehua-page #member-education .experience-entry {
+        display: grid;
+        grid-template-columns: 64px minmax(0, 1fr);
+        align-items: center;
+        padding: 0;
+        border: 0;
+        margin: 0;
+      }
+      .member-page.zehua-page #member-education .experience-copy { min-width: 0; gap: 6px; }
+      @media (max-width: 700px) {
+        .member-page.zehua-page #member-education .member-education-list {
+          grid-template-columns: 1fr;
+          gap: 24px;
+          padding: 20px;
+        }
+      }
+    </style>
+    <style>
+      .zehua-page .member-service-groups { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .zehua-page .member-service-group:first-child { grid-column: 1 / -1; }
+      .zehua-page .member-service-group:not(:first-child) .member-service-cards { justify-content: center; }
+      @media (max-width: 700px) {
+        .zehua-page .member-service-groups { grid-template-columns: 1fr; }
+      }
+    </style>
 </head>
 
-<body>
+<body class="zehua-page">
 
 <style>
 A.applink:hover {border: 2px dotted #DCE6F4;padding:2px;background-color:#ffff00;color:green;text-decoration:none}
@@ -68,12 +102,12 @@ A.info:hover    {color:green;background:transparent;text-decoration:underline}
                             <p>Supervisor: Prof. Jiahuan Zhou</p>
                             <p>Wangxuan Institute of Computer Technology, Peking University. </p>
                             <p>Beijing, China </p>
-                            <p>E-mail: zehua2020ATiscas.ac.cn</p>
+                            <p>E-mail: zangzehuaATpku.edu.cn</p>
                             <br>
                             <p style="line-height: 30px;text-indent: 3.6rem;">
                                 I am currently a postdoctoral researcher at the Wangxuan Institute of Computer Technology, Peking University. 
                                 I received my Ph.D. degree from the University of Chinese Academy of Sciences and the Institute of Software, Chinese Academy of Sciences in June 2026.
-                                Before that, I received my B.Eng. degree from the School of Computer Science and Technology, Beijing Jiaotong University in June 2019.
+                                Before that, I received my B.E. degree from the School of Computer Science and Technology, Beijing Jiaotong University in June 2019.
                                 My research interests include reinforcement learning and continual learning for embodied intelligence.
                             </p>
                         </div>
@@ -84,7 +118,7 @@ A.info:hover    {color:green;background:transparent;text-decoration:underline}
                         <h3>Education</h3>
                         <ul>
                             <li><p>Ph.D., University of Chinese Academy of Sciences; Institute of Software, Chinese Academy of Sciences, National Key Laboratory of Space Integrated Information System, Sep. 2020 - Jun. 2026</p></li>
-                            <li><p>B.Eng., School of Computer Science and Technology, Beijing Jiaotong University, Sep. 2015 - Jun. 2019</p></li>
+                            <li><p>B.E., School of Computer Science and Technology, Beijing Jiaotong University, Sep. 2015 - Jun. 2019</p></li>
                         </ul>
                     </section>
 
@@ -182,10 +216,10 @@ A.info:hover    {color:green;background:transparent;text-decoration:underline}
                     <section style="font-size: 1.8rem;">
                         <h3>Awards and Honors</h3>
                         <ul>
-                            <li><p>Merit Student, University of Chinese Academy of Sciences (中国科学院大学三好学生), 2022-2023</p></li>
-                            <li><p>Outstanding Student Cadre, University of Chinese Academy of Sciences (中国科学院大学优秀学生干部), 2022-2023</p></li>
-                            <li><p>Second-Class Academic Scholarship for Master's Students, University of Chinese Academy of Sciences (中国科学院大学硕士研究生二等学业奖学金), 2020-2023</p></li>
-                            <li><p>Second-Class Academic Scholarship for Ph.D. Students, University of Chinese Academy of Sciences (中国科学院大学博士研究生二等学业奖学金), 2024-2026</p></li>
+                            <li><p>Merit Student, University of Chinese Academy of Sciences · 中国科学院大学三好学生, 2022-2023</p></li>
+                            <li><p>Outstanding Student Cadre, University of Chinese Academy of Sciences · 中国科学院大学优秀学生干部, 2022-2023</p></li>
+                            <li><p>Second-Class Academic Scholarship for Master's Students, University of Chinese Academy of Sciences · 中国科学院大学硕士研究生二等学业奖学金, 2020-2023</p></li>
+                            <li><p>Second-Class Academic Scholarship for Ph.D. Students, University of Chinese Academy of Sciences · 中国科学院大学博士研究生二等学业奖学金, 2024-2026</p></li>
                         </ul>
                     </section>
 
@@ -225,6 +259,6 @@ A.info:hover    {color:green;background:transparent;text-decoration:underline}
             }
         })
     </Script>
-    <script src="../common/js/preview-member.js?v=20261022-member-sequence"></script>
+    <script src="../common/js/preview-member.js?v=20261022-new-lab-logo"></script>
 </body>
 </html>

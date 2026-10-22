@@ -8,8 +8,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <meta http-equiv="Cache-Control" content="no-siteapp" />
     <meta name="keywords" content="Open Vision, Open View, Open Venture" />
-    <title>实验室</title>
-    <link rel="icon" type="image/png" href="common/img/ov3-favicon.png?v=20261022">
+    <title>Members · OV³ Lab</title>
+    <link rel="icon" type="image/svg+xml" href="common/img/ov3-favicon-proportional.svg?v=20261022-fit">
     <link rel="stylesheet" href="common/css/bootstrap.min.css">
     <link rel="stylesheet" href="common/css/index.css">
     <style>
@@ -100,7 +100,23 @@
         }
     </style>
     <link rel="stylesheet" href="common/css/preview-redesign.css?v=20261022-complete-2">
-    <link rel="stylesheet" href="common/css/preview-lab.css?v=20261022f">
+    <link rel="stylesheet" href="common/css/preview-lab.css?v=20261022-award-left-88">
+  <link rel="stylesheet" href="common/css/preview-consistency.css?v=20261022-kicker-stable">
+  <style>
+    /* Only the Members page's Alumni and Honors tables use compact columns. */
+    .lab-page .alumni-table-wrap { width: min(100%, 1100px); margin-inline: auto; }
+    .lab-page .alumni-table { table-layout: fixed; }
+    .lab-page .alumni-table :is(th, td) { padding-inline: 11px; }
+    .lab-page .alumni-table thead th { text-align: center !important; }
+    .lab-page .alumni-table:not(.honors-table) :is(th, td):nth-child(1) { width: 15%; }
+    .lab-page .alumni-table:not(.honors-table) :is(th, td):nth-child(2) { width: 18%; }
+    .lab-page .alumni-table:not(.honors-table) :is(th, td):nth-child(3) { width: 43%; }
+    .lab-page .alumni-table:not(.honors-table) :is(th, td):nth-child(4),
+    .lab-page .alumni-table:not(.honors-table) :is(th, td):nth-child(5) { width: 12%; }
+    .lab-page .honors-table :is(th, td):nth-child(1) { width: 64%; }
+    .lab-page .honors-table :is(th, td):nth-child(2) { width: 20%; }
+    .lab-page .honors-table :is(th, td):nth-child(3) { width: 16%; }
+  </style>
 </head>
 
 <body>
@@ -392,6 +408,7 @@
 
                     <p id="member" style="height:4rem;margin: 0;">&nbsp;</p>
                     <section>
+                        <p class="placeholder-kicker">OV³ Lab · Peking University</p>
                         <h3 style="font-weight:bold;">Lab Members</h3>
                         <div class="perpic">
                             <p style="font-size:18px;font-weight:600;margin-top: 20px;">Faculty: </p>
@@ -1007,8 +1024,8 @@
         startSlider();
         }
     </script>
-    <script src="common/js/preview-lab.js?v=20261022-complete-2"></script>
-    <script src="common/js/preview-honors.js?v=20261022h"></script>
+    <script src="common/js/preview-lab.js?v=20261022-honors-columns"></script>
+    <script src="common/js/preview-honors.js?v=20261022-honors-columns"></script>
 </body>
 
 </html>

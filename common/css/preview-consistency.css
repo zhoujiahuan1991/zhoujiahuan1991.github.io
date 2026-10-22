@@ -1,0 +1,121 @@
+/* Shared page geometry and section heading scale. */
+html { scrollbar-gutter: stable; }
+body .content {
+  box-sizing: border-box !important;
+  width: 100% !important;
+  max-width: 1680px !important;
+  margin: 0 auto !important;
+  padding: 24px clamp(14px, 3vw, 52px) 92px !important;
+}
+body .content > section {
+  box-sizing: border-box;
+  width: 100% !important;
+  max-width: none !important;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+}
+body .content > section:first-of-type { margin-top: 0 !important; }
+body .content > section:has(> .placeholder-kicker) { margin-top: 0 !important; }
+body.publications-page .content { padding-top: 24px !important; }
+body .content > .hero {
+  width: 100% !important;
+  max-width: none !important;
+  margin-left: 0 !important;
+  margin-top: 0 !important;
+}
+body .content > section > :is(h1, h2, h3) {
+  color: rgb(139, 0, 18) !important;
+  font: 700 clamp(26px, 2vw, 31px)/1.2 Arial, "Microsoft YaHei", "Noto Sans SC", sans-serif !important;
+  letter-spacing: -.02em !important;
+  text-align: center !important;
+  margin: 0 0 26px !important;
+}
+body .content > section > :is(h1, h2, h3)::after {
+  content: "";
+  display: block;
+  width: 58px;
+  height: 3px;
+  margin: 15px auto 0;
+  border-radius: 3px;
+  background: rgb(139, 0, 18) !important;
+}
+@media (max-width: 700px) {
+  body .content { padding: 24px 14px 60px !important; }
+}
+
+/* Arial for Latin text throughout the site, with Chinese fallbacks. */
+html body,
+html body *:not(svg):not(svg *),
+html body *::before,
+html body *::after {
+  font-family: Arial, "Microsoft YaHei", "Noto Sans SC", sans-serif !important;
+}
+
+body.demos-page :is(h1, h2, h3),
+body.demos-page :is(h1, h2, h3) a {
+  font-family: Arial, "Microsoft YaHei", "Noto Sans SC", sans-serif !important;
+  color: rgb(139, 0, 18) !important;
+}
+
+/* Secondary section headings share the Patents heading treatment site-wide. */
+body .content h2,
+body .content h2 a {
+  color: #252024 !important;
+  font-family: Arial, "Microsoft YaHei", "Noto Sans SC", sans-serif !important;
+}
+body.lab-page .perpic > p {
+  color: #252024 !important;
+  font: 700 clamp(21px, 1.9vw, 26px)/1.3 Arial, "Microsoft YaHei", "Noto Sans SC", sans-serif !important;
+  letter-spacing: -.02em;
+}
+body.lab-page .perpic > p::after { width: 42px; }
+
+/* Consistent panel edges and title origin, including anchored Members views. */
+body .content > section:not(.hero):not(.member-hero) {
+  position: relative;
+  padding: 50px clamp(28px, 4vw, 50px) !important;
+  border: 1px solid #efe9e5 !important;
+  border-radius: 24px !important;
+}
+body .content > section > .placeholder-kicker {
+  position: absolute;
+  top: 17px;
+  left: 20px;
+  right: 20px;
+  margin: 0 !important;
+  font-size: 11px;
+  line-height: 16px;
+  text-align: center;
+}
+body .content > p[id] {
+  height: 0 !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  scroll-margin-top: 100px !important;
+}
+body.lab-page .content > #member + section { margin-top: 0 !important; }
+@media (max-width: 700px) {
+  body .content > section:not(.hero):not(.member-hero) {
+    padding: 50px 19px 24px !important;
+    border-radius: 17px !important;
+  }
+}
+
+/* Keep the institution kicker left aligned on every page. */
+html body .content .placeholder-kicker {
+  text-align: left !important;
+}
+body .content > section > .placeholder-kicker {
+  left: clamp(28px, 4vw, 50px);
+  right: clamp(28px, 4vw, 50px);
+  color: #9c1730 !important;
+  font-family: Arial, "Microsoft YaHei", "Noto Sans SC", sans-serif !important;
+  font-size: 12px !important;
+  font-weight: 800 !important;
+  line-height: 16px;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+}
+@media (max-width: 700px) {
+  body .content > section > .placeholder-kicker { left: 19px; right: 19px; }
+}

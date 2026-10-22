@@ -97,6 +97,20 @@
         body.append(row);
       });
     });
+    const measure = document.createElement('canvas').getContext('2d');
+    const rows = [...body.rows];
+    for (let column = 0; column < 3; column++) {
+      measure.font = column === 0 ? '750 15px Arial' : '15px Arial';
+      const width = Math.ceil(Math.max(0, ...rows.map(row => measure.measureText(row.cells[column].textContent).width))) + 2;
+      table.style.setProperty(`--honors-text-${column + 1}`, `${width}px`);
+      rows.forEach(row => {
+        const cell = row.cells[column];
+        const text = document.createElement('span');
+        text.className = 'honors-cell-text';
+        text.append(...cell.childNodes);
+        cell.append(text);
+      });
+    }
   }).catch(error => {
     messageRow('The awards list could not load. Please refresh the page.');
     console.error('Honors source loading failed:', error);

@@ -32,7 +32,7 @@
     anchor.append(image);
     return anchor;
   };
-  nav.prepend(brand('lab-brand', '../research.html#member', '../common/img/ov3-lab-logo.png', 'OV³ Lab · 开放视界实验室'));
+  nav.prepend(brand('lab-brand', '../research.html#member', '../common/img/ov3-lab-logo-new.png?v=20261022', 'OV³ Lab · 开放视界实验室'));
   nav.append(brand('site-brand', '../index.html#top', '../common/img/pku-logo.png', '北京大学 · Peking University'));
   const updateCompactNav = () => document.body.classList.toggle('nav-scrolled', window.scrollY > 80);
   window.addEventListener('scroll', updateCompactNav, { passive: true });
@@ -90,6 +90,7 @@
       ['Dual-degree studies', 'Peking University', 'Economics · National School of Development', '2023–2026', 'pku-seal.svg']
     ],
     zzh: [
+      ['Postdoctoral Researcher', 'Peking University', 'Wangxuan Institute of Computer Technology', '2026–Present', 'pku-seal.svg'],
       ['Ph.D.', 'University of Chinese Academy of Sciences', 'Institute of Software · Space Integrated Information Systems', 'Sep. 2020–Jun. 2026', 'education-logos/ucas.png'],
       ['B.Eng.', 'Beijing Jiaotong University', 'Computer Science and Technology', 'Sep. 2015–Jun. 2019', 'education-logos/beijing-jiaotong.png']
     ]

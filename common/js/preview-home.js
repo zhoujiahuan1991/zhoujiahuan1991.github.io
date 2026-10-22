@@ -129,7 +129,7 @@
     labBrand.href = 'research.html#member';
     labBrand.setAttribute('aria-label', 'OV³ Lab · Lab members');
     const labLogo = make('img', 'lab-brand-logo');
-    labLogo.src = 'common/img/ov3-lab-logo.png';
+    labLogo.src = 'common/img/ov3-lab-logo-new.png?v=20261022';
     labLogo.alt = 'OV³ Lab · 开放视界实验室';
     labLogo.width = 2000;
     labLogo.height = 640;
@@ -150,6 +150,19 @@
         item.append(link);
         return item;
       }));
+      const syncActiveSection = () => {
+        const current = document.body.classList.contains('publications-page') ? 'Publications'
+          : location.hash === '#news' ? 'News'
+          : location.hash === '#direct' ? 'Research' : 'Home';
+        [...list.children].forEach(item => {
+          const active = item.querySelector('a')?.textContent === current;
+          item.classList.toggle('active', active);
+          if (active) item.querySelector('a').setAttribute('aria-current', current === 'Home' || current === 'Publications' ? 'page' : 'location');
+          else item.querySelector('a')?.removeAttribute('aria-current');
+        });
+      };
+      syncActiveSection();
+      window.addEventListener('hashchange', syncActiveSection);
     }
 
     const brand = make('a', 'site-brand');
@@ -204,7 +217,7 @@
     research.href = '#direct';
     const publications = make('a', '', 'View Publications ↗');
     publications.href = 'publications.html';
-    const members = make('a', '', 'Lab Members ↗');
+    const members = make('a', '', 'View Members ↗');
     members.href = 'research.html#member';
     const recruit = make('a', 'hero-recruit');
     recruit.href = 'contact.html';

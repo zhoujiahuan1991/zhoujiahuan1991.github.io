@@ -202,3 +202,66 @@
 @media (max-width: 700px) {
   .lab-page .perpic > .part1 > .w18 { flex-basis: calc((100% - 13px) / 2); width: calc((100% - 13px) / 2); }
 }
+
+/* Align Members, Alumni, Honors and Lab Lives within the same content edges. */
+.lab-page #member + section,
+.lab-page .content > .honors-panel,
+.lab-page #Lives + section {
+  box-sizing: border-box;
+  width: 100%;
+  max-width: none !important;
+  min-width: 0;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+  padding-inline: clamp(28px, 4vw, 50px);
+}
+.lab-page .perpic,
+.lab-page #honors-record,
+.lab-page .alumni-table-wrap,
+.lab-page .lives-gallery {
+  box-sizing: border-box;
+  width: 100%;
+  min-width: 0;
+}
+@media (max-width: 700px) {
+  .lab-page #member + section,
+  .lab-page .content > .honors-panel,
+  .lab-page #Lives + section { padding-inline: 19px; }
+}
+
+/* Alumni: full-width table with centered headings and left-aligned text blocks. */
+.lab-page #member + section .perpic > .alumni-table-wrap { width: 100%; margin: 0; }
+.lab-page #member + section .alumni-table { width: 100%; table-layout: fixed; min-width: 850px; }
+.lab-page #member + section .alumni-table :is(th, td):nth-child(1) { width: 20%; --alumni-text-width: var(--alumni-text-1); }
+.lab-page #member + section .alumni-table :is(th, td):nth-child(2) { width: 20%; --alumni-text-width: var(--alumni-text-2); }
+.lab-page #member + section .alumni-table :is(th, td):nth-child(3) { width: 36%; --alumni-text-width: var(--alumni-text-3); }
+.lab-page #member + section .alumni-table :is(th, td):nth-child(4) { width: 12%; --alumni-text-width: var(--alumni-text-4); }
+.lab-page #member + section .alumni-table :is(th, td):nth-child(5) { width: 12%; --alumni-text-width: var(--alumni-text-5); }
+.lab-page #member + section .alumni-table th { text-align: center !important; padding: 15px 14px; }
+.lab-page #member + section .alumni-table td { text-align: left; padding: 14px; font: 15px/1.5 Arial, sans-serif; vertical-align: middle; }
+.lab-page #member + section .alumni-cell-text { display: block; width: var(--alumni-text-width); max-width: 100%; margin-inline: auto; text-align: left; overflow-wrap: break-word; }
+
+/* Honors follows Alumni: full width and centered blocks of left-aligned text. */
+.lab-page #honors-record .honors-table-wrap { width: 100%; margin: 0; }
+.lab-page #honors-record .honors-table { width: 100%; table-layout: fixed; min-width: 760px; }
+.lab-page #honors-record .honors-table :is(th, td):nth-child(1) { width: 66%; --honors-text-width: var(--honors-text-1); }
+.lab-page #honors-record .honors-table :is(th, td):nth-child(2) { width: 19%; --honors-text-width: var(--honors-text-2); }
+.lab-page #honors-record .honors-table :is(th, td):nth-child(3) { width: 15%; --honors-text-width: var(--honors-text-3); }
+.lab-page #honors-record .honors-table th { text-align: center !important; padding: 15px 18px; }
+.lab-page #honors-record .honors-table td { padding: 14px 18px; font-size: 15px; line-height: 1.5; text-align: left; vertical-align: middle; white-space: normal; }
+.lab-page #honors-record .honors-cell-text { display: block; width: var(--honors-text-width); max-width: 100%; margin-inline: auto; text-align: left; overflow-wrap: break-word; }
+
+/* Reduce the inset of Honors content while keeping column headings centered. */
+.lab-page #honors-record .honors-cell-text {
+  margin-left: max(0px, calc((100% - var(--honors-text-width)) / 2 - 28px));
+  margin-right: auto;
+}
+
+/* Shift only award descriptions; restore Student and Year content positions. */
+.lab-page #honors-record .honors-cell-text {
+  margin-inline: auto;
+}
+.lab-page #honors-record .honors-table td:first-child .honors-cell-text {
+  margin-left: max(0px, calc((100% - var(--honors-text-width)) / 2 - 88px));
+  margin-right: auto;
+}
