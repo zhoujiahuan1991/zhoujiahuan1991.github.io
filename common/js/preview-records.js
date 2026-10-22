@@ -5,7 +5,7 @@
     ['视觉提示驱动的XXX敏捷增量学习技术研究', '航天科工集团智能科技研究院有限公司', '', '负责人', '2025.12–2026.05'],
     ['AIGC多粒度持续鉴伪', '北京市公安局人工智能安全研究中心', '', '负责人', '2025.01–2025.12'],
     ['基于高通量电子显微技术的自插层低维铁基材料微结构研究', '国家重点研发计划青年科学家项目', '2024YFA1410000', '课题负责人', '2024.12–2029.11'],
-    ['XXX持续识别与自适应分析技术', '基础国防基础加强计划技术领域基金', '', '负责人', '2024.10–2026.04'],
+    ['XXX持续识别与自适应分析技术', '基础国防基础加强计划技术', '', '负责人', '2024.10–2026.04'],
     ['面向城市动态场景的自适应增量分析与可持续感知', '国家自然科学基金面上项目', '62376011', '负责人', '2024.01–2027.12'],
     ['家庭机器人视觉定位模块研发', '四川启睿克科技有限公司', '', '负责人', '2023.11–2024.11'],
     ['端侧超分辨率模型研发项目', '北京商领时代科技有限公司', '', '负责人', '2023.07–2024.01'],
@@ -42,7 +42,7 @@
   if (!projectsPage) table.classList.add('patents-table');
   const head = make('thead', '', '');
   const header = make('tr', '', '');
-  (projectsPage ? ['序号', '项目名称', '合作单位 / 项目类别', '编号', '职责', '开始时间', '结束时间'] : ['序号', '案件名称', '证书编号', '申请号', '申请日', '专利状态']).forEach(label => {
+  (projectsPage ? ['序号', '单位/类型', '名称', '职责', '开始时间', '结束时间'] : ['序号', '案件名称', '证书编号', '申请号', '申请日', '专利状态']).forEach(label => {
     const th = make('th', '', label);
     th.scope = 'col';
     header.append(th);
@@ -52,8 +52,10 @@
   if (projectsPage) {
     events.forEach(([title, organization, number, role, period], index) => {
       const dates = period.split('–');
+      const organizationLabel = /有限公司/.test(organization) ? `校企合作-${organization}` : organization;
+      const projectTitle = number ? `${title}（编号：${number}）` : title;
       const row = make('tr', '', '');
-      [index + 1, title, organization, number || '—', role, dates[0] || '—', dates[1] || '—'].forEach(value => row.append(make('td', '', value)));
+      [index + 1, organizationLabel, projectTitle, role, dates[0] || '—', dates[1] || '—'].forEach(value => row.append(make('td', '', value)));
       body.append(row);
     });
   } else {
