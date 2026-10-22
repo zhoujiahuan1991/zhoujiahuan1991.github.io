@@ -1055,3 +1055,17 @@ body[data-page="Projects"] .records-table td:first-child {
   text-align: left;
   font-variant-numeric: normal;
 }
+
+/* Institutional footer on the home page. */
+.institute-footer { margin-top: 28px; padding: 36px 22px 27px; border-top: 3px solid #b94250; background: linear-gradient(120deg, #6d000e, #8b0012 55%, #a01b30); color: #fff1f3; text-align: center; }
+.institute-footer .institute-footer-name { color: #fff; font-size: 21px; font-weight: 750; text-decoration: none; }
+.institute-footer-english { margin: 9px 0 22px; color: #f4cbd1; font-size: 14px; line-height: 1.6; }
+.institute-footer-contact { display: flex; flex-wrap: wrap; justify-content: center; gap: 15px 34px; margin: 0; font-size: 14px; font-style: normal; line-height: 1.7; }
+.institute-footer-contact a { color: #fff1f3; text-decoration: none; }
+.institute-footer-contact a > span, .institute-footer-pin { margin-right: 7px; color: #edb9c1; font-size: 19px; }
+.institute-footer a:hover { color: #f2b8c3; }
+.institute-footer-copyright { margin: 23px 0 0; color: #edbcc4; font-size: 12px; }
+@media (max-width: 700px) {
+  .institute-footer { padding: 30px 20px 24px; }
+  .institute-footer-contact { flex-direction: column; gap: 10px; }
+}
