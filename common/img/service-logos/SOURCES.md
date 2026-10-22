@@ -10,4 +10,6 @@ Academic Service image sources (retrieved 2026-10-21):
 - `bmvc.png`: https://bmvc2026.bmva.org/assets/images/layout/bmvc-2026-transparent.png
 - `mva.jpg`: https://media.springernature.com/w480/springer-static/cover/journal/138.jpg
 
-These images are displayed only beside factual academic-service entries. No mark has been retouched or manually cut out; source transparent SVG/PNG files use `object-fit: contain`. AAAI, NeurIPS and PRCV use text identifiers until suitable permitted assets are available.
+User-provided images added 2026-10-22: `aaai-provided.png`, `neurips-provided.png`, `prcv-provided.png`, and `iclr-provided.png`. The provided ICLR image is used in place of the earlier `iclr.svg` in the Academic Service cards.
+
+These images are displayed only beside factual academic-service entries. No mark has been retouched or manually cut out; source images use `object-fit: contain`.

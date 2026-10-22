@@ -485,7 +485,8 @@
     let entries = null;
     let currentRole = '';
     const artwork = {
-      MVA: 'mva.jpg', ICCV: 'iccv.svg', ICLR: 'iclr.svg', ICML: 'icml.svg',
+      MVA: 'mva.jpg', ICCV: 'iccv.svg', ICLR: 'iclr-provided.png', ICML: 'icml.svg',
+      AAAI: 'aaai-provided.png', NeurIPS: 'neurips-provided.png', PRCV: 'prcv-provided.png',
       CVPR: 'cvpr.svg', ECCV: 'eccv.svg', ICPR: 'icpr.svg', ICME: 'icme.png', BMVC: 'bmvc.png'
     };
     $$('tr', table).forEach(row => {
