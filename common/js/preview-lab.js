@@ -87,10 +87,10 @@
   const alumniOriginal = memberSection?.querySelector('.perpic > table');
   if (alumniOriginal) {
     const table = document.createElement('table');
-    table.className = 'alumni-table';
+    table.className = 'alumni-table members-alumni-table';
     const head = document.createElement('thead');
     const header = document.createElement('tr');
-    ['Name', 'Degree', 'Institution', 'Start time', 'End time'].forEach(label => {
+    ['No.', 'Name', 'Degree', 'Institution', 'Start time', 'End time'].forEach(label => {
       const th = document.createElement('th');
       th.scope = 'col';
       th.textContent = label;
@@ -98,6 +98,7 @@
     });
     head.append(header);
     const body = document.createElement('tbody');
+    body.id = 'member-alumni-rows';
     [...alumniOriginal.querySelectorAll('tr')].forEach(originalRow => {
       let values = [...originalRow.querySelectorAll('td')].map(cell => cell.textContent.trim());
       if (values.length === 5 && values[0] === values[1]) values = [values[0], values[2], values[3], values[4]];
@@ -106,6 +107,9 @@
       const times = values[3].split(/\s+[-–~]\s+/);
       values = [values[0], values[1], values[2], times[0] || '—', times[1] || '—'];
       const row = document.createElement('tr');
+      const number = document.createElement('td');
+      number.textContent = String(body.rows.length + 1);
+      row.append(number);
       values.forEach(value => {
         const cell = document.createElement('td');
         cell.textContent = value;
@@ -117,7 +121,7 @@
     const measure = document.createElement('canvas').getContext('2d');
     measure.font = '15px Arial';
     const rows = [...body.rows];
-    for (let column = 0; column < 5; column++) {
+    for (let column = 1; column < 6; column++) {
       const widest = Math.ceil(Math.max(0, ...rows.map(row => measure.measureText(row.cells[column].textContent).width))) + 2;
       table.style.setProperty(`--alumni-text-${column + 1}`, `${widest}px`);
       rows.forEach(row => {
@@ -133,6 +137,25 @@
     wrap.className = 'alumni-table-wrap';
     wrap.append(table);
     alumniOriginal.replaceWith(wrap);
+    if (rows.length > 10) {
+      rows.slice(10).forEach(row => { row.hidden = true; });
+      const controls = document.createElement('div');
+      controls.className = 'alumni-table-controls';
+      const toggle = document.createElement('button');
+      toggle.type = 'button';
+      toggle.className = 'alumni-table-toggle';
+      toggle.setAttribute('aria-controls', body.id);
+      toggle.setAttribute('aria-expanded', 'false');
+      toggle.textContent = 'Show More';
+      toggle.addEventListener('click', () => {
+        const expanded = toggle.getAttribute('aria-expanded') !== 'true';
+        rows.slice(10).forEach(row => { row.hidden = !expanded; });
+        toggle.setAttribute('aria-expanded', String(expanded));
+        toggle.textContent = expanded ? 'Show Less' : 'Show More';
+      });
+      controls.append(toggle);
+      wrap.after(controls);
+    }
   }
 
   const livesAnchor = document.getElementById('Lives');

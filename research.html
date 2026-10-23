@@ -100,7 +100,7 @@
         }
     </style>
     <link rel="stylesheet" href="common/css/preview-redesign.css?v=20261022-complete-2">
-    <link rel="stylesheet" href="common/css/preview-lab.css?v=20261022-award-left-88">
+    <link rel="stylesheet" href="common/css/preview-lab.css?v=20261023-alumni-number-toggle">
   <link rel="stylesheet" href="common/css/preview-consistency.css?v=20261022-kicker-stable">
   <style>
     /* Only the Members page's Alumni and Honors tables use compact columns. */
@@ -108,11 +108,12 @@
     .lab-page .alumni-table { table-layout: fixed; }
     .lab-page .alumni-table :is(th, td) { padding-inline: 11px; }
     .lab-page .alumni-table thead th { text-align: center !important; }
-    .lab-page .alumni-table:not(.honors-table) :is(th, td):nth-child(1) { width: 15%; }
-    .lab-page .alumni-table:not(.honors-table) :is(th, td):nth-child(2) { width: 18%; }
-    .lab-page .alumni-table:not(.honors-table) :is(th, td):nth-child(3) { width: 43%; }
-    .lab-page .alumni-table:not(.honors-table) :is(th, td):nth-child(4),
-    .lab-page .alumni-table:not(.honors-table) :is(th, td):nth-child(5) { width: 12%; }
+    .lab-page .members-alumni-table :is(th, td):nth-child(1) { width: 6%; }
+    .lab-page .members-alumni-table :is(th, td):nth-child(2) { width: 15%; }
+    .lab-page .members-alumni-table :is(th, td):nth-child(3) { width: 18%; }
+    .lab-page .members-alumni-table :is(th, td):nth-child(4) { width: 37%; }
+    .lab-page .members-alumni-table :is(th, td):nth-child(5),
+    .lab-page .members-alumni-table :is(th, td):nth-child(6) { width: 12%; }
     .lab-page .honors-table :is(th, td):nth-child(1) { width: 64%; }
     .lab-page .honors-table :is(th, td):nth-child(2) { width: 20%; }
     .lab-page .honors-table :is(th, td):nth-child(3) { width: 16%; }
@@ -1026,7 +1027,7 @@
         startSlider();
         }
     </script>
-    <script src="common/js/preview-lab.js?v=20261023-future-labels"></script>
+    <script src="common/js/preview-lab.js?v=20261023-alumni-number-toggle"></script>
     <script src="common/js/preview-honors.js?v=20261022-honors-columns"></script>
 </body>
 

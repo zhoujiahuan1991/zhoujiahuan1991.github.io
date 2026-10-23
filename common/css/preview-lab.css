@@ -232,14 +232,20 @@
 /* Alumni: full-width table with centered headings and left-aligned text blocks. */
 .lab-page #member + section .perpic > .alumni-table-wrap { width: 100%; margin: 0; }
 .lab-page #member + section .alumni-table { width: 100%; table-layout: fixed; min-width: 850px; }
-.lab-page #member + section .alumni-table :is(th, td):nth-child(1) { width: 20%; --alumni-text-width: var(--alumni-text-1); }
-.lab-page #member + section .alumni-table :is(th, td):nth-child(2) { width: 20%; --alumni-text-width: var(--alumni-text-2); }
-.lab-page #member + section .alumni-table :is(th, td):nth-child(3) { width: 36%; --alumni-text-width: var(--alumni-text-3); }
-.lab-page #member + section .alumni-table :is(th, td):nth-child(4) { width: 12%; --alumni-text-width: var(--alumni-text-4); }
-.lab-page #member + section .alumni-table :is(th, td):nth-child(5) { width: 12%; --alumni-text-width: var(--alumni-text-5); }
+.lab-page #member + section .members-alumni-table :is(th, td):nth-child(1) { width: 6%; }
+.lab-page #member + section .members-alumni-table :is(th, td):nth-child(2) { width: 15%; --alumni-text-width: var(--alumni-text-2); }
+.lab-page #member + section .members-alumni-table :is(th, td):nth-child(3) { width: 18%; --alumni-text-width: var(--alumni-text-3); }
+.lab-page #member + section .members-alumni-table :is(th, td):nth-child(4) { width: 37%; --alumni-text-width: var(--alumni-text-4); }
+.lab-page #member + section .members-alumni-table :is(th, td):nth-child(5) { width: 12%; --alumni-text-width: var(--alumni-text-5); }
+.lab-page #member + section .members-alumni-table :is(th, td):nth-child(6) { width: 12%; --alumni-text-width: var(--alumni-text-6); }
 .lab-page #member + section .alumni-table th { text-align: center !important; padding: 15px 14px; }
 .lab-page #member + section .alumni-table td { text-align: left; padding: 14px; font: 15px/1.5 Arial, sans-serif; vertical-align: middle; }
+.lab-page #member + section .members-alumni-table td:first-child { color: #8f1932; font: 800 14px/1.7 Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans SC", sans-serif; font-variant-numeric: tabular-nums; text-align: center; }
 .lab-page #member + section .alumni-cell-text { display: block; width: var(--alumni-text-width); max-width: 100%; margin-inline: auto; text-align: left; overflow-wrap: break-word; }
+.lab-page #member + section .members-alumni-table tbody tr[hidden] { display: none; }
+.lab-page .alumni-table-controls { width: min(100%, 1100px); margin: 18px auto 0; text-align: center; }
+.lab-page .alumni-table-toggle { padding: 0; border: 0; background: transparent; color: var(--wine); font-size: 13px; font-weight: 750; cursor: pointer; }
+.lab-page .alumni-table-toggle:hover { text-decoration: underline; }
 
 /* Honors follows Alumni: full width and centered blocks of left-aligned text. */
 .lab-page #honors-record .honors-table-wrap { width: 100%; margin: 0; }
