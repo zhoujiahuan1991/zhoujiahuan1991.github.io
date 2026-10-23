@@ -154,23 +154,29 @@
   pointer-events: none;
 }
 .member-page #member-education .member-education-list {
-  max-width: 1000px;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 28px;
+  max-width: none;
   margin: 0 auto;
-  padding: 14px 28px;
+  padding: 24px 28px;
   border: 1px solid #eee2e0;
   border-radius: 18px;
   background: #fff;
   box-shadow: 0 14px 34px rgba(75,31,39,.055);
 }
 .member-page #member-education .experience-entry {
+  display: grid;
   grid-template-columns: 64px minmax(0,1fr);
   gap: 18px;
   align-items: center;
-  padding: 20px 0;
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+  border: 0;
 }
-.member-page #member-education .experience-entry + .experience-entry { border-top: 1px solid #efe5e4; }
 .member-page #member-education .experience-seal { width: 60px; height: 60px; object-fit: contain; }
-.member-page #member-education .experience-copy { display: grid; gap: 4px; }
+.member-page #member-education .experience-copy { display: grid; min-width: 0; gap: 6px; }
 .member-page #member-education .experience-role { color: #aa2b42; font-weight: 750; }
 .member-page #member-education .experience-period { color: #9d8c90; font-weight: 700; }
 .member-page #member-education .experience-institution { color: #393036; font-weight: 800; }
@@ -201,9 +207,18 @@
 .member-service-acronym { color: var(--wine); font-weight: 850; }
 @media (max-width: 1100px) { .member-service-cards { grid-template-columns: repeat(3,minmax(0,1fr)); } }
 @media (max-width: 800px) { .member-service-cards { grid-template-columns: repeat(2,minmax(0,1fr)); } }
+@media (max-width: 1100px) {
+  .member-page #member-education .member-education-list { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 700px) {
+  .member-page #member-education .member-education-list {
+    grid-template-columns: 1fr;
+    gap: 24px;
+    padding: 20px;
+  }
+}
 @media (max-width: 540px) {
   .member-service-cards { grid-template-columns: 1fr; }
-  .member-page #member-education .member-education-list { padding: 8px 17px; }
   .member-page #member-education .experience-entry { grid-template-columns: 52px minmax(0,1fr); gap: 13px; }
   .member-page #member-education .experience-seal { width: 50px; height: 50px; }
 }
