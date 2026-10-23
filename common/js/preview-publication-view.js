@@ -76,6 +76,9 @@
           citation.append(node.cloneNode(true));
         }
         citation.querySelectorAll('.tag-container, .tag').forEach(tag => tag.remove());
+        citation.querySelectorAll('b, strong').forEach(name => {
+          if (name.textContent.includes('Jiahuan Zhou')) name.classList.add('paper-highlight-author');
+        });
         body.append(citation);
       });
     }

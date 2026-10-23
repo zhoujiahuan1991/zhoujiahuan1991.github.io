@@ -52,6 +52,7 @@
 }
 .publication-widget.is-single-view .paper-full-citation i strong { color: #8f1932; }
 .publication-widget.is-single-view .paper-full-citation b { font-weight: 750; }
+.publication-widget.is-single-view .paper-full-citation .paper-highlight-author { color: #7d2032; }
 .publication-widget.is-single-view .paper-meta { order: 1; margin: 0 0 8px; padding: 0; }
 .publication-widget.is-single-view .paper-meta:has(.paper-venue:only-child) { display: none; }
 .publication-widget.is-single-view .paper-footer { order: 2; margin: 0; }

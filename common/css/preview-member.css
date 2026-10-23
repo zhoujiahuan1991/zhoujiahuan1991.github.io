@@ -176,6 +176,7 @@
   border: 0;
 }
 .member-page #member-education .experience-seal { width: 60px; height: 60px; object-fit: contain; }
+.member-page #member-education .experience-seal--hust { object-fit: fill; }
 .member-page #member-education .experience-copy { display: grid; min-width: 0; gap: 6px; }
 .member-page #member-education .experience-role { color: #aa2b42; font-weight: 750; }
 .member-page #member-education .experience-period { color: #9d8c90; font-weight: 700; }

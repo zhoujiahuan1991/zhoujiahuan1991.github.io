@@ -105,6 +105,7 @@
       row.className = 'experience-entry';
       const image = document.createElement('img');
       image.className = 'experience-seal';
+      if (seal === 'partners/hust-seal.webp') image.classList.add('experience-seal--hust');
       image.src = `../common/img/${seal}`;
       image.alt = `${school} logo`;
       image.loading = 'lazy';
