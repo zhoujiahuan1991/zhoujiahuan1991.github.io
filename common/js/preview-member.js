@@ -77,9 +77,9 @@
       ['B.Eng.', 'Xi’an Jiaotong University', 'Computer Science and Technology', '2018–2022', 'education-logos/xian-jiaotong.png']
     ],
     xkl: [
-      ['Ph.D. candidate', 'Peking University', 'Computer Science and Engineering · Wangxuan Institute', '2023–Present', 'pku-seal.svg'],
-      ['Master’s studies', 'Huazhong University of Science and Technology', 'Control Science and Engineering', '2020–2023', 'partners/hust.png'],
-      ['Bachelor’s studies', 'Huazhong University of Science and Technology', 'Automation', '2016–2020', 'partners/hust.png']
+      ['Ph.D. candidate', 'Peking University', 'Computer Science and Engineering · Wangxuan Institute', 'Sep. 2023–Present', 'pku-seal.svg'],
+      ['Master’s studies', 'Huazhong University of Science and Technology', 'Control Science and Engineering · School of Artificial Intelligence and Automation', 'Sep. 2020–Jul. 2023', 'partners/hust-seal.webp'],
+      ['Bachelor’s studies', 'Huazhong University of Science and Technology', 'Automation · School of Artificial Intelligence and Automation', 'Sep. 2016–Jul. 2020', 'partners/hust-seal.webp']
     ],
     zk: [
       ['Master’s candidate', 'Peking University', 'Wangxuan Institute of Computer Technology · School of Computer Science', '2026–Present', 'pku-seal.svg'],
