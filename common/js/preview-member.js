@@ -273,18 +273,21 @@
         if (title) mainPapers.set(paperKey(title), item);
       });
       paperCardsByTitle.forEach(({ resources, source: memberItem }, title) => {
-        const original = mainPapers.get(title) || memberItem;
-        const anchors = [...original.querySelectorAll('a')];
-        const base = mainPapers.has(title) ? new URL('../index.html', location.href) : location.href;
+        // Member-specific resources take priority; the lab record fills any gaps.
+        const anchors = [
+          ...[...memberItem.querySelectorAll('a')].map(anchor => ({ anchor, base: location.href })),
+          ...[...(mainPapers.get(title)?.querySelectorAll('a') || [])]
+            .map(anchor => ({ anchor, base: new URL('../index.html', location.href) }))
+        ];
         [...resources.children].forEach(button => {
           const label = button.textContent;
           const pattern = label === 'DOI' ? /^doi(?:\b|:)/i : new RegExp(`^${label}$`, 'i');
-          const found = anchors.find(anchor => pattern.test(anchor.textContent.trim()) && (anchor.getAttribute('href') || anchor.getAttribute('onclick')));
+          const found = anchors.find(({ anchor }) => pattern.test(anchor.textContent.trim()) && (anchor.getAttribute('href') || anchor.getAttribute('onclick')));
           if (found) {
-            const link = found.cloneNode(true);
+            const link = found.anchor.cloneNode(true);
             link.className = 'paper-resource';
             link.textContent = label;
-            if (link.getAttribute('href') && link.getAttribute('href') !== '#') link.href = new URL(link.getAttribute('href'), base).href;
+            if (link.getAttribute('href') && link.getAttribute('href') !== '#') link.href = new URL(link.getAttribute('href'), found.base).href;
             button.replaceWith(link);
           } else if (label === 'DOI') {
             const doi = memberItem.textContent.match(/\b10\.\d{4,9}\/[^\s,;]+/i)?.[0]?.replace(/[.)]+$/, '');
@@ -299,11 +302,11 @@
             }
           }
         });
-        anchors.filter(anchor => {
+        anchors.filter(({ anchor }) => {
           const label = anchor.textContent.trim();
           const href = anchor.getAttribute('href');
           return href && href !== '#' && !/^(?:pdf|bib|code|doi(?:\b|:))/i.test(label);
-        }).forEach(anchor => {
+        }).forEach(({ anchor, base }) => {
           const extra = anchor.cloneNode(true);
           extra.className = 'paper-resource paper-resource--extra';
           extra.href = new URL(anchor.getAttribute('href'), base).href;

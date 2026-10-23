@@ -1,0 +1,80 @@
+[
+  {
+    "title": "OGPO: Offline Goal-Conditioned Policy Optimization for Recoverable Vision-Language-Action Models",
+    "bib": "pubs/bib/gao2026ogpo.bib",
+    "doi": null,
+    "code": null
+  },
+  {
+    "title": "Test-Time Perturbation Tuning with Delayed Feedback for Vision-Language-Action Models",
+    "bib": "pubs/bib/zang2026pdf.bib",
+    "doi": null,
+    "code": "https://github.com/zhoujiahuan1991/CVPR2026-PDF"
+  },
+  {
+    "title": "RS-SSM: Refining Forgotten Specifics in State Space Model for Video Semantic Segmentation",
+    "bib": "pubs/bib/zhu2026rsssm.bib",
+    "doi": null,
+    "code": "https://github.com/zhoujiahuan1991/CVPR2026-RS-SSM"
+  },
+  {
+    "title": "M2i2: Learning efficient multi-agent communication via masked state modeling and intention inference",
+    "bib": "pubs/bib/sun2026m2i2.bib",
+    "doi": "10.1609/aaai.v40i30.39764",
+    "code": "https://github.com/Hepeng967/M2I2"
+  },
+  {
+    "title": "DR2: Revisiting Visual Reinforcement Learning from the Dimensional Analysis Perspective",
+    "bib": "pubs/bib/sun2026dr2.bib",
+    "doi": "10.65109/PHPN6008",
+    "code": null
+  },
+  {
+    "title": "Visual Reinforcement Learning via Sequential Consistency Preserved Policy Contrast from Optimal Transport View",
+    "bib": "pubs/bib/zang2026coco.bib",
+    "doi": "10.1016/j.neunet.2025.108019",
+    "code": null
+  },
+  {
+    "title": "Loss of Plasticity: A New Perspective on Solving Multi-Agent Exploration for Sparse Reward Tasks",
+    "bib": "pubs/bib/zang2025plasticity.bib",
+    "doi": "10.65109/ewca3439",
+    "code": null
+  },
+  {
+    "title": "A Game of Finding Delicate Data Augmentations: Reinforcement Contrastive Learning of Visual Representations",
+    "bib": "pubs/bib/zang2025rcl.bib",
+    "doi": "10.1007/978-981-96-9894-3_31",
+    "code": null
+  },
+  {
+    "title": "Mastering Visual Reinforcement Learning via Positive Unlabeled Policy-Guided Contrast",
+    "bib": "pubs/bib/zang2025pupg.bib",
+    "doi": "10.1007/978-981-96-9894-3_4",
+    "code": "https://github.com/ZangZehua/PUPG"
+  },
+  {
+    "title": "Rethinking Generalizability and Discriminability of Self-Supervised Learning from Evolutionary Game Theory Perspective",
+    "bib": "pubs/bib/li2025essl.bib",
+    "doi": "10.1007/s11263-024-02321-2",
+    "code": "https://github.com/ZangZehua/essl"
+  },
+  {
+    "title": "RBDN: A Robust Background Denoising Network for Weakly Supervised Temporal Language Grounding",
+    "bib": "pubs/bib/lyu2025rbdn.bib",
+    "doi": "10.1109/ICME59968.2025.11209115",
+    "code": null
+  },
+  {
+    "title": "Unsupervised Social Event Detection via Hybrid Graph Contrastive Learning and Reinforced Incremental Clustering",
+    "bib": "pubs/bib/guo2024hcrc.bib",
+    "doi": "10.1016/j.knosys.2023.111225",
+    "code": null
+  },
+  {
+    "title": "T2MAC: Targeted and Trusted Multi-Agent Communication through Selective Engagement and Evidence-Driven Integration",
+    "bib": "pubs/bib/sun2024t2mac.bib",
+    "doi": "10.1609/aaai.v38i13.29438",
+    "code": "https://github.com/ZangZehua/T2MAC"
+  }
+]

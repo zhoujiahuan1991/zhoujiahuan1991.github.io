@@ -16,7 +16,7 @@
       }
     }
   };
-  fetch('index.html').then(response => {
+  fetch('index.html?v=20261023-member-pdfs').then(response => {
     if (!response.ok) throw new Error(`HTTP ${response.status}`);
     return response.text();
   }).then(html => {

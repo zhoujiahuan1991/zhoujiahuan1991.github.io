@@ -1,0 +1,90 @@
+[
+  {
+    "title": "Test-Time Perturbation Tuning with Delayed Feedback for Vision-Language-Action Models",
+    "file": "Test-Time Perturbation Tuning with Delayed Feedback for Vision-Language-Action Models.pdf",
+    "source": "https://openaccess.thecvf.com/content/CVPR2026/html/Zang_Test-Time_Perturbation_Tuning_with_Delayed_Feedback_for_Vision-Language-Action_Models_CVPR_2026_paper.html",
+    "provenance": "Official conference proceedings",
+    "pages": 10,
+    "sha256": "3d78d53c3adbb1dd857a32d4d3551693310154f9c89d29492797651e7d82cfd0"
+  },
+  {
+    "title": "RS-SSM: Refining Forgotten Specifics in State Space Model for Video Semantic Segmentation",
+    "file": "RS-SSM - Refining Forgotten Specifics in State Space Model for Video Semantic Segmentation.pdf",
+    "source": "https://openaccess.thecvf.com/content/CVPR2026/papers/Zhu_RS-SSM_Refining_Forgotten_Specifics_in_State_Space_Model_for_Video_CVPR_2026_paper.pdf",
+    "provenance": "Official conference proceedings",
+    "pages": 12,
+    "sha256": "ae56c37d8962ea271657930618de5b9743ddd315544739d13b2aa4ebd7f37e21"
+  },
+  {
+    "title": "M2i2: Learning efficient multi-agent communication via masked state modeling and intention inference",
+    "file": "M2i2 - Learning Efficient Multi-Agent Communication via Masked State Modeling and Intention Inference.pdf",
+    "source": "https://ojs.aaai.org/index.php/AAAI/article/download/39764/43725",
+    "provenance": "Official conference proceedings",
+    "pages": 10,
+    "sha256": "5e29e12aa90d2fa1c730aba02558f713815b49f3f8a73f2e927e77eb155837f1"
+  },
+  {
+    "title": "DR2: Revisiting Visual Reinforcement Learning from the Dimensional Analysis Perspective",
+    "file": "DR2 - Revisiting Visual Reinforcement Learning from the Dimensional Analysis Perspective.pdf",
+    "source": "https://ifaamas.org/Proceedings/aamas2026/pdfs/PHPN6008.pdf",
+    "provenance": "Official conference proceedings",
+    "pages": 10,
+    "sha256": "4aed2cdb6b22c9a76beaea4006514287d975605f2780ea9ee55470a01e825527"
+  },
+  {
+    "title": "Loss of Plasticity: A New Perspective on Solving Multi-Agent Exploration for Sparse Reward Tasks",
+    "file": "Loss of Plasticity - A New Perspective on Solving Multi-Agent Exploration for Sparse Reward Tasks.pdf",
+    "source": "https://www.ifaamas.org/Proceedings/aamas2025/pdfs/p2299.pdf",
+    "provenance": "Official conference proceedings",
+    "pages": 10,
+    "sha256": "1366a383bae8f158cf83eaeff7f4672614a1e880b0f92356600a04e27f4c42b4"
+  },
+  {
+    "title": "T2MAC: Targeted and Trusted Multi-Agent Communication through Selective Engagement and Evidence-Driven Integration",
+    "file": "Targeted and Trusted Multi-Agent Communication through Selective Engagement and Evidence-Driven Integration.pdf",
+    "source": null,
+    "provenance": "User-provided; publication header and pagination verified",
+    "pages": 10,
+    "sha256": "8f13cee49595932d9b86112f5316eeaa76dc8e5fbdb04ba112939366d2723a82"
+  },
+  {
+    "title": "Mastering Visual Reinforcement Learning via Positive Unlabeled Policy-Guided Contrast",
+    "file": "PUPG-ICIC2025 - carmeraready.pdf",
+    "source": null,
+    "provenance": "User-provided camera-ready manuscript; complete 12-page file verified",
+    "pages": 12,
+    "sha256": "19ec378f9fd20b20c65e0f88213874f1303d208b934ca250e72cbed56a0952dc"
+  },
+  {
+    "title": "A Game of Finding Delicate Data Augmentations: Reinforcement Contrastive Learning of Visual Representations",
+    "file": "RCL-ICIC2025 - cameraready.pdf",
+    "source": null,
+    "provenance": "User-provided camera-ready manuscript; complete 12-page file verified",
+    "pages": 12,
+    "sha256": "78ae12d7a3df6069b14d8832fd470f343a9ed28a3a4ef2f8261ee6df5ee6abfe"
+  },
+  {
+    "title": "Rethinking Generalizability and Discriminability of Self-Supervised Learning from Evolutionary Game Theory Perspective",
+    "file": "ESSL_IJCV.pdf",
+    "source": null,
+    "provenance": "User-provided; Author manuscript",
+    "pages": 23,
+    "sha256": "b6c544ad09f3ab121eef149b52e2bfdce19ad5e251970d372d159f6e4f8ef16b"
+  },
+  {
+    "title": "Visual Reinforcement Learning via Sequential Consistency Preserved Policy Contrast from Optimal Transport View",
+    "file": "CoCo_NN2025.pdf",
+    "source": null,
+    "provenance": "User-provided; Author manuscript",
+    "pages": 17,
+    "sha256": "97b83901578bb45c882bd7300bc9cbe9464b7948995c56fbb63b675ba5b9676b"
+  },
+  {
+    "title": "RBDN: A Robust Background Denoising Network for Weakly Supervised Temporal Language Grounding",
+    "file": "RBDN_A_Robust_Background_Denoising_Network_for_Weakly_Supervised_Temporal_Language_Grounding.pdf",
+    "source": null,
+    "provenance": "User-provided; IEEE published version",
+    "pages": 6,
+    "sha256": "4d80f074feb6031d8b41fc5015cbdb60ea0dbf6cebc158d99c42b8681a5debda"
+  }
+]
