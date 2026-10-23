@@ -82,7 +82,8 @@
       ['Bachelor’s studies', 'Huazhong University of Science and Technology', 'Automation', '2016–2020', 'partners/hust.png']
     ],
     zk: [
-      ['Undergraduate studies', 'Renmin University of China', 'Turing Class · School of Information', '2022–Present', 'education-logos/renmin.svg']
+      ['Master’s candidate', 'Peking University', 'Wangxuan Institute of Computer Technology · School of Computer Science', '2026–Present', 'pku-seal.svg'],
+      ['Bachelor’s studies', 'Renmin University of China', 'Turing Class · School of Information', '2022–2026', 'education-logos/renmin.svg']
     ],
     zyq: [
       ['Ph.D. candidate', 'Peking University', 'Computer Science and Technology · Wangxuan Institute', '2026–Present', 'pku-seal.svg'],
