@@ -78,7 +78,7 @@
       const role = document.createElement('p');
       role.textContent = 'PhD';
       const period = document.createElement('p');
-      period.textContent = '2027(Future)';
+      period.textContent = '2027';
       mark.append(role, period);
     }
     phdGrid.append(hanCard);
@@ -190,7 +190,7 @@
     if (photo) photo.alt = visibleName;
     const time = [...(mark?.querySelectorAll('p') || [])]
       .map(paragraph => paragraph.textContent.trim())
-      .find(value => /^\d{4}\s*(?:~\s*(?:Now|\d{4})|\(Future\))$/i.test(value));
+      .find(value => /^\d{4}(?:\s*~\s*(?:Now|\d{4})|\s*\(Future\))?$/i.test(value));
     if (time) {
       const timeLabel = document.createElement('span');
       timeLabel.className = 'member-time';
