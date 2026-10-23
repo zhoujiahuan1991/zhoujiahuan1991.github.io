@@ -202,7 +202,7 @@
         badge.href = journal.source;
         badge.target = '_blank';
         badge.rel = 'noopener noreferrer';
-        badge.textContent = impact ? `IF ${impact[1]}` : 'IF 未核实';
+        badge.textContent = impact ? `IF ${Number(impact[1]).toFixed(1)}` : 'IF 未核实';
         meta.append(badge);
       } else if (otherJournals.test(venue)) {
         const badge = document.createElement('span');

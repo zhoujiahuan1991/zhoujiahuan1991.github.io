@@ -401,7 +401,7 @@
     const journal = journalMatch && journalFactors[journalMatch[1]];
     if (journal) {
       const impact = journal.values[paper.year];
-      const badge = make('a', `paper-jif${impact ? '' : ' paper-jif--unverified'}`, impact ? `IF ${impact[1]}` : 'IF 未核实');
+      const badge = make('a', `paper-jif${impact ? '' : ' paper-jif--unverified'}`, impact ? `IF ${Number(impact[1]).toFixed(1)}` : 'IF 未核实');
       badge.href = journal.source;
       badge.target = '_blank';
       badge.rel = 'noopener noreferrer';
