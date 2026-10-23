@@ -28,7 +28,7 @@
     source.prepend(kicker);
     placeholder.replaceWith(document.importNode(source, true));
     const script = document.createElement('script');
-    script.src = 'common/js/preview-redesign.js?v=20261023-if-one-decimal';
+    script.src = 'common/js/preview-redesign.js?v=20261023-jif2025';
     document.body.append(script);
   }).catch(error => {
     placeholder.querySelector('p').textContent = 'The publications could not load. Please refresh the page.';

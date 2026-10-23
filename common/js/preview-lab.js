@@ -197,18 +197,18 @@
       timeLabel.textContent = time;
       card.append(timeLabel);
     }
-    if (visibleName === 'Han Yang') {
-      const coSupervision = document.createElement('span');
-      coSupervision.className = 'member-note';
-      coSupervision.textContent = 'Jointly supervised with Prof. Ruqiang Zou';
-      card.append(coSupervision);
-    }
     const originalLink = mark?.querySelector('a[href]');
     if (originalLink) {
       const link = originalLink.cloneNode(true);
       link.className = 'member-link';
       link.textContent = 'Homepage ↗';
       card.append(link);
+    }
+    if (visibleName === 'Han Yang') {
+      const coSupervision = document.createElement('span');
+      coSupervision.className = 'member-note';
+      coSupervision.textContent = 'Jointly supervised with Prof. Ruqiang Zou';
+      card.append(coSupervision);
     }
   });
 
