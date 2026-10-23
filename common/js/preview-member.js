@@ -282,7 +282,10 @@
         [...resources.children].forEach(button => {
           const label = button.textContent;
           const pattern = label === 'DOI' ? /^doi(?:\b|:)/i : new RegExp(`^${label}$`, 'i');
-          const found = anchors.find(({ anchor }) => pattern.test(anchor.textContent.trim()) && (anchor.getAttribute('href') || anchor.getAttribute('onclick')));
+          const found = anchors.find(({ anchor }) => {
+            const text = anchor.textContent.trim().replace(/^\[|\]$/g, '');
+            return pattern.test(text) && (anchor.getAttribute('href') || anchor.getAttribute('onclick'));
+          });
           if (found) {
             const link = found.anchor.cloneNode(true);
             link.className = 'paper-resource';
@@ -301,16 +304,6 @@
               button.replaceWith(link);
             }
           }
-        });
-        anchors.filter(({ anchor }) => {
-          const label = anchor.textContent.trim();
-          const href = anchor.getAttribute('href');
-          return href && href !== '#' && !/^(?:pdf|bib|code|doi(?:\b|:))/i.test(label);
-        }).forEach(({ anchor, base }) => {
-          const extra = anchor.cloneNode(true);
-          extra.className = 'paper-resource paper-resource--extra';
-          extra.href = new URL(anchor.getAttribute('href'), base).href;
-          resources.append(extra);
         });
       });
     }).catch(error => console.error('Member paper links could not be mapped:', error));
