@@ -1,0 +1,95 @@
+.passage-page {
+  font-family: Arial, "Microsoft YaHei", "Noto Sans SC", sans-serif;
+  color: #25212a;
+}
+.passage-page .navbar.navbar-default {
+  display: flex !important;
+  flex-flow: row nowrap !important;
+  align-items: center;
+  justify-content: space-between;
+}
+.passage-page .navbar .lab-brand,
+.passage-page .navbar .site-brand { flex: 0 1 190px; }
+.passage-page .navbar .lab-brand-logo,
+.passage-page .navbar .site-brand-logo { width: 100%; height: 57px; object-fit: contain; }
+.passage-page .navbar .navbar-nav { float: none; display: flex; flex-flow: row nowrap; justify-content: center; }
+.passage-page .navbar .navbar-nav > .active > a {
+  color: #a31428;
+  background: transparent;
+  border-bottom: 3px solid #a31428;
+  border-radius: 0;
+}
+.passage-page .content > .passage-card {
+  background: #fff;
+  box-shadow: 0 18px 50px rgba(64, 32, 37, .07);
+  padding-top: 72px !important;
+}
+.passage-page .passage-back {
+  display: inline-flex;
+  align-items: center;
+  margin: 0 0 26px;
+  color: #a31428;
+  font-size: 14px;
+  font-weight: 800;
+  text-decoration: none;
+}
+.passage-page .passage-back:hover { text-decoration: underline; }
+.passage-page .passage-heading { margin: 0 auto 32px; max-width: 960px; text-align: center; }
+.passage-page .passage-heading h1 {
+  margin: 0;
+  color: #25212a;
+  font: 700 clamp(28px, 3vw, 42px)/1.28 Arial, "Microsoft YaHei", "Noto Sans SC", sans-serif;
+}
+.passage-page .passage-heading h1::after {
+  content: "";
+  display: block;
+  width: 58px;
+  height: 4px;
+  margin: 18px auto 0;
+  border-radius: 4px;
+  background: #a31428;
+}
+.passage-page .passage-article {
+  max-width: 1040px;
+  margin: 0 auto;
+  color: #4f4247;
+  font-size: 17px;
+  line-height: 1.85;
+  overflow-wrap: anywhere;
+}
+.passage-page .passage-article p { margin: 0 0 20px; }
+.passage-page .passage-article p[align="center"] { text-align: center; margin-bottom: 30px; }
+.passage-page .passage-article img {
+  display: block;
+  width: auto;
+  max-width: 100%;
+  height: auto;
+  max-height: 460px;
+  margin: 0 auto;
+  object-fit: contain;
+  border-radius: 12px;
+}
+.passage-page .passage-article p[style*="font-weight:bold"] {
+  color: #25212a;
+  font-size: 18px;
+  font-weight: 700;
+}
+.passage-page .passage-article b { color: #8b0012; }
+@media (max-width: 800px) {
+  .passage-page .navbar.navbar-default { flex-wrap: wrap !important; gap: 4px; }
+  .passage-page .navbar .lab-brand,
+  .passage-page .navbar .site-brand { flex-basis: 120px; }
+  .passage-page .navbar .lab-brand-logo,
+  .passage-page .navbar .site-brand-logo { height: 42px; }
+  .passage-page .navbar > .container-fluid {
+    order: 3;
+    flex: 1 0 100%;
+    width: 100%;
+    visibility: visible;
+    opacity: 1;
+    pointer-events: auto;
+  }
+  .passage-page .navbar .navbar-nav { width: 100%; justify-content: flex-start; overflow-x: auto; }
+  .passage-page .content > .passage-card { padding-top: 66px !important; }
+  .passage-page .passage-article { font-size: 16px; }
+}

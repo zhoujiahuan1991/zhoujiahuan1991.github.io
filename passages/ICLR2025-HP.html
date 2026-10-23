@@ -1,115 +1,27 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-CN">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-    <meta http-equiv="Cache-Control" content="no-siteapp" />
-    <meta name="keywords" content="Open Vision, Open View, Open Venture" />
-    <title>论文介绍</title>
-    <link rel="icon" type="image/png" href="../common/img/ov3-favicon.png?v=20261022">
-    <link rel="stylesheet" href="../common/css/bootstrap.min.css">
-    <link rel="stylesheet" href="../common/css/index.css">
-    <style>
-        body {
-            margin: 0;
-            padding: 0;
-            font-family: Arial, sans-serif;
-        }
-
-        .slider-container {
-            width: 100%;
-            overflow: hidden;
-            position: relative;
-            background-color: #f0f0f0;
-        }
-
-        .slider {
-            display: flex;
-            gap: 10px; /* 图片之间的间距 */
-            position: relative;
-            animation: scroll 30s linear 2s infinite running; /* 调整滚动速度 */
-        }
-
-        .slide {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            text-align: center;
-        }
-
-        .slider img {
-            max-height: 200px;
-            /* width: 300px;
-            height: 200px; */
-            border-radius: 10px; /* 图片的圆角 */
-            flex-shrink: 0;
-        }
-
-        .slide-number {
-            margin-top: 5px;
-            font-size: 16px;
-            color: #333;
-        }
-
-        @keyframes scroll {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(-155.5%); }
-        }
-
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>基于混合高斯分布原型的增量目标检测 · 中文解读 · OV³ Lab</title>
+  <link rel="icon" type="image/svg+xml" href="../common/img/ov3-favicon-proportional.svg?v=20261022-fit">
+  <link rel="stylesheet" href="../common/css/bootstrap.min.css">
+  <link rel="stylesheet" href="../common/css/preview-redesign.css?v=20261022-complete-2">
+  <link rel="stylesheet" href="../common/css/preview-consistency.css?v=20261022-kicker-stable">
+  <link rel="stylesheet" href="../common/css/preview-passage.css?v=20261023-unified">
 </head>
-<body >
-
-
-<!-- Copyright � 2008. Spidersoft Ltd -->
-<style>
-A.applink:hover {border: 2px dotted #DCE6F4;padding:2px;background-color:#ffff00;color:green;text-decoration:none}
-A.applink       {border: 2px dotted #DCE6F4;padding:2px;color:#2F5BFF;background:transparent;text-decoration:none}
-A.info          {color:#ba0000;background:transparent;text-decoration:none}
-A.info:hover    {color:green;background:transparent;text-decoration:underline}
-/* 新闻标签样式 */
-.news-item {
-            display: none; /* 默认隐藏所有新闻 */
-        }
-        .show-more {
-            cursor: pointer;
-            color: blue;
-            text-decoration: underline;
-            margin-top: 20px;
-            display: inline-block;
-        }
-        .show-less {
-            cursor: pointer;
-            color: blue;
-            text-decoration: underline;
-            margin-top: 20px;
-            display: inline-block;
-        }
-</style>
-
-<!-- /Copyright � 2008. Spidersoft Ltd -->
-
-
-<div class="container-fluid" style="padding:0 10%;">
-    <dic class="row">
-        <div class="col-md-2 col-xs-2 col-sm-2 " >
-            <div class="warpper" >
-                <div class="logo" >
-                </div>
-                <ul class="nav nav-pills nav-stacked " >
-                    <li role="presentation" ><a href="../index.html">HOMEPAGE</a></li>
-                    <li role="presentation" class="active"><a href="../research.html">LAB HOMEPAGE</a></li>
-                </ul>
-            </div>
-        </div>
-        <div class="col-md-10 col-xs-10 col-sm-10 mb20">
-            <div>
-                <p id="member" style="height:4rem;margin: 0;">&nbsp;</p>
-                <section>
-                    <h4 style="font-weight:bold;" align="center">基于混合高斯分布原型的增量目标检测</h4>
-                    <div style="font-size:medium; margin-top: 20px;">
-                        <p align="center">
+<body class="passage-page">
+  <nav class="navbar navbar-default" aria-label="主导航">
+    <a class="lab-brand" href="../index.html#top" aria-label="OV³ Lab 首页"><img class="lab-brand-logo" src="../common/img/ov3-lab-logo-new.png?v=20261022" alt="OV³ Lab · 开放视界实验室"></a>
+    <div class="container-fluid"><div class="navbar-collapse"><ul class="nav navbar-nav"><li><a href="../index.html#top">Home</a></li><li><a href="../index.html#news">News</a></li><li><a href="../index.html#direct">Research</a></li><li class="active"><a href="../publications.html">Publications</a></li><li><a href="../research.html#member">Members</a></li><li><a href="../patents.html">Patents</a></li><li><a href="../events.html">Fundings</a></li><li><a href="../demos.html">Demos</a></li><li><a href="../contact.html">Contact</a></li></ul></div></div>
+    <a class="site-brand" href="../index.html#top" aria-label="北京大学首页"><img class="site-brand-logo" src="../common/img/pku-logo.png" alt="北京大学 · Peking University"></a>
+  </nav>
+  <main class="content">
+    <section class="passage-card" aria-labelledby="passage-title">
+      <p class="placeholder-kicker">OV³ LAB · PEKING UNIVERSITY</p>
+      <a class="passage-back" href="../publications.html">← 返回 Publications 页</a>
+      <header class="passage-heading"><h1 id="passage-title">基于混合高斯分布原型的增量目标检测</h1></header>
+      <div class="passage-article"><p align="center">
                             <img height=280px src="./ICLR2025-HP.png"/>
                         </p>
                         <p style="font-weight:bold;">"High-dimension Prototype is a Better Incremental Object Detection Learner", ICLR 2025</p>
@@ -119,98 +31,8 @@ A.info:hover    {color:green;background:transparent;text-decoration:underline}
                         </p>
                         <p>针对上述问题，本文提出了一种基于高维原型学习的增量目标检测方法。具体贡献如下：（1）高维原型表示机制：提出高斯混合分布原型（GMDP），通过动态调整类分布原型的组件权重、均值和方差，更精确地刻画类内和类间差异，无需保留旧任务数据即可灵活表示特征分布，有效缓解知识偏移；（2）高维学习辅助策略：设计长度缩放渐进学习策略，通过逐步学习高维特征的判别性信息，降低复杂特征空间的学习难度；（3）原型可塑性增强机制：提出动态自适应原型优化（DAPO）策略，通过类间均值分散、类内组件聚合和原型方差最小化，提升原型的适应性与区分度。实验结果表明，该方法可集成到基于知识蒸馏的IOD方法中，在PASCAL VOC和MS-COCO数据集上，相较于四个基线方法均实现大幅性能超越，在不同增量设置下均取得当前最优结果，充分验证了其有效性。
                         </p>
-                        <p>该论文的第一作者是华中科技大学人工智能与自动化学院2020级博士生王岩杰，通讯作者是周嘉欢助理教授（北京大学）和邹旭讲师（华中科技大学）。</p>
-                    
-                    
-                            
-                            
-                        
-                    
-
-                
-
-                </div>
-            </div>
-    </dic>
-</div>
-
-<script type="text/javascript" src="../common/js/jquery.min.js"></script>
-<script type="text/javascript" src="../common/js/bootstrap.min.js"></script>
-<script>
-    $('.navbar-nav li').unbind().on('click',function(){
-        if($(this).hasClass("active")){
-            console.log(1)
-        }else{
-            $(this).addClass("active");
-            $(this).siblings().removeClass('active');
-        }
-    })
-
-    // 显示前5条新闻
-    document.addEventListener("DOMContentLoaded", function() {
-        var newsItems = document.querySelectorAll('.news-item');
-        for (var i = 0; i < 6; i++) {
-            if (newsItems[i]) {
-                newsItems[i].style.display = 'list-item';
-            }
-        }
-    });
-    
-    document.getElementById('show-less').style.display = 'none'; // 隐藏Show Less按钮
-    // Show More功能
-    function showMoreNews() {
-        var newsItems = document.querySelectorAll('.news-item');
-        newsItems.forEach(function(item) {
-            item.style.display = 'list-item'; // 显示所有新闻
-        });
-        document.getElementById('show-more').style.display = 'none'; // 隐藏Show More按钮
-        document.getElementById('show-less').style.display = 'inline-block'; // 显示Show Less按钮
-    }
-
-    // Show Less功能
-    function showLessNews() {
-        var newsItems = document.querySelectorAll('.news-item');
-        for (var i = 0; i < newsItems.length; i++) {
-            if (i < 6) {
-                newsItems[i].style.display = 'list-item'; // 显示前5条新闻
-            } else {
-                newsItems[i].style.display = 'none'; // 隐藏其他新闻
-            }
-        }
-        document.getElementById('show-more').style.display = 'inline-block'; // 显示Show More按钮
-        document.getElementById('show-less').style.display = 'none'; // 隐藏Show Less按钮
-    }
-
-    // 滚动
-    const slider = document.getElementById('slider');
-    let sliderWidth = slider.scrollWidth;
-    let containerWidth = document.querySelector('.slider-container').offsetWidth;
-    let currentPosition = 0;
-
-    function startSlider() {
-        currentPosition -= 1; // 控制滚动速度
-
-        if (Math.abs(currentPosition) >= sliderWidth / 2) {
-            currentPosition = 0; // 当滚动到一半时重置
-        }
-
-        slider.style.left = currentPosition + 'px';
-
-        requestAnimationFrame(startSlider);
-    }
-
-    // 复制图片以实现无缝滚动
-    function cloneImages() {
-        let images = slider.querySelectorAll('img');
-        images.forEach(img => {
-            let clone = img.cloneNode(true);
-            slider.appendChild(clone);
-        });
-        sliderWidth = slider.scrollWidth; // 更新slider的宽度
-    }
-
-    cloneImages();
-    startSlider();
-</script>
+                        <p>该论文的第一作者是华中科技大学人工智能与自动化学院2020级博士生王岩杰，通讯作者是周嘉欢助理教授（北京大学）和邹旭讲师（华中科技大学）。</p></div>
+    </section>
+  </main>
 </body>
 </html>
