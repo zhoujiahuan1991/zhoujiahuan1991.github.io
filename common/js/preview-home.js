@@ -416,10 +416,16 @@
     if (paper.authorsHtml) {
       const authors = make('p', 'paper-authors');
       authors.innerHTML = paper.authorsHtml;
+      authors.querySelectorAll('b, strong').forEach(name => {
+        if (/\bJiahuan\s+Zhou\b|周嘉欢/i.test(name.textContent)) name.classList.add('paper-highlight-author');
+      });
       body.append(authors);
     } else {
       const fallback = paper.original.cloneNode(true);
       fallback.classList.add('paper-source');
+      fallback.querySelectorAll('b, strong').forEach(name => {
+        if (/\bJiahuan\s+Zhou\b|周嘉欢/i.test(name.textContent)) name.classList.add('paper-highlight-author');
+      });
       body.append(fallback);
     }
     if (paper.details) body.append(make('p', 'paper-citation', paper.details));
