@@ -16,7 +16,7 @@
       }
     }
   };
-  fetch('index.html?v=20261023-zhou-only').then(response => {
+  fetch('index.html?v=20261026-gaprompt-bib').then(response => {
     if (!response.ok) throw new Error(`HTTP ${response.status}`);
     return response.text();
   }).then(html => {
