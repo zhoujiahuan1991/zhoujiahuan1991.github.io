@@ -9,23 +9,22 @@
   };
   const normalize = value => (value || '').replace(/\s+/g, ' ').trim();
   const researchDirections = [
-    ['Multi-Modal AI', [
+    ['Multi-modal AI', [
+      ['Vision-Language Models', /vision-language(?!-action)|visual.language|multimodal|multi-modal|image.text|text.image|\bmllms?\b|llava/i],
       ['3D Understanding', /\b3d\b|three-dimensional|point.cloud|reconstruction|multi-view stereo|gaussian splatting/i],
-      ['Vision-Language Understanding', /vision-language(?!-action)|visual.language|multimodal|multi-modal|image.text|text.image|\bmllms?\b|llava|cross.modal/i],
-      ['Vision-Language-Action Models', /vision-language-action|\bvla\b|rotvla/i],
-      ['Artificial Intelligence for Science', /crystal|material|synthesis|molecular|molecule|scientific|atomically/i]
+      ['Video Understanding', /video understanding|video recognition|video analysis|temporal video|action recognition/i],
+      ['Cross-Modal Recognition', /cross.modal|visible.infrared|visible.thermal|sketch.photo/i]
     ]],
     ['Lifelong AI', [
-      ['Class & Domain Incremental Learning', /incremental|continual|lifelong/i],
+      ['Incremental Learning', /incremental|continual|lifelong/i],
       ['Parameter-Efficient Fine-Tuning', /prompt|adapter|low.rank|parameter.efficient|efficient adaptation|fine.tun/i],
-      ['Lifelong Person Re-Identification', /(?:lifelong|continual)[\s\S]*re.identification|re.identification[\s\S]*(?:lifelong|continual)/i],
-      ['Test-Time Adaptation', /test.time|test.time.*tun/i]
+      ['Test-Time Training', /test.time|test.time.*tun/i],
+      ['Recursive Self-Improvement', /recursive self.improv|self.improv|\brsi\b/i]
     ]],
     ['Agentic AI', [
-      ['Embodied Agents', /vision-language-action|\bvla\b|rotvla/i],
+      ['Embodied Agents', /vision-language-action|\bvla\b|rotvla|embodied/i],
       ['Instruction Tuning', /instruction|post.training/i],
-      ['Efficient Inference', /token[\s-]*(?:prun|reduc|compress|merg)|(?:prun|reduc|compress|merg)[\s\S]*token/i],
-      ['Recursive Self-Improvement', /recursive self.improv|self.improv|\brsi\b/i]
+      ['Efficient Inference', /token[\s-]*(?:prun|reduc|compress|merg)|(?:prun|reduc|compress|merg)[\s\S]*token|efficient inference/i]
     ]]
   ];
 
@@ -203,9 +202,9 @@
     copy.append(credentials);
     const principles = make('div', 'ov-principles');
     [
-      ['Open Vision', '开放视觉 · 看见更多', '从封闭类别到开放世界，拓展多模态感知的认知边界。'],
-      ['Open View', '开放视角 · 理解更多', '从多元视角到跨模态融合，深化复杂场景的关联理解。'],
-      ['Open Venture', '开放探索 · 发现更多', '从已知规律到未知领域，探索持续学习与科学发现的新路径。']
+      ['Open Vision', '开放视觉 · 看见更多', '从单一视角到多元融合，拓展多模态感知的新边界。'],
+      ['Open View', '开放视角 · 理解更多', '从已知规律到未知机理，丰富终身智能的新理解。'],
+      ['Open Venture', '开放探索 · 发现更多', '从封闭环境到开放世界，探索自主智能的新路径。']
     ].forEach(([title, subtitle, description]) => {
       const card = make('div', 'ov-principle');
       const heading = make('div', 'ov-principle-heading');
