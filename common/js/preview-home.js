@@ -202,9 +202,9 @@
     copy.append(credentials);
     const principles = make('div', 'ov-principles');
     [
-      ['Open Vision', '开放视觉 · 看见更多', '从单一视角到多元融合，拓展多模态感知的新边界。'],
-      ['Open View', '开放视角 · 理解更多', '从已知规律到未知机理，丰富终身智能的新理解。'],
-      ['Open Venture', '开放探索 · 发现更多', '从封闭环境到开放世界，探索自主智能的新路径。']
+      ['Open Vision', '开放视觉 · 看见更多', '从单一视野到多元融合，拓展多模态感知新边界。'],
+      ['Open View', '开放视角 · 理解更多', '从已知规律到未知机理，丰富终身智能新理解。'],
+      ['Open Venture', '开放探索 · 发现更多', '从封闭环境到开放世界，探索自主智能新路径。']
     ].forEach(([title, subtitle, description]) => {
       const card = make('div', 'ov-principle');
       const heading = make('div', 'ov-principle-heading');
