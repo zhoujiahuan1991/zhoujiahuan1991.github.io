@@ -123,6 +123,54 @@
     }
   </style>
   <link rel="icon" type="image/svg+xml" href="common/img/ov3-favicon-proportional.svg?v=20261022-fit">
+  <style id="demo-gallery-layout">
+    body.demos-page .demo-category-grid { display: block; }
+    body.demos-page .demo-category-grid > .demo-category,
+    body.demos-page .demo-category-grid > .demo-category:hover {
+      display: block;
+      margin: 28px 0;
+      padding: 0;
+      border: 0;
+      background: transparent;
+      box-shadow: none;
+      transform: none;
+    }
+    body.demos-page .demo-category-grid .demo-category > h2 {
+      margin: 0 0 22px;
+      color: #252024;
+      font: 700 clamp(21px, 1.9vw, 26px)/1.3 Arial, "Microsoft YaHei", "Noto Sans SC", sans-serif;
+      text-align: center;
+    }
+    body.demos-page .demo-category-grid .demo-category > h2::after {
+      content: "";
+      display: block;
+      width: 42px;
+      height: 3px;
+      margin: 10px auto 0;
+      border-radius: 2px;
+      background: var(--wine);
+    }
+    body.demos-page .demo-category-grid .demo-video-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 20px;
+      margin-top: 24px;
+    }
+    body.demos-page .demo-video-card img {
+      display: block;
+      width: 100%;
+      height: auto;
+      background: #fff;
+    }
+    body.demos-page .demo-video-card img[src*="layout-22.gif"],
+    body.demos-page .demo-video-card img[src*="layout-24.gif"] {
+      aspect-ratio: 16 / 9;
+      object-fit: contain;
+    }
+    @media (max-width: 600px) {
+      body.demos-page .demo-category-grid .demo-video-grid { grid-template-columns: 1fr; }
+    }
+  </style>
 </head>
 
 <body class="contact-page demos-page" data-page="Demos">
@@ -139,7 +187,7 @@
     <section class="contact-panel demos-panel">
       <p class="placeholder-kicker">OV³ Lab · Peking University</p>
       <h1>Demos</h1>
-      <div class="demo-category-grid"><article class="demo-category"><div class="demo-category-header"><div><p class="demo-kicker">Robotics &amp; Interaction</p><h2><a href="embodied-intelligence.html">Embodied Intelligence</a></h2></div><span class="demo-total">12 videos</span></div><p class="demo-description">Robotic manipulation across varied objects and visual environments.</p><div class="demo-video-grid"><figure class="demo-video-card"><video controls playsinline preload="none" poster="common/videos/embodied-intelligence/demo-1.jpg" aria-label="Tabletop Manipulation"><source src="common/videos/embodied-intelligence/demo-1.mp4" type="video/mp4">Your browser does not support video playback. <a href="common/videos/embodied-intelligence/demo-1.mp4">Download video</a>.</video><figcaption><span class="demo-index">01</span><span>Tabletop Manipulation</span></figcaption></figure><figure class="demo-video-card"><video controls playsinline preload="none" poster="common/videos/embodied-intelligence/demo-2.jpg" aria-label="Object Interaction"><source src="common/videos/embodied-intelligence/demo-2.mp4" type="video/mp4">Your browser does not support video playback. <a href="common/videos/embodied-intelligence/demo-2.mp4">Download video</a>.</video><figcaption><span class="demo-index">02</span><span>Object Interaction</span></figcaption></figure></div><div class="demo-category-footer"><a class="demo-view-all" href="embodied-intelligence.html">View all demos <span aria-hidden="true">↗</span></a></div></article><article class="demo-category"><div class="demo-category-header"><div><p class="demo-kicker">Geometry &amp; Scene Understanding</p><h2><a href="3d-reconstruction.html">3D Reconstruction</a></h2></div><span class="demo-total">1 video</span></div><p class="demo-description">3R-Adapter: Retrieval, Rewiring, and Refinement for Efficient Adaptation of 3D Reconstruction Model.</p><div class="demo-reconstruction-preview"><figure class="demo-video-card demo-video-wide"><video controls playsinline preload="none" poster="common/videos/3d-reconstruction/reconstruction-1.jpg" aria-label="3R-Adapter research presentation"><source src="common/videos/3d-reconstruction/reconstruction-1.mp4" type="video/mp4">Your browser does not support video playback. <a href="common/videos/3d-reconstruction/reconstruction-1.mp4">Download video</a>.</video><figcaption><span class="demo-index">01</span><span>3R-Adapter · Efficient Adaptation of 3D Reconstruction Models</span></figcaption></figure></div><div class="demo-category-footer"><a class="demo-view-all" href="3d-reconstruction.html">View all demos <span aria-hidden="true">↗</span></a></div></article></div>
+      <div class="demo-category-grid"><article class="demo-category"><h2>Multi-modal</h2><div class="demo-video-grid"><figure class="demo-video-card"><img src="common/gifs/demos/layout-5.gif?v=top-fix" alt="Video Understanding" loading="lazy" decoding="async"><figcaption>Video Understanding</figcaption></figure><figure class="demo-video-card"><img src="common/gifs/demos/layout-6.gif" alt="Point Cloud Completion and Segmentation" loading="lazy" decoding="async"><figcaption>Point Cloud Completion and Segmentation</figcaption></figure><figure class="demo-video-card"><img src="common/gifs/demos/layout-7.gif" alt="Point Cloud Scene Understanding" loading="lazy" decoding="async"><figcaption>Point Cloud Scene Understanding</figcaption></figure><figure class="demo-video-card"><img src="common/gifs/demos/layout-13.gif" alt="Person Re-identification · 1" loading="lazy" decoding="async"><figcaption>Person Re-identification · 1</figcaption></figure><figure class="demo-video-card"><img src="common/gifs/demos/layout-14.gif" alt="Person Re-identification · 2" loading="lazy" decoding="async"><figcaption>Person Re-identification · 2</figcaption></figure><figure class="demo-video-card"><img src="common/gifs/demos/layout-15.gif" alt="Person Re-identification · 3" loading="lazy" decoding="async"><figcaption>Person Re-identification · 3</figcaption></figure><figure class="demo-video-card"><img src="common/gifs/demos/layout-16.gif" alt="Person Re-identification · 4" loading="lazy" decoding="async"><figcaption>Person Re-identification · 4</figcaption></figure><figure class="demo-video-card"><img src="common/gifs/demos/layout-17.gif" alt="Person Re-identification · 5" loading="lazy" decoding="async"><figcaption>Person Re-identification · 5</figcaption></figure><figure class="demo-video-card"><img src="common/gifs/demos/layout-18.gif" alt="Urban Analysis" loading="lazy" decoding="async"><figcaption>Urban Analysis</figcaption></figure></div></article><article class="demo-category"><h2>Embodied Intelligence</h2><div class="demo-video-grid"><figure class="demo-video-card"><img src="common/gifs/demos/layout-42.gif" alt="Household Robot Tasks" loading="lazy" decoding="async"><figcaption>Household Robot Tasks</figcaption></figure></div></article><article class="demo-category"><h2>AIGC</h2><div class="demo-video-grid"><figure class="demo-video-card"><img src="common/gifs/demos/layout-8.gif" alt="Music Generation" loading="lazy" decoding="async"><figcaption>Music Generation</figcaption></figure><figure class="demo-video-card"><img src="common/gifs/demos/layout-9.gif" alt="Scene Insertion and Removal" loading="lazy" decoding="async"><figcaption>Scene Insertion and Removal</figcaption></figure><figure class="demo-video-card"><img src="common/gifs/demos/layout-10.gif" alt="Scene Replacement and Movement" loading="lazy" decoding="async"><figcaption>Scene Replacement and Movement</figcaption></figure></div></article><article class="demo-category"><h2>3D Reconstruction</h2><div class="demo-video-grid"><figure class="demo-video-card"><img src="common/gifs/demos/layout-22.gif" alt="3D Point Cloud Comparison" loading="lazy" decoding="async"><figcaption>3D Point Cloud Comparison</figcaption></figure><figure class="demo-video-card"><img src="common/gifs/demos/layout-24.gif" alt="3D Perception" loading="lazy" decoding="async"><figcaption>3D Perception</figcaption></figure></div></article><article class="demo-category"><h2>Public Safety</h2><div class="demo-video-grid"><figure class="demo-video-card"><img src="common/gifs/demos/layout-38.gif" alt="Public Opinion Analysis System" loading="lazy" decoding="async"><figcaption>Public Opinion Analysis System</figcaption></figure></div></article></div>
     </section>
   </main>
   <script src="common/js/preview-placeholder.js?v=20261022-new-lab-logo"></script>

@@ -36,6 +36,7 @@
     .contact-page .contact-email-note { color: #806b74; font-size: 13px; }
   </style>
   <link rel="stylesheet" href="common/css/preview-consistency.css?v=20261022-kicker-stable">
+  <link rel="stylesheet" href="common/css/contact-refined.css?v=20261106-draft-only">
 </head>
 
 <body class="contact-page" data-page="Contact">
@@ -105,10 +106,12 @@
           <label><span class="apply-field-caption">Why OV³ Lab?</span><textarea name="motivation" rows="3"></textarea></label><button
             class="paper-resource apply-submit" type="submit">Generate email draft <span
               aria-hidden="true">↗</span></button>
+          <p class="apply-note">邮件草稿支持中文或英文，可在生成后切换语言。<br>Email drafts are available in Chinese or English. You can switch languages after generating the draft.</p>
           <p class="apply-note">The email draft is generated locally and must be sent manually.</p>
         </form>
         <section id="application-preview" class="application-preview" hidden aria-live="polite">
-          <h3>Your application email</h3>
+          <h3>Your application email · 申请邮件草稿</h3>
+          <div class="draft-language" aria-label="Email language"><button type="button" data-language="en" aria-pressed="true">English</button><button type="button" data-language="zh" aria-pressed="false">中文</button></div>
           <p>Copy the draft below, attach your CV, and send it to <strong>jiahuanzhouATpku.edu.cn</strong> (replace AT with @).
             <strong>This form does not send email.</strong></p>
           <pre id="application-summary"></pre><button type="button" class="paper-resource" id="copy-application">Copy
@@ -118,7 +121,7 @@
     </section>
   </main>
   <script src="common/js/preview-placeholder.js?v=20261022-new-lab-logo"></script>
-  <script src="common/js/preview-apply.js?v=20261022-no-cv-upload"></script>
+  <script src="common/js/preview-apply.js?v=20261106-draft-only"></script>
 </body>
 
 </html>

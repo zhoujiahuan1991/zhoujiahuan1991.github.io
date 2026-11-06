@@ -1,0 +1,14 @@
+/* Only the generated email preview is restyled. */
+.contact-page .contact-divider{margin:24px 0 20px;border:0;border-top:1px solid #dcc4ca}
+.contact-page .contact-email p{margin:0 0 10px;line-height:1.8}
+.contact-page .contact-email-note{color:#806b74;font-size:13px}
+.contact-page .application-preview{margin-top:30px;padding:28px;background:#faf7f8;border:1px solid #e9dade;border-radius:12px}
+.contact-page .application-preview h3{margin-top:0;font-size:21px;font-weight:700}
+.contact-page .application-preview p{font-size:14px;line-height:1.8;color:#75636c}
+.contact-page .draft-language{display:flex;gap:8px;margin:18px 0}
+.contact-page .draft-language button{border:1px solid #dfd0d5;background:white;border-radius:6px;padding:8px 18px;color:#65525c;font-weight:700}
+.contact-page .draft-language button[aria-pressed="true"]{background:#8b0012;color:white;border-color:#8b0012}
+.contact-page #application-summary{white-space:pre-wrap;overflow-wrap:anywhere;background:#fff;border:1px solid #eadfe2;border-radius:8px;padding:28px;font:15px/1.9 Arial,"Microsoft YaHei",sans-serif;color:#3f343a;margin:18px 0}
+.contact-page #copy-application{min-height:42px;padding:10px 18px;font-size:14px;border-radius:8px}
+.contact-page #copy-status{display:block;margin-top:12px;font-size:13px;color:#78656d}
+@media(max-width:600px){.contact-page .application-preview{padding:16px}.contact-page #application-summary{padding:16px;font-size:14px}}
