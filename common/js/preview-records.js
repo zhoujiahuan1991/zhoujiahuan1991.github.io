@@ -52,6 +52,7 @@
   const projectsPage = document.body.dataset.page === 'Fundings';
   if (!projectsPage) {
     const isGranted = patent => patent[1] === '授权' || String(patent[1]) === '9';
+    const formatGrantedApplication = number => String(number).replace(/^(\d{4})(\d)(\d{7}\.\d)$/, 'ZL $1 $2 $3');
     const sorted = [...patents].sort((a, b) => b[4].localeCompare(a[4]));
     list.classList.remove('records-table-wrap');
     [['Granted Patents', true], ['Patents Under Examination', false]].forEach(([label, granted]) => {
@@ -59,26 +60,32 @@
       const heading = make('h2', '', label);
       const wrap = make('div', 'records-table-wrap', '');
       const table = make('table', 'alumni-table records-table patents-table', '');
+      if (!granted) table.classList.add('patents-table--pending');
       const head = make('thead', '', '');
       const header = make('tr', '', '');
-      const columns = ['No.', 'Patent Title', 'Certificate No.', 'Application No.', 'Inventors'];
-      columns.push(granted ? 'Grant Date' : 'Filing Date');
-      columns.forEach(label => {
+      const columns = granted
+        ? ['No.', 'Patent Title', '专利/受理号', '申请号', 'Inventors', 'Grant Date']
+        : ['No.', 'Patent Title', '申请号', 'Inventors', 'Filing Date'];
+      columns.forEach((label, index) => {
         const cell = make('th', '', label);
         cell.scope = 'col';
+        if (!granted && index === 2) cell.colSpan = 2;
         header.append(cell);
       });
       head.append(header);
       const body = make('tbody', '', '');
       sorted.filter(patent => isGranted(patent) === granted).forEach(([title, status, certificate, application, date, grantDate], index) => {
         const row = make('tr', '', '');
-        const values = [index + 1, title, certificate, application, inventorsByApplication[application] || '—', granted ? grantDate || '—' : date];
+        const values = granted
+          ? [index + 1, title, certificate, formatGrantedApplication(application), inventorsByApplication[application] || '—', grantDate || '—']
+          : [index + 1, title, application, inventorsByApplication[application] || '—', date];
         const certificates = {
           '202611055966.4': 'common/files/patents/2026110559664-certificate.pdf',
           '202411591530.8': 'common/files/patents/2024115915308-certificate.png'
         };
         values.forEach((value, column) => {
           const cell = make('td', '', value);
+          if (!granted && column === 2) cell.colSpan = 2;
           if (column === 1 && granted && certificates[application]) {
             const link = make('a', 'patent-certificate-link', title);
             link.href = certificates[application];
