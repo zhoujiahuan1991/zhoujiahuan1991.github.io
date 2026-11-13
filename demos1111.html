@@ -162,11 +162,52 @@
       height: auto;
       background: #fff;
     }
-    body.demos-page .demo-video-card img[src*="layout-22.gif"],
-    body.demos-page .demo-video-card img[src*="layout-24.gif"] {
+    body.demos-page .demo-video-card img[src*="layout-22.gif"] {
       aspect-ratio: 16 / 9;
       object-fit: contain;
     }
+    body.demos-page .demo-video-card video[src*="layout-8-hd.mp4"] {
+      aspect-ratio: 2400 / 826;
+      object-fit: contain;
+    }
+    body.demos-page .demo-video-card .demo-perception-media {
+      position: relative;
+      overflow: hidden;
+      aspect-ratio: 800 / 474;
+      background: #fff;
+    }
+    body.demos-page .demo-video-card .demo-perception-media img {
+      width: 94%;
+      height: 100%;
+      margin-left: 6%;
+      aspect-ratio: auto;
+      object-fit: fill;
+    }
+    .demo-perception-media::before {
+      content: "";
+      position: absolute;
+      z-index: 1;
+      inset: 0 auto 0 0;
+      width: 14.4%;
+      background: #fff;
+    }
+    .demo-perception-labels {
+      position: absolute;
+      z-index: 2;
+      inset: 0 auto 0 0;
+      width: 14.4%;
+      color: #111c68;
+      font: 700 clamp(11px, 2.1vw, 30px)/1.15 Arial, "Microsoft YaHei", sans-serif;
+      white-space: nowrap;
+    }
+    .demo-perception-labels span {
+      position: absolute;
+      left: 3%;
+      transform: translateY(-50%);
+    }
+    .demo-perception-labels span:nth-child(1) { top: 15%; }
+    .demo-perception-labels span:nth-child(2) { top: 49%; }
+    .demo-perception-labels span:nth-child(3) { top: 82%; color: #6f2928; }
     @media (max-width: 600px) {
       body.demos-page .demo-category-grid .demo-video-grid { grid-template-columns: 1fr; }
     }
@@ -187,7 +228,7 @@
     <section class="contact-panel demos-panel">
       <p class="placeholder-kicker">OV³ Lab · Peking University</p>
       <h1>Demos</h1>
-      <div class="demo-category-grid"><article class="demo-category"><h2>Multi-modal</h2><div class="demo-video-grid"><figure class="demo-video-card"><img src="common/gifs/demos/layout-5.gif?v=top-fix" alt="Video Understanding" loading="lazy" decoding="async"><figcaption>Video Understanding</figcaption></figure><figure class="demo-video-card"><img src="common/gifs/demos/layout-6.gif" alt="Point Cloud Completion and Segmentation" loading="lazy" decoding="async"><figcaption>Point Cloud Completion and Segmentation</figcaption></figure><figure class="demo-video-card"><img src="common/gifs/demos/layout-7.gif" alt="Point Cloud Scene Understanding" loading="lazy" decoding="async"><figcaption>Point Cloud Scene Understanding</figcaption></figure><figure class="demo-video-card"><img src="common/gifs/demos/layout-13.gif" alt="Person Re-identification · 1" loading="lazy" decoding="async"><figcaption>Person Re-identification · 1</figcaption></figure><figure class="demo-video-card"><img src="common/gifs/demos/layout-14.gif" alt="Person Re-identification · 2" loading="lazy" decoding="async"><figcaption>Person Re-identification · 2</figcaption></figure><figure class="demo-video-card"><img src="common/gifs/demos/layout-15.gif" alt="Person Re-identification · 3" loading="lazy" decoding="async"><figcaption>Person Re-identification · 3</figcaption></figure><figure class="demo-video-card"><img src="common/gifs/demos/layout-16.gif" alt="Person Re-identification · 4" loading="lazy" decoding="async"><figcaption>Person Re-identification · 4</figcaption></figure><figure class="demo-video-card"><img src="common/gifs/demos/layout-17.gif" alt="Person Re-identification · 5" loading="lazy" decoding="async"><figcaption>Person Re-identification · 5</figcaption></figure><figure class="demo-video-card"><img src="common/gifs/demos/layout-18.gif" alt="Urban Analysis" loading="lazy" decoding="async"><figcaption>Urban Analysis</figcaption></figure></div></article><article class="demo-category"><h2>Embodied Intelligence</h2><div class="demo-video-grid"><figure class="demo-video-card"><img src="common/gifs/demos/layout-42.gif" alt="Household Robot Tasks" loading="lazy" decoding="async"><figcaption>Household Robot Tasks</figcaption></figure></div></article><article class="demo-category"><h2>AIGC</h2><div class="demo-video-grid"><figure class="demo-video-card"><video src="common/gifs/demos/layout-8-hd.mp4?v=20261109-hd" poster="common/gifs/demos/layout-8-hd-poster.jpg?v=20261109-hd" autoplay muted loop playsinline preload="metadata" aria-label="Music Generation"></video><figcaption>Music Generation</figcaption></figure><figure class="demo-video-card"><video src="common/gifs/demos/layout-9-hd.mp4?v=20261109-no-footer" poster="common/gifs/demos/layout-9-hd-poster.jpg?v=20261109-no-footer" autoplay muted loop playsinline preload="metadata" aria-label="Scene Insertion and Removal"></video><figcaption>Scene Insertion and Removal</figcaption></figure><figure class="demo-video-card"><video src="common/gifs/demos/layout-10-hd.mp4?v=20261109-no-footer" poster="common/gifs/demos/layout-10-hd-poster.jpg?v=20261109-no-footer" autoplay muted loop playsinline preload="metadata" aria-label="Scene Replacement and Movement"></video><figcaption>Scene Replacement and Movement</figcaption></figure></div></article><article class="demo-category"><h2>3D Reconstruction</h2><div class="demo-video-grid"><figure class="demo-video-card"><img src="common/gifs/demos/layout-22.gif" alt="3D Point Cloud Comparison" loading="lazy" decoding="async"><figcaption>3D Point Cloud Comparison</figcaption></figure><figure class="demo-video-card"><img src="common/gifs/demos/layout-24.gif" alt="3D Perception" loading="lazy" decoding="async"><figcaption>3D Perception</figcaption></figure></div></article></div>
+      <div class="demo-category-grid"><article class="demo-category"><h2>Multi-modal</h2><div class="demo-video-grid"><figure class="demo-video-card"><img src="common/gifs/demos/layout-5.gif?v=top-fix" alt="Video Understanding" loading="lazy" decoding="async"><figcaption>Video Understanding</figcaption></figure><figure class="demo-video-card"><img src="common/gifs/demos/layout-6.gif" alt="Point Cloud Completion and Segmentation" loading="lazy" decoding="async"><figcaption>Point Cloud Completion and Segmentation</figcaption></figure><figure class="demo-video-card"><img src="common/gifs/demos/layout-7.gif" alt="Point Cloud Scene Understanding" loading="lazy" decoding="async"><figcaption>Point Cloud Scene Understanding</figcaption></figure><figure class="demo-video-card"><img src="common/gifs/demos/layout-13.gif" alt="Person Re-identification · 1" loading="lazy" decoding="async"><figcaption>Person Re-identification · 1</figcaption></figure><figure class="demo-video-card"><img src="common/gifs/demos/layout-14.gif" alt="Person Re-identification · 2" loading="lazy" decoding="async"><figcaption>Person Re-identification · 2</figcaption></figure><figure class="demo-video-card"><img src="common/gifs/demos/layout-15.gif" alt="Person Re-identification · 3" loading="lazy" decoding="async"><figcaption>Person Re-identification · 3</figcaption></figure><figure class="demo-video-card"><img src="common/gifs/demos/layout-16.gif" alt="Person Re-identification · 4" loading="lazy" decoding="async"><figcaption>Person Re-identification · 4</figcaption></figure><figure class="demo-video-card"><img src="common/gifs/demos/layout-17.gif" alt="Person Re-identification · 5" loading="lazy" decoding="async"><figcaption>Person Re-identification · 5</figcaption></figure><figure class="demo-video-card"><img src="common/gifs/demos/layout-18.gif" alt="Urban Analysis" loading="lazy" decoding="async"><figcaption>Urban Analysis</figcaption></figure></div></article><article class="demo-category"><h2>Embodied Intelligence</h2><div class="demo-video-grid"><figure class="demo-video-card"><img src="common/gifs/demos/layout-42.gif" alt="Household Robot Tasks" loading="lazy" decoding="async"><figcaption>Household Robot Tasks</figcaption></figure></div></article><article class="demo-category"><h2>AIGC</h2><div class="demo-video-grid"><figure class="demo-video-card"><video src="common/gifs/demos/layout-8-hd.mp4?v=20261109-hd" poster="common/gifs/demos/layout-8-hd-poster.jpg?v=20261109-hd" autoplay muted loop playsinline preload="metadata" aria-label="Music Generation"></video><figcaption>Music Generation</figcaption></figure><figure class="demo-video-card"><video src="common/gifs/demos/layout-9-hd.mp4?v=20261109-no-footer" poster="common/gifs/demos/layout-9-hd-poster.jpg?v=20261109-no-footer" autoplay muted loop playsinline preload="metadata" aria-label="Scene Insertion and Removal"></video><figcaption>Scene Insertion and Removal</figcaption></figure><figure class="demo-video-card"><video src="common/gifs/demos/layout-10-hd.mp4?v=20261109-no-footer" poster="common/gifs/demos/layout-10-hd-poster.jpg?v=20261109-no-footer" autoplay muted loop playsinline preload="metadata" aria-label="Scene Replacement and Movement"></video><figcaption>Scene Replacement and Movement</figcaption></figure></div></article><article class="demo-category"><h2>3D Reconstruction</h2><div class="demo-video-grid"><figure class="demo-video-card"><img src="common/gifs/demos/layout-22.gif" alt="3D Point Cloud Comparison" loading="lazy" decoding="async"><figcaption>3D Point Cloud Comparison</figcaption></figure><figure class="demo-video-card"><div class="demo-perception-media"><img src="common/gifs/demos/layout-24.gif" alt="3D Perception" loading="lazy" decoding="async"><div class="demo-perception-labels" aria-hidden="true"><span>原视频</span><span>现有方法</span><span>提出方法</span></div></div><figcaption>3D Perception</figcaption></figure></div></article></div>
     </section>
   </main>
   <script src="common/js/preview-placeholder.js?v=20261022-new-lab-logo"></script>
