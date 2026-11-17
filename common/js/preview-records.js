@@ -80,7 +80,6 @@
           ? [index + 1, title, certificate, formatGrantedApplication(application), inventorsByApplication[application] || '—', grantDate || '—']
           : [index + 1, title, application, inventorsByApplication[application] || '—', date];
         const certificates = {
-          '202611055966.4': 'common/files/patents/2026110559664-certificate.pdf',
           '202411591530.8': 'common/files/patents/2024115915308-certificate.png'
         };
         values.forEach((value, column) => {
